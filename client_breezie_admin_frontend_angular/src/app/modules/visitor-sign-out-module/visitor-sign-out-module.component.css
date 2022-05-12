@@ -1,0 +1,47 @@
+.headingSignOut{
+    /* padding-left: 28%; */
+      font-size: medium;
+      padding-top: 13px;
+      text-align: center;
+  }
+  .headSignOut{
+    /* padding-left: 22%;
+     */
+    
+     text-align: center;
+    font-size: 21px;
+    margin-bottom: 25px;
+  }
+  .heading p{
+    font-size: 18px;
+    line-height: 1.56;
+  }
+:host::ng-deep.mat-dialog-content {
+    padding: 10px 24px !important;
+}
+  .subHeading{
+    font-size: 18px;
+
+  }
+  .signOutContinue{
+    /* padding-left: 12%; */
+    /* padding-top: 12px; */
+    font-size: 18px;
+    text-align: center;
+  }
+
+  #closeSignOut{
+    border: 2px solid grey;
+    background-color: white;
+    color: black;
+    width: 39%;
+    box-shadow: none;
+  }
+  
+  #signOutButton{
+    border: 1px solid #1561CF;
+  background-color: #1561CF;
+  color: white;
+  margin-left: 10px;
+  width: 43%;
+  }

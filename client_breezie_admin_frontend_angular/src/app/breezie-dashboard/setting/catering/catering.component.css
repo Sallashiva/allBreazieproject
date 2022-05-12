@@ -1,0 +1,238 @@
+.heading h4 {
+  font-weight: 500;
+  font-size: 16px;
+  color: #231F20;
+}
+
+p {
+  color: #231F20;
+  opacity: 0.8;
+}
+
+.spinner {
+  position: fixed;
+  background-color: rgba(0,0,0,0.2);
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+ :host::ng-deep mat-spinner{
+  position: absolute;
+  left: 50%;
+  top: 30%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+.field {
+  position: absolute;
+  top: 45px;
+  z-index: 1;
+  width: 87%;
+  left: 68px;
+}
+
+.card {
+  box-shadow: 0px 0px 6px lightgray;
+  border: none;
+  padding: 20px;
+}
+
+button {
+  padding: 6px 15px;
+  margin-top: 4px;
+  background: #004AB6;
+  color: white;
+  border: none;
+  border-radius: 4px;
+}
+
+.nav-tabs {
+  border-bottom: 0px;
+  margin-left: 40px;
+}
+
+:host::ng-deep.mat-form-field-appearance-outline .mat-form-field-infix {
+  padding: 1em 0 0.8em 0;
+  border-top: 0px;
+}
+
+.button button {
+  width: 100%;
+  padding-top: 0px;
+  padding-bottom: 2px;
+  margin-top: 4px;
+  background: #004AB6;
+  color: white;
+}
+
+.buttons button {
+  margin-top: 4px;
+  background: #004AB6;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.buttons button:disabled {
+  margin-top: 4px;
+  background: lightgrey;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+:host::ng-deep.mat-expansion-panel {
+  box-shadow: none !important;
+}
+
+:host::ng-deep.mat-content {
+  display: flex;
+  flex: inherit;
+  flex-direction: row;
+  overflow: hidden;
+}
+
+:host::ng-deep.mat-expansion-indicator {
+  margin-top: 2px;
+}
+
+:host::ng-deep.mat-expansion-indicator::after {
+  margin-top: -7px;
+  color: #1561CF !important;
+}
+
+:host::ng-deep.nav-tabs .nav-link {
+  background: #00000029;
+  color: gray;
+  font-size: 16px;
+  font-weight: 500;
+  border-right: 1px solid white;
+}
+
+:host::ng-deep.mat-expansion-panel-body {
+  padding: 0 0px 16px;
+}
+
+:host::ng-deep.mat-expansion-panel-header {
+  padding: 0px;
+}
+
+.orderContact .card {
+  margin: 0px 0px 0px 26px;
+  /* height: 85%; */
+}
+
+:host::ng-deep.nav-tabs .nav-link.active {
+  color: #004AB6;
+  background-color: #fff !important;
+  border-color: white;
+  box-shadow: 0px 0px 3px;
+  box-shadow: 0px 1px 6px #00000029;
+}
+
+.carouselborder {
+  border: 8px solid black;
+  width: 429px;
+  height: 351px;
+  border-radius: 20px;
+  margin-left: 24px;
+  margin-top: 13px;
+  box-shadow: 1px 6px 15px;
+}
+
+:host::ng-deep.carousel-control-prev {
+  opacity: 0.6;
+  border-radius: 30px;
+  height: 30px;
+  width: 42px;
+  margin-top: 151px;
+  margin-left: 5px;
+  background-color: grey;
+}
+
+:host::ng-deep.carousel-control-next {
+  opacity: 0.6;
+  border-radius: 30px;
+  height: 30px;
+  width: 42px;
+  margin-top: 151px;
+  margin-right: 5px;
+  background-color: grey;
+}
+
+.colordisplay {
+  width: 100%;
+}
+
+:host::ng-deep.mat-content {
+  display: flex;
+  flex: inherit;
+  flex-direction: row;
+  overflow: hidden;
+  width: 100%;
+  padding-left: 24px;
+  padding-right: 25px;
+}
+
+:host::ng-deep.mat-expansion-panel-header {
+  padding-left: 12px;
+  padding-right: 25px;
+}
+
+:host::ng-deep.mat-expansion-panel-header-description {
+  flex-grow: 0;
+}
+
+.bevarages-image {
+  height: 100px;
+  width: 100px;
+}
+
+.delete {
+  background: none;
+  float: right;
+  border: none
+}
+
+.spinner {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
+.item img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  box-shadow: 0px 0px 4px lightgrey;
+}
+
+.carouselImag {
+  width: 99% !important;
+  height: 331px;
+  border-radius: 20px;
+  margin-top: 2px;
+  margin-left: 2px;
+  margin-right: 2px;
+  margin-bottom: 2px;
+}
+
+.image {
+  width: 99px !important;
+  height: 101px;
+  border-radius: 206px
+}
+
+.deleteIcon {
+  text-align: right;
+  /* font-size: 30px; */
+}
+
+#matCardAdded{
+  padding-top: 20px;
+}
+.multipleCardsCatering{
+  margin-top: 10px;
+}

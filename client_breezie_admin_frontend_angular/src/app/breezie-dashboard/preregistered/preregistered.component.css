@@ -1,0 +1,117 @@
+.exapiansion {
+  width: 100%;
+
+  border: solid 1px grey;
+}
+
+.button {
+  color: white;
+
+  /* margin-left: 80px; */
+  position: relative;
+  text-align: center;
+}
+
+table {
+  width: 100%;
+}
+
+.cardsize {
+  width: 100%;
+  margin-top: 12px;
+}
+
+.name {
+  font-size: 16px;
+  overflow-wrap: anywhere;
+}
+
+.cancelButton {
+  /* border-radius: 6px; */
+  background-color: #E4E4E4;
+  border: 1px solid black;
+  color: black;
+  opacity: 1 !important;
+}
+
+.addButton {
+  background-color: #1561CF;
+  color: white;
+  margin-left: 30px;
+}
+
+:host::ng-deep tr.mat-header-row {
+  background: #F1F1F1 !important;
+  color: black !important;
+  height: 42px !important;
+}
+
+.addvisitor {
+  background-color: #F1F1F1;
+
+}
+.spinner {
+  position: fixed;
+  background-color: rgba(0,0,0,0.2);
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+ :host::ng-deep mat-spinner{
+  position: absolute;
+  left: 50%;
+  top: 30%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+:host::ng-deep.mat-card {
+  padding: 0px;
+}
+
+:host::ng-deep.mat-card-content {
+  padding: 16px;
+}
+
+.rowhover:hover {
+  background-color: rgb(250, 250, 250);
+
+
+}
+
+.mat-ink-bar {
+  background: transparent !important;
+}
+
+:host::ng-deep.mat-header-cell {
+  text-align: left;
+  color: black;
+  font-size: 14px;
+}
+
+.fullname:hover {
+  text-decoration: underline;
+  color: #004AB6;
+  cursor: pointer;
+}
+
+:host::ng-deep .mat-card>:last-child:not(.mat-card-footer),
+.mat-card-content>:last-child:not(.mat-card-footer) {
+  margin-top: -6px;
+}
+:host::ng-deep .mat-form-field-appearance-outline .mat-form-field-label {
+  margin-top: 0.75em !important;
+}
+:host::ng-deep.mat-card-header .mat-card-title {
+  margin-bottom: 0px !important;
+  padding: 6px  !important;
+}
+
+.companyname{
+  overflow-wrap: anywhere;
+}
+::ng-deep .mat-select-panel {
+  min-width: 100% !important;
+  margin-left:15px ;
+  margin-top: 40px;
+}

@@ -1,0 +1,41 @@
+#mybutton {
+    position: fixed;
+    padding: 2px 10px 5px 10px;
+    bottom: 10px;
+    width: 100%;
+}
+
+.logo {
+    top: 36px;
+    left: 56px;
+    width: 168px;
+    height: 41px;
+}
+
+#mybutton {
+    background: white;
+    text-align: center !important;
+    box-shadow: 0px 0px 4px lightgrey;
+    bottom: 0px;
+    padding: 0;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.feedback {
+    float: none;
+    color: white;
+    border-radius: 4px;
+    border-color: #46b8da;
+    --background: #1D447D;
+    margin-right: 0px;
+    width: 50%;
+    height: 45px;
+    --padding-bottom: 15px;
+    --padding-end: 30px;
+    --padding-start: 30px;
+    --padding-top: 15px;
+    font-size: 18px;
+}

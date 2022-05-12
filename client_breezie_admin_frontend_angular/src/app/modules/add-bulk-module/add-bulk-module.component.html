@@ -1,0 +1,122 @@
+<div class="heading">
+    <h2 mat-dialog-title>Import Employees</h2>
+</div>
+<hr>
+
+<form>
+    <mat-dialog-content class="mat-typography">
+        <mat-horizontal-stepper [linear]="true" #stepper labelPosition="bottom">
+            <mat-step [stepControl]="firstFormGroup">
+                <ng-template matStepperIcon="edit">
+                    <mat-icon>done</mat-icon>
+                </ng-template>
+                <form [formGroup]="firstFormGroup">
+                    <ng-template matStepLabel>Prepare</ng-template>
+                    <div class="text-center mt-3">
+                        <h4 class="mb-0" style="font-weight: 600;">Please use our CSV template.</h4>
+                        <p class="mb-0">Or click 'NEXT' if you've prepared one already</p>
+                    </div>
+                    <div class="file text-center mt-3">
+                        <button type="button" class="save">
+            <a href="../../../assets/employeeData.csv" download> Download CSV template</a>
+            </button>
+                    </div>
+                    <div class="float-right mt-3">
+                        <button class="close ml-2" mat-button mat-raised-button mat-dialog-close>Cancel</button>
+                        <button type="submit" class="add" mat-button mat-raised-button matStepperNext>Next</button>
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step [stepControl]="secondFormGroup">
+                <form [formGroup]="secondFormGroup">
+                    <ng-template matStepLabel>Location</ng-template>
+                    <div class="text-center mt-3">
+                        <h4 class="mb-0" style="font-weight: 600;">Choose Location</h4>
+                        <div class="select">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Choose Location</mat-label>
+                                <mat-select disableRipple formControlName="location">
+                                    <mat-option *ngFor="let location of deviceLocation" (click)="getLocationId(location.locationId)" value="{{location.locationId}}" selected>
+                                        {{location.officeName}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+
+
+                    </div>
+                    <div class="float-right mt-3">
+                        <button class="close ml-2" mat-button mat-raised-button mat-dialog-close>Cancel</button>
+                        <button type="submit" class="add" mat-button mat-raised-button matStepperNext>Next</button>
+
+                    </div>
+                    <div class="mt-3">
+                        <button class="backArrow" mat-button matStepperPrevious><i class="fas fa-angle-left"></i>Back</button>
+
+                        <!-- <button mat-button matStepperPrevious>Back</button> -->
+                        <!-- <button mat-button matStepperNext>Next</button> -->
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step [stepControl]="thirdFormGroup">
+                <form [formGroup]="thirdFormGroup">
+                    <ng-template matStepLabel state="phone">Upload</ng-template>
+                    <div class="text-center mt-3">
+                        <h4 class="mb-0" style="font-weight: 600;">Upload your CSV file</h4>
+                        <div class="selectBox">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="customFileLangHTML" (change)="onChoosingActivationFile($event)" accept=".csv" multiple="false" formControlName="file">
+                                <label class="custom-file-label" for="customFileLangHTML" data-browse="Bestand kiezen">{{file}}</label>
+                                <p class="text-danger text-left ml-2 mt-1" style="font: size 12px;" *ngIf="csvFile">
+                                    This file Selected is Not CSV format</p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="float-right mt-3">
+                        <button class="closeUpload ml-2" mat-button mat-raised-button mat-dialog-close>Cancel</button>
+                        <button type="submit" class="addUpload" [disabled]="csvFile" (click)="uplodeFile()" mat-button mat-raised-button matStepperNext>Upload</button>
+
+                    </div>
+                    <div class="mt-3">
+                        <button class="backArrow" mat-button matStepperPrevious><i class="fas fa-angle-left"></i>Back</button>
+                    </div>
+                </form>
+            </mat-step>
+
+            <mat-step [stepControl]="fourFormGroup">
+                <ng-template matStepLabel>Results</ng-template>
+                <div *ngIf="spinner">
+                    <mat-spinner></mat-spinner>
+                </div>
+                <h4>Results</h4>
+                <div *ngIf="resultData">
+                    <div class="card">
+                        <p><i class="fas fa-check-circle"></i>{{inserted}} Employees Added successfully</p>
+                        <p><i class="fas fa-check-circle"></i> {{updated}} Employees updated successfully</p>
+                        <p><i class="fas fa-check-circle"></i> {{issue}} Issues detected</p>
+                    </div>
+                    <div class="float-right mt-3">
+                        <button type="submit" class="add" mat-button mat-raised-button matStepperNext mat-dialog-close (click)="Done()">Done</button>
+                        <button class="close ml-2" mat-button mat-raised-button (click)="stepper.reset()">Upload another file</button>
+                    </div>
+                </div>
+                <div *ngIf="erroShow">
+                    <div class="card">
+                        <p>{{errorMessage}}</p>
+                    </div>
+                    <div class="float-right mt-3">
+                        <button type="submit" class="add" mat-button mat-raised-button matStepperNext mat-dialog-close (click)="Done()">Done</button>
+                        <button class="close ml-2" mat-button mat-raised-button (click)="stepper.reset()">Upload another file</button>
+                    </div>
+                </div>
+            </mat-step>
+
+            <ng-template matStepperIcon="phone">
+                <mat-icon>call_end</mat-icon>
+            </ng-template>
+        </mat-horizontal-stepper>
+    </mat-dialog-content>
+    <!-- <mat-dialog-actions class="d-flex align-items-center justify-content-center">
+  <button type="submit" class="add"  mat-button  mat-raised-button>Update</button>
+</mat-dialog-actions> -->
+</form>

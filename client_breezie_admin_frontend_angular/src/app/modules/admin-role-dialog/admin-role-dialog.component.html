@@ -1,0 +1,49 @@
+<div class="spinner" *ngIf="spinner">
+  <mat-spinner diameter="100"></mat-spinner>
+</div>
+<div class="deleteIcon" style="float: right;cursor: pointer;">
+  <button class="cancelbtn" mat-dialog-close> <i class="fas fa-times"></i></button>
+</div>
+<form [formGroup]="employeeForm" (ngSubmit)="makeEmployeeAdmin()">
+  <label class="addEmployee">Add Employee*</label>
+  <mat-form-field class="example-full-width" appearance="outline">
+    <input type="text" placeholder="Add Employee" aria-label="Number" matInput formControlName="employee"
+      [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete">
+      <ng-container *ngIf="( filteredOptions) as result">
+        <mat-option *ngFor="let employees of result" [value]="employees.fullName + ' ' + employees.lastName">
+          {{employees.fullName}} {{employees.lastName}}
+        </mat-option>
+        <mat-option *ngIf="result.length < 1 && nodata">
+          No data found
+        </mat-option>
+      </ng-container>
+    </mat-autocomplete>
+  </mat-form-field>
+
+  <p *ngIf="( employeeForm.controls.employee.touched) && employeeForm.controls.employee.errors?.required"
+    class="text-danger">
+    employee Name is required.
+  </p>
+
+
+  <div class="adminRoles"><label>Admin Role*</label></div>
+  <div>
+    <!-- <mat-radio-button>Company Name</mat-radio-button> -->
+    <mat-radio-group formControlName="adminRoles">
+      <div *ngIf="showFields" class="comapnyAdmin">
+        <mat-radio-button value="company admin">Company Admin</mat-radio-button>
+      </div>
+      <div  class="locationManager">
+          <mat-radio-button value="location manager">Location Manager</mat-radio-button>
+        </div>
+    </mat-radio-group>
+  </div>
+  <!-- </mat-dialog-content> -->
+  <mat-dialog-actions class="d-block">
+    <div class="float-right">
+      <button type="submit" class="add" [disabled]="employeeForm.invalid" mat-button mat-raised-button>Add</button>
+    </div>
+   
+  </mat-dialog-actions>
+</form>

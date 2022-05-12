@@ -1,0 +1,16 @@
+.deleteIcon{
+    border: none !important;
+    background: transparent;
+    outline: none;
+  }
+
+  .add{
+    background: #1561CF;
+    border: 1px solid #004AB6;
+    color: white;
+  }
+
+  .mat-raised-button.mat-button-disabled.mat-button-disabled{
+    background-color: rgba(0,0,0,.12);
+    border: none;
+  }

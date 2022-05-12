@@ -1,0 +1,181 @@
+<div class="spinner" *ngIf="spinner">
+    <mat-spinner diameter="100"></mat-spinner>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="register">
+                <div class="card">
+
+                    <mat-tab-group mat-stretch-tabs [(selectedIndex)]="demo1TabIndex">
+                        <mat-tab label="Step1">
+                            <form [formGroup]="registerForm1">
+                                <div class="row mt-4">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <mat-label>First Name*</mat-label>
+                                            <mat-form-field appearance="outline">
+                                                <input matInput type="text" formControlName="firstName" autocomplete="off">
+                                            </mat-form-field>
+                                            <p *ngIf="( registerForm1.controls.firstName.touched) && registerForm1.controls.firstName.errors?.required"
+                                            class="text-danger">
+                                            First Name is required.
+                                          </p>
+                                          <p *ngIf="registerForm1.get('firstName').touched && (registerForm1.get('firstName').errors?.pattern)"
+                                            class="text-danger">This is invalid First Name!</p>
+                                      
+                                      
+                                          <div class="text-danger"
+                                            *ngIf="registerForm1.get('firstName').touched && registerForm1.get('firstName').errors?.minlength || registerForm1.get('firstName').errors?.maxlength">
+                                            <p style="font-size: 12px;">
+                                             First Name accept between 3-30 characters
+                                            </p>
+                                          </div>
+                                            <!-- <div *ngIf="(registerForm1.get('firstName').touched || submitted) && registerForm1.get('firstName').errors?.required">
+                                                <p class="text-danger">First Name is required</p>
+                                            </div>
+                                            <p *ngIf="registerForm1.get('firstName').touched && registerForm1.get('firstName').errors?.pattern" class="text-danger">This is invalid First Name!</p>
+                                            <p *ngIf="registerForm1.get('firstName').touched && registerForm1.get('firstName').errors?.minlength" class="text-danger">First Name should be atleast three characters</p> -->
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <mat-label>Last Name *</mat-label>
+                                            <mat-form-field appearance="outline">
+                                                <input matInput formControlName="lastName" autocomplete="off">
+                                            </mat-form-field>
+                                            <!-- <div *ngIf="(registerForm1.get('lastName').touched || submitted) && registerForm1.get('lastName').errors?.required">
+                                                <p class="text-danger">Last Name is required</p>
+                                            </div> -->
+                                            <!-- <p *ngIf="registerForm1.get('lastName').touched && registerForm1.get('lastName').errors?.pattern" class="text-danger">This is invalid Last Name!</p>
+                                            <p *ngIf="registerForm1.get('lastName').touched && registerForm1.get('lastName').errors?.minlength" class="text-danger">Last Name should be atleast three characters</p> -->
+                                            <p *ngIf="( registerForm1.controls.lastName.touched) && registerForm1.controls.lastName.errors?.required"
+                                            class="text-danger">
+                                            Last Name is required.
+                                          </p>
+                                          <p *ngIf="registerForm1.get('lastName').touched && (registerForm1.get('lastName').errors?.pattern)"
+                                            class="text-danger">This is invalid Last Name!</p>
+                                      
+                                      
+                                          <div class="text-danger"
+                                            *ngIf="registerForm1.get('lastName').touched && registerForm1.get('lastName').errors?.minlength || registerForm1.get('lastName').errors?.maxlength">
+                                            <p style="font-size: 12px;">
+                                             Last Name accept between 1-30 characters
+                                            </p>
+                                          </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <mat-label>E-mail *</mat-label>
+                                            <mat-form-field appearance="outline">
+                                                <input matInput type="email" formControlName="emailId" autocomplete="off">
+                                            </mat-form-field>
+                                            <div *ngIf="(registerForm1.get('emailId').touched || submitted) && registerForm1.get('emailId').errors?.required">
+                                                <p class="text-danger">E-mail is required</p>
+                                            </div>
+                                            <p *ngIf="registerForm1.get('emailId').touched && registerForm1.get('emailId').errors?.pattern" class="text-danger">This is invalid E-mail Id!</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <mat-label>Phone number *</mat-label>
+                                            <mat-form-field appearance="outline">
+                                                <input type="tel" matInput ng2TelInput (countryChange)="onCountryChange($event)" formControlName="phone" autocomplete="off">
+
+                                            </mat-form-field>
+                                            <div *ngIf="(registerForm1.get('phone').touched || submitted) && registerForm1.get('phone').errors?.required">
+                                                <p class="text-danger">Phone Number is required</p>
+                                            </div>
+                                            <p *ngIf="registerForm1.get('phone').touched && registerForm1.get('phone').errors?.pattern" class="text-danger">This is invalid Phone Number!</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="buttons d-flex align-items-center justify-content-between">
+                                    <div><button mat-raised-button class="back" [routerLink]="['/auth/login']">Back</button></div>
+                                    <div><button type="submit" mat-raised-button class="next" (click)="demo1BtnClick()">Next</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </mat-tab>
+                        <mat-tab label="Step2" class="mt-3" id="step2" style="display: none;">
+                            <form [formGroup]="registerForm1" (ngSubmit)="submit()">
+                                <div class="row mt-4">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <mat-label>Company name *</mat-label>
+                                            <mat-form-field appearance="outline">
+                                                <input matInput type="text" formControlName="companyName" autocomplete="off">
+                                            </mat-form-field>
+                                            <div *ngIf="(registerForm1.get('companyName').touched || submitted) && registerForm1.get('companyName').errors?.required">
+                                                <p class="text-danger">Company Name is required</p>
+                                            </div>
+                                            <p *ngIf="registerForm1.get('companyName').touched && registerForm1.get('companyName').errors?.pattern" class="text-danger">This is invalid Company Name!</p>
+                                            <p *ngIf="registerForm1.get('companyName').touched && registerForm1.get('companyName').errors?.minlength" class="text-danger">Company Name should be atleast three characters</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <mat-label>Street address *</mat-label>
+                                            <mat-form-field appearance="outline">
+                                                <input matInput type="text" formControlName="address" autocomplete="off">
+                                            </mat-form-field>
+                                            <div *ngIf="(registerForm1.get('address').touched || submitted) && registerForm1.get('address').errors?.required">
+                                                <p class="text-danger">Address is required</p>
+                                            </div>
+                                            <p *ngIf="registerForm1.get('address').touched && registerForm1.get('address').errors?.pattern" class="text-danger">This is invalid Address!</p>
+                                            <p *ngIf="registerForm1.get('address').touched && registerForm1.get('address').errors?.minlength" class="text-danger">Address should be atleast three characters</p>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="col-md-12">
+                                        <p class="mb-0">Choose your data hosting region</p>
+                                        <p class="mb-0">This region can't be changed once you have created your account</p>
+                                        <div class="form-group mt-4">
+                                            <mat-form-field appearance="outline">
+                                                <mat-label>Hosting Region</mat-label>
+                                                <mat-select disableRipple formControlName="dataHostingRegion">
+                                                    <mat-option value="1">AU</mat-option>
+                                                    <mat-option value="2">CA</mat-option>
+                                                    <mat-option value="3">EU</mat-option>
+                                                    <mat-option value="3">SG</mat-option>
+                                                    <mat-option value="3">UK</mat-option>
+                                                    <mat-option value="3">US</mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                            <div *ngIf="(registerForm1.get('dataHostingRegion').touched || submitted) && registerForm1.get('dataHostingRegion').errors?.required">
+                                                <p class="text-danger">Hosting Region is required</p>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                    <div class="col-md-12">
+                                        <mat-label>Country</mat-label>
+                                        <mat-form-field appearance="outline">
+                                            <mat-label placeholder="India"></mat-label>
+                                            <mat-select disableRipple formControlName="country">
+                                                <mat-option *ngFor="let c of country" [value]="c.name">
+                                                    {{c.name}}</mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                        <p *ngIf="( registerForm1.controls.country.touched) && registerForm1.controls.country.errors?.required" class="text-danger">
+                                            Country is required.
+                                        </p>
+                                    </div>
+                                </div>
+                                <mat-checkbox class="example-margin ml-4" formControlName="agreeTerms">I agree to the Terms of Service and Privacy Policy</mat-checkbox>
+
+                                <div class="buttons d-flex align-items-center justify-content-between mt-5">
+                                    <div><button type="button" mat-raised-button class="back" (click)="demo1BtnClick()">Back</button></div>
+                                    <div><button mat-raised-button class="next" [disabled]="registerForm1.invalid">Start my trial</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </mat-tab>
+                    </mat-tab-group>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

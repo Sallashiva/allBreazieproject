@@ -1,0 +1,51 @@
+<div class="spinner" *ngIf="spinner">
+  <mat-spinner diameter="100"></mat-spinner>
+</div>
+
+<!-- <div mat-dialog-close class="cancelIcon"><i class="fas fa-times"></i></div> -->
+<div style="float: right;cursor: pointer;">
+  <button class="deleteIcon" mat-dialog-close> <i class="fas fa-times"></i></button>
+</div>
+<h2 mat-dialog-title>New Delivery</h2>
+<hr>
+<div class="container">
+  <form [formGroup]="deliveryForm" (ngSubmit)="addDelivery()">
+    <mat-dialog-content class="mat-typography">
+      <mat-form-field class="example-full-width">
+        <input type="text" placeholder="Enter Recipient*" aria-label="Number" matInput formControlName="empId"
+          [(ngModel)]="fullName" [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete">
+          <ng-container *ngIf="( filteredOptions | search:fullName) as result">
+            <mat-option *ngFor="let employees of result" [value]="employees.fullName">
+              {{employees.fullName}} {{employees.lastName}}
+            </mat-option>
+            <mat-option *ngIf="result.length < 1 && nodata">
+              No data found
+            </mat-option>
+          </ng-container>
+        </mat-autocomplete>
+      </mat-form-field>
+      <p *ngIf="( deliveryForm.controls.empId.touched) && deliveryForm.controls.empId.errors?.required"
+        class="text-danger">
+        Recipient Name is required.
+      </p>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Notification Email*</mat-label>
+        <input type="text" matInput placeholder="Add note to notification email" formControlName="emailNote">
+      </mat-form-field>
+      <p *ngIf="( deliveryForm.controls.emailNote.touched) && deliveryForm.controls.emailNote.errors?.required"
+        class="text-danger">
+        Add note to Email required.
+      </p>
+      <div class="signatureRequired">
+        <mat-checkbox formControlName="signatureRequired">Signature required</mat-checkbox>
+      </div>
+
+    </mat-dialog-content>
+    <mat-dialog-actions class="d-flex align-items-center justify-content-center">
+      <button type="submit" class="add" [disabled]="deliveryForm.invalid || disableButton" mat-button
+        mat-raised-button>Add</button>
+    </mat-dialog-actions>
+  </form>
+</div>

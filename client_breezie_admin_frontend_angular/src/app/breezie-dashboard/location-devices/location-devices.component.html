@@ -1,0 +1,389 @@
+<div class="spinner" *ngIf="spinner">
+  <mat-spinner></mat-spinner>
+</div>
+<div class="container">
+  <div class="content mt-3 mb-4">
+    <h1 class="mb-0" style="font-weight: 500;">Devices</h1>
+    <p>Manage your connected Breazie devices </p>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div style="float: right;" *ngIf="totalLocationPermited > companyTotalLocation">
+        <button mat-flat-button style="background-color: #1561CF;color: white;" data-toggle="modal"
+          data-target="#exampleModal"> <i class="fa fa-plus"></i> Add Location</button>
+      </div>
+
+    </div>
+
+    <div class="col-md-12">
+      <mat-accordion class="example-headers-align" mulit='true' *ngFor='let locationDeviceData of  device;index as i'>
+        <mat-expansion-panel [expanded]='i==expansionpanel' (click)=expansionpanelexpand(i) [togglePosition]="'before'">
+          <mat-expansion-panel-header style="width: 105%;">
+            <mat-panel-title class="ml-2">
+              <h2 class="mb-0 headOffice">{{locationDeviceData.locations.officeName}} &nbsp; <i class="fas fa-city"></i>
+              </h2>
+            </mat-panel-title>
+
+            <mat-panel-description>
+              <p class="mb-0" *ngIf="locationDeviceData.totalDevice > 0">{{locationDeviceData.totalDevice}} device
+                connected</p>
+              <p class="mb-0" *ngIf="locationDeviceData.totalDevice <= 0">No device connected</p>
+
+            </mat-panel-description>
+
+          </mat-expansion-panel-header>
+
+          <div class="row">
+            <div class="col-md-8">
+              <div>
+                <mat-label><strong class="mr-1">Office:</strong>{{locationDeviceData.locations.officeName}}</mat-label>
+              </div>
+              <div class="mt-1">
+                <mat-label><strong class="mr-1">Address:</strong>{{locationDeviceData.locations.address}}</mat-label>
+              </div>
+              <div class="mt-1"> Timezone</div>
+              <div style="margin-top: -4px;">
+                <span style="font-size: 12px;"><b>{{finalTimeZone}}</b></span>
+              </div>
+            </div>
+            <div *ngIf="showFields" class="col-md-4">
+              <div class="float-right text-center">
+                <button mat-flat-button class="button btn btn-primary" data-toggle="modal"
+                  data-target="#editLocationModel" (click)="onEdit(locationDeviceData)" matTooltip="Edit">
+                  <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-flat-button class="button btn btn-primary ml-2" data-toggle="modal"
+                  data-target="#exampleDeleteModel" (click)="getDeviceLocationId(locationDeviceData._id)"
+                  matTooltip="Delete"> <i class="fa fa-trash mr-2 mb-1"></i></button>
+              </div>
+            </div>
+            <div>
+            </div>
+          </div>
+
+          <mat-expansion-panel [expanded]='i==expandPanel' [togglePosition]="'before'"
+            style="border:1px solid rgb(226, 226, 226);">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <h4 class="mb-0 "> <b>{{locationDeviceData.deviceIdentifier}}</b><i class="fa fa-mobile-phone ml-2"
+                    style="font-size: 15px;"></i> </h4>
+
+              </mat-panel-title>
+              <mat-panel-description>
+                <p>
+                  {{locationDeviceData.devices.deviceName}}
+                </p>
+                <p>
+                  Breazie : {{appVersion}}
+                </p>
+                <!-- <p *ngIf="description">
+                  <b> Device not supported</b>
+                </p>
+                <p *ngIf="description">
+                  Last Activity: <b>2 hours ago</b>
+                </p> -->
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+
+
+            <form [formGroup]="deviceSetting"
+              (ngSubmit)="deviceSettingSubmit(locationDeviceData._id,locationDeviceData.devices.deviceName,i)">
+              <div class="row">
+
+                <div class="col-md-4">
+
+                  <h4 style="margin-bottom: 0px;font-weight: 500;"> Device identifier </h4>
+                  <h4>
+                    <b>{{locationDeviceData.deviceIdentifier}}</b>
+
+                    <span *ngIf="showFields">
+                      <i class="fa fa-rotate-right ml-2 refeshIcon"
+                        (click)="deviceIdentifierRefeshIcon(locationDeviceData._id,i)"></i>
+                    </span>
+                  </h4>
+                  <h4 style="margin-bottom: 0px;font-weight: 500;"> Device Name</h4>
+                  <h4> {{locationDeviceData.devices.deviceName}}
+                    <span *ngIf="showFields">
+                      <i class="fas fa-edit ml-2 refeshIcon" (click)="inputHide()"></i>
+                    </span>
+                  </h4>
+                  <p *ngIf="Inputhide">
+                    <input type="text" formControlName="deviceName" class="form-control">
+                  </p>
+                </div>
+
+                <div class=" col-md-4">
+                  <h4 style="font-weight: 500;"> Device information</h4>
+                  <!-- <div class="collected">
+                    <div class="row">
+                      <div class="col-md-2">
+                        <i class="fa fa-exclamation-circle mr-2"
+                          style="font-size: 15px; color: red;margin-left: 3px;"></i>
+                      </div>
+                      <div class="col-md-10" style="padding: 0px;">
+                        <span style="color: red;">Device not supported</span> <br>
+                        some features will not be <br>
+                        available.Learn More
+                      </div>
+                        <p class="mb-0" *ngIf="locationDeviceData.totalDevice > 0">{{locationDeviceData.totalDevice}} device connected</p>
+              <p class="mb-0" *ngIf="locationDeviceData.totalDevice <= 0">No device connected</p>
+
+                    </div>
+                  </div> -->
+                  <div class="mt-2">
+                    <span style="color:#A0A0A0;"> Breazie : {{appVersion}} <br>
+                      <span *ngIf="locationDeviceData.totalDevice > 0">
+                        {{locationDeviceData.totalDevice}} device connected
+                      </span>
+                      <span *ngIf="locationDeviceData.totalDevice <= 0">
+                        No device connected
+                      </span>
+                      <!-- iOS Version: 9.3.5 <br>
+                      Device: iPad (2nd Gen) -->
+                    </span>
+                    <!-- Last Activity: <b>2 hours ago</b> -->
+                    <!-- <span style="color:#A0A0A0;"> Breazie : 2.18.5 <br> -->
+
+                    <!-- iOS Version: 9.3.5 <br>
+                      Device: iPad (2nd Gen) -->
+                    <!-- </span> -->
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <h4 style="font-weight: 500;">Option</h4>
+                  <div>
+
+                    <div>
+                      <mat-checkbox color="primary" [disabled]="checkboxDisabled"
+                        [checked]="locationDeviceData.devices.employeeInandOut"
+                        (change)="Employee($event,locationDeviceData._id)">Employee In/Out</mat-checkbox>
+
+                    </div>
+                    <div>
+                      <mat-checkbox color="primary" [disabled]="checkboxDisabled"
+                        [checked]="locationDeviceData.devices.visitorInandOut"
+                        (change)="visitor($event,locationDeviceData._id)">Visitor In/Out</mat-checkbox>
+                    </div>
+                    <div *ngIf="deliveryShow">
+                      <mat-checkbox color="primary" [disabled]="checkboxDisabled"
+                        [checked]="locationDeviceData.devices.deliveries"
+                        (change)="Deliveries($event,locationDeviceData._id)">Deliveries</mat-checkbox>
+                    </div>
+                    <div *ngIf="cateringShow">
+                      <mat-checkbox color="primary" [disabled]="checkboxDisabled"
+                        [checked]="locationDeviceData.devices.catering"
+                        (change)="Catering($event,locationDeviceData._id)">Catering</mat-checkbox>
+                    </div>
+
+                  </div>
+                </div>
+                <div *ngIf="showFields" class="submitButton">
+                  <button mat-flat-button type="submit" style="background-color: #1561CF; color: white;"
+                    [disabled]="deviceSetting.invalid" [disabled]="deviceSetting.invalid">Submit</button>
+                </div>
+              </div>
+
+            </form>
+
+
+
+          </mat-expansion-panel>
+
+
+        </mat-expansion-panel>
+
+      </mat-accordion>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+<!-- Button trigger modal -->
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Launch demo modal
+</button> -->
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="border-bottom:none;">
+        <h2 class="modal-title" id="exampleModalLabel">Add Details</h2>
+        <button #close type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="text-align: center;">
+
+        <form [formGroup]="newLocationform" #f="ngForm" (ngSubmit)="newLocationSubmit()">
+          <div>
+            <mat-form-field appearance="outline">
+              <mat-label>Location*</mat-label>
+              <input matInput formControlName="officeName">
+            </mat-form-field>
+            <div *ngIf="newLocationform.controls.officeName.touched && newLocationform.controls.officeName.invalid">
+              <div class="text-danger" *ngIf="newLocationform.controls.officeName.errors.required"
+                style="margin-right: 33%;">
+                Location is required.
+              </div>
+              <div
+                *ngIf="newLocationform.get('officeName').touched && (newLocationform.get('officeName').errors?.pattern || newLocationform.get('officeName').errors?.minlength)"
+                class="text-danger" style="margin-right: 23%;">This is invalid location</div>
+              <div class="text-danger"
+                *ngIf="newLocationform.controls.officeName.errors.minlength || newLocationform.controls.officeName.errors.maxlength"
+                style="margin-right: 4%;">
+                <div style="font-size: 12px;">
+                  Location accept between 2-30 characters
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="mt-2">
+            <mat-form-field appearance="outline">
+              <mat-label>Address*</mat-label>
+              <input matInput formControlName="address">
+            </mat-form-field>
+            <div *ngIf="newLocationform.controls.address.touched && newLocationform.controls.address.invalid">
+              <div class="text-danger" *ngIf="newLocationform.controls.address.errors.required"
+                style="margin-right: 33%;">
+                Address is required.
+              </div>
+              <div class="text-danger"
+                *ngIf="newLocationform.controls.address.errors.minlength || newLocationform.controls.address.errors.maxlength"
+                style="margin-right: 4%;">
+                <div style="font-size: 12px;">
+                  Address accept between 3-30 characters
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div style="position: relative;right: 31%;"> Timezone</div>
+
+          <div style="position:relative;right:21%;">
+            <span style="font-size: 12px;"><b>Asia/Kolkata (GMT+0530)</b></span>
+
+          </div>
+
+
+          <div class="modal-footer" style="border-top:none;">
+
+            <button type="submit" class="btn btn-primary" [disabled]="newLocationform.invalid">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- Modal Delete -->
+<div class="modal fade" id="exampleDeleteModel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="border-bottom:none;">
+        <button #closeDelete type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div style="text-align: center;">
+          <i class="fas fa-exclamation-circle" style="font-size: 86px;color: #1561CF;"></i>
+        </div>
+        <div style="text-align: center;" class="mt-3">
+          <h4 style="font-size: 30px;font-weight: 500;"> Are you sure ? </h4>
+        </div>
+        <div style="text-align: center;">
+          <h5 style="font-size: 15px;opacity: 0.6;"> You are about to delete this location . Do you wish to continue?
+          </h5>
+        </div>
+        <div class="mt-2" style="margin-right:32px">
+          <span style="float:right">
+            <button class="btn btn-primary" (click)="deleteDeviceLocationModel()">Delete</button>
+          </span>
+          <span style="float:right" class="mr-2">
+            <button class="btn btn-primary" (click)="CloseAlertModel()">Cancle</button>
+          </span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!--edit location-->
+<div class="modal fade" id="editLocationModel" tabindex="-1" aria-labelledby="editLocationModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="border-bottom:none;">
+        <h2 class="modal-title" id="exampleModalLabel">Edit Details</h2>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true" #closeEditModal>&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="text-align: center;">
+        <form [formGroup]="editLocationform1" (ngSubmit)="editLocationAddress()">
+          <div class="form-group">
+            <mat-form-field appearance="outline">
+              <mat-label>Office Name*</mat-label>
+              <input matInput formControlName="officeName">
+            </mat-form-field>
+            <div *ngIf="editLocationform1.controls.officeName.touched && editLocationform1.controls.officeName.invalid">
+              <div class="text-danger" *ngIf="editLocationform1.controls.officeName.errors.required"
+                style="margin-right: 30%;">
+                OfficeName is required.
+              </div>
+              <div
+                *ngIf="editLocationform1.get('officeName').touched && (editLocationform1.get('officeName').errors?.pattern || editLocationform1.get('officeName').errors?.minlength)"
+                class="text-danger" style="margin-right: 20%;">This is invalid office name</div>
+              <div class="text-danger"
+                *ngIf="editLocationform1.controls.officeName.errors.minlength || editLocationform1.controls.officeName.errors.maxlength"
+                style="margin-right:2% ;">
+                <div style="font-size: 12px;">
+                  Office Name accept between 3-30 characters
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="form-group">
+            <mat-form-field appearance="outline">
+              <mat-label>Address*</mat-label>
+              <input matInput formControlName="address">
+            </mat-form-field>
+            <div *ngIf="editLocationform1.controls.address.touched && editLocationform1.controls.address.invalid">
+              <div class="text-danger" *ngIf="editLocationform1.controls.address.errors.required"
+                style="margin-right: 30%;">
+                Address is required.
+              </div>
+              <div class="text-danger"
+                *ngIf="editLocationform1.controls.address.errors.minlength || editLocationform1.controls.address.errors.maxlength"
+                style="margin-right: 2%;">
+                <div style="font-size: 12px;">
+                  Address accept between 3-30 characters
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <button type="submit" [disabled]="editLocationform1.invalid" class="btn btn-update">Update</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>

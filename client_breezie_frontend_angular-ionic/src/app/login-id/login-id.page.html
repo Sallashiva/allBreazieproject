@@ -1,0 +1,13 @@
+<ion-content>
+    <h5 (click)="navigateToLogin()">
+        <mat-icon style="position: relative;top: 5px;">keyboard_backspace</mat-icon>Back</h5>
+    <div class="text-center">
+        <form [formGroup]="rForm">
+            <mat-form-field class="example-full-width" appearance="standard">
+                <input type="text" matInput formControlName="deviceId">
+            </mat-form-field>
+            <p>Please enter your device ID</p>
+            <button type="submit" class=" btn btn-primary loginBtn" (click)="onSubmit(rForm)">Log in</button>
+        </form>
+    </div>
+</ion-content>

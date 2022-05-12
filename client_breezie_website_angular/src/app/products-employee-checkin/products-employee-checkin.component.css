@@ -1,0 +1,331 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300&display=swap');
+
+.content {
+  overflow: hidden;
+}
+
+.wave {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 282px;
+
+}
+
+img {
+  width: 100%;
+}
+
+.blue {
+  background-color: #0196A1;
+}
+
+.red {
+  background-color: #E9FDF6;
+  padding: 250px 0px 10px;
+}
+
+.employeeCheckin {
+  position: absolute;
+  top: 150px;
+  z-index: 1;
+}
+
+.curve {
+  position: absolute;
+  height: 225px;
+  width: 100%;
+  bottom: 0;
+}
+
+.curve::before {
+  content: '';
+  display: block;
+  position: absolute;
+  border-top-left-radius: 246%;
+  border-top-right-radius: 218%;
+  width: 55%;
+  height: 175%;
+  background-color: #E9FDF6;
+  transform: translate(94%, 24%);
+}
+
+.curve::after {
+  content: '';
+  display: block;
+  position: absolute;
+  border-bottom-left-radius: 100%;
+  border-bottom-right-radius: 402%;
+  border-top-left-radius: 24%;
+  border-top-right-radius: 61%;
+  width: 54.69%;
+  height: 129%;
+  background-color: #0196A1;
+  transform: translate(0%, 41%);
+  z-index: 1;
+}
+
+.curved {
+  background-color: #E9FDF6;
+}
+
+.laptop {
+  display: block;
+}
+
+.mobile {
+  display: none;
+}
+
+hr {
+  border-top: 2px solid #7BCFD5;
+  margin-bottom: 0px;
+  width: 80%;
+}
+
+.employeeCheckin h1 {
+  font-size: 2.8rem;
+  color: #BD8E74;
+  line-height: 1.2;
+
+}
+
+.blankcard {
+  background: white;
+  width: 100%;
+  height: 350px;
+  position: relative;
+  z-index: 2;
+}
+
+.employee-check {
+  position: relative;
+  padding: 0px 60px !important;
+  margin-top: 70px;
+}
+
+.employeeCheckin p {
+  line-height: 2;
+  font-weight: 500;
+  font-size: 18px;
+  margin-top: 35px;
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+}
+
+.card img {
+  background-color: #FFFFFF;
+  padding: 5px;
+  height: 75px;
+  width: 75px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
+
+.content-third-card h1 {
+  font-size: 2rem;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+.card {
+  margin-bottom: 30px;
+  background-color: #005157;
+  color: white;
+  padding: 30px 40px;
+  border-radius: 20px;
+}
+
+.card h2 {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.card p {
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+@media only screen and (max-width: 1312px) {
+  .employee-check {
+    padding: 0px 40px !important;
+  }
+}
+
+@media only screen and (max-width: 1215px) {
+  .employee-check {
+    padding: 0px 25px !important;
+  }
+}
+
+@media only screen and (max-width: 1144px) {
+  .employee-check {
+    padding: 0px !important;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .visitormanagementcards {
+    padding: 0px 40px;
+  }
+
+  .card {
+    padding: 30px 15px;
+  }
+
+  .mobile p {
+    line-height: 2;
+    font-weight: 500;
+    font-size: 18px;
+  }
+}
+
+@media only screen and (max-width: 960px) {
+  .curve::before {
+    content: '';
+    display: block;
+    position: absolute;
+    border-top-left-radius: 176%;
+    border-top-right-radius: 160%;
+    width: 70%;
+    height: 175%;
+    background-color: #E9FDF6;
+    transform: translate(62%, 22%);
+  }
+
+  .curve::after {
+    content: '';
+    display: block;
+    position: absolute;
+    border-bottom-left-radius: 100%;
+    border-bottom-right-radius: 402%;
+    border-top-left-radius: 24%;
+    border-top-right-radius: 61%;
+    width: 47.69%;
+    height: 129%;
+    background-color: #0196A1;
+    transform: translate(0%, 41%);
+    z-index: 1;
+  }
+
+  .employeeCheckin h1 {
+    font-size: 2.6rem;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .laptop {
+    display: none;
+  }
+
+  .mobile {
+    display: block;
+  }
+
+  .curve::before {
+    content: '';
+    display: block;
+    position: absolute;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    width: 91%;
+    height: 400%;
+    background-color: #E9FDF6;
+    transform: translate(42%, 21%);
+  }
+
+  .curve::after {
+    content: '';
+    display: block;
+    position: absolute;
+    border-bottom-left-radius: 100%;
+    border-bottom-right-radius: 426%;
+    border-top-left-radius: 24%;
+    border-top-right-radius: 61%;
+    width: 73.69%;
+    height: 100%;
+    background-color: #0196A1;
+    transform: translate(0%, 41%);
+    z-index: 1;
+  }
+
+  .curve {
+    height: 304px;
+  }
+
+  .wave {
+    min-height: 150px;
+  }
+
+  .employeeCheckin img {
+    height: 160px;
+  }
+
+  .employeeCheckin {
+    top: 70px;
+  }
+
+  .brownBorder {
+    position: absolute;
+    height: 76px;
+    top: 129px;
+    z-index: 999;
+    width: 50%;
+    background: #b5977e;
+    border-bottom-left-radius: 100%;
+    border-bottom-right-radius: 273%;
+  }
+
+  .employee-check {
+    position: absolute;
+    top: 0px;
+    text-align: right;
+    width: 96%;
+    padding: 10px !important;
+    margin-top: 0px;
+    z-index: 1;
+  }
+
+  .red {
+    background-color: #E9FDF6;
+    padding: 180px 0px 10px;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  .visitormanagementcards {
+    padding: 10px;
+  }
+
+  .card {
+    margin-top: 10px;
+  }
+
+  .card h2 {
+    font-size: 1.6rem;
+  }
+
+}
+
+@media only screen and (max-width: 545px) {
+  hr {
+    margin-top: 70px;
+  }
+}
+
+@media only screen and (max-width: 415px) {
+  hr {
+    margin-top: 115px;
+  }
+}
+
+@media only screen and (max-width: 360px) {
+  hr {
+    margin-top: 145px;
+  }
+}

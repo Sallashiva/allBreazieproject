@@ -1,0 +1,734 @@
+.nav-link {
+  display: block;
+  padding: 0.5rem 4rem !important;
+  background: #00000029;
+  border-right: 1px solid white;
+  color: #707070;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.spinner {
+  position:fixed;
+  background-color: rgba(0,0,0,0.2);
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+ :host::ng-deep mat-spinner{
+  position: absolute;
+  left: 50%;
+  top: 30%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+.nav-tabs .nav-link.active {
+  color: #1561CF;
+  background-color: #fff;
+  box-shadow: 0px 0px 7px #e3e3e3;
+  border: none !important;
+}
+
+tr.mat-header-row {
+  background: #F1F1F1 !important;
+  color: black !important;
+  height: 42px !important;
+}
+
+.card {
+  padding: 20px;
+  box-shadow: 0px 0px 8px lightgray;
+  border: none;
+  margin-bottom: 20px;
+
+}
+
+/** No CSS for this example */
+.style {
+  border: 2px solid black;
+  padding: 3px;
+}
+
+.currency-switch {
+  display: inline;
+  margin-right: 20px;
+  padding: 10px;
+}
+
+/* :host ::ng-deep .mat-radio-container {
+  height: 10px;
+  width: 10px;
+  display: none;
+} */
+
+/* :host ::ng-deep .mat-radio-outer-circle {
+  height: 10px;
+  width: 10px;
+  display: none;
+} */
+
+/* :host ::ng-deep .mat-radio-inner-circle {
+  height: 10px;
+  width: 10px;
+  display: none;
+} */
+
+
+.settingCard {
+  padding: 0px 0px 20px 0px;
+  box-shadow: none;
+  border: 1px solid rgba(0, 0, 0, .125);
+  margin-bottom: 20px;
+}
+
+.card-header {
+  background: white !important;
+  padding: 10px 20px !important;
+}
+
+button:disabled {
+  background-color: #E4E4E4;
+  color: rgba(0,0,0,0.2) !important;
+  border: 1px solid lightgray !important;
+}
+/* p {
+  color: black;
+  opacity: 0.6;
+} */
+ :host::ng-deep.cards mat-card{
+  height: 265px !important;
+    box-shadow: 0px 0px 3px lightgrey !important;
+    margin-bottom: 30px !important;
+    overflow-y:scroll ;
+}
+
+:host::ng-deep.mat-form-field-appearance-outline .mat-select-arrow-wrapper {
+  transform: translateY(0%);
+}
+
+:host::ng-deep.mat-form-field-appearance-outline .mat-form-field-label {
+  top: 1.84375em;
+  margin-top: 0.3em;
+}
+
+:host::ng-deep.mat-form-field-appearance-outline .mat-form-field-infix {
+  padding: 1.0em 0 0.9em 0;
+  border-top: 0px;
+}
+
+.save {
+  background-color: #2E6AC3;
+  color: white;
+  box-shadow: none;
+}
+
+.card-header h2 {
+  font-weight: 500;
+  font-size: 18px;
+}
+
+:host::ng-deep.nav-tabs {
+  border-bottom: 0px !important;
+  margin-left: 25px;
+}
+
+:host::ng-deep th.mat-header-cell {
+  font-size: 14px;
+}
+
+:host::ng-deep th.mat-header-cell,
+td.mat-cell,
+td.mat-footer-cell {
+  padding: 0 10px !important;
+}
+
+@media only screen and (max-width: 1330px) {
+  .nav-link {
+    padding: 0.5rem 3.7rem !important;
+  }
+}
+
+@media only screen and (max-width: 1285px) {
+  .nav-link {
+    padding: 0.5rem 3rem !important;
+  }
+}
+
+@media only screen and (max-width: 1265px) {
+  .nav-link {
+    padding: 0.5rem 2.7rem !important;
+  }
+}
+
+@media only screen and (max-width: 1220px) {
+  .nav-link {
+    padding: 0.5rem 2rem !important;
+  }
+}
+
+@media only screen and (max-width: 1115px) {
+  .nav-link {
+    padding: 0.5rem 1.6rem !important;
+  }
+}
+
+@media only screen and (max-width: 950px) {
+  .nav-link {
+    padding: 0.5rem 1.3rem !important;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .nav-link {
+    padding: 0.5rem 0.9rem !important;
+  }
+}
+
+@media only screen and (max-width: 830px) {
+  .nav-link {
+    padding: 0.5rem 0.8rem !important;
+    font-size: 14px;
+  }
+}
+
+.planscard {
+  max-width: 320px;
+  padding: 0px;
+  height: 550px;
+  border: 0.5px solid rgb(212, 212, 212);
+  display: inline-block;
+  margin-left: 10px;
+  margin-top: 20px;
+  vertical-align: top;
+}
+
+
+
+
+.planscard:hover {
+
+  box-shadow: 1px 3px 1px 2px rgb(225, 234, 236)
+}
+
+.planeHeaderCard {
+  border-bottom: 0.5px solid rgb(211, 209, 209);
+  padding: 11px;
+}
+
+
+
+.monthPlan {
+  display: inline-block;
+  font-size: 12px;
+  line-height: 13px;
+  margin-left: 4px;
+
+}
+
+.monthPlan1 {
+  font-size: 39px;
+  font-weight: 500;
+  line-height: 40px;
+}
+
+.supelement {
+
+  font-size: 23px;
+  font-weight: 500;
+  height: 64px;
+}
+
+.button {
+  position: absolute;
+  bottom: 5%;
+  left: 23%
+}
+
+:host::ng-deep.mat-tab-label {
+  height: 30px;
+  padding: 15px 24px;
+  cursor: pointer;
+  /* box-sizing: border-box; */
+  opacity: inherit;
+  min-width: 80px;
+  text-align: center;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap;
+  position: relative;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  margin-right: 25px;
+  border: 0.5px solid rgb(201, 201, 201);
+
+}
+
+:host::ng-deep.mat-tab-label-container {
+
+  border-radius: 10px;
+
+}
+
+:host::ng-deep.mat-tab-label-active {
+  border: 1px solid #1561CF;
+  color: #1561CF;
+}
+
+:host::ng-deep.mat-tab-group.mat-primary .mat-ink-bar,
+.mat-tab-nav-bar.mat-primary .mat-ink-bar {
+  background-color: transparent !important;
+}
+
+:host::ng-deep.mat-tab-body-content {
+  height: 100%;
+  overflow: hidden;
+}
+
+.favIcon {
+  color: #1561CF;
+}
+
+/* .integrationCardLeft {
+  width: 90%;
+  margin-top: 5px;
+  height: 100%;
+  margin-left: 30px;
+} */
+
+/* .integrationCardRight {
+  width: 90%;
+  margin-top: 5px;
+  height: 100%;
+  margin-left: 15px;
+} */
+
+.integrationCardcenter {
+  width: 100%;
+  /* margin-top: 34px; */
+  height: 100%;
+  position: relative;
+}
+
+
+
+.addonheading {
+  font-size: 35px;
+  font-weight: 300;
+  text-align: center;
+  color: #1561CF;
+  padding-left: 340px;
+  padding-top: 3px;
+}
+
+
+.addonheadingRedirect {
+  font-size: 35px;
+  font-weight: 300;
+  text-align: center;
+  color: #1561CF;
+  margin-right: 60%;
+}
+
+.details {
+  border: 1px solid lightgrey;
+
+
+}
+
+.border {
+  border: 1px solid black;
+}
+
+.mat-checkbox-layout .mat-checkbox-label {
+  line-height: 33px;
+}
+
+.checkBox {
+  margin-left: 10px;
+}
+
+.titleDetails {
+  padding-top: 10px;
+
+}
+
+:host ::ng-deep.mat-card-header .mat-card-subtitle:not(:first-child) {
+  margin-top: 28px;
+}
+
+.nextAddons {
+  border: 1px solid blue;
+  color: white;
+  background-color: #2E6AC3;
+  width: 28%;
+  height: 45px;
+  margin-left: 38%;
+  margin-top: 30px;
+  border-radius: 4px;
+  font-size: 18px;
+}
+
+.cardText {
+  font-size: 35px;
+  font-weight: 300;
+}
+
+.backArrow {
+  /* color: #1561CF; */
+  /* border: 1px solid #1561CF; */
+  color: #1561CF;
+  font-size: 21px;
+}
+
+.mainHeading {
+  font-size: 30px;
+  color: #2E6AC3;
+  margin-top: 10px;
+
+}
+
+.planscardStarter {
+  /* max-width: 320px; */
+  /* padding: 0px; */
+  /* height: 50px; */
+  /* border: 1.5px solid rgb(212, 212, 212); */
+  /* display: inline-block; */
+  margin-left: 98px;
+  margin-top: 20px;
+  /* vertical-align: top; */
+  width: 20%;
+  border-radius: 6px;
+  background-color: transparent;
+
+}
+
+.starterCardDetails {
+  width: 80%;
+  margin-top: 20px;
+  height: 130px;
+  margin-left: 93px;
+  border: 1px solid blue;
+  background-color: #f5fbfd;
+  border-color: #c4e7f5;
+}
+
+.textContent {
+  margin-left: 21%;
+}
+
+.infoIcon {
+  font-size: 40px;
+  padding-left: 95px;
+}
+
+.headings {
+  margin-left: 41%;
+  font-size: 20px;
+  padding-top: 20px;
+}
+
+.starterPlanCost {
+  border: 1px solid black;
+  margin-left: 134px;
+  width: 30%;
+  margin-top: 15px;
+  height: 58px;
+  border-radius: 7px;
+}
+
+button:focus {
+  outline: blue auto 5px;
+}
+
+.radio {
+  margin-left: 15px;
+  margin-top: 17px;
+}
+
+.nextButton {
+  border-radius: 5px;
+  background-color: #2E6AC3;
+  border: 1px solid #2E6AC3;
+  color: white;
+  margin-left: 35%;
+  width: 30%;
+  height: 50px;
+  margin-top: 90px;
+  font-size: 22px;
+}
+
+.headingSelect {
+  margin-left: 38%;
+  font-size: 20px;
+  padding-top: 20px;
+  margin-bottom: 10px;
+}
+
+
+.businessPlanCost {
+  border: 1px solid black;
+  margin-left: 134px;
+  width: 30%;
+  margin-top: 15px;
+  height: 58px;
+  border-radius: 7px;
+}
+
+.businessCard {
+  height: 168px;
+  margin-top: 27px;
+  width: 70%;
+  margin-left: 156px;
+  background-color: #f5fbfd;
+  border-color: #c4e7f5;
+}
+
+.chooseplan{
+  display: inline-flex;
+}
+
+.Addons{
+  margin-top: 10px;
+}
+
+input[type="radio"] {
+  width: 75px;
+  height: 40px;
+  border-radius: 17px;
+  border: 2px solid #1FBED6;
+  background-color: white;
+  -webkit-appearance: none;
+}
+
+input[type="radio"]:focus {
+  /*no need, if you don't disable default appearance*/
+  outline: none;
+  /*to remove the square border on focus*/
+}
+
+input[type="radio"]:checked {
+  /*no need, if you don't disable default appearance*/
+  background-color: #1FBED6;
+}
+
+input[type="radio"]:checked~span:first-of-type {
+  color: white;
+}
+
+label span:first-of-type {
+  position: relative;
+  left: -46px;
+  font-size: 15px;
+  color: #1FBED6;
+}
+
+label span {
+  position: relative;
+  top: -12px;
+}
+
+.businessMatCard {
+  width: 70%;
+  margin-top: 19px;
+  margin-left: 155px;
+  background-color: #f5fbfd;
+  border-color: #c4e7f5;
+
+}
+
+.textContentBusiness {
+  margin-left: 16%;
+
+}
+
+/* .radiobutton {
+  margin-left: 50px;
+} */
+
+.setBusinessPayment {
+  padding-left: 40%;
+  font-size: 20px;
+  padding-top: 21px;
+}
+
+.moreLocationButton {
+  background-color: #2E6AC3;
+  border: 1px solid #2E6AC3;
+  color: white;
+  width: 25%;
+  height: 50px;
+  margin-left: 35%;
+  margin-top: 30px;
+  border-radius: 5px;
+}
+
+.enterpriceCard {
+  height: 170px;
+  margin-top: 27px;
+  width: 70%;
+  margin-left: 156px;
+  background-color: #f5fbfd;
+  border-color: #c4e7f5;
+}
+
+.locationHeading {
+  padding-left: 25%;
+  font-size: 17px;
+}
+
+:host ::ng-deep.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+  border-color: #2E6AC3;
+}
+
+:host ::ng-deep.mat-radio-button.mat-accent .mat-radio-inner-circle,
+.mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element:not(.mat-radio-persistent-ripple),
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-persistent-ripple,
+.mat-radio-button.mat-accent:active .mat-radio-persistent-ripple {
+  background-color: #2E6AC3;
+}
+
+.name {
+  width: 30%;
+}
+
+.send {
+  margin-right: 70%;
+  margin-top: 20px;
+  background-color: darkorange;
+  color: white;
+  width: 166px;
+  height: 50px;
+}
+
+
+.planscardStarter input[type="radio"] {
+  width: 156px;
+  height: 47px;
+  border-radius: 8px;
+  border: 2px solid lightgray;
+  background-color: white;
+  -webkit-appearance: none;
+  margin-left: 30px;
+}
+
+.planscardStarter input[type="radio"]:focus {
+  /*no need, if you don't disable default appearance*/
+  outline: none;
+  /*to remove the square border on focus*/
+}
+
+.planscardStarter input[type="radio"]:checked {
+  /*no need, if you don't disable default appearance*/
+  background-color: white;
+  border-color: #1FBED6;
+}
+
+.planscardStarter input[type="radio"]:checked~span:first-of-type {
+  color: #1FBED6;
+}
+
+.planscardStarter label {
+  position: relative;
+  left: -27px;
+  font-size: 15px;
+  color: #1FBED6;
+}
+
+.planscardStarter label span {
+  position: absolute;
+  top: -12px;
+  margin-top: 26px;
+  margin-left: 109px;
+  color: grey;
+}
+
+.orderHeadings {
+  margin-left: 26%;
+  font-size: 36px;
+  color: #1FBED6;
+  padding-top: 34px;
+}
+
+.backArrowFromOrders {
+  color: #1561CF;
+  /* border: 1px solid #1561CF; */
+  margin-top: 23px;
+  margin-left: 5px;
+  font-size: 21px;
+}
+
+.headingsOrders {
+  font-size: 20px;
+}
+
+.subHeadingOrders {
+  padding-left: 20px;
+  color: grey;
+}
+
+.nextButtonInOrder {
+  border: 1px solid #1561CF;
+  background-color: #1561CF;
+  color: white;
+  margin-top: 55px;
+  margin-bottom: 20px;
+  margin-left: 36%;
+  height: 45px;
+  width: 25%;
+  font-size: 20px;
+  border-radius: 5px;
+}
+
+.orderDetails {
+  font-size: 20px;
+}
+
+.cardColor {
+  background-color: #f8fdfe;
+}
+
+.ordersApplyButton {
+  border: 1px solid #1561CF;
+  background-color: #1561CF;
+  color: white;
+  margin-top: 24px;
+  width: 97%;
+  height: 38px;
+  border-radius: 5px;
+}
+
+.amountDue {
+  margin-left: 46%;
+}
+
+.starterPlanvalue {
+  padding-left: 73px;
+
+}
+.integrationCard {
+  height: 210px;
+  margin-bottom: 30px;
+  box-shadow: 0px 0px 3px lightgray;
+}
+.addOnsButton{
+  border:none;
+  background: transparent;
+  color:#1561CF;
+}
+::-webkit-scrollbar{
+  width: 0px;
+}
+.changePlan{
+  border:1px solid  #1561CF;
+  color: #1561CF;
+}
+.changePlan:hover{
+  background-color: #1561CF;
+  color: white;
+}
+.btn{
+  border: none;
+  outline: none;
+}

@@ -1,0 +1,240 @@
+.heading h4 {
+  font-weight: 500;
+  font-size: 18px;
+  color: #231F20;
+}
+
+.heading p {
+  color: #231F20;
+  opacity: 0.8;
+}
+
+.img-container {
+  width: 600px;
+  height: 500px;
+}
+
+.img-container img {
+  width: 100%;
+  height: 100%;
+}
+
+.img-prev {
+  margin-top: 10px;
+  height: 100%;
+}
+
+.img-slide {
+  cursor: pointer;
+  height: 100%;
+  border: none;
+  background-color: white;
+}
+
+.img-slide img {
+  height: 130px;
+}
+
+.img-slide1 {
+  opacity: 0.6 !important;
+}
+
+.card3 {
+  border-radius: 5px;
+  box-shadow: 0px 0px 1px 2px gray;
+  height: 100%;
+}
+
+.imageAction button {
+  border: none;
+  background: transparent;
+}
+
+.card1 {
+  margin-bottom: 40px;
+  border: 4px solid #C0C0C0;
+  border-radius: 25px;
+  padding: 9px 9px 10px 10px;
+  height: 500px;
+}
+
+.bordercard {
+  position: absolute;
+  padding: 10px;
+  top: 87%;
+  left: 5%;
+}
+
+.card2 {
+  margin-bottom: 10px;
+  border: 4px solid #C0C0C0;
+  border-radius: 25px;
+  padding: 9px 9px 10px 10px;
+  width: 80%;
+}
+
+.previewImage2 {
+  outline: 10px solid black;
+  border-radius: 10px;
+  height: 100%;
+}
+
+.previewImage img {
+  box-shadow: 0px 0px 4px lightgray;
+  border-radius: 10px;
+
+}
+
+.previewImage {
+  height: 100%;
+}
+
+.add {
+  cursor: pointer;
+}
+
+.visitorin {
+  position: absolute;
+  top: 80%;
+  /* left: 50%; */
+  padding: 15px 50px;
+  transform: translate(-50%, -50%);
+  border-radius: 4px;
+  border: none;
+}
+.visitorin2 {
+  position: absolute;
+  top: 39%;
+  /* left: 50%; */
+  padding: 15px 50px;
+  transform: translate(-50%, 25%);
+  border-radius: 4px;
+  border: none;
+}
+
+.visitorin h1 {
+  font-weight: 500;
+
+
+}
+
+.pick {
+  width: 28%;
+  position: absolute;
+  top: 77%;
+  left: 3%;
+}
+
+.colorpopup {
+  position: absolute;
+  top: 78%;
+  left: 30px;
+}
+
+.colorbutton {
+  border: 1px solid black;
+  margin-top: 0px;
+  width: 140px;
+  background-color: lightgrey;
+
+}
+
+.colordisplay {
+  background: none;
+  border: none;
+  width: 38px;
+  margin-left: -45px;
+}
+
+.file {
+  border: 1px dashed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 162px;
+  margin-top: 25px;
+  margin-right: 40px;
+}
+
+input {
+  border: none;
+  outline: none;
+  background: transparent;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+label {
+  margin-bottom: 0px;
+  cursor: pointer;
+}
+
+.corner {
+  border-radius: 50px;
+}
+
+.border {
+  border-radius: 0px;
+}
+
+.submit {
+  background: #004AB6;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  padding: 7px 30px;
+  margin-right: 50px;
+  margin-bottom: 30%;
+}
+
+.disabled:disabled {
+  cursor: default;
+  opacity: 0.5;
+}
+
+.spinner {
+  position: fixed;
+  background-color: rgba(0,0,0,0.2);
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+ :host::ng-deep mat-spinner{
+  position: absolute;
+  left: 50%;
+  top: 30%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
+.orientation {
+  font-size: 15px;
+}
+
+.orientation:hover {
+  color: #004AB6;
+}
+
+.frameColor {
+  font-size: 15px;
+
+}
+
+.frameColor:hover {
+  color: #004AB6;
+}
+
+.delete i:hover {
+  color: #004AB6;
+}
+
+::ng-deep.toast-top-right {
+  top: 12px;
+  right: 25px !important;
+}
+
+.fa-eye:hover{
+  color: #004AB6;
+}

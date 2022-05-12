@@ -1,0 +1,93 @@
+.headerSignOut {
+  /* padding-left: 31%; */
+  font-size: 16px;
+  text-align: center;
+}
+
+.headSignOut {
+  /* padding-left: 24%; */
+  font-size: 21px;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.closed {
+  color: grey;
+  font-style: italic;
+}
+
+.heading {
+  /* padding-left: 24%; */
+  font-size: medium;
+  text-align: center;
+}
+
+.icons {
+  font-size: 60px;
+  padding-left: 45%;
+  color: red
+}
+
+.dataAnonymize {
+  /* padding-left: 15px; */
+  padding-top: 16px;
+  font-size: 15px;
+  text-align: center;  
+}
+
+.undoneAnonymize {
+  /* padding-left: 23%; */
+  padding-top: 12px;
+  color: red;
+  font-size: 18px;
+  text-align: center;
+}
+
+.datatext {
+  /* padding-left: 43%; */
+  font-size: 15px;
+  text-align: center;
+}
+
+.delete {
+  /* padding-left: 27%; */
+  padding-top: 15px;
+  margin-bottom: 13px;
+  text-align: center;
+}
+
+#close {
+  border: 1px solid black;
+    border-radius: 8px;
+    margin-left: 5%;
+    width: 96px;
+    margin-top: 13px;
+    background-color: #E4E4E4;
+    border: 1px solid black;
+    color: black;
+    opacity: 1 !important;
+}
+
+#anonymize {
+  border: 1px solid #1561CF;
+  border-radius: 8px;
+  margin-left: 12%;
+  margin-top: 13px;
+  background-color: #1561CF;
+  color: white;
+}
+
+.icons {
+  font-size: 60px;
+  padding-left: 45%;
+  color: red
+}
+
+.deleteInput {
+  width: 33%;
+}
+
+.mat-button.mat-button-disabled.mat-button-disabled{
+  background-color: lightgrey !important;
+  border-color: lightgrey !important
+}

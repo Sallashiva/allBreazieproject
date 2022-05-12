@@ -1,0 +1,186 @@
+<div class="spinner" *ngIf="spinner">
+    <mat-spinner></mat-spinner>
+</div>
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start" class="back-button">
+            <ion-back-button name="ios-arrow-back" [defaultHref]="path"></ion-back-button>
+        </ion-buttons>
+        <ion-item slot="start" lines="none">
+            <img class="logo" src="../../../assets/images/Mask Group 1.png">
+        </ion-item>
+        <!-- <ion-item slot="end" lines="none" ion-padding class="qrcode">
+            <div class="qr-code" (click)="qrCodeOpen()">
+                <img style="text-align: center; width: 5%;" src="../../../assets/images/Breazie-qr-code.png" alt="">
+            </div>
+        </ion-item> -->
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-toolbar class="seaarchbar">
+        <ion-grid style="width: 100%;" class="desktop-view">
+            <ion-row>
+                <ion-col size="12" size-md="5">
+                    <h4 class="search-h1">Whom are you meeting today?</h4>
+                </ion-col>
+                <ion-col size="12" size-md="6">
+                    <ion-searchbar *ngIf="employeesShow" showCancelButton="never" placeholder="Search Employee Name" name="employeeName" [(ngModel)]="employeeName"></ion-searchbar>
+                    <form [formGroup]="deliveryForm" (ngSubmit)="addDelivery()">
+                        <ion-searchbar *ngIf="employeesHide" showCancelButton="never" placeholder="Search Employee Name" [(ngModel)]="fullName" formControlName="empId">
+                        </ion-searchbar>
+                    </form>
+                </ion-col>
+
+                <!-- <ion-col size="12" size-md="6">
+
+                </ion-col> -->
+
+            </ion-row>
+        </ion-grid>
+    </ion-toolbar>
+
+    <div class="card desktop-view" *ngIf="employeesShow">
+        <div class="spinner" *ngIf="spinner">
+            <ion-spinner name="lines"></ion-spinner>
+        </div>
+        <ion-grid style="width: 100%;">
+            <ion-row>
+                <ion-col size="10" size-md="12">
+                    <ion-row>
+                        <ion-col size="12" size-md="4" size-lg="3" *ngFor="let employee of EmployeeList |search:employeeName">
+                            <ion-card (click)="senMailToEmployee(employee)">
+                                <ion-card-content>
+                                    <ion-row>
+                                        <ion-col size="4">
+                                            <img class="employeeimg rounded-circle" src="{{employee?.imagePath}}" onerror="this.src='../../../assets/userIcon.png'" width="50px" height="50px">
+                                        </ion-col>
+                                        <ion-col size="8">
+                                            <p style="color:#1D447D;font-weight:bold">{{employee.fullName}} {{employee.lastName}}</p>
+                                            <p>{{employee.designation}}</p>
+                                        </ion-col>
+
+                                    </ion-row>
+                                </ion-card-content>
+                            </ion-card>
+                        </ion-col>
+                    </ion-row>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
+
+
+
+    <div class="card desktop-view" *ngIf="employeesArray">
+        <div class="spinner" *ngIf="spinner">
+            <ion-spinner name="lines"></ion-spinner>
+        </div>
+        <ion-grid style="width: 100%;">
+            <ion-row>
+                <ion-col size="10" size-md="12">
+                    <ion-row>
+                        <ion-col size="12" size-md="4" size-lg="3" *ngFor="let employee of employeesArray ">
+                            <ion-card (click)="senMailToEmployee(employee)">
+                                <ion-card-content>
+                                    <ion-row>
+                                        <ion-col size="4">
+                                            <img class="employeeimg rounded-circle" src="{{employee?.imagePath}}" onerror="this.src='../../../assets/userIcon.png'" width="50px" height="50px">
+                                        </ion-col>
+                                        <ion-col size="8" *ngIf="nodata">
+                                            <p style="color:#1D447D;font-weight:bold">{{employee.fullName}} {{employee.lastName}}</p>
+                                            <p>{{employee.designation}}</p>
+                                        </ion-col>
+                                        <!-- <ion-col size="8" *ngIf="nodata">
+                                        No data found
+                                    </ion-col> -->
+                                    </ion-row>
+                                </ion-card-content>
+                            </ion-card>
+                        </ion-col>
+                    </ion-row>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
+
+    <div class="mobile-view">
+        <div class="spinner" *ngIf="spinner">
+            <ion-spinner name="lines"></ion-spinner>
+        </div>
+        <div *ngIf="employeesShow">
+            <alphabet-filter propAlphaOrder="fullName" propsSearch="fullName" placeholder="Search employee here...." listClass="search-list" height="100vh" [data]="EmployeeList" [withTemplate]="true">
+                <ng-template let-item>
+                    <div>
+                        <ion-grid>
+                            <ion-row>
+                                <ion-col size="12" size-md="3">
+                                    <ion-card (click)="senMailToEmployee(item)" class="search-list-item" style="border-radius: 0px;">
+                                        <ion-card-content>
+                                            <ion-row>
+                                                <ion-col size="4">
+                                                    <img class="employeeimg rounded-circle" src="{{item.imagePath}}" onerror="this.src='../../../assets/userIcon.png'">
+                                                </ion-col>
+                                                <ion-col size="8">
+                                                    <p style="color:#1D447D;font-weight:bold">{{item.fullName}} {{item.lastName}}</p>
+                                                    <small>{{item.designation}}</small>
+                                                </ion-col>
+                                            </ion-row>
+                                        </ion-card-content>
+                                    </ion-card>
+                                </ion-col>
+                            </ion-row>
+                        </ion-grid>
+                    </div>
+                </ng-template>
+            </alphabet-filter>
+        </div>
+
+        <div *ngIf="employeesHide">
+
+            <ion-col>
+                <ion-item class="searchionItem">
+                    <ion-searchbar *ngIf="employeesShow" showCancelButton="never" placeholder="Search Employee Name" name="employeeName" [(ngModel)]="employeeName"></ion-searchbar>
+                    <form [formGroup]="deliveryForm" (ngSubmit)="addDelivery()">
+                        <ion-searchbar *ngIf="employeesHide" showCancelButton="never" placeholder="Search Employee Name" [(ngModel)]="fullName" formControlName="empId">
+                        </ion-searchbar>
+                    </form>
+                </ion-item>
+
+            </ion-col>
+
+            <div class="mobile-view" *ngIf="employeesArray">
+                <div class="spinner" *ngIf="spinner">
+                    <ion-spinner name="lines"></ion-spinner>
+                </div>
+                <ion-grid style="width: 100%;">
+                    <ion-row>
+                        <ion-col>
+                            <ion-row>
+                                <ion-col *ngFor="let employee of employeesArray ">
+                                    <ion-card (click)="senMailToEmployee(employee)">
+                                        <ion-card-content>
+                                            <ion-row>
+                                                <ion-col size="4">
+                                                    <img class="employeeimg rounded-circle" src="{{employee?.imagePath}}" onerror="this.src='../../../assets/userIcon.png'" width="50px" height="50px">
+                                                </ion-col>
+                                                <ion-col size="8" *ngIf="nodata">
+                                                    <p style="color:#1D447D;font-weight:bold">{{employee.fullName}} {{employee.lastName}}</p>
+                                                    <p>{{employee.designation}}</p>
+                                                </ion-col>
+                                                <!-- <ion-col size="8" *ngIf="nodata">
+                                                    No data found
+                                                </ion-col> -->
+                                            </ion-row>
+                                        </ion-card-content>
+                                    </ion-card>
+                                </ion-col>
+                            </ion-row>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </div>
+        </div>
+
+    </div>
+</ion-content>

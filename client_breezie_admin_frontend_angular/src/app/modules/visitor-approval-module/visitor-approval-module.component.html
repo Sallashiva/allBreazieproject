@@ -1,0 +1,17 @@
+<!-- <mat-dialog-content class="mat-typography"> -->
+  <!-- <form [formGroup]="approvelForm" (ngSubmit)="onApprove()"> -->
+
+    <div class="headings">
+      <div class="mainheading">You are about to</div>
+      <div class="subheading"> approve guest &nbsp; <strong>{{editData.FullName}}</strong> </div>
+    </div>
+    <div class="approvalHeading">Do you wish to continue?</div>
+    <div class="bottom text-center">
+      <!-- <button class="approve" type="submit"  mat-button  mat-raised-button (click)="onApprove()">Approve </button>
+        <button class="cancel" type="button" mat-button  mat-raised-button mat-dialog-close >Cancel</button> -->
+      <button type="button" class="cancel" mat-button mat-raised-button mat-dialog-close>Close</button>
+      <button type="submit" class="approve" mat-button mat-raised-button (click)="onApprove()">Approve</button>
+    </div>
+<!-- 
+  </form> -->
+<!-- </mat-dialog-content> -->

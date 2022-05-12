@@ -1,0 +1,16 @@
+<mat-dialog-content>
+  <div class="content">
+    <div class="heading text-center">
+      <p class="mb-0">You are about to</p>
+      <strong>restore {{editData.fullName}}</strong>
+    </div>
+    <div class="subHeading text-center mt-3">
+      <p>Do you want to continue?</p>
+    </div>
+  </div>
+  <div mat-dialog-actions class="buttons text-center">
+    <button mat-button mat-dialog-close class="cancel" (click)="cancle()">Cancel</button>
+    <button mat-button mat-dialog-signin class="restore" (click)="accept()">Restore</button>
+
+  </div>
+</mat-dialog-content>

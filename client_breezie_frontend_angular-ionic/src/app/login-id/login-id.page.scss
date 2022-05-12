@@ -1,0 +1,39 @@
+    .example-form {
+        min-width: 150px;
+        max-width: 500px;
+        width: 100%;
+    }
+    
+    .example-full-width {
+        width: 100%;
+    }
+    
+    .loginBtn {
+        width: 250px;
+        border-radius: 25px;
+    }
+    h5 {
+        font-size: 18px;
+        padding-left: 15px !important;
+    }
+    
+    mat-form-field {
+        width: 260px !important;
+        text-align: center;
+    }
+    
+    @media only screen and (max-width:"1006px") {}
+    
+    @media only screen and (max-width:"990px") {}
+    
+    @media only screen and (max-width:"770px") {}
+    
+    @media only screen and (max-width:"767px") {}
+    
+    @media only screen and (max-width:"600px") {}
+    
+    @media only screen and (max-width:"580px") {}
+    
+    @media only screen and (max-width:"412px") {}
+    
+    @media only screen and (max-width:"375px") {}

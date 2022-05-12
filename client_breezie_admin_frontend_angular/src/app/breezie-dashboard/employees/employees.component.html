@@ -1,0 +1,672 @@
+<div class="spinner" *ngIf="spinner">
+  <mat-spinner diameter="100"></mat-spinner>
+</div>
+<div class="container-fluid">
+
+  <div class="card mt-4">
+    <div class="card-header">
+      <div class="d-flex align-items-center">
+        <div class="mr-auto d-inline-block">
+          <h1 class="mb-0" style="font-weight: 500;">Employees</h1>
+        </div>
+      </div>
+    </div>
+
+    <div class="tabs mt-3">
+      <ul class="nav nav-pills" id="pills-tab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab"
+            aria-controls="pills-home" aria-selected="true" (click)="employee()" style="font-weight: 500;">Employee
+            [{{TotalEmployees}}]</a>
+        </li>
+        <li class="nav-item" role="presentation">
+          <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab"
+            aria-controls="pills-profile" aria-selected="false" (click)="timeline()"
+            style="font-weight: 500;">Timeline</a>
+        </li>
+        <li class="nav-item" role="presentation">
+          <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab"
+            aria-controls="pills-contact" aria-selected="false" (click)="archive()"
+            style="font-weight: 500;">Archive</a>
+        </li>
+      </ul>
+      <div class="tab-content" id="pills-tabContent">
+        <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+
+
+          <div class="status mt-3" *ngIf="employees">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="col-md-6">
+                  <div class="search mr-2">
+                    <mat-form-field class="search-form-field">
+                      <mat-icon class="sticky-top"
+                        style="position: 'absolute';z-index: 0;right: 0;top: 0px; width: 20; height: 20"> search
+                      </mat-icon>
+                      <input matInput name="fullName" placeholder="Search" [(ngModel)]="fullName"
+                        (keyup)="applyFilter($event)">
+                    </mat-form-field>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="d-flex float-right ">
+                  <button class="btn archive ml-2" (click)="archiveAllEmployee()" [class.selectButton]="archiveSelected"
+                    [disabled]="disabledbutton"><span *ngIf="!archiveSelected" style="font-weight: 500;">Archive
+                      All</span>
+                    <span *ngIf="archiveSelected" style="font-weight: 500;">Archive Selected</span></button>
+                  <button class="btn export ml-2" [class.selectButton]="exportSelected" [disabled]="disabledbutton"
+                    (click)="convertexelEmpolyee()"><span *ngIf="!exportSelected" style="font-weight: 500;">Export
+                      All</span>
+                    <span *ngIf="exportSelected" style="font-weight: 500;">Export Selected</span>
+                  </button>
+                  <div class="dropdown d-flex align-items-center ml-2">
+                    <button class="btn  dropdown-toggle newEmployee d-flex align-items-center" type="button"
+                      id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false" style="font-weight: 500;">
+                      <mat-icon>add</mat-icon> New Employee
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <button class="dropdown-item" (click)="openDialog()">Add Employee</button>
+                      <button class="dropdown-item" (click)="addBulk()">Add in Bulk</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="row">
+                  <div class="col-md-6 col-lg-4">
+                    <div class="ml-2">
+                      <mat-form-field appearance="outline">
+                        <mat-label style="font-weight: 500;">Status </mat-label>
+                        <mat-select disableRipple (selectionChange)="onChangeEmployeesSelect($event)">
+                          <mat-option value="all">All</mat-option>
+                          <mat-option value="signedin">Signed In</mat-option>
+                          <mat-option value="workingremotely">Working Remotely</mat-option>
+                          <mat-option value="signedin&remote">Signed In & Remote</mat-option>
+                          <mat-option value="signedout">Signed Out</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="col-md-6">
+                <div class="d-flex float-right ">
+                  <button class="btn archive ml-2" (click)="archiveAllEmployee()" [class.selectButton]="archiveSelected"
+                    [disabled]="disabledbutton"><span *ngIf="!archiveSelected" style="font-weight: 500;">Archive
+                      All</span>
+                    <span *ngIf="archiveSelected" style="font-weight: 500;">Archive Selected</span></button>
+                  <button class="btn export ml-2" [class.selectButton]="exportSelected" [disabled]="disabledbutton"
+                    (click)="convertexelEmpolyee()"><span *ngIf="!exportSelected" style="font-weight: 500;">Export
+                      All</span>
+                    <span *ngIf="exportSelected" style="font-weight: 500;">Export Selected</span>
+                  </button>
+                  <div class="dropdown d-flex align-items-center ml-2">
+                    <button class="btn  dropdown-toggle newEmployee d-flex align-items-center" type="button"
+                      id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false" style="font-weight: 500;">
+                      <mat-icon>add</mat-icon> New Employee
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <button class="dropdown-item" (click)="openDialog()">Add Employee</button>
+                      <button class="dropdown-item" (click)="addBulk()">Add in Bulk</button>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+            </div>
+          </div>
+          <table mat-table [dataSource]="dataSource" class="mat-elevation-z1 table" id="excel-table"
+            #employeeSort='matSort' matSort>
+
+            <ng-container matColumnDef="select">
+              <th mat-header-cell *matHeaderCellDef>
+                <mat-checkbox (change)="$event ? masterToggle() : null"
+                  [checked]="selection.hasValue() && isAllSelected()"
+                  [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()"
+                  (change)="getCheckboxValuesAllEmployee($event,dataSource.filteredData)">
+                </mat-checkbox>
+              </th>
+              <td mat-cell *matCellDef="let row">
+                <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+                  [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)"
+                  (change)="checkboxValuesEmployeeRow($event,row)">
+                </mat-checkbox>
+              </td>
+            </ng-container>
+
+            <!-- <ng-container matColumnDef="image">
+              <th mat-header-cell *matHeaderCellDef >  </th>
+              <td mat-cell *matCellDef="let element;" style="width:5%">  <img [src]=element.VisitorImage  onerror="this.src='../../assets/images/user.png'"
+                class="addImage rounded-circle"> </td>
+            </ng-container> -->
+
+            <ng-container matColumnDef="fullName">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Employee </th>
+              <td mat-cell *matCellDef="let element" style="width: 20%;" (click)="Dialog(element)">
+                <img [src]=element.VisitorImage onerror="this.src='../../assets/images/user.png'"
+                  class="addImage rounded-circle">
+                <span class="fullname"><b>{{element.fullName}}</b> </span>
+                <br>
+                <span class="companyName" *ngIf="element.role == 'Admin'" class="ml-4">
+                  Company Admin
+                </span>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="contact">
+              <th mat-header-cell *matHeaderCellDef> Contact Details </th>
+              <td mat-cell *matCellDef="let element" style="width: 20%;"><i class="fas fa-envelope"></i>
+                <a [href]="'mailto:' + element.email" target="blanck" class="ml-1">{{element.email}}</a>
+                <br>
+                <i class="fas fa-phone-alt"></i> {{element.phone}}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="employeeFields">
+              <th mat-header-cell *matHeaderCellDef> Employee Fields </th>
+              <td mat-cell *matCellDef="let element" style="width: 20%;"> - </td>
+            </ng-container>
+
+            <ng-container matColumnDef="lastActivity">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Last Activity </th>
+              <td mat-cell *matCellDef="let element" style="width: 25%;">
+                <span *ngIf="element.lastActivity">
+                  <span *ngIf="element.lastActivity.recent == 'logout'">
+                    <span class="circleout" style="display: inline-block; "></span>
+                  </span>
+                  <span *ngIf="element.lastActivity.recent == 'login'">
+                    <span class="circlein" style="display: inline-block;"></span>
+                  </span>
+                  <span *ngIf="element.isRemote == true">
+                    <span class="circleRemotely" style="display: inline-block;"></span>
+                  </span>
+                </span>
+                {{element.lastActivity.time | date:'MMM d, h:mm a'}}
+                <span *ngIf="element.lastActivity.time"> <i class="fas fa-laptop"></i></span>
+                <span *ngIf="element.lastActivity">
+                  <!-- <span *ngIf="element.lastActivity.recent == 'login'"> -->
+                  <!-- <span *ngIf="element.isRemote == true" class="out">remote</span>
+                                <span *ngIf="element.isRemote == false" class="out">In</span>
+                                </span>
+                                <span *ngIf="element.lastActivity.recent == 'logout'">
+                  <span class="out">out</span> -->
+                  <!-- </span> -->
+                </span>
+                <!-- <span *ngIf="element.lastActivity">
+                  <span *ngIf="element.lastActivity.recent == 'logout' || element.lastActivity.recent == null">
+                  </span>
+                </span> -->
+            </ng-container>
+
+            <ng-container matColumnDef="locationName">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Location </th>
+              <td mat-cell *matCellDef="let element" style="width: 15%;">
+                <i class="fa fa-map-marker-alt" style="color: #0065D9;"></i>
+                <b> &nbsp; {{element.locationName | titlecase }}</b>
+                <br>
+                <i class="fa fa-clock" style="color: #0065D9;" aria-hidden="true"></i>&nbsp; IST (+05:30)
+              </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="signinbutton">
+              <th mat-header-cell *matHeaderCellDef> </th>
+              <td mat-cell *matCellDef="let element; let i as index ">
+                <span *ngIf="element.lastActivity">
+                  <span *ngIf="element.lastActivity.recent == 'logout' || element.lastActivity.recent == null">
+                    <div *ngIf="element.isRemoteUser=='true' || element.isRemoteUser==true">
+                      <div class="d-flex align-items-center">
+                        <div>
+                          <button mat-button (click)="openSigninDialog(element)" class="sigininbutton">
+                            Sign in
+                          </button>
+                        </div>
+                        <div>
+                          <button class="select">
+                            <mat-select disableRipple>
+                              <mat-option (onSelectionChange)="openRemotelySigninDialog(element)" value="false">
+                                Remotely</mat-option>
+                            </mat-select>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <div *ngIf="element.isRemoteUser=='false' || element.isRemoteUser==false">
+                      <button mat-button (click)="openSigninDialog(element)" class="signInButton">
+                        Sign in
+                      </button>
+                    </div>
+
+                  </span>
+                  <span *ngIf="element.lastActivity.recent == 'login'">
+                    <button mat-button (click)="openSinOutDialog(element)" class="signoutbutton">
+                      Sign out
+                    </button>
+                  </span>
+                </span>
+              </td>
+            </ng-container>
+
+            <tr class="mat-row" *matNoDataRow>
+              <td class="mat-cell" colspan="9999">
+                No data found
+              </td>
+            </tr>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+            </tr>
+
+
+          </table>
+          <mat-paginator #paginator [pageSize]="5" [pageSizeOptions]="[2, 5,10, 25, 100]">
+          </mat-paginator>
+        </div>
+        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+          <div class="spinner" *ngIf="spinner">
+            <mat-spinner diameter="100"></mat-spinner>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="col-md-6">
+                <div class="search mr-2">
+                  <mat-form-field class="search-form-field">
+                    <mat-icon class="sticky-top"
+                      style="position: 'absolute';right: 0;top: 0px; width: 20; height: 20;z-index: 0"> search
+                    </mat-icon>
+                    <input matInput name="fullName" placeholder="Search" (keyup)="applyFilterTimeline($event)">
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="d-flex float-right ">
+                <button class="btn archiveTimeline ml-2" (click)="contractTraceTimeline()"
+                  [class.selectButtonTimeline]="contractTrace" [disabled]="disabledButtonTimeline"><span
+                    style="font-weight: 500;">Contact
+                    Trace</span></button>
+                <button class="btn exportTimeline ml-2" [class.selectButtonTimeline]="exportFiltered"
+                  [disabled]="disabledButtonTimeline" (click)="timelineConvertexel()">
+                  <span *ngIf="!exportFiltered" style="font-weight: 500;">Export Filtered</span>
+                  <span *ngIf="exportFiltered" style="font-weight: 500;">Export Selected</span></button>
+                <!-- <div class="dropdown d-flex align-items-center ml-2"> -->
+                <!-- <button class="btn  dropdown-toggle newEmployee d-flex align-items-center" type="button"
+                    id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
+                    <mat-icon>add</mat-icon> New Employee
+                  </button> -->
+                <!-- <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <button class="dropdown-item" (click)="openDialog()">Add Employee</button>
+                    <button class="dropdown-item" (click)="addBulk()">Add in Bulk</button>
+                  </div> -->
+                <!-- </div> -->
+              </div>
+
+            </div>
+          </div>
+
+          <div class="status mt-3" *ngIf="timelines">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="row">
+                  <div class="col-md-6 col-lg-4">
+                    <div class="ml-2">
+                      <mat-form-field appearance="outline">
+                        <mat-label style="font-weight: 500;">Status </mat-label>
+                        <mat-select disableRipple (selectionChange)="onChangeEmployeesTimeLineStatus($event)">
+                          <mat-option value="all">All</mat-option>
+                          <mat-option value="signed">Signed In Movements</mat-option>
+                          <mat-option value="workingremotely">Working Remotely</mat-option>
+                          <mat-option value="signedin&remote">Signed In & Remote</mat-option>
+                          <mat-option value="signedout">Signed Out</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6 col-lg-4">
+                    <div>
+                      <mat-form-field appearance="outline">
+                        <mat-label style="font-weight: 500;">Duration </mat-label>
+                        <mat-select disableRipple (selectionChange)="onChangeEmployeesTimeLineDuration($event)">
+                          <mat-option value="all">All</mat-option>
+                          <mat-option value="employee2">Today</mat-option>
+                          <mat-option value="employee3">Last 7 days</mat-option>
+                          <mat-option value="employee4">Last 30 days</mat-option>
+                          <mat-option value="employee5">Over 30 days</mat-option>
+                          <mat-option value="employee6">
+
+                            <mat-form-field appearance="legacy">
+                              <mat-label>Custom</mat-label>
+                              <mat-date-range-input [rangePicker]="picker" [max]="today1">
+                                <input matStartDate placeholder="Start date"
+                                  (dateInput)="OnDateTimelineStartChange($event.value)">
+                                <input matEndDate placeholder="End date"
+                                  (dateInput)="OnDateTimelineEndChange($event.value)">
+                              </mat-date-range-input>
+                              <mat-datepicker-toggle matSuffix [for]="picker">
+                              </mat-datepicker-toggle>
+                              <mat-date-range-picker #picker></mat-date-range-picker>
+                            </mat-form-field>
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+              <div class="col-md-6">
+
+              </div>
+            </div>
+          </div>
+
+          <table mat-table [dataSource]="dataSource2" class="mat-elevation-z1" #timelineSort="matSort" matSort
+            id="excel-table-timeline">
+
+            <ng-container matColumnDef="select">
+              <th mat-header-cell *matHeaderCellDef>
+                <mat-checkbox (change)="$event ? masterToggle1() : null"
+                  [checked]="selection1.hasValue() && isAllSelected1()"
+                  [indeterminate]="selection1.hasValue() && !isAllSelected1()" [aria-label]="checkboxLabel1()"
+                  (change)="getCheckboxValuesAllTimeline($event,dataSource2.filteredData)">
+                </mat-checkbox>
+              </th>
+              <td mat-cell *matCellDef="let row">
+                <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection1.toggle(row) : null"
+                  [checked]="selection1.isSelected(row)" [aria-label]="checkboxLabel1(row)"
+                  (change)="checkboxValuesTimelineRow($event,row)">
+                </mat-checkbox>
+              </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="employeeName">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Employee </th>
+              <td mat-cell *matCellDef="let element" style="width: 20%;"><img [src]=element.employeeImage
+                  onerror="this.src='../../assets/images/user.png'" (click)="DialogTimeline(element)"
+                  class="addImage rounded-circle">
+                <b> {{element.employeeName}}</b>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="signin">
+              <th mat-header-cell *matHeaderCellDef> Sign-in Questions </th>
+              <td mat-cell *matCellDef="let element;index as i" style="width: 15%;">
+                <div *ngFor="let ele of element['signedInQuestion']">
+                  <h4>{{ele.label}}:{{ele.value}}</h4>
+                </div>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="loginTime">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Time</th>
+              <td mat-cell *matCellDef="let element" style="width: 20%;">
+                <span class="circlein" style="display: inline-block;"></span>
+                <span *ngIf="element.isRemote == true">
+                  <span class="circleRemotely" style="display: inline-block;"></span>
+                </span>
+                {{element.loginTime | date:'MMM d, h:mm a'}}
+                <span *ngIf="element.loginTime"><i class="fas fa-laptop"></i>
+
+
+                  <!-- <span *ngIf="element.isRemote == false">In</span> -->
+                </span>
+                <br>
+                <span *ngIf="element.logoutTime">
+                  <span class="circleout" style="display: inline-block;"></span>
+                  {{element.logoutTime | date:'MMM d, h:mm a'}}<i class="fas fa-laptop" style="margin-left: 4px;"></i>
+                  <!-- <span>out</span> -->
+                </span>
+
+                <!-- <span *ngIf="element.isRemote == true">
+                  <span class="circleRemotely" style="display: inline-block;"></span>
+                </span> -->
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="locationName">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Location </th>
+              <td mat-cell *matCellDef="let element" style="width: 20%;">
+                <i class="fa fa-map-marker-alt"></i>
+                <b> &nbsp; {{element.locationName | titlecase }}</b>
+                <br>
+                <i class="fa fa-clock"></i>&nbsp; IST (+05:30)
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="signoutmessage">
+              <th mat-header-cell *matHeaderCellDef> Sign-out message </th>
+              <td mat-cell *matCellDef="let element" style="width: 15%;"> {{element.signedOutMessage}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="signinbutton">
+              <th mat-header-cell *matHeaderCellDef> </th>
+              <td mat-cell *matCellDef="let element">
+                <span *ngIf="!element.closed">
+                  <!-- <button mat-button class="sigininbutton" *ngIf="element.logoutTime"
+                    (click)="openSigninDialog(element)">Sign in</button> -->
+                  <div *ngIf="element.logoutTime">
+                    <div *ngIf="element.isRemoteUser==true">
+                      <div class="d-flex align-items-center">
+                        <div>
+                          <button mat-button (click)="openSigninDialog(element)" class="sigininbutton">
+                            Sign in
+                          </button>
+                        </div>
+                        <div>
+                          <button class="select">
+                            <mat-select disableRipple>
+                              <mat-option (onSelectionChange)="openRemotelySigninDialog(element)" value="false">
+                                Remotely</mat-option>
+                            </mat-select>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <div *ngIf="element.isRemoteUser==false">
+                      <button mat-button (click)="openSigninDialog(element)" class="signInButton">
+                        Sign in
+                      </button>
+                    </div>
+                  </div>
+                  <!-- // -->
+                  <button mat-button class="signoutbutton" *ngIf="!element.logoutTime"
+                    (click)="openSinOutDialog(element)">Sign out</button>
+                </span>
+                <span *ngIf="element.closed">
+                  Closed
+                </span>
+              </td>
+            </ng-container>
+
+            <tr class="mat-row" *matNoDataRow>
+              <td class="mat-cell" colspan="9999">
+                No data found
+              </td>
+            </tr>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns2;">
+            </tr>
+          </table>
+          <mat-paginator #paginatorTimeline [pageSize]="5" [pageSizeOptions]="[2, 5, 10, 25, 100]">
+          </mat-paginator>
+        </div>
+
+        <div class="status mt-3" *ngIf="archives">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="col-md-6">
+                <div class="search mr-2">
+                  <mat-form-field class="search-form-field">
+                    <mat-icon class="sticky-top"
+                      style="position: 'absolute'; right: 0;top: 0px; width: 20; height: 20;z-index: 0;"> search
+                    </mat-icon>
+                    <input matInput name="fullName" placeholder="Search" (keyup)="applyFilterArchives($event)">
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="d-flex float-right ">
+                <button class="btn archiveArchive ml-2" [class.selectButtonAnonymize]="anonymizeSelected"
+                  [disabled]="disabledbuttonAnonymize" (click)="openAnonymize()">
+                  <span *ngIf="!anonymizeSelected" style="font-weight: 500;">Anonymize All</span>
+                  <span *ngIf="anonymizeSelected" style="font-weight: 500;">Anonymize Selected</span>
+                </button>
+              </div>
+            </div>
+
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="row">
+                <div class="col-md-6 col-lg-4">
+                  <div class="ml-2">
+                    <mat-form-field appearance="outline">
+                      <mat-label style="font-weight: 500;">Duration </mat-label>
+                      <mat-select disableRipple (selectionChange)="onChangeEmployeesArchiveDuration($event)">
+                        <mat-option value="all">All</mat-option>
+                        <mat-option value="archive2">Today</mat-option>
+                        <mat-option value="archive3">Last 7 days</mat-option>
+                        <mat-option value="archive4">Last 30 days</mat-option>
+                        <mat-option value="archive5">Over 30 days</mat-option>
+                        <mat-option value="archive6">
+                          <mat-form-field appearance="legacy">
+                            <mat-label>Custom</mat-label>
+                            <mat-date-range-input [rangePicker]="picker" [max]="today">
+                              <input matStartDate placeholder="Start date"
+                                (dateInput)="OnDateArchiveStartChange($event.value)">
+                              <input matEndDate placeholder="End date"
+                                (dateInput)="OnDateArchiveEndChange($event.value)">
+                            </mat-date-range-input>
+                            <mat-datepicker-toggle matSuffix [for]="picker">
+                            </mat-datepicker-toggle>
+                            <mat-date-range-picker #picker></mat-date-range-picker>
+                          </mat-form-field>
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+          <table mat-table [dataSource]="dataSource3" class="mat-elevation-z1" matSort>
+
+            <ng-container matColumnDef="select">
+              <th mat-header-cell *matHeaderCellDef>
+                <mat-checkbox (change)="$event ? masterToggle2() : null"
+                  [checked]="selection2.hasValue() && isAllSelected2()"
+                  [indeterminate]="selection2.hasValue() && !isAllSelected2()" [aria-label]="checkboxLabel2()"
+                  (change)="getCheckboxValuesAllAnonymize($event,dataSource3.filteredData)">
+                </mat-checkbox>
+              </th>
+              <td mat-cell *matCellDef="let row">
+                <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection2.toggle(row) : null"
+                  [checked]="selection2.isSelected(row)" [aria-label]="checkboxLabel2(row)"
+                  (change)="checkboxValuesAnonymizeRow($event,row)">
+                </mat-checkbox>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="fullName">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> First Name </th>
+              <td [class.isAnonymisedss]="element.isAnonymized" mat-cell *matCellDef="let element"><b>
+                  {{element.fullName}}</b> </td>
+            </ng-container>
+
+            <ng-container matColumnDef="lastName">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Last Name </th>
+              <td [class.isAnonymised]="element.isAnonymized" mat-cell *matCellDef="let element"> {{element.lastName}}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="archivedate">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Archive Date(IST) </th>
+              <td [class.isAnonymised]="element.isAnonymized" mat-cell *matCellDef="let element">
+                {{element.archivedate |date:'MMM d, h:mm a'}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="signinbutton">
+              <th mat-header-cell *matHeaderCellDef> </th>
+              <td [class.isAnonymised]="element.isAnonymized" mat-cell *matCellDef="let element">
+                <button mat-button (click)="openRestoreDialog(element)" class="signInButton">Restore</button>
+              </td>
+            </ng-container>
+            <tr class="mat-row" *matNoDataRow>
+              <td class="mat-cell" colspan="9999">
+                No data found
+              </td>
+            </tr>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns3"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns3;">
+            </tr>
+          </table>
+          <mat-paginator #paginatoAarchive [pageSize]="5" [pageSizeOptions]="[2, 5,10, 25, 100]">
+          </mat-paginator>
+        </div>
+      </div>
+    </div>
+    <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+      <table mat-table [dataSource]="dataSource3" class="mat-elevation-z1" matSort>
+
+        <ng-container matColumnDef="select">
+          <th mat-header-cell *matHeaderCellDef>
+            <mat-checkbox (change)="$event ? masterToggle2() : null"
+              [checked]="selection2.hasValue() && isAllSelected2()"
+              [indeterminate]="selection2.hasValue() && !isAllSelected2()" [aria-label]="checkboxLabel2()"
+              (change)="getCheckboxValuesAllAnonymize($event,dataSource2.filteredData)">
+            </mat-checkbox>
+          </th>
+          <td mat-cell *matCellDef="let row">
+            <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection2.toggle(row) : null"
+              [checked]="selection2.isSelected(row)" [aria-label]="checkboxLabel2(row)"
+              (change)="checkboxValuesAnonymizeRow($event,row)">
+            </mat-checkbox>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="fullName">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> First Name </th>
+          <td [class.isAnonymisedss]="element.isAnonymized" mat-cell *matCellDef="let element"><b>
+              {{element.fullName}}</b> </td>
+        </ng-container>
+
+        <ng-container matColumnDef="lastName">
+          <th mat-header-cell *matHeaderCellDef> Last Name </th>
+          <td [class.isAnonymised]="element.isAnonymized" mat-cell *matCellDef="let element"> {{element.lastName}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="archivedate">
+          <th mat-header-cell *matHeaderCellDef> Archive Date(IST) </th>
+          <td [class.isAnonymised]="element.isAnonymized" mat-cell *matCellDef="let element">
+            {{element.archivedate |date:'MMM d, h:mm a'}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="signinbutton">
+          <th mat-header-cell *matHeaderCellDef> </th>
+          <td [class.isAnonymised]="element.isAnonymized" mat-cell *matCellDef="let element">
+            <button mat-button (click)="openRestoreDialog(element)" class="signInButton">Restore</button>
+          </td>
+        </ng-container>
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="9999">
+            No data found
+          </td>
+        </tr>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns3"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns3;">
+        </tr>
+      </table>
+      <mat-paginator #paginatoAarchive [pageSize]="5" [pageSizeOptions]="[2, 5,10, 25, 100]">
+      </mat-paginator>
+    </div>
+  </div>
+</div>

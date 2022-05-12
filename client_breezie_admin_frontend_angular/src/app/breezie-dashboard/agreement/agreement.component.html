@@ -1,0 +1,74 @@
+<div class="spinner" *ngIf="spinner">
+  <mat-spinner diameter="100"></mat-spinner>
+</div>
+<div class="container-fluid">
+  <div class="agreementHeadding">
+    <span>
+      <h2>Agreements</h2>
+    </span>
+    <span>Creat & edit visitor agreements.this can be assigned with in settings > <br>
+      Visitor fields, where you can also choose to collect a signature.
+    </span>
+  </div>
+  <div class="agreementDropDownHeadding"  style="display: flex; align-items: center; ">
+    <!-- <button class="btn btn-secondary" id="existingAgreement" style="display: flex; justify-content: space-between;">
+      <mat-label>View or edit an existing agreement</mat-label>
+      <mat-select matNativeControl>
+        <mat-option *ngFor="let item of agreements" value="{{item.agreementName}}" (change)="selectAgreement(item)" selected>
+          <span>
+            {{item.agreementName}}
+          </span>
+        </mat-option>
+      </mat-select>
+    </button> -->
+    
+
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="existingAgreement" data-toggle="dropdown"
+        aria-expanded="false" style="display: flex; align-items: center; justify-content: space-between;">
+        View or edit an existing agreement
+      </button>
+      <div class="dropdown-menu"aria-labelledby="existingAgreement" id="viewOrEditAgreementDropDown">
+        <span  *ngFor="let item of agreements" >
+          <a class="dropdown-item" (click)="selectAgreement(item)" style="width:100%">{{item.agreementName}}</a>
+        </span>
+      </div>
+    </div>
+    <div class="dropdown">
+      <!-- <form [formGroup]="agreementForm" (ngSubmit)="onSubmit()"> -->
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="addNewAgreement" data-toggle="dropdown"
+          aria-expanded="false">
+          Add new Agreement
+        </button>
+        <div class="dropdown-menu" aria-labelledby="addNewAgreement" id="addNewAgreementDropDown">
+          <a class="dropdown-item" (click)="NewCkEditor()">Text</a>
+          <!-- <a class="dropdown-item"><i class="far fa-file-pdf"></i>PDF</a> -->
+        </div>
+      <!-- </form> -->
+    </div>
+  </div>
+  <form  [formGroup]="agreementForm"  (ngSubmit)="addAgreement()">
+    <div class="ckeditor form-group" >
+      <!-- <ckeditor ngModel name="data" ngModel #data="ngModel" ngDefaultControl [(ngModel)]="ckeditorContent">
+      </ckeditor> -->
+      <div class="form-group" style="display: none;">
+        <input type="text" formControlName="agreementId">
+       </div>
+      <div class="form-group" style="width: 30%;">
+        <mat-label class="ml-1" style="font-weight: 600;">Agreement name:</mat-label>
+        <mat-form-field appearance="outline">
+          <input matInput type="text" value="new agreement" formControlName="agreementName">
+        </mat-form-field>
+      
+      </div>
+      <ckeditor formControlName="agreementData" ngDefaultControl [editor]="Editor" 
+      (ready)="onReady($event)">
+     
+    </ckeditor>
+    </div>
+   
+    <div class="form-group">
+      <button type="submit" [disabled]="agreementForm.invalid" class="btn submit" >Save</button>
+    </div>
+  </form>
+</div>

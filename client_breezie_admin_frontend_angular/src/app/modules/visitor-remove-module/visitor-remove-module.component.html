@@ -1,0 +1,17 @@
+
+<!-- <form [formGroup]="rejectForm" (ngSubmit)="rejectButton()"> -->
+  <div>
+    <div class="headings ">
+      <div class="mainheading text-center">You are about to</div>
+      <div class="subheading text-center"> reject guest &nbsp; <strong>{{editData.FullName}}</strong></div>
+    </div>
+    <div class="rejectHeading">Do you wish to continue?</div>
+    <div class="bottom text-center">
+      <!-- <button class="approve" type="submit"  mat-button  mat-raised-button (click)="onApprove()">Approve </button>
+            <button class="cancel" type="button" mat-button  mat-raised-button mat-dialog-close >Cancel</button> -->
+      <button type="button" class="cancel" mat-button mat-raised-button mat-dialog-close>Cancel</button>
+      <button type="submit" class="reject" mat-button mat-raised-button (click)="rejectButton()">Reject</button>
+    </div>
+  </div>
+
+<!-- </form> -->

@@ -1,0 +1,1145 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "Breezie",
+        "description": "Visitor Docs"
+    },
+    "host": "localhost:2400",
+    "basePath": "/",
+    "tags": [{
+            "name": "Admin",
+            "description": "Admin routes"
+        },
+        {
+            "name": "Employee",
+            "description": "Employee routes"
+        },
+        {
+            "name": "Visitor",
+            "description": "Visitor routes"
+        },
+        {
+            "name": "Delivery",
+            "description": "Delivery routes"
+        },
+        {
+            "name": "Catering",
+            "description": "Catering routes"
+        }
+    ],
+    "schemes": ["http", "https"],
+    "consumes": ["application/json"],
+    "produces": ["application/json"],
+    "definitions": {
+        "login-user": {
+            "type": "object",
+            "properties": {
+                "emailId": {
+                    "type": "string",
+                    "description": "Email ID To Login",
+                    "example": "example@gmail.com"
+                },
+                "password": {
+                    "type": "string",
+                    "description": "Enter A Valid Password",
+                    "example": "Example@123"
+                }
+            }
+        },
+        "register-user": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "Full Name",
+                    "example": "Example"
+                },
+                "emailId": {
+                    "type": "string",
+                    "description": "Email ID To Login",
+                    "example": "example@gmail.com"
+                },
+                "password": {
+                    "type": "string",
+                    "description": "Enter A Valid Password",
+                    "example": "Example@123"
+                },
+                "designation": {
+                    "type": "string",
+                    "description": "Designation",
+                    "example": "Software Engineering"
+                }
+            }
+        },
+        "edit-user": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "Full Name",
+                    "example": "Example"
+                },
+                "emailId": {
+                    "type": "string",
+                    "description": "Email ID To Login",
+                    "example": "example@gmail.com"
+                },
+                "designation": {
+                    "type": "string",
+                    "description": "Designation",
+                    "example": "Software Engineering"
+                }
+            }
+        },
+        "forgot-password": {
+            "type": "object",
+            "properties": {
+                "emailId": {
+                    "type": "string",
+                    "description": "Email ID To Login",
+                    "example": "example@gmail.com"
+                }
+            }
+        },
+        "check-otp": {
+            "type": "object",
+            "properties": {
+                "emailId": {
+                    "type": "string",
+                    "description": "Email ID To Login",
+                    "example": "example@gmail.com"
+                },
+                "otp": {
+                    "type": "string",
+                    "description": "Example OTP",
+                    "example": "123456"
+                }
+            }
+        },
+        "update-password": {
+            "type": "object",
+            "properties": {
+                "emailId": {
+                    "type": "string",
+                    "description": "Email ID To Login",
+                    "example": "example@gmail.com"
+                },
+                "password": {
+                    "type": "string",
+                    "description": "Enter A Valid Password",
+                    "example": "Example@123"
+                }
+            }
+        },
+        "add-employee": {
+            "type": "object",
+            "properties": {
+                "employeeID": {
+                    "type": "string",
+                    "description": "Employee ID",
+                    "example": "TYSS022333"
+                },
+                "employeeName": {
+                    "type": "string",
+                    "description": "Employee Full Name",
+                    "example": "Example"
+                },
+                "emailId": {
+                    "type": "string",
+                    "description": "Employee Email ID",
+                    "example": "example@gmail.com"
+                },
+                "designation": {
+                    "type": "string",
+                    "description": "Employee Designation",
+                    "example": "Software Engineering"
+                }
+            }
+        },
+        "add-visitor": {
+            "type": "object",
+            "properties": {
+                "FullName": {
+                    "type": "string",
+                    "description": "Enter Full Name",
+                    "example": "Example"
+                },
+                "CompanyName": {
+                    "type": "string",
+                    "description": "Enter Company Name",
+                    "example": "Google"
+                }
+            }
+        },
+        "add-terms": {
+            "type": "object",
+            "properties": {
+                "EmailId": {
+                    "type": "string",
+                    "description": "Enter Email Id",
+                    "example": "harshichin@gmail.com"
+                },
+                "acceptTerms": {
+                    "type": "boolean",
+                    "description": "Should be True",
+                    "example": "true"
+                },
+                "DigitalSignature": {
+                    "type": "string",
+                    "description": "Base64 Digital Signature",
+                    "example": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAWMAAACWCAYAAAAL6un/AAAAAXNSR0IArs4c6QAADENJREFUeF7tnVvIPVUZxh8hutMOVwZS2gEhNY2Uoi7MQG8yUkqJDlgQiaVUEBQdKDHyRuhwIdRFJgmCBiWJQgUWaAcoKsgCUaiIqIvA6iaIMJ6awfWf/+xvz+w5rffdvwUf8v++mbXe9XvWflz7nbXWnCEKBCAAAQhsTuCMzSMgAAhAAAIQEGbMIIAABCBQAQHMuAIRCAECEIAAZswYgAAEIFABAcy4AhEIAQIQgABmzBiAAAQgUAEBzLgCEQgBAhCAAGbMGIAABCBQAQHMuAIRCAECEIAAZswYgAAEIFABAcy4AhEIAQIQgABmzBiAAAQgUAEBzLgCEQgBAhCAAGbMGIAABCBQAQHMuAIRCAECEIAAZswYgAAEIFABAcy4AhEIAQIQgABmzBiAAAQgUAEBzLgCEQgBAhCAAGbMGIAABCBQAQHMuAIRCAECEIAAZswYgAAEIFABAcy4AhEIAQIQgABmzBiAAAQgUAEBzLgCEQgBAhCAAGbMGIAABCBQAQHMuAIRCAECEIAAZswYgAAEIFABAcy4AhEIYRMCb5T0T0nXSPqPpD9Leo6k30r64SYR0ehRE8CMj1r+9J0/V9J7Jb1Q0kWSzpT0mgG9/pqkezHlAaS4ZDYCmPFsKKloYwKt4V4h6dWSXinp5RNj+puk90h6eGI93A6BvQQw472IuKBCApdIulTSOZJe1Mx2h8x4fzFwZlx2+QlJNzJLrnAUJAsJM04maKLu2HCfJ8m53edL8r+ddvDPvuKcr/PBL5N0f2OkfXng8yW9WNK/m2uuk/TBps2yDd/rGTcFAosRwIwXQ0vFAwmUptsarv+7r/ih21OSfizpD42Z/knSk/tuHPD370h6a+e6WyV9bsC9XAKBgwhgxgdh46YDCLxK0nmdGa5nvUPKjyT9vvnxLPVpSb8acuOEa+6T5JlyW34m6XUT6uNWCJxIADNmgMxNwLPai5t0gs12aGrBcXiGa5P1z1qmu6v/jt0rKs4uLnCqgmVvc48Y6vsfAcyYgTCVgM338ibP2uZ399X562aWa9P1jLc14H33rf13pzycd24LZry2AkfUHmZ8RGLP1NWh5vv3wmRtuH+R9NPGfGcKZfFqumZ8u6RPLt4qDRwlAcz4KGUf1WmvZPDDrHdIepOk5/bc3Rqvv8L7xzNd53Wjl8ckvb7ohJe4eUMIBQKzE8CMZ0eaokLneW3ATjt4u3C32HxL482aR32ks8yNFRUphnedncCM69Rlq6i8ddgm3DVgm69niV5K9vUVVjJs1f9uu17K9tnil6w3rkWZhHFgxglFHdklz4JvkPSRZnNFe/sDndnvyGpTXI4Zp5AxRicw4xg6LRGlUxAf7syCvcrhS5K86SFDzncqtw9I+mpRifPFzhtTIDA7Acx4dqRVV+iHcZ4Ff7w508HBOgVh87UJL72Romo4PcF9S9Lbit+TM46mYKB4MeNAYk0I1Tlgm3CZC/aJZJ+X9A1mwTvJ/kbSBcVfPyTpzgk6cCsEdhLAjPMODueCnYbwQznPiNvircU2YP9QTibQXU3xFkkPAg0CSxDAjJegum2dNl/PgrvnPtxNKmK0MN6k8triLnbgjUbIDUMJYMZDSdV9nWe+7Sy4PGLS+WDPgJ0P9i44yjgCP++cf+wzlH0mMgUCsxPAjGdHumqFu5al+cCd1oRZFXGYJH5ziPPqZeHzchhL7hpAgME1AFKFl3gm7M0I3XywTdhrY8kHTxfNbw7xzLgtLGubzpQaTiCAGccaHm06ortBw+kI/w4Tnk/P2yR9uqjOx2m+c77qqQkCfO2KOgY8C/5iZ2WETdj5YN5AMb+qdzXfPNqayRfPz5gaCwLMjOsfDjZhpyS6D+Zswv4hJ7yMho9KekNR9QtgvQxoav0/Acy43pHgpWk24b4lap4JszpiWe2eKap/XNKFyzZH7cdOADOubwR4BuyvyF0T9mYNz5Ix4eU1u0XSV4pmnIt/3/LN0sIxE8CM61HfL+z8jKS3d0Ly4T1+OJf1zOB6FHg2ku42aB8w/5MaAyWmPAQw4+21bJep2XDL4mVqngljwutqdLWk7xZNPiTpzeuGQGvHSAAz3k51pyPatcJlFP+SdBPL1DYTxifX+e3WbeFwoM2kOK6GMeP19fZM2EvUPOvtlt8171xjhcT6urhFa+J8fVn4jGyjxdG1ykBbT/JdGzbaCHyQj1MVGPF6mnRb8sPRlxS//L6kq7YLh5aPiQBmvI7aPkfYs+FyrXDZ8kebNcPrREMrfQS6r1jyNeexeoXBshYBzHhZ0p4N+2tv3xuW3TLbmJflP6b27qyY/0GOoce1kwlgxpMR7qzAs+BvS7pkxxVesmaTZt3wchoMrbmbK/ZKll3fYobWyXUQGEUAMx6Fa/DF3rBhIy7fsFHeTH54MMpVLuzOir3Bg0OXVkFPIy0BzHj+sdB3oA/54fk5z1Ujs+K5SFLPJAKY8SR8p93ctzSqvchffZ2W4A3M8zKfWlt3VsyrlaYS5f6DCGDGB2Hrvel2SZ84IT/s1AXL1ubjPUdN35T07qKiB0542DpHe9QBgZ0EMON5BsdJM2If8OMZMUY8D+s5a/mHpDObCr2yxQ/t0GlOwtQ1mABmPBjVzgv71qe2F3+52cgxvRVqmJuAv6k8UlRKemJuwtQ3igBmPArXaRd7x5w3c/QV1qlOY7v03fdJuq5phPfbLU2b+vcSwIz3Iho9I/6rpPdLevDwqrlzYQJe+/3Log2Wsi0MnOr3E8CM9zPqu8JrUG/o+QPrhw/jufZd90h6V9Eon4O1FaC90wgwCMcPij4jZlvzeI5b3vGUpJc2AXgn5K5dklvGSNtHRgAzHid4nxGzWmIcw62v7r5SyS91dX6fAoFNCWDGw/B7W7OfvHdnUDykG8avlqu6Kyj8FhWvoqBAYHMCmPF+CWzAPnmtNGKnJfzBZjfdfn61XHGWpB9IuqwI6HpJ99cSIHEcNwHM+GT9bcCeEZcH/pCWiPmZ+Z6kK4vQbcI2YwoEqiCAGe+WofuV1lfeKsmbPCixCHg9sdcVt8W77K7lZa+xRMweLWbcr3D35DVWS8T9JHSN2D35lKQvxO0SkWckgBmfrmrfkYqcthZz9Hv5mpexlYVvNzG1TB81ZnyqxH66fnnxK469jP0RKLc8uyesnoitZ+roMeNT5X2m+CcP6uIPfT98de7f5XFJN5Mnji9q1h5gxqcq+4SkV0j6o6SLOU4x/LC3Ed/R9OJjGHF4PVN3ADNOLS+dgwAEohDAjKMoRZwQgEBqAphxannpHAQgEIUAZhxFKeKEAARSE8CMU8tL5yAAgSgEMOMoShEnBCCQmgBmnFpeOgcBCEQhgBlHUYo4IQCB1AQw49Ty0jkIQCAKAcw4ilLECQEIpCaAGaeWl85BAAJRCGDGUZQiTghAIDUBzDi1vHQOAhCIQgAzjqIUcUIAAqkJYMap5aVzEIBAFAKYcRSliBMCEEhNADNOLS+dgwAEohDAjKMoRZwQgEBqAphxannpHAQgEIUAZhxFKeKEAARSE8CMU8tL5yAAgSgEMOMoShEnBCCQmgBmnFpeOgcBCEQhgBlHUYo4IQCB1AQw49Ty0jkIQCAKAcw4ilLECQEIpCaAGaeWl85BAAJRCGDGUZQiTghAIDUBzDi1vHQOAhCIQgAzjqIUcUIAAqkJYMap5aVzEIBAFAKYcRSliBMCEEhNADNOLS+dgwAEohDAjKMoRZwQgEBqAphxannpHAQgEIUAZhxFKeKEAARSE8CMU8tL5yAAgSgEMOMoShEnBCCQmgBmnFpeOgcBCEQhgBlHUYo4IQCB1AQw49Ty0jkIQCAKAcw4ilLECQEIpCaAGaeWl85BAAJRCGDGUZQiTghAIDUBzDi1vHQOAhCIQgAzjqIUcUIAAqkJYMap5aVzEIBAFAKYcRSliBMCEEhNADNOLS+dgwAEohDAjKMoRZwQgEBqAphxannpHAQgEIUAZhxFKeKEAARSE8CMU8tL5yAAgSgEMOMoShEnBCCQmgBmnFpeOgcBCEQhgBlHUYo4IQCB1AQw49Ty0jkIQCAKAcw4ilLECQEIpCaAGaeWl85BAAJRCGDGUZQiTghAIDUBzDi1vHQOAhCIQgAzjqIUcUIAAqkJYMap5aVzEIBAFAKYcRSliBMCEEhNADNOLS+dgwAEohDAjKMoRZwQgEBqAv8FvdIrptiYTvcAAAAASUVORK5CYII="
+                }
+            }
+        },
+        "employee-notify": {
+            "type": "object",
+            "properties": {
+                "EmployeeId": {
+                    "type": "string",
+                    "description": "Enter EmployeeId",
+                    "example": "619e0a337cbb051b776041ad"
+                },
+                "VisitorImage": {
+                    "type": "string",
+                    "description": "Add Visitor base64 Image",
+                    "example": "data:image/jpeg;base64,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"
+                }
+            }
+        },
+        "notify-cafe": {
+            "type": "object",
+            "properties": {
+                "refreshmentData": {
+                    "type": "array",
+                    "description": "Add Refreshment Data in an array",
+                    "example": [{
+                            "Category": "Tea",
+                            "addOn": "less than 10min"
+                        },
+                        {
+                            "Category": "Water",
+                            "addOn": "greater than 10min"
+                        }
+                    ]
+                }
+            }
+        },
+        "get-delivery": {
+            "type": "object",
+            "properties": {
+                "delivery": {
+                    "type": "array",
+                    "example": [{
+                        "_id": "620a30cd98dfc6b1150f442e",
+                        "recepient": "Vinutha kk",
+                        "emailNote": "Hello",
+                        "empId": "62038dfe6925e86b1faa32e7",
+                        "deliveryTime": "2022-02-14T03:28:55+0000",
+                        "__v": 0
+                    }]
+                }
+            }
+        },
+        "add-delivery": {
+            "type": "object",
+            "properties": {
+                "empId": {
+                    "type": "string",
+                    "example": "619e0a337cbb051b776041ad"
+                },
+                "emailNote": {
+                    "type": "string",
+                    "example": "Email note"
+                },
+                "deliveryTime": {
+                    "type": "string",
+                    "example": "2022-02-14T03:28:55+0000"
+                }
+            }
+        },
+        "mark-collected": {
+            "type": "object",
+            "properties": {
+                "deliveryId": {
+                    "type": "string",
+                    "example": "620a30cd98dfc6b1150f442e"
+                },
+                "collectedTime": {
+                    "type": "string",
+                    "example": "2022-02-14T03:28:55+0000"
+                }
+            }
+        },
+        "notify-recepient": {
+            "type": "object",
+            "properties": {
+                "empId": {
+                    "type": "string",
+                    "example": "619e0a337cbb051b776041ad"
+                }
+            }
+        },
+        "get-catering": {
+            "type": "object",
+            "properties": {
+                "catering": {
+                    "type": "array",
+                    "example": [{
+                        "_id": "620cae67cedbc5b28c45fd4d",
+                        "orderContacts": [{
+                            "emailId": "shambhavi13319@gmail.com",
+                            "name": "Vinutha kk",
+                            "phone": "asdfghjk",
+                            "employeeId": "62038dfe6925e86b1faa32e7",
+                            "_id": "620caf10c73e8b7443401ec1"
+                        }]
+                    }]
+                }
+            }
+        },
+        "add-order-contacts": {
+            "type": "object",
+            "properties": {
+                "employeeId": {
+                    "type": "string",
+                    "example": "619e0a337cbb051b776041ad"
+                },
+                "location": {
+                    "type": "string"
+                },
+                "emailId": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                },
+                "isGeneralContact": {
+                    "type": "string"
+                },
+                "registerId": {
+                    "type": "string"
+                }
+
+            }
+        },
+        "delete-order-contacts": {
+            "type": "object",
+            "properties": {
+                "orderContactId": {
+                    "type": "string",
+                    "example": "620cae6fcedbc5b28c45fd54"
+                },
+                "registerId": {
+                    "type": "string",
+                    "example": "61fbc6ab458bbed1bdad179e"
+                }
+            }
+        }
+    },
+    "paths": {
+        "/admin/get-all-users": {
+            "get": {
+                "tags": ["Admin"],
+                "summary": "Get all users",
+                "responses": {
+                    "200": {
+                        "description": "Ok"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Page Not Found or File Not Found"
+                    },
+                    "401": {
+                        "description": "Unauthorized Client"
+                    }
+                }
+            }
+        },
+        "/admin/login": {
+            "post": {
+                "tags": ["Admin"],
+                "parameters": [{
+                    "name": "body",
+                    "in": "body",
+                    "description": "Login Credentials",
+                    "required": true,
+                    "type": "object",
+                    "schema": {
+                        "$ref": "#/definitions/login-user"
+                    }
+                }],
+                "summary": "Login the User",
+                "responses": {
+                    "200": {
+                        "description": "Ok"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Page Not Found or File Not Found"
+                    },
+                    "401": {
+                        "description": "Unauthorized Client"
+                    }
+                }
+            }
+        },
+        "/admin/register": {
+            "post": {
+                "tags": ["Admin"],
+                "parameters": [{
+                    "name": "body",
+                    "in": "body",
+                    "description": "Login Credentials",
+                    "required": true,
+                    "type": "object",
+                    "schema": {
+                        "$ref": "#/definitions/register-user"
+                    }
+                }],
+                "summary": "Register new user",
+                "responses": {
+                    "200": {
+                        "description": "Ok"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Page Not Found or File Not Found"
+                    },
+                    "401": {
+                        "description": "Unauthorized Client"
+                    }
+                }
+            }
+        },
+        "/admin/edit-user/{id}": {
+            "put": {
+                "tags": ["Admin"],
+                "parameters": [{
+                        "name": "id",
+                        "in": "path",
+                        "description": "Add Id to Find the User",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Login Credentials",
+                        "required": true,
+                        "type": "object",
+                        "schema": {
+                            "$ref": "#/definitions/register-user"
+                        }
+                    }
+                ],
+                "summary": "Modify the user details",
+                "responses": {
+                    "200": {
+                        "description": "Ok"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Page Not Found or File Not Found"
+                    },
+                    "401": {
+                        "description": "Unauthorized Client"
+                    }
+                }
+            }
+        },
+        "/admin/delete-users/{id}": {
+            "delete": {
+                "tags": ["Admin"],
+                "parameters": [{
+                    "name": "id",
+                    "in": "path",
+                    "description": "Add Id to Find the User",
+                    "required": true,
+                    "type": "string"
+                }],
+                "summary": "Delete an User",
+                "responses": {
+                    "200": {
+                        "description": "Ok"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Page Not Found or File Not Found"
+                    },
+                    "401": {
+                        "description": "Unauthorized Client"
+                    }
+                }
+            }
+        },
+        "/admin/forgot-password": {
+            "post": {
+                "tags": ["Admin"],
+                "parameters": [{
+                    "name": "body",
+                    "in": "body",
+                    "description": "Email ID for the forgot password",
+                    "required": true,
+                    "type": "object",
+                    "schema": {
+                        "$ref": "#/definitions/forgot-password"
+                    }
+                }],
+                "summary": "send the OTP to the user Email",
+                "responses": {
+                    "200": {
+                        "description": "Ok"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Page Not Found or File Not Found"
+                    },
+                    "401": {
+                        "description": "Unauthorized Client"
+                    }
+                }
+            }
+        },
+        "/admin/check-otp": {
+            "post": {
+                "tags": ["Admin"],
+                "parameters": [{
+                    "name": "body",
+                    "in": "body",
+                    "description": "Enter OTP which have sent to your Email",
+                    "required": true,
+                    "type": "object",
+                    "schema": {
+                        "$ref": "#/definitions/check-otp"
+                    }
+                }],
+                "summary": "Check the OTP is valid ",
+                "responses": {
+                    "200": {
+                        "description": "Ok"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Page Not Found or File Not Found"
+                    },
+                    "401": {
+                        "description": "Unauthorized Client"
+                    }
+                }
+            }
+        },
+        "/admin/update-password": {
+            "put": {
+                "tags": ["Admin"],
+                "parameters": [{
+                    "name": "body",
+                    "in": "body",
+                    "description": "Enter new Password",
+                    "required": true,
+                    "type": "object",
+                    "schema": {
+                        "$ref": "#/definitions/update-password"
+                    }
+                }],
+                "summary": "Update Password of the admin",
+                "responses": {
+                    "200": {
+                        "description": "Ok"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Page Not Found or File Not Found"
+                    },
+                    "401": {
+                        "description": "Unauthorized Client"
+                    }
+                }
+            }
+        },
+        "/employee/get-all-employee": {
+            "get": {
+                "tags": ["Employee"],
+                "summary": "Get all Employees",
+                "responses": {
+                    "200": {
+                        "description": "Ok"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Page Not Found or File Not Found"
+                    },
+                    "401": {
+                        "description": "Unauthorized Client"
+                    }
+                }
+            }
+        },
+        "/employee/add-employee": {
+            "post": {
+                "tags": ["Employee"],
+                "parameters": [{
+                        "in": "formData",
+                        "name": "employeeID",
+                        "type": "string",
+                        "required": true,
+                        "description": "Enter Employee ID"
+                    },
+                    {
+                        "in": "formData",
+                        "name": "employeeName",
+                        "type": "string",
+                        "required": true,
+                        "description": "Enter Employee Name"
+                    },
+                    {
+                        "in": "formData",
+                        "name": "emailId",
+                        "type": "string",
+                        "required": true,
+                        "description": "Enter Employee Email Id"
+                    },
+                    {
+                        "in": "formData",
+                        "name": "designation",
+                        "type": "string",
+                        "required": true,
+                        "description": "Enter Employee Designation"
+                    },
+                    {
+                        "in": "formData",
+                        "name": "imagePath",
+                        "type": "file",
+                        "required": true,
+                        "description": "The file to upload"
+                    }
+                ],
+                "summary": "Add new Employee",
+                "responses": {
+                    "200": {
+                        "description": "Ok"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Page Not Found or File Not Found"
+                    },
+                    "401": {
+                        "description": "Unauthorized Client"
+                    }
+                }
+            }
+        },
+        "/employee/edit-employee/{id}": {
+            "put": {
+                "tags": ["Employee"],
+                "parameters": [{
+                        "name": "id",
+                        "in": "path",
+                        "description": "Add Id to Find the User",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "formData",
+                        "name": "employeeName",
+                        "type": "string",
+                        "required": true,
+                        "description": "Enter Employee Name"
+                    },
+                    {
+                        "in": "formData",
+                        "name": "emailId",
+                        "type": "string",
+                        "required": true,
+                        "description": "Enter Employee Email Id"
+                    },
+                    {
+                        "in": "formData",
+                        "name": "designation",
+                        "type": "string",
+                        "required": true,
+                        "description": "Enter Employee Designation"
+                    },
+                    {
+                        "in": "formData",
+                        "name": "imagePath",
+                        "type": "file",
+                        "required": true,
+                        "description": "The file to upload"
+                    }
+                ],
+                "summary": "Modify employee Details",
+                "responses": {
+                    "200": {
+                        "description": "Ok"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Page Not Found or File Not Found"
+                    },
+                    "401": {
+                        "description": "Unauthorized Client"
+                    }
+                }
+            }
+        },
+        "/employee/delete-employee/{id}": {
+            "delete": {
+                "tags": ["Employee"],
+                "parameters": [{
+                    "name": "id",
+                    "in": "path",
+                    "description": "Add Id to Find the User",
+                    "required": true,
+                    "type": "string"
+                }],
+                "summary": "Delete an Employee",
+                "responses": {
+                    "200": {
+                        "description": "Ok"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Page Not Found or File Not Found"
+                    },
+                    "401": {
+                        "description": "Unauthorized Client"
+                    }
+                }
+            }
+        },
+        "/visitor/get-all-visitor": {
+            "get": {
+                "tags": ["Visitor"],
+                "summary": "Get all visitor",
+                "responses": {
+                    "200": {
+                        "description": "Ok"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Page Not Found or File Not Found"
+                    },
+                    "401": {
+                        "description": "Unauthorized Client"
+                    }
+                }
+            }
+        },
+        "/visitor/add-visitor": {
+            "post": {
+                "tags": ["Visitor"],
+                "parameters": [{
+                    "name": "body",
+                    "in": "body",
+                    "description": "Enter Details",
+                    "required": true,
+                    "type": "object",
+                    "schema": {
+                        "$ref": "#/definitions/add-visitor"
+                    }
+                }],
+                "summary": "Add new visitor",
+                "responses": {
+                    "200": {
+                        "description": "Ok"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Page Not Found or File Not Found"
+                    },
+                    "401": {
+                        "description": "Unauthorized Client"
+                    }
+                }
+            }
+        },
+        "/visitor/add-terms/{id}": {
+            "post": {
+                "tags": ["Visitor"],
+                "parameters": [{
+                        "name": "id",
+                        "in": "path",
+                        "description": "Add Id to Find the User",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Enter Details",
+                        "required": true,
+                        "type": "object",
+                        "schema": {
+                            "$ref": "#/definitions/add-terms"
+                        }
+                    }
+                ],
+                "summary": "Send aggrement for the Visitor",
+                "responses": {
+                    "200": {
+                        "description": "Ok"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Page Not Found or File Not Found"
+                    },
+                    "401": {
+                        "description": "Unauthorized Client"
+                    }
+                }
+            }
+        },
+        "/visitor/employee-notify/{id}": {
+            "post": {
+                "tags": ["Visitor"],
+                "parameters": [{
+                        "name": "id",
+                        "in": "path",
+                        "description": "Add Visitor Id",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Enter Details",
+                        "required": true,
+                        "type": "object",
+                        "schema": {
+                            "$ref": "#/definitions/employee-notify"
+                        }
+                    }
+                ],
+                "summary": "To notify Employee about the Visitor Presence",
+                "responses": {
+                    "200": {
+                        "description": "Ok"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Page Not Found or File Not Found"
+                    },
+                    "401": {
+                        "description": "Unauthorized Client"
+                    }
+                }
+            }
+        },
+        "/visitor/notify-cafe/{id}": {
+            "post": {
+                "tags": ["Visitor"],
+                "parameters": [{
+                        "name": "id",
+                        "in": "path",
+                        "description": "Add Visitor Id",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Enter Details",
+                        "required": true,
+                        "type": "object",
+                        "schema": {
+                            "$ref": "#/definitions/notify-cafe"
+                        }
+                    }
+                ],
+                "summary": "Notify Cafe by sending Mail",
+                "responses": {
+                    "200": {
+                        "description": "Ok"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Page Not Found or File Not Found"
+                    },
+                    "401": {
+                        "description": "Unauthorized Client"
+                    }
+                }
+            }
+        },
+        "/visitor/add-logout/{id}": {
+            "put": {
+                "tags": ["Visitor"],
+                "parameters": [{
+                    "name": "id",
+                    "in": "path",
+                    "description": "Add Visitor Id",
+                    "required": true,
+                    "type": "string"
+                }],
+                "summary": "Add Logout Time to the visitor",
+                "responses": {
+                    "200": {
+                        "description": "Ok"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Page Not Found or File Not Found"
+                    },
+                    "401": {
+                        "description": "Unauthorized Client"
+                    }
+                }
+            }
+        },
+        "/delivery/get-all-delivery": {
+            "get": {
+                "tags": ["Delivery"],
+                "summary": "Get all delivery information",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/get-delivery"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Page Not Found or File Not Found"
+                    },
+                    "401": {
+                        "description": "Unauthorized Client"
+                    }
+                }
+            }
+        },
+        "/delivery/add-delivery": {
+            "post": {
+                "tags": ["Delivery"],
+                "parameters": [{
+                    "name": "body",
+                    "in": "body",
+                    "description": "Enter Details",
+                    "required": true,
+                    "type": "object",
+                    "schema": {
+                        "$ref": "#/definitions/add-delivery"
+                    }
+                }],
+                "summary": "Add delivery information",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/add-delivery"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Page Not Found or File Not Found"
+                    },
+                    "401": {
+                        "description": "Unauthorized Client"
+                    }
+                }
+            }
+        },
+        "/delivery/mark-collected": {
+            "post": {
+                "tags": ["Delivery"],
+                "parameters": [{
+                    "name": "body",
+                    "in": "body",
+                    "description": "Enter Details",
+                    "required": true,
+                    "type": "object",
+                    "schema": {
+                        "$ref": "#/definitions/mark-collected"
+                    }
+                }],
+                "summary": "Mark delivery collected",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/get-delivery"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Page Not Found or File Not Found"
+                    },
+                    "401": {
+                        "description": "Unauthorized Client"
+                    }
+                }
+            }
+        },
+        "/delivery/notify-recepient": {
+            "post": {
+                "tags": ["Delivery"],
+                "parameters": [{
+                    "name": "body",
+                    "in": "body",
+                    "description": "Enter Details",
+                    "required": true,
+                    "type": "object",
+                    "schema": {
+                        "$ref": "#/definitions/notify-recepient"
+                    }
+                }],
+                "summary": "Notify recepient",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Page Not Found or File Not Found"
+                    },
+                    "401": {
+                        "description": "Unauthorized Client"
+                    }
+                }
+            }
+        },
+        "catering/get-all-order-contacts": {
+            "get": {
+                "tags": ["Catering"],
+                "summary": "Get all catering information",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/get-catering"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Page Not Found or File Not Found"
+                    },
+                    "401": {
+                        "description": "Unauthorized Client"
+                    }
+                }
+            }
+        },
+        "catering/add-order-contacts": {
+            "post": {
+                "tags": ["Catering"],
+                "parameters": [{
+                    "name": "body",
+                    "in": "body",
+                    "description": "Enter Details",
+                    "required": true,
+                    "type": "object",
+                    "schema": {
+                        "$ref": "#/definitions/add-order-contacts"
+                    }
+                }],
+                "summary": "Add delivery information",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Page Not Found or File Not Found"
+                    },
+                    "401": {
+                        "description": "Unauthorized Client"
+                    }
+                }
+            }
+        },
+        "catering/get-company-order-contacts": {
+            "post": {
+                "tags": ["Catering"],
+                "summary": "Get catering information of a company",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/get-catering"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Page Not Found or File Not Found"
+                    },
+                    "401": {
+                        "description": "Unauthorized Client"
+                    }
+                }
+            }
+        },
+        "catering/delete-order-contacts": {
+            "delete": {
+                "tags": ["Catering"],
+                "summary": "Delete catering information",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/delete-order-contacts"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Page Not Found or File Not Found"
+                    },
+                    "401": {
+                        "description": "Unauthorized Client"
+                    }
+                }
+            }
+        }
+    }
+}

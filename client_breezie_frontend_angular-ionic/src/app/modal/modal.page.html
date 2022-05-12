@@ -1,0 +1,14 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Scan Here!!</ion-title>
+    <ion-icon name="close-outline" class="close" slot="end" (click)="close()"></ion-icon>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="my-auto" fullscreen>
+  <div class=" qrcode text-center">
+    <!-- <img style="text-align: center; width: 70%;" src="../../assets/images/Breazie-qr-code.png" alt=""> -->
+    <!-- <ion-icon name="qr-code-outline" style="text-align: center;"></ion-icon> -->
+    <qrcode [qrdata]="myAngularxQrCode" [width]="380" [errorCorrectionLevel]="'M'"></qrcode>
+  </div>
+</ion-content>

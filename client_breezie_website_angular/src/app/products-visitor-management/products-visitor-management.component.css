@@ -1,0 +1,309 @@
+@import url('https://fonts.googleapis.com/css2?family=Yantramanav&display=swap');
+*{
+    padding: 0;
+    margin:0;
+    box-sizing: border-box;
+}
+.content{
+    overflow: hidden;
+}
+.wave{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 282px;
+    
+}
+.blue{
+    background-color: #0196A1;
+}
+.red{
+    background-color:#E9FDF6;
+    padding:0px 0px 10px;
+}
+.curve{
+    position: absolute;
+    height: 227px;
+    width: 100%;
+    bottom: 0;
+}
+.curve::before {
+    content: '';
+    display: block;
+    position: absolute;
+    border-top-left-radius: 664%;
+    border-top-right-radius: 489%;
+    width: 54%;
+    height: 176%;
+    background-color: #E9FDF6;
+    transform: translate(-22%,25%);
+} 
+.curve::after {
+    content: '';
+    display: block;
+    position: absolute;
+    border-bottom-left-radius: 169%;
+    border-bottom-right-radius: 50%;
+    border-top-left-radius: 24%;
+    border-top-right-radius: 61%;
+    width: 60.55%;
+    height: 147%;
+    background-color: #0196A1;
+    transform: translate(68%,37%);
+    z-index: 1;
+}
+.visitorManagementimg{
+    position: absolute;
+    top: 44px;
+    z-index: 2;
+    width: 100%;
+    padding: 30px 0px;
+}
+.brownBorder{
+    background: #b5977e;
+    width: 638px;
+    height: 110px;
+    border-bottom-left-radius: 90%;
+    border-bottom-right-radius: 58%;
+    position: absolute;
+    top: 330px;
+}
+.organization h1{
+    color: #BD8E74;
+    font-size: 2.5rem;
+    line-height: 1.3;
+}
+.organization{
+    margin-top: -85px;
+    position: relative;
+    padding: 20px 30px;
+    z-index: 2;
+}
+.card1{
+    background:rgba(0, 81, 87, 0.2);
+    padding: 10px 20px;
+    border-radius: 0px;
+    color: black;
+    height: 270px;
+    overflow-y: scroll;
+} 
+.card1 h3,.card2 h3,.card3 h3{
+    padding-bottom: 10px;
+    font-size: 19px;
+    font-weight: 500;
+
+}
+.card2{
+    background:rgba(0, 81, 87, 0.6);
+    padding: 10px 20px;
+    border-radius: 0px;
+    color: white;
+    height: 270px;
+    overflow-y: scroll;
+}
+.para{
+    padding: 0px 20px;
+    font-family: 'Yantramanav', sans-serif;
+    font-size: 20px;
+    line-height: 1.5;
+}
+.card3{
+    background:rgba(0, 81, 87,0.8);
+    padding: 10px 20px;
+    border-radius: 0px;
+    color: white;
+    height: 270px;
+    overflow-y: scroll;
+}
+::-webkit-scrollbar{
+    width: 0px;
+}
+.card1 img,.card2 img,.card3 img {
+    background-color: #FFFFFF;
+    padding: 5px;
+    height: 75px;
+    width: 75px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+.content-third-card h1 {
+    font-size: 2rem;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+.content-third-card h1 span{
+    color:#BD8E74;
+}
+
+hr {
+    border-top: 2px solid #7BCFD5;
+    margin-bottom: 35px;
+    width: 80%;
+  }
+  @media only screen and (max-width: 3000px) {
+    .brownBorder{
+      background: #b5977e;
+      width: 1250px ;
+    }
+    .para{
+      margin-top: 70px;
+    }
+    }
+  @media only screen and (max-width: 2000px) {
+    .brownBorder{
+      background: #b5977e;
+      width: 750px ;
+    }
+    .para{
+      margin-top: 30px;
+    }
+    }
+    @media only screen and (max-width: 1600px) {
+        .brownBorder{
+          background: #b5977e;
+          width: 638px ;
+        }
+        .para{
+          margin-top: 0px;
+        }
+        }
+@media only screen and (max-width: 1130px) {
+    .organization h1{
+        font-size: 2.3rem;
+    }
+ }
+@media only screen and (max-width: 992px) {
+   .visitormanagementcards{
+       padding:0px 40px;
+   }
+   .visitorManagementimg img{
+    height: 220px !important;
+}
+   .content-third-card h1{
+    font-size: 1.6rem;
+}
+.wave{
+    min-height: 292px;
+}
+.curve::before {
+    content: '';
+    display: block;
+    position: absolute;
+    border-top-left-radius: 664%;
+    border-top-right-radius: 489%;
+    width: 55.3%;
+    height: 188%;
+    background-color: #E9FDF6;
+    transform: translate(-22%,25%);
+    z-index: 2;
+}
+.curve::after {
+    content: '';
+    display: block;
+    position: absolute;
+    border-bottom-left-radius: 281%;
+    border-bottom-right-radius: 16%;
+    border-top-left-radius: 0%;
+    border-top-right-radius: 61%;
+    width: 65%;
+    height: 52%;
+    background-color: #b5977e;
+    transform: translate(61%,159%);
+    z-index: 1;
+}
+.card1,.card2,.card3{
+    height: 372px;
+}
+.brownBorder{
+    background: #b5977e;
+    width: 498px;
+    height: 171px;
+    border-bottom-left-radius: 700%;
+    border-bottom-right-radius: 364%;
+    position: absolute;
+    top: 260px;
+    transform: translate(0%, -33%);
+    display: none;
+}
+}
+@media only screen and (max-width: 767px) {
+ .card1,.card2,.card3{
+     height: auto;
+     padding-bottom: 50px;
+ }
+ .organization h1 {
+    font-size: 1.6rem;
+    font-weight: 500;
+}
+ }
+@media only screen and (max-width: 575px) {
+    .visitormanagementcards{
+        padding:10px;
+    }
+  .card{
+      margin-bottom: 10px;
+  }
+  .content-third-card h1{
+    padding: 0px 20px;
+}
+.curve::before{
+    display: block;
+    position: absolute;
+    border-top-left-radius: 68%;
+    border-top-right-radius: 62%;
+    width: 60.3%;
+    height: 100%;
+    background-color: #E9FDF6;
+    transform: translate(-22%,67%);
+    z-index: 2;
+}
+.curve::after{
+    content: '';
+    display: block;
+    position: absolute;
+    border-bottom-left-radius: 87%;
+    border-bottom-right-radius: 28%;
+    width: 65%;
+    height: 100%;
+    background-color: #0196A1;
+    transform: translate(63%,42%);
+    z-index: 1;
+}
+.wave {
+    min-height: 220px;
+}
+.visitorManagementimg img {
+    height: 145px !important;
+}
+.organization {
+    margin-top: -28px;
+    position: relative;
+    padding: 20px 10px;
+    z-index: 2;
+}
+ }
+ @media only screen and (max-width: 450px) {
+ .organization {
+    margin-top: -25px;
+    padding: 20px 10px;
+}
+ }
+
+ @media only screen and (max-width: 545px) {
+    hr {
+      margin-top: 70px;
+    }
+  }
+  
+  @media only screen and (max-width: 415px) {
+    hr {
+      margin-top: 115px;
+    }
+  }
+  
+  @media only screen and (max-width: 360px) {
+    hr {
+      margin-top: 145px;
+    }
+  }

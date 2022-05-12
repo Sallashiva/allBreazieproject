@@ -1,0 +1,44 @@
+.reject {
+  border: 1px solid #1561CF;
+  background-color: #1561CF;
+  color: white;
+  margin-left: 10px;
+  width: 43%;
+  
+  }
+  
+  .cancel {
+    border: 2px solid grey;
+  background-color: white;
+  color: black;
+  width: 39%;
+  box-shadow: none;
+  
+  }
+  
+  .bottom {
+    margin-top: 10%;
+  }
+  
+  .rejectHeading {
+    font-size: 18px;
+    margin-top: 43px;
+    text-align: center;
+  }
+  
+  .mainheading {
+    font-size: 18px;
+    padding-top: 35px;
+  }
+  
+  .subheading {
+    font-size: 18px;
+    text-align: center;
+    padding-top: 7px;
+
+  }
+
+  /* .headings{
+    background-color: lightgray;
+    height: 108px;
+  } */

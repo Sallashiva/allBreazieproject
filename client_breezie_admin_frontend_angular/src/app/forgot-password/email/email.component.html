@@ -1,0 +1,35 @@
+<div class="spinner" *ngIf="spinner">
+  <mat-spinner diameter="100"></mat-spinner>
+</div>
+<div class="container">
+  <div class="contnet ">
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+        <div class="login">
+          <h1 style="color: #1D447D;">Please enter registered email address</h1>
+          <mat-card>
+            <form class="exampleForm" [formGroup]="loginForm" (ngSubmit)="loginFormSubmit()">
+              <div class="form-group">
+                <label>Email</label><br>
+                <mat-form-field class="example-full-width" appearance="outline" style="width: 100%;">
+                  <input type="email" formControlName="emailId" matInput placeholder="Ex. pat@example.com">
+                </mat-form-field>
+                <div
+                  *ngIf="(loginFormControl.emailId.touched || submitted) && loginFormControl.emailId.errors?.required">
+                  <p class="text-danger">email is required</p>
+                </div>
+                <p *ngIf="loginFormControl.emailId.touched && loginFormControl.emailId.errors?.pattern"
+                  class="text-danger">This is invalid email address!</p>
+              </div>
+              <div class="form-group text-center">
+                <button mat-raised-button class="loginButton" [disabled]="loginForm.invalid">Send OTP</button>
+                <button mat-button class="loginButton" type="button" (click)="back()">Back</button>
+              </div>
+            </form>
+
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

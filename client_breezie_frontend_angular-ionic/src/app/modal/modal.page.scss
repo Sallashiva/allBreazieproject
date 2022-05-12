@@ -1,0 +1,18 @@
+.close {
+  font-size: 25px;
+  font-weight: bold;
+  background: black;
+  color: white;
+  border-radius: 50%;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.qrcode ion-icon {
+  text-align: center;
+  font-size: 400px;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}

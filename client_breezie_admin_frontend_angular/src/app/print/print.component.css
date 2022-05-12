@@ -1,0 +1,116 @@
+.scrollTable {
+  height: 100vh;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+.circleIn {
+  background-color: green;
+  width: 10px;
+  height: 10px;
+  border-radius: 10px;
+
+
+}
+
+.circleout {
+  background-color: red;
+  width: 10px;
+  height: 10px;
+  border-radius: 10px;
+}
+
+.mat-elevation-z8 {
+  box-shadow: none;
+}
+
+:host::ng-deep .mat-tab-label-container {
+  display: flex;
+  flex-grow: 0;
+  overflow: hidden;
+  z-index: 1;
+}
+
+:host::ng-deep.mat-tab-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+  flex-shrink: 0;
+}
+
+
+
+:host::ng-deep.mat-tab-label {
+  height: 30px;
+  padding: 15px 24px;
+  cursor: pointer;
+  /* box-sizing: border-box; */
+  opacity: inherit;
+  min-width: 80px;
+  text-align: center;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap;
+  position: relative;
+  margin-bottom: 5px;
+  margin-top: 5px;
+
+  border: 0.5px solid rgb(247, 244, 244);
+
+}
+
+:host::ng-deep.mat-tab-label-container {
+
+  border-radius: 10px;
+
+}
+
+:host::ng-deep.mat-tab-label-active {
+  background-color: rgb(232, 229, 229);
+}
+
+
+
+:host::ng-deep.mat-tab-group.mat-primary .mat-ink-bar,
+.mat-tab-nav-bar.mat-primary .mat-ink-bar {
+  background-color: transparent !important;
+}
+
+/* .example-card{
+    background-color: gray;
+} */
+:host::ng-deep.mat-tab-header {
+  border-bottom: 0px;
+}
+
+.buttonMargin {
+  margin-left: 914px;
+}
+
+/* :host::ng-deep.mat-tab-body {
+    height: 52vh;
+  } */
+@media print {
+  button {
+    display: none;
+  }
+}
+
+.addImage {
+  width: 58px;
+
+  height: 56px;
+}
+
+.signBtn:hover {
+  color: #f1f1f1;
+  background-color: #1561CF;
+}
+
+.PrintButton {
+  position: absolute;
+  right: 4%;
+}

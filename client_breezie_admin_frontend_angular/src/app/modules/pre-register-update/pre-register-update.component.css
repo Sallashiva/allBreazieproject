@@ -1,0 +1,55 @@
+:host::ng-deep .mat-dialog-content {
+    display: block;
+    margin: 0 -24px;
+    padding: 0 24px;
+    height: auto;
+    max-height: 100%;
+    overflow: hidden;
+    -webkit-overflow-scrolling: touch;
+}
+.update{
+    background: #1561CF;
+    border:1px solid #004AB6;
+    color: white;
+}
+.close{
+    border-radius: 4px;
+    background-color: #E4E4E4;
+    border: 1px solid black;
+    color: black;
+    opacity: 1 !important;
+}
+:host::ng-deep .mat-form-field-appearance-outline.mat-form-field-disabled .mat-form-field-outline {
+    background-color: #e6e6e6;
+    margin-top: 9px;
+  }
+
+
+  :host::ng-deep .mat-form-field-appearance-outline .mat-form-field-label {
+    margin-top: 0.75em !important;
+  }
+
+  .deleteIcon{
+    border: none !important;
+    background: transparent;
+    outline: none;
+  }
+
+  .mat-raised-button.mat-button-disabled.mat-button-disabled {
+    background-color: rgba(0,0,0,.12);
+    border: lightgrey;
+    color: grey !important;
+  }
+  :host::ng-deep.mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
+    transform: translateY(-2em) scale(0.75);
+    line-height: 2;
+  }
+
+  .companyname{
+    overflow-wrap: anywhere;
+  }
+  ::ng-deep .mat-select-panel {
+    min-width: 100% !important;
+    margin-left:15px ;
+    margin-top: 40px;
+  }

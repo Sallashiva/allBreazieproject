@@ -1,0 +1,92 @@
+
+<mat-nav-list>
+  <div class="logo py4">
+      <img src="../../assets/images/logo.png">
+  </div>
+  <mat-divider></mat-divider>
+  <a mat-list-item [routerLink]="['/breezie-dashboard/dashboards']" [routerLinkActive]="['active']" (keydown.escape)="$event.stopPropagation()">
+      <span class="icon"><i class="fas fa-tachometer-alt"></i></span><span class="listName">Dashboard</span>
+    </a>
+  <a mat-list-item [routerLink]="['/breezie-dashboard/visitors']" [routerLinkActive]="['active']" (keydown.escape)="$event.stopPropagation()">
+      <span class="icon"><i class="fas fa-id-card-alt"></i></span><span class="listName">Guest</span>
+  </a>
+
+  <a mat-list-item [routerLink]="['/breezie-dashboard/employees']" [routerLinkActive]="['active']" (keydown.escape)="$event.stopPropagation()">
+      <span class="icon"><i class="fas fa-user-tie"></i></span><span class="listName">Employees</span>
+  </a>
+  <a mat-list-item [routerLink]="['/breezie-dashboard/deliveries']" [routerLinkActive]="['active']" (keydown.escape)="$event.stopPropagation()">
+      <span class="icon"><i class="fas fa-parachute-box"></i></span><span class="listName">Deliveries</span>
+  </a>
+  <a mat-list-item [routerLink]="['/breezie-dashboard/pre-registration']" [routerLinkActive]="['active']" (keydown.escape)="$event.stopPropagation()">
+      <span class="icon"><i class="fas fa-file-signature"></i></span><span class="listName">Pre-registration</span>
+  </a>
+  <a mat-list-item [routerLink]="['/breezie-dashboard/evacuation']" [routerLinkActive]="['active']" (keydown.escape)="$event.stopPropagation()">
+      <span class="icon"><i class="fas fa-running"></i></span><span class="listName">Emergency Exit</span>
+  </a>
+  <div *ngIf="showFields">
+    <mat-accordion class="example-headers-align">
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+              <a>
+                  <span class="icon"><i class="fas fa-wrench"></i></span>
+                  <span class="listName" style="margin-left:0px;">Settings</span>
+              </a>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+           <div>
+              <a mat-list-item class="lists ml-0" [routerLink]="['/breezie-dashboard/setting/welcome-screen']"  [routerLinkActive]="['active']" (keydown.escape)="$event.stopPropagation()">
+                 Welcome Screen
+               </a>
+               <a mat-list-item class="lists ml-0" [routerLink]="['/breezie-dashboard/setting/branding']" [routerLinkActive]="['active']" (keydown.escape)="$event.stopPropagation()">
+                  Branding
+               </a>
+               <a mat-list-item class="lists ml-0" [routerLink]="['/breezie-dashboard/setting/setting-visitors']" [routerLinkActive]="['active']" (keydown.escape)="$event.stopPropagation()">
+                  Guest
+               </a>
+               <a mat-list-item class="lists ml-0" [routerLink]="['/breezie-dashboard/setting/visitor-fields']" [routerLinkActive]="['active']" (keydown.escape)="$event.stopPropagation()">
+                  Guest fields
+               </a>
+               <a mat-list-item class="lists ml-0" [routerLink]="['/breezie-dashboard/setting/id-badges']" [routerLinkActive]="['active']" (keydown.escape)="$event.stopPropagation()">
+                  ID Badges
+               </a>
+               <a mat-list-item class="lists ml-0" [routerLink]="['/breezie-dashboard/setting/contactless']" [routerLinkActive]="['active']" (keydown.escape)="$event.stopPropagation()">
+                  Contactless
+               </a>
+               <a mat-list-item class="lists ml-0" [routerLink]="['/breezie-dashboard/setting/setting-employees']" [routerLinkActive]="['active']" (keydown.escape)="$event.stopPropagation()">
+                 Employees
+               </a>
+               <a mat-list-item class="lists ml-0" [routerLink]="['/breezie-dashboard/setting/setting-deliveries']" [routerLinkActive]="['active']" (keydown.escape)="$event.stopPropagation()">
+                 Deliveries
+               </a>
+               <a mat-list-item class="lists ml-0" [routerLink]="['/breezie-dashboard/setting/catering']" [routerLinkActive]="['active']" (keydown.escape)="$event.stopPropagation()">
+                 Catering
+               </a>
+           </div>
+    
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+  
+  
+  <hr>
+  <div>
+      <a mat-list-item class="list ml-0" [routerLink]="['/breezie-dashboard/location']" [routerLinkActive]="['active']" (keydown.escape)="$event.stopPropagation()">
+         Location & devices
+      </a>
+      <a mat-list-item class="list ml-0" [routerLink]="['/breezie-dashboard/adminroles']" [routerLinkActive]="['active']" (keydown.escape)="$event.stopPropagation()">
+         Admin Roles
+      </a>
+      <!-- <a mat-list-item class="list ml-0" [routerLink]="['/breezie-dashboard/integrations']" [routerLinkActive]="['active']" (keydown.escape)="$event.stopPropagation()">
+         Integrations
+      </a> -->
+      <div *ngIf="showFields">
+      <a mat-list-item class="list ml-0" [routerLink]="['/breezie-dashboard/agreement']" [routerLinkActive]="['active']" (keydown.escape)="$event.stopPropagation()">
+         Agreements
+      </a>
+      <a mat-list-item class="list ml-0 mb-4" [routerLink]="['/breezie-dashboard/account']" [routerLinkActive]="['active']" (keydown.escape)="$event.stopPropagation()">
+          Accounts
+      </a>
+    </div>
+  </div>
+</mat-nav-list>

@@ -1,0 +1,15 @@
+<h5 class="headingSignOut" id="exampleModalLabel">You are about to </h5>
+<h4 class="headSignOut" id="exampleModalLabel"><b>sign out visitors</b></h4>
+
+<mat-dialog-content class="mat-typography">
+    <!-- <form [formGroup]="signOutForm" (ngSubmit)="onSubmit()"> -->
+<div class="modal-body">
+    <div class="signOutContinue">Do you wish to continue?</div>
+  </div>
+  <div class="d-inline-block mt-4 " style="padding-bottom: 20px;">
+    <!-- <button type="button" mat-button id="closeSignOut" mat-raised-button mat-dialog-close>Close</button> -->
+    <ion-button mat-button mat-dialog-close class="cancel" (click)="cancle()">Cancel</ion-button>
+    <ion-button type="submit"  mat-button id="signOutButton" mat-raised-button (click)="onSubmit()"  >Signout</ion-button>
+  </div>
+<!-- </form> -->
+</mat-dialog-content>

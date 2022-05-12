@@ -1,0 +1,63 @@
+<div class="spinner" *ngIf="spinner">
+  <mat-spinner diameter="100"></mat-spinner>
+</div>
+<div class="container-fluid">
+ 
+  <div class=" ml-4">
+    <div class="heading">
+      <h4 class="mb-1">Contactless Settings</h4>
+      <p>Configure touch free options for visitors and employees</p>
+    </div>
+    <div class="form">
+      <form [formGroup]="ContactlessForm" (ngSubmit)="onSubmit()">
+        <div class="qrCode mt-3">
+          <h4 class="mb-0">QR Code</h4>
+          <p>Allows for quick and verified sign in and out.</p>
+          <div class="checkbox">
+            <mat-checkbox class="example-margin" [checked]="isGenerate" (change)="Generate($event)">
+              <span>Generate dynamic QR code</span>
+            </mat-checkbox>
+            <p class="ml-4 qrContent">Visitors can use their devices to scan a secure, dynamic QR code from the Breezie
+              app home screen to allow contactless sign-in.</p>
+          </div>
+          <div class="downlodCode mt-3">
+            <h4 class="mb-0">Download a static QR code </h4>
+            <p class="mb-0">A PNG file is suitable for smaller use e.g A4 poster. A SVG file is suitable for larger use
+              e.g A3 poster, large tv screen.</p>
+            <p>To protect the privacy of your employees, host selection is not available when scanning a static QR code.
+            </p>
+            <div class="download ml-4 mt-4 mb-4">
+              <div class="row">
+                <div class="col-md-3">
+                  <div>
+                    <qr-code class="d-none" [value]="myAngularxQrCode" id="qr" [level]="'M'" [size]=400></qr-code>
+                  </div>
+                  <i class="fas fa-cloud-download-alt"></i>&nbsp;<small (click)="onGenerate()">Download QR Code</small>
+                </div>
+                <!-- <div class="col-md-3">
+                        <i class="fas fa-cloud-download-alt"></i>&nbsp;<small (click)="onGenerate()" >Download QR Code (SVG)</small>
+                    </div> -->
+              </div>
+            </div>
+
+          </div>
+          <!-- <div class="employeeInOut mt-4">
+            <div class="mb-4">
+                <mat-checkbox class="example-margin" (change)="employeeInOut($event)" [checked]="isEmpChecked"><span>Employee In/Out</span></mat-checkbox>
+                <p class="ml-4 qrContent">Employee in/out with Breezie Pocket is enabled.</p>
+            </div>
+           
+            <div *ngIf="employees" class="location ml-5">
+                <mat-checkbox (change)="location($event)" [checked]="isLocChecked" class="example-margin"><span>Required location verification</span></mat-checkbox>
+                <p class="ml-4 qrContent">Employees are not required to verify their location via the iPad or QR code.</p>
+                <mat-checkbox (change)="employee($event)" [checked]="isRemChecked"  class="example-margin"><span>Remember employees to sign in on-site</span></mat-checkbox>
+                <p class="ml-4 qrContent">Remember employees to sign in on-site. <span style="color: #1492E6;">Upgrade</span></p>
+            </div>
+    
+        </div> -->
+
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

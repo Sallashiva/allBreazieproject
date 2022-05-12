@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500&family=Mulish:wght@500&family=Open+Sans&display=swap');
+
+.content {
+
+
+  padding: 30px 0px 20px;
+  margin-top: 30px;
+  width: 100% !important;
+  height: 500px;
+  text-align: center;
+  background-image: linear-gradient(to top right, #0196A1, #0196A1);
+}
+
+.plans h1 {
+  padding-top: 150px;
+  font-size: 3.8rem;
+  letter-spacing: 2px;
+  font-weight: 500;
+  margin-bottom: 20px;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+.plans h1 span {
+  color: #BD8E74;
+}
+
+.Unbeatable {
+  font-size: 16px !important;
+}
+
+.content-1 {
+  margin-top: 0px;
+  background-color: #E9FDF6;
+  padding-bottom: 20px;
+}
+
+.plans {
+  align-items: center;
+}
+
+.updates {
+  border-bottom: 1px solid #888;
+  padding-top: 61px;
+  font-weight: 500;
+}
+
+.updates-1 {
+  padding-top: 30px;
+}
+
+p {
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-size: 16px;
+}
+
+@media only screen and (max-width: 436px) {
+
+  .policy,
+  .Unbeatable {
+    position: relative;
+    top: 25px;
+  }
+}

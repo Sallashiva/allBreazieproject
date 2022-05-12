@@ -1,0 +1,125 @@
+table {
+    width: 100%;
+}
+
+.newDelivery {
+    background: #1561CF;
+    border: 1px solid #004AB6;
+    color: white;
+    box-shadow: none;
+}
+
+:host::ng-deep.mat-form-field-appearance-outline .mat-form-field-infix {
+    padding: 1em 0 1em 0 !important;
+}
+
+:host::ng-deep.mat-form-field-appearance-outline .mat-select-arrow-wrapper {
+    transform: translateY(15%);
+}
+
+:host::ng-deep.mat-form-field-appearance-outline .mat-form-field-label {
+    margin-top: 2px !important;
+}
+
+.collected {
+    background: #00DC0F14;
+    color: #00AB0A;
+    border: 1px solid #00AB0A;
+    border-radius: 2px;
+}
+
+tr.mat-header-row {
+    background: #F1F1F1 !important;
+    color: black !important;
+    height: 42px !important;
+}
+
+.mat-header-cell {
+    color: black !important;
+    font-size: 14px !important;
+}
+
+.mat-elevation-z8 {
+    box-shadow: 0px !important;
+}
+
+.card-header {
+    background-color: transparent;
+    border-bottom: 2px solid rgba(161, 161, 161, 0.5);
+}
+
+.spinner {
+    position: fixed;
+    background-color: rgba(0,0,0,0.2);
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+   :host::ng-deep mat-spinner{
+    position: absolute;
+    left: 50%;
+    top: 30%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+  }
+
+.collecteds {
+    border: none;
+    color: green;
+}
+
+.checkedIcon {
+    font-size: 20px;
+    color: green;
+}
+
+.collectedText {
+    margin-bottom: 10px;
+    color: green;
+}
+
+::ng-deep.mat-header-cell .mat-sort-header-container.mat-sort-header-sorted .mat-sort-header-arrow {
+    opacity: 1 !important;
+}
+
+.search-form-field {
+    width: 70%;
+    float: right
+}
+
+.image {
+    height: 45px;
+    width: 45px;
+    border-radius: 50%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.packageImage {
+    height: 50px !important;
+    width: 50px !important;
+    font-size: 22px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    border: 1px solid lightgray;
+    border-radius: 50%;
+    background-color: lightblue;
+    font-weight: bold;
+    color: skyblue;
+}
+
+tr.mat-row,
+tr.mat-footer-row {
+    height: 54px;
+}
+::ng-deep .mat-select-panel {
+    min-width: 100% !important;
+    margin-left:15px ;
+    margin-top: 40px;
+  }
+
+:host::ng-deep.mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label{
+    transform: translateY(-1.30375em) scale(0.75) !important;
+    width: 133.3333333333%;
+  }

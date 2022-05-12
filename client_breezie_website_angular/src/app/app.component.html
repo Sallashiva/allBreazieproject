@@ -1,0 +1,90 @@
+<div id="mySidenav" class="sidenav" *ngIf="sidenav" [class.sidenavopen]="sidenav">
+  <a class="closebtn" (click)="closeNav()">&times;</a>
+  <div class="list">
+    <a (click)="aboutus()">About Us</a>
+    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+      Products
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+      <a class="dropdown-item" (click)="features()">Features</a>
+      <a class="dropdown-item" (click)="visitorManagement()">Visitor Management</a>
+      <a class="dropdown-item" (click)="employeecheckin()">Employee Check in</a>
+    </div>
+    <a (click)="career()">Career</a>
+    <a (click)="contactus()">Contact Us</a>
+    <a (click)="pricing()">Pricing</a>
+    <a (click)="privacyPolicy()">Privacy policy</a>
+    <a (click)="others()">Others</a>
+  </div>
+
+
+  <div class="sidenavfootbar">
+    <button class="btn mr-4 font-weight-bold"><a href="https://secure.breazie.com/auth/login"
+        target="blank">Login</a></button>
+    <button class="btn btn-dark"><a href="https://secure.breazie.com/auth/register" target="blank">Free
+        trial</a></button>
+  </div>
+</div>
+
+<span style="font-size:30px;cursor:pointer">&#9776;</span>
+
+<nav class="navbar navbar-expand-lg navbar-light sticky-top sticky">
+  <a class="navbar-brand" href="#"><img src="../assets/images/logo.png" width="150px"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navbarSupportedContent"
+    aria-expanded="false" aria-label="Toggle navigation" (click)="openNav()">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/about-us">About Us</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
+          aria-expanded="false">
+          Products
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" routerLink="/features">Features</a>
+          <a class="dropdown-item" routerLink="/visitor-management">Visitor Management</a>
+          <a class="dropdown-item" routerLink="/employee-checkin">Employee Check in</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/career">Career</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/contact-us">Contact Us</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/pricing">Pricing</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/privacy">Privacy policy</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/others">Others</a>
+      </li>
+
+    </ul>
+    <div class="form-inline buttons my-2 my-lg-0">
+      <button class="btn mr-4 font-weight-bold"><a href="https://secure.breazie.com/auth/login"
+          target="blank">Login</a></button>
+      <a href="https://secure.breazie.com/auth/register" target="blank"> <button class="btn btn-dark freetrial">Free
+          trial</button></a>
+    </div>
+  </div>
+</nav>
+<router-outlet></router-outlet>
+<div class="footer">
+  <div class="cardfooter">
+    <div>
+      <small>Copyright &#169; 2022 Digitoonz. All Rights Reserved.</small>
+    </div>
+    <div class="footerprivacy my-2 my-lg-0 ">
+      <small>Terms of Use</small>
+      <small class="ml-4">Privacy Policy</small>
+    </div>
+  </div>
+</div>

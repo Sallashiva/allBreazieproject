@@ -1,0 +1,61 @@
+:host::ng-deep .mat-dialog-container {
+  width: 400px !important;
+}
+
+:host::ng-deep .mat-dialog-content {
+  display: initial;
+  margin: 0 -24px;
+  padding: 0 24px;
+  height: auto;
+  max-height: 100%;
+  overflow: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+.add {
+  background: #1561CF;
+  border: 1px solid #004AB6;
+  color: white;
+}
+
+.close {
+  background: #E4E4E4;
+  border: 1px solid black;
+  color: black;
+  border-radius: 6px;
+  opacity: 1;
+}
+
+:host::ng-deep.mat-dialog-title {
+  margin: -24px -24px 20px -24px;
+  display: block;
+  padding: 15px 20px 15px;
+  border-bottom: 1px solid lightgray;
+}
+
+:host::ng-deep .mat-form-field {
+  margin-top: 6px;
+}
+
+:host::ng-deep.iti__flag {
+  background-repeat: repeat;
+}
+
+.deleteIcon{
+  border: none !important;
+  background: transparent;
+  outline: none;
+}
+:host::ng-deep.mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
+  transform: translateY(-1em) scale(0.75);
+}
+::ng-deep .mat-select-panel {
+  min-width: 100% !important;
+  margin-left:15px ;
+  margin-top: 40px;
+}
+.mat-raised-button.mat-button-disabled.mat-button-disabled{
+  background-color: rgba(0,0,0,.12);
+  border: lightgray;
+
+}

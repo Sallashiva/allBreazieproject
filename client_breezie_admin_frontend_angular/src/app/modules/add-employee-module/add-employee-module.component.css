@@ -1,0 +1,38 @@
+:host::ng-deep .mat-dialog-container {
+    width: 400px !important;
+}
+:host::ng-deep .mat-dialog-content {
+    display: block;
+    margin: 0 -24px;
+    padding: 0 24px;
+    height: auto;
+    max-height: 100%;
+    overflow: hidden;
+    -webkit-overflow-scrolling: touch;
+}
+.add{
+    background: #1561CF;
+    color: white;
+}
+.close{
+    border-radius: 6px;
+    background-color: #E4E4E4;
+    border: 1px solid black;
+    color: black;
+    opacity: 1 !important;
+}
+:host::ng-deep.mat-dialog-title {
+    margin: -24px -24px 20px -24px;
+    display: block;
+    padding: 15px 20px 15px;
+    border-bottom: 1px solid lightgray;
+}
+.deleteIcon{
+    border: none;
+    background: transparent;
+}
+::ng-deep .mat-select-panel {
+    min-width: 100% !important;
+    margin-left:15px ;
+    margin-top: 40px;
+  }

@@ -1,0 +1,108 @@
+h4 {
+  font-weight: 500;
+  font-size: 18px;
+  color: #231F20;
+}
+
+.content {
+  margin: 20px;
+}
+
+p {
+  color: #231F20;
+  opacity: 0.8;
+}
+
+.printers {
+  background: #E8E8E8;
+  padding: 10px 15px;
+  border-radius: 4px;
+}
+
+.qrContent {
+  margin-top: -10px;
+  font-size: 12px;
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show>.nav-link {
+  color: black;
+  background-color: transparent;
+}
+
+.logo1 img {
+  width: 50% !important;
+  height: 100%;
+  margin: 3px 0px;
+}
+
+.card {
+  box-shadow: 0px 0px 6px lightgray;
+  border: none;
+  padding: 10px;
+}
+
+.Idbadge {
+  border-radius: 4px;
+  box-shadow: 0px 0px 1px 1.1px #242424;
+}
+
+.name {
+  margin-bottom: 0px;
+  line-height: 1;
+}
+
+hr {
+  border-top: 2px solid black !important;
+}
+
+.visitingDetails .standard {
+  margin-bottom: 12px;
+}
+
+.tabs li {
+  margin: 10px;
+}
+
+.simple .Idbadge,
+.standard .Idbadge {
+  padding: 10px 0px 0px;
+}
+
+.simple .employeedetails {
+  margin: 26px 0px;
+}
+
+.standard .visitingDetails {
+  margin-bottom: 2px;
+}
+
+.name {
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.simple .name {
+  font-size: 20px;
+}
+
+.update{
+  background-color: #004AB6 ;
+  border: 1px solid #004AB6;
+  color: white !important;
+  margin-bottom: 30%;
+}
+.spinner {
+  position:fixed;
+  background-color: rgba(0,0,0,0.2);
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+ :host::ng-deep mat-spinner{
+  position: absolute;
+  left: 50%;
+  top: 30%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}

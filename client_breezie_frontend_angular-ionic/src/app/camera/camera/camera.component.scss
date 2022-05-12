@@ -1,0 +1,112 @@
+.avatars {
+    width: 420px !important;
+    height: 420px !important;
+    position: relative;
+}
+
+ion-avatar {
+    width: 420px !important;
+    height: 420px !important;
+}
+
+.logo {
+    top: 36px;
+    left: 56px;
+    width: 168px;
+    height: 41px;
+}
+
+.image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.qr-code ion-icon {
+    width: 60px;
+    height: 50px;
+    cursor: pointer;
+}
+
+.retake {
+    position: absolute;
+    top: 26%;
+    left: 50%;
+    transform: translate(-50%, -26%);
+}
+
+ion-button {
+    --padding-start: 60px;
+    --padding-end: 60px;
+    --background: #1D447D;
+    box-shadow: 0px 0px 4px #00000029;
+    border-radius: 8px;
+    height: 50px;
+    text-transform: capitalize;
+    font-size: 20px;
+}
+
+.back-button {
+    display: none;
+}
+
+.captures i {
+    position: absolute;
+    top: 35px;
+    right: 50px;
+    font-size: 30px;
+    border-radius: 50%;
+    box-shadow: 0px 0px 4px lightgrey;
+    padding: 10px;
+    color: white;
+    background: #1D447D;
+    display: block !important;
+    cursor: pointer;
+}
+
+.captures:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    top: 20%;
+    right: 20%;
+    color: white;
+    padding: 8px;
+    border-radius: 6px;
+    background: #1D447D;
+}
+
+@media only screen and (max-width:1440px) {
+    .back-button {
+        display: block;
+    }
+}
+
+@media only screen and (max-width:1023px) {
+    .back-button {
+        display: block;
+    }
+}
+
+@media only screen and (max-width:767px) {
+    .captures:hover::after {
+        display: none;
+    }
+    .back-button {
+        display: block;
+    }
+    .avatars {
+        width: 300px !important;
+        height: 300px !important;
+    }
+    .captures i {
+        top: 20px;
+        right: 20px;
+    }
+    ion-avatar {
+        width: 300px !important;
+        height: 300px !important;
+    }
+    .qr-code {
+        display: none;
+    }
+}

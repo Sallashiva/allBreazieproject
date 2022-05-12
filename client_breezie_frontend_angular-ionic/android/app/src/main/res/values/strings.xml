@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">breazie</string>
+    <string name="title_activity_main">breazie</string>
+    <string name="package_name">io.ionic.breazie</string>
+    <string name="custom_url_scheme">io.ionic.breazie</string>
+</resources>

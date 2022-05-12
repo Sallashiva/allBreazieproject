@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="contnet ">
+    <div class="row">
+      <div class="col-md-6 offset-md-3 ">
+        <div class="login">
+          <h1 style="color: #1D447D;text-align: center;" >Please Login</h1>
+          <mat-card>
+            <form class="exampleForm" [formGroup]="loginForm" (ngSubmit)="loginFormSubmit()">
+              <div class="form-group">
+                <label>Email<sup style="color: red;">*</sup></label><br>
+                <mat-form-field class="example-full-width" appearance="outline" style="width: 100%;">
+                  <input type="email" formControlName="emailId" matInput placeholder="Ex. pat@example.com">
+                </mat-form-field>
+                <div
+                  *ngIf="(loginFormControl.emailId.touched || submitted) && loginFormControl.emailId.errors?.required">
+                  <p class="text-danger">Email Id is required</p>
+                </div>
+                <p *ngIf="loginFormControl.emailId.touched && (loginFormControl.emailId.errors?.pattern || loginFormControl.emailId.errors?.email)"
+                  class="text-danger">Please enter valid email address!</p>
+              </div>
+              <div class="form-group">
+                <label>Password<sup style="color: red;">*</sup></label><br>
+                <mat-form-field class="example-full-width" appearance="outline" style="width: 100%;">
+                  <input type="password" formControlName="password" matInput placeholder="Password"
+                    [type]="hide ? 'password' : 'text'" required>
+                  <mat-icon matSuffix (click)="hide = !hide" style="cursor: pointer;"
+                    [matTooltip]="hide ? 'show password' : 'hide password'" matTooltipPosition="below">
+                    {{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                  <!-- <mat-hint *ngIf="!passwordInput.value">Enter your password</mat-hint> -->
+                </mat-form-field>
+                <div
+                  *ngIf="(loginFormControl.password.touched || submitted) && loginFormControl.password.errors?.required">
+                  <p class="text-danger">Password is required</p>
+                </div>
+                <p *ngIf="loginFormControl.password.touched && loginFormControl.password.errors?.pattern"
+                  class="text-danger">This is invalid password!</p>
+              </div>
+              <div class="form-group">
+                <button type="submit" class="loginButton" [disabled]="loginForm.invalid" >Log in</button>
+                <!-- <button type="button" mat-button class="resetPassword float-right" (click)="forgotPassword()">Forgot
+                  your password?</button> -->
+              </div>
+            </form>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

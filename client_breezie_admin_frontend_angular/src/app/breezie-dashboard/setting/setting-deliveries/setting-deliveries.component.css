@@ -1,0 +1,266 @@
+.exampleCard {
+  border-bottom: 1px solid rgb(206, 205, 205);
+}
+
+.innercard {
+  width: 100%;
+}
+
+.form-control {
+  width: 106%;
+  transition: border-color -0.85s ease-in-out, box-shadow 72.15s ease-in-out;
+}
+
+:host::ng-deep.mat-expansion-panel:not([class*=mat-elevation-z]) {
+  box-shadow: none;
+}
+
+:host::ng-deep.mat-expansion-indicator::after {
+  color: #1561CF;
+  margin-top: -7px;
+
+}
+
+.expansionInput {
+  width: 100%;
+  height: 100%;
+}
+
+:host::ng-deep.mat-form-field-outline {
+
+  height: 40px;
+}
+
+:host::ng-deep.mat-form-field-appearance-outline .mat-form-field-infix {
+  padding: 1.0em 0 1.2em 0 !important;
+  border-top: 0px;
+}
+
+:host::ng-deep.mat-expansion-panel-header {
+  padding: 0px;
+}
+
+.image {
+  width: 99px !important;
+  height: 101px;
+  border-radius: 206px
+}
+
+:host::ng-deep.mat-content {
+
+  flex: inherit;
+  margin-top: 12px;
+}
+
+:host::ng-deep.mat-expansion-panel-body {
+  padding: 0px;
+}
+
+:host::ng-deep.mat-tab-header {
+  border-bottom: 0px;
+}
+
+p {
+  color: black;
+  opacity: 0.6;
+}
+
+:host::ng-deep.mat-tab-label {
+  height: 30px;
+
+  cursor: pointer;
+  /* box-sizing: border-box; */
+  opacity: inherit;
+  min-width: 80px;
+  text-align: center;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap;
+  position: relative;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  background-color: rgb(232, 229, 229);
+
+  border: 0.5px solid rgb(247, 244, 244);
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  padding: 20px;
+
+}
+
+:host::ng-deep.mat-tab-label-active {
+  background-color: white;
+  color: #1561CF;
+}
+
+:host::ng-deep.mat-tab-group.mat-primary .mat-ink-bar,
+.mat-tab-nav-bar.mat-primary .mat-ink-bar {
+  background-color: transparent !important;
+}
+
+.fullCard {
+  width: 99%;
+  margin-left: 3px;
+}
+
+.spinner {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
+.example-card1 {
+  padding: 1px;
+  width: 100%;
+}
+
+.cardheader {
+  border-bottom: 1px solid rgb(220, 217, 217);
+  ;
+}
+
+.inputlable .search {
+  width: 95%;
+
+  position: relative;
+  display: flex;
+}
+
+.inputlable .input {
+  width: 100%;
+  outline: none;
+  color: black;
+  border: 1px solid rgb(208, 206, 206);
+}
+
+::-webkit-input-placeholder {
+  color: black;
+  opacity: 0.4;
+  font-size: 12px;
+}
+
+
+
+.inputlable .Button {
+  width: 40px;
+  height: 30px;
+  border: 1px solid rgb(218, 216, 216);
+  border-top: 6px solid gray;
+  border-bottom: 2px solid grey;
+  border-left: 2px solid grey;
+  border-right: 2px solid grey;
+
+  text-align: center;
+
+  /* border-radius: 0 5px 5px 0; */
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.inputlable .Button:hover {
+
+  color: #1561CF;
+  border: 1px solid rgb(218, 216, 216);
+  border-top: 6px solid #1561CF;
+  border-bottom: 2px solid #1561CF;
+  border-left: 2px solid #1561CF;
+  border-right: 2px solid #1561CF;
+}
+
+.carouselborder {
+  border: 8px solid rgb(181, 176, 176);
+  width: 429px;
+  height: 351px;
+  border-radius: 20px;
+  margin-left: 24px;
+  margin-top: 13px;
+  box-shadow: 2px 5px 15px -1px;
+}
+
+:host::ng-deep.carousel-control-prev {
+  opacity: 1.555;
+  border-radius: 30px;
+  height: 30px;
+  width: 30px;
+  margin-top: 151px;
+  margin-left: 5px;
+  background-color: grey;
+}
+
+:host::ng-deep.carousel-control-next {
+  opacity: 1.555;
+  border-radius: 30px;
+  height: 30px;
+  width: 30px;
+  margin-top: 151px;
+  margin-right: 5px;
+  background-color: grey;
+
+}
+
+img {
+  width: 99% !important;
+  height: 331px;
+  border-radius: 20px;
+  margin-top: 2px;
+  margin-left: 2px;
+  margin-right: 2px;
+  margin-bottom: 2px;
+
+}
+
+:host::ng-deep.mat-tab-label-container {
+
+  margin-left: 18px;
+}
+
+:host::ng-deep.mat-expansion-indicator {
+  margin-top: -2px;
+
+}
+
+.deleteIcon {
+  text-align: right;
+  /* font-size: 30px; */
+}
+
+.multipleCardsDelivery{
+  margin-top: 7px;
+}
+
+.searchbtn:disabled {
+  color: #fff;
+  background-color: lightgrey;
+  border-color: lightgrey;
+}
+
+.searchbtn{
+  margin-top: 4px;
+  background: #004AB6;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+
+}
+.addButton{
+  background: #004AB6;
+  border: #004AB6;
+  color: white;
+}
+.spinner {
+  position: fixed;
+  background-color: rgba(0,0,0,0.2);
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+ :host::ng-deep mat-spinner{
+  position: absolute;
+  left: 50%;
+  top: 30%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}

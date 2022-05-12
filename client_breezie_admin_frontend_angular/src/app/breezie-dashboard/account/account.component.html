@@ -1,0 +1,1506 @@
+<div class="spinner" *ngIf="spinner">
+  <mat-spinner diameter="100"></mat-spinner>
+</div>
+<div class="container">
+  <div *ngIf="activeStatus">
+    <div *ngIf="activeStatus" class="m-3 p-1" style="background-color: #f1cccc; text-align: center;">
+      <h2><span style="color: #e65252;">Your subscription is now finished.</span> Please subscribe to continue to use
+        Breazie Delivery.</h2>
+    </div>
+    <div *ngIf="buyPlanShow" style=" text-align: center;">
+      <button type="button" (click)="buyPlan()" class="btn btn-primary">Buy Plan</button>
+    </div>
+  </div>
+  <div class="content mt-3 mb-4">
+    <h2 class="mb-0">Account</h2>
+    <p>Manage your Breazie account, purchase AddOns and view your billing history</p>
+  </div>
+</div>
+
+
+<div class="tabs">
+  <nav>
+    <div class="nav nav-tabs " id="nav-tab" role="tablist">
+      <a class="nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
+        aria-controls="nav-home" aria-selected="true">Plans</a>
+      <a class="nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
+        aria-controls="nav-profile" aria-selected="false">AddOns</a>
+      <a class="nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab"
+        aria-controls="nav-contact" aria-selected="false">History</a>
+      <a class="nav-link" id="nav-payment-tab" data-toggle="tab" href="#nav-payment" role="tab"
+        aria-controls="nav-payment" aria-selected="false">Payment Methods</a>
+      <a class="nav-link" id="nav-setting-tab" data-toggle="tab" href="#nav-setting" role="tab"
+        aria-controls="nav-setting" aria-selected="false">Settings</a>
+    </div>
+  </nav>
+  <div>
+    <div class="tab-content" id="nav-tabContent">
+      <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+        <div class="mt-3">
+          <div *ngIf="freeTrialShow">
+            <div *ngIf="activeStatus">
+              <div *ngIf="backButtonShow">
+                <button class="backArrow" mat-button (click)="backToBuyPlans()"><i
+                    class="fas fa-angle-left"></i>Back</button>
+              </div>
+            </div>
+            <div class="card" *ngIf="starterPlan">
+              <mat-list role="list">
+                <mat-list-item mat-align-items="center">
+                  <mat-radio-group aria-label="Select an option" (change)="currenctSelected = $event.value">
+                    <mat-card class="currency-switch">
+                      <mat-radio-button [checked]="usdCurrency" value="USD">$USD</mat-radio-button>
+                    </mat-card>
+                    <!-- <mat-card class="currency-switch">
+                    <mat-radio-button [checked]="eruCurrency" value="EUR">€EUR</mat-radio-button>
+                  </mat-card> -->
+                  </mat-radio-group>
+                </mat-list-item>
+              </mat-list>
+              <div>
+                <mat-card class="planscard" *ngFor="let data of plansData" style="display: inline-block;">
+                  <mat-card-header class="planeHeaderCard">
+                    <mat-card-title>
+                      <div>
+                        <p>{{data.name}}</p>
+                      </div>
+                    </mat-card-title>
+                  </mat-card-header>
+                  <div class="row" style="width: 150%;padding: 9px;">
+                    <div class="col-md-4" style="border-right: 1px solid rgb(196, 194, 194);">
+                      <div>
+                        <mat-card-header *ngFor="let currency of data.price">
+                          <mat-card-title style="margin-top: 15px;" *ngIf="currenctSelected == currency.currency">
+                            <div>
+                              <div>
+                                <sup class="supelement">$</sup>
+                                <span class="monthPlan1">{{currency.monthlyprice}} </span>
+                              </div>
+                              <div>
+                                <span class="monthPlan">
+                                  {{currency.currency}} <br>
+                                  per month
+                                </span>
+                              </div>
+                            </div>
+                            <span class="monthPlan">billed monthly</span>
+                          </mat-card-title>
+                        </mat-card-header>
+                        <span>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <mat-card-header *ngFor="let currency of data.price">
+                        <mat-card-title style="margin-top: 15px;" *ngIf="currenctSelected == currency.currency">
+                          <sup class="supelement">$</sup>
+                          <span class="monthPlan1">{{currency.annualprice}} </span>
+                          <span class="monthPlan">
+                            {{currency.currency}} <br>
+                            per month
+                          </span>
+                          <span class="monthPlan">billed annually</span>
+                        </mat-card-title>
+                      </mat-card-header>
+                      <span>
+                      </span>
+                    </div>
+                  </div>
+                  <mat-card-content>
+                    <div class="mt-3 ml-3">
+                      <div class="mt-3">
+                        <span><i class="fa fa-tablet favIcon"></i>
+                          <span class="ml-2">{{data.ipad | titlecase }} iPad/Qr code
+                          </span>
+                        </span>
+
+                      </div>
+                      <div class="mt-3">
+                        <span><i class="fas fa-users favIcon"></i>
+                          <span class="ml-1">
+                            {{data.employees | titlecase}} employees
+                          </span>
+
+                        </span>
+                      </div>
+                      <div class="mt-3">
+                        <span><i class="fa fa-map-marker favIcon"></i>
+                          <span class="ml-2">
+                            {{data.location | titlecase}} location
+                          </span>
+                        </span>
+                      </div>
+                      <div class="mt-3" *ngIf="data.contactlessSignIn">
+                        <span><i class="fa fa-check-circle favIcon"></i>
+                          <span class="ml-1">
+                            Contactless sign in
+                          </span>
+                        </span>
+                      </div>
+                      <div class="mt-3" *ngIf="data.employeeScreening">
+                        <span><i class="fa fa-check-circle favIcon"></i>
+                          <span class="ml-1">
+                            Employee screening
+                          </span>
+                        </span>
+                      </div>
+                      <div class="mt-3" *ngIf="data.remoteWorking">
+                        <span><i class="fa fa-check-circle favIcon"></i>
+                          <span class="ml-1">
+                            Remote working
+                          </span>
+                        </span>
+                      </div>
+                      <div class="mt-3" *ngIf="data.multipleVisitoflows">
+                        <span><i class="fa fa-check-circle favIcon"></i>
+                          <span class="ml-1">
+                            Multiple visitor flows
+                          </span>
+                        </span>
+                      </div>
+                      <div class="mt-3" *ngIf="data.integrations">
+                        <span><i class="fa fa-check-circle favIcon"></i>
+                          <span class="ml-1">
+                            Integrations
+                          </span>
+                        </span>
+                      </div>
+
+                    </div>
+                  </mat-card-content>
+
+                  <div class="button">
+                    <button class="btn btn-primary" style="width: 150px;"
+                      (click)="onStarterPlan(data,currenctSelected,data._id)">Get
+                      Started</button>
+                  </div>
+                </mat-card>
+              </div>
+
+            </div>
+          </div>
+
+          <div *ngIf="starterPlanDetalis">
+            <mat-card>
+              <div class="row">
+                <div class="col-md-4">
+                  <button class="backArrow" mat-button (click)="backToStarterPlan()"><i
+                      class="fas fa-angle-left"></i>Back</button>
+                  <!-- <button class="btn btn-outline-dark Previous" routerLink="/breezie-dashboard/account">Previous</button> -->
+                </div>
+                <div class="col-md-8">
+                  <div class="mainHeading">
+                    Confirm Your Plan
+                  </div>
+                </div>
+              </div>
+              <div class="headingSelect">Select your currency</div>
+              <div>
+                <div class="tab-content" id="nav-tabContent">
+                  <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                    <mat-list role="list">
+                      <mat-list-item mat-align-items="center">
+                        <mat-radio-group aria-label="Select an option" (change)="confirmPlan($event.value)">
+                          <mat-card class="currency-switch">
+                            <mat-radio-button [checked]="usdCurrency" value="USD">$USD</mat-radio-button>
+                          </mat-card>
+                          <!-- <mat-card class="currency-switch">
+                            <mat-radio-button [checked]="eruCurrency" value="EUR">€EUR</mat-radio-button>
+                          </mat-card> -->
+                        </mat-radio-group>
+                      </mat-list-item>
+                    </mat-list>
+                    <!--
+                    <mat-tab-group animationDuration="0ms" mat-align-tabs="center">
+                      <mat-tab > -->
+                    <div class="headings">Choose a plan</div>
+
+                    <div class="radioButtons">
+                      <div style="display: inline-block;" class="planscardStarter" (click)="staterPlanDetails()">
+                        <label>
+                          <input type="radio" name="name" [checked]="detailsOfStarterPlanUSD" />
+                          <span>Starter Plan</span>
+                        </label>
+                      </div>
+                      <div style="display: inline-block;" class="planscardStarter" (click)="businessPlanDetails()">
+                        <label>
+                          <input type="radio" name="name" [checked]="detailsOfBusinessPlan" />
+                          <span> Business Plan</span>
+                        </label>
+                      </div>
+                      <div style="display: inline-block;" class="planscardStarter" (click)="enterpricePlanDetails()">
+                        <label>
+                          <input type="radio" name="name" [checked]="detailsOfEnterpricePlan" />
+                          <span>Enterprise Plan</span>
+                        </label>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+
+                <div *ngIf="detailsOfStarterPlanUSD">
+                  <mat-card class="starterCardDetails">
+                    <div class="row">
+                      <div class="col-md-1">
+                        <span class="infoIcon"><i class="fas fa-info-circle"></i></span>
+                      </div>
+                      <div class="col-md-11">
+                        <div class="textContent">Setting visitor fields by category is only available on an Enterprise
+                          plan. If you <br> subscribe to a Starter plan by clicking the Next button below, your visitor
+                          fields will be
+                          <br> reset to display for all categories.
+                        </div>
+                      </div>
+                    </div>
+                  </mat-card>
+                  <div class="headings">Set payment frequency</div>
+                  <mat-radio-group aria-label="Select an option" (change)="paymentValue($event)">
+                    <div style="display: flex;">
+                      <div class="starterPlanCost">
+                        <mat-radio-button class="radio" [checked]="true" value="monthly">Monthly | {{monthPayment}}
+                        </mat-radio-button>
+                      </div>
+                      <div class="starterPlanCost">
+                        <mat-radio-button class="radio" value="annual">Annual | {{annualPayment}} (billed annualy)
+                        </mat-radio-button>
+                      </div>
+                    </div>
+                  </mat-radio-group>
+                  <div>
+                    <button type="submit" class="nextButton" (click)="redirectToAddons()">Next</button>
+                  </div>
+                </div>
+
+                <div *ngIf="detailsOfBusinessPlan">
+                  <mat-card class="businessCard">
+                    <label class="locationHeading">Total number of locations required</label>
+
+                    <div class="radioButton" style="display: inline-block;">
+                      <span (click)="particularLocation()">
+
+                        <div *ngFor="let option of options; let i = index" style="display: inline-block;">
+                          <label (click)="getLocation(option)">
+                            <input type="radio" name="options" [checked]="i === 0" />
+                            <span>{{option}}</span>
+                          </label>
+                        </div>
+                      </span>
+                    </div>
+                  </mat-card>
+                  <div>
+                    <mat-card class="businessMatCard">
+                      <div class="row">
+                        <div class="col-md-1">
+                          <span class="infoIcon"><i class="fas fa-info-circle"></i></span>
+                        </div>
+                        <div class="col-md-11">
+                          <div class="textContentBusiness">Setting visitor fields by category is only available on an
+                            Enterprise plan. If you <br> subscribe to a Business plan by clicking the Next button below,
+                            your visitor fields will<br> be reset to display for
+                            all categories.
+                          </div>
+                        </div>
+                      </div>
+                    </mat-card>
+                  </div>
+                  <div *ngIf="setBusinessPayment">
+                    <div class="setBusinessPayment">Set payment frequency</div>
+                    <mat-radio-group aria-label="Select an option" (change)="paymentValue($event)">
+                      <div style="display: flex;">
+                        <div class="businessPlanCost">
+                          <mat-radio-button class="radio" [checked]="true" value="monthly">Monthly |
+                            {{monthBusinessPayment}}
+                          </mat-radio-button>
+                        </div>
+                        <div class="businessPlanCost">
+                          <mat-radio-button class="radio" value="annual">Annual |{{annualBusinessPayment}} (billed
+                            annualy)
+                          </mat-radio-button>
+                        </div>
+                      </div>
+                    </mat-radio-group>
+                  </div>
+                  <div *ngIf="forMoreLocations">
+                    <button class="moreLocationButton" (click)="businessLocation()">Contact us for the quoet</button>
+                  </div>
+                  <div *ngIf="forParticularLocations">
+                    <!-- <button type ="submit" class="nextButton" (Click)="redirectToAddons()">Next</button> -->
+                    <button type="submit" class="nextButton" (click)="redirectToAddons()">Next</button>
+                  </div>
+                </div>
+
+
+                <div *ngIf="detailsOfEnterpricePlan">
+
+                  <mat-card class="enterpriceCard">
+                    <label class="locationHeading">Total number of locations required</label>
+                    <div class="radioButton" style="display: inline-block;">
+                      <span (click)="entrtpriceParticularLocation()">
+                        <div *ngFor="let option of options; let i = index" style="display: inline-block;">
+                          <label (click)="getLocation(option)">
+                            <input type="radio" name="options" [checked]="i === 0" />
+                            <span>{{option}}</span>
+                          </label>
+                        </div>
+                      </span>
+                    </div>
+                  </mat-card>
+
+                  <div *ngIf="setEnterpricePayment">
+                    <div class="setBusinessPayment">Set payment frequency</div>
+                    <mat-radio-group aria-label="Select an option" (change)="paymentValue($event)">
+                      <div style="display: flex;">
+                        <div class="businessPlanCost">
+                          <mat-radio-button class="radio" [checked]="true" value="monthly">Monthly
+                            |{{monthEnterprisePayment}}
+                          </mat-radio-button>
+                        </div>
+                        <div class="businessPlanCost">
+                          <mat-radio-button class="radio" value="annual">Annual | {{annualEnterprisePayment}} (billed
+                            annualy)
+                          </mat-radio-button>
+                        </div>
+                      </div>
+                    </mat-radio-group>
+                  </div>
+                  <div *ngIf="forMoreLocationsInEnterprice">
+                    <button class="moreLocationButton" (click)="redirectToEnterprice()">Connect us for the
+                      quoet</button>
+                  </div>
+                  <div *ngIf="forParticularLocationsInEnterprice">
+                    <!-- <button class="nextButton">Next</button> -->
+                    <button type="submit" class="nextButton" (click)="redirectToAddons()">Next</button>
+                  </div>
+                </div>
+
+              </div>
+            </mat-card>
+          </div>
+
+          <div *ngIf="dataOfAddOns">
+            <!-- jjjj -->
+            <div *ngIf="addOnPrePlan">
+              <mat-card>
+                <div class="row">
+                  <div class="col-md-4">
+                    <button class="backArrow" mat-button (click)="backToStarterPlanFromPlans()"><i
+                        class="fas fa-angle-left"></i>Back</button>
+                  </div>
+                  <div class="col-md-8">
+                    <div>
+
+                      <h2 class="addonheadingRedirect"> Breazie AddOns</h2>
+                    </div>
+                  </div>
+
+                </div>
+                <!-- <div *ngFor="let addOnsData of plansDataAddOns"> -->
+                <div class="row">
+                  <div class="col-md-6">
+                    <mat-card class="integrationCardLeft">
+                      <mat-card-header>
+                        <mat-card-title>
+                          <div>
+                            <span style="font-size: 35px;color:#1561CF ;"><i class="fa fa-coffee"></i></span>
+                            <span class="cardText">
+                              {{plansCatering}}
+                            </span>
+                          </div>
+                        </mat-card-title>
+                        <mat-card-subtitle>Offer your visitors coffee, other drinks, or food items as they sign in.
+                          Automatically send their order to the right place, and easily track the costs.
+                        </mat-card-subtitle>
+                      </mat-card-header>
+                      <mat-card-content>
+                        <div class="mt-4 ml-3" class="border">
+                          <!-- <button mat-stroked-button style="color: #1561CF; border: 0.5px solid #1561CF;">
+                          $ {{plansCateringMonthlyPrice}} USD/month  </button> -->
+                          <mat-checkbox class="checkBox" (change)="cateringCheck($event,cateringAddOn)">
+                            Add Catering | $ {{cateringAddOn}} /month
+                          </mat-checkbox>
+                        </div>
+                      </mat-card-content>
+                    </mat-card>
+                  </div>
+
+                  <!-- <div class="col-md-6">
+                  <mat-card class="integrationCardRight">
+                    <mat-card-header>
+                      <mat-card-title>
+                        <div>
+                          <span style="font-size: 35px;color:#1561CF ;"><i class="fa fa-commenting-o"></i></span>
+                          <span class="cardText">
+                            {{plansSms}}
+                          </span>
+                        </div>
+                      </mat-card-title>
+                      <mat-card-subtitle>SMS notifications are the best way to get the attention of your employees when
+                        a visitor or delivery arrives. Add it to your subscription, and send all the messages you need.
+                      </mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content>
+                      <div class="mt-4 ml-3" class="border">
+                        <button mat-stroked-button class="details">
+                          <mat-checkbox> Add Unlimited SMS</mat-checkbox> | {{planSmsMonthlyPrice}}USD/month</button>
+                        <mat-checkbox class="checkBox" (change)="smsCheck($event,smsAddOn)">
+                          Add Unlimited SMS | $ {{smsAddOn}} /month
+                        </mat-checkbox>
+                      </div>
+                    </mat-card-content>
+                  </mat-card>
+                </div> -->
+                  <div class="col-md-6">
+                    <mat-card class="integrationCardcenter">
+                      <mat-card-header>
+                        <mat-card-title>
+                          <div>
+                            <span style="font-size: 35px;color:#1561CF ;"><i class="	fas fa-cube"></i></span>
+                            <span class="cardText">
+                              {{plansDeliveries}}
+                            </span>
+                          </div>
+                        </mat-card-title>
+                        <mat-card-subtitle class="titleDetails">The simple way to manage deliveries of parcels, food, or
+                          just about anything to your reception. Scan the label and the recipient is instantly notified!
+                        </mat-card-subtitle>
+                      </mat-card-header>
+                      <mat-card-content>
+                        <div class="mt-4 ml-3" class="border">
+                          <!-- <button mat-stroked-button style="color: #1561CF; border: 0.5px solid #1561CF;">
+                          {{planDeliveriesMonthlyPlan}}</button> -->
+                          <mat-checkbox class="checkBox" (change)="deliveryCheck($event,deliveriesAddOn)">
+                            Add Deliveries | $ {{deliveriesAddOn}} /month
+                          </mat-checkbox>
+                        </div>
+                      </mat-card-content>
+                    </mat-card>
+                  </div>
+                </div>
+                <button type="submit" class="nextButton" (click)="ordersData()">Next</button>
+                <!-- </div> -->
+              </mat-card>
+            </div>
+            <!-- kkkkk -->
+            <div *ngIf="addOnAfterPlan">
+              <mat-card>
+                <div class="row">
+                  <div class="col-md-4">
+                    <button class="backArrow" mat-button (click)="backToStarterPlanFromPlans()"><i
+                        class="fas fa-angle-left"></i>Back After</button>
+                  </div>
+                  <div class="col-md-8">
+                    <div>
+
+                      <h2 class="addonheadingRedirect"> Breazie AddOns</h2>
+                    </div>
+                  </div>
+
+                </div>
+                <!-- <div *ngFor="let addOnsData of plansDataAddOns"> -->
+                <div class="row">
+                  <div class="col-md-6">
+                    <mat-card class="integrationCardLeft">
+                      <mat-card-header>
+                        <mat-card-title>
+                          <div>
+                            <span style="font-size: 35px;color:#1561CF ;"><i class="fa fa-coffee"></i></span>
+                            <span class="cardText">
+                              {{plansCatering}}
+                            </span>
+                          </div>
+                        </mat-card-title>
+                        <mat-card-subtitle>Offer your visitors coffee, other drinks, or food items as they sign in.
+                          Automatically send their order to the right place, and easily track the costs.
+                        </mat-card-subtitle>
+                      </mat-card-header>
+                      <mat-card-content>
+                        <div class="mt-4 ml-3" class="border">
+                          <!-- <button mat-stroked-button style="color: #1561CF; border: 0.5px solid #1561CF;">
+                          $ {{plansCateringMonthlyPrice}} USD/month  </button> -->
+                          <mat-checkbox class="checkBox" (change)="cateringCheckAfter($event,cateringAddOn)">
+                            Add Catering | $ {{cateringAddOn}} /month
+                          </mat-checkbox>
+                        </div>
+                      </mat-card-content>
+                    </mat-card>
+                  </div>
+
+                  <div class="col-md-6">
+                    <mat-card class="integrationCardcenter">
+                      <mat-card-header>
+                        <mat-card-title>
+                          <div>
+                            <span style="font-size: 35px;color:#1561CF ;"><i class="	fas fa-cube"></i></span>
+                            <span class="cardText">
+                              {{plansDeliveries}}
+                            </span>
+                          </div>
+                        </mat-card-title>
+                        <mat-card-subtitle class="titleDetails">The simple way to manage deliveries of parcels, food, or
+                          just about anything to your reception. Scan the label and the recipient is instantly notified!
+                        </mat-card-subtitle>
+                      </mat-card-header>
+                      <mat-card-content>
+                        <div class="mt-4 ml-3" class="border">
+                          <!-- <button mat-stroked-button style="color: #1561CF; border: 0.5px solid #1561CF;">
+                          {{planDeliveriesMonthlyPlan}}</button> -->
+                          <mat-checkbox class="checkBox" (change)="deliveryCheckAfter($event,deliveriesAddOn)">
+                            Add Deliveries | $ {{deliveriesAddOn}} /month
+                          </mat-checkbox>
+                        </div>
+                      </mat-card-content>
+                    </mat-card>
+                  </div>
+                </div>
+                <button type="submit" class="nextButton" [disabled]="nextDisable"
+                  (click)="ordersDataAfter()">Next</button>
+                <!-- </div> -->
+              </mat-card>
+            </div>
+
+          </div>
+
+          <div *ngIf="orderListData">
+            <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-2">
+                <button class="backArrowFromOrders" mat-button (click)="backToStarterPlanFromOrder()"><i
+                    class="fas fa-angle-left"></i>Back</button>
+              </div>
+              <div class="col-md-10">
+                <div class="orderHeadings">Your Orders</div>
+              </div>
+            </div>
+            
+            <div class="row">
+              <div class="col-md-8">
+                <mat-card>
+                  <div>
+                    <span class="headingsOrders">Billing Contact</span>
+                    <span class="subHeadingOrders">For tax purposes, please provide an accurate billing
+                      address.</span>
+                  </div>
+                  <hr>
+                  <form [formGroup]="ordersForm" (ngSubmit)="yourOrders()">
+
+                    <div class="row">
+                      <div class="col-md-6">
+                        <mat-label style="display: block;">Name</mat-label>
+                        <mat-form-field class="orders" appearance="outline">
+                          <input type="text" matInput placeholder="Enter Name" formControlName="name">
+                        </mat-form-field>
+                        <p *ngIf="( ordersForm.controls.name.touched) && ordersForm.controls.name.errors?.required"
+                          class="text-danger">
+                          Name is required.
+                        </p>
+                        <p *ngIf="ordersForm.get('name').touched && (ordersForm.get('name').errors?.pattern )"
+                          class="text-danger">This is invalid  Name!</p>
+
+                        <div class="text-danger"
+                          *ngIf="ordersForm.get('name').touched && ordersForm.get('name').errors?.minlength || ordersForm.get('name').errors?.maxlength">
+                          <p style="font-size: 12px;">
+                            Name accepts between 3-30 characters
+                          </p>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <mat-label style="display: block;">Email</mat-label>
+                        <mat-form-field class="orders" appearance="outline">
+                          <input type="text" matInput placeholder="email" formControlName="email">
+                        </mat-form-field>
+                        <p *ngIf="( ordersForm.controls.email.touched) && ordersForm.controls.email.errors?.required"
+                          class="text-danger">
+                          email is required.
+                        </p>
+                        <p *ngIf="ordersForm.get('email').touched && (ordersForm.get('email').errors?.pattern || ordersForm.get('email').errors?.minlength)"
+                          class="text-danger">This is invalid email</p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <mat-label style="display: block;">Country</mat-label>
+                        <mat-form-field class="orders" appearance="outline">
+                          <mat-label placeholder="India"></mat-label>
+                          <mat-select disableRipple formControlName="country">
+                            <mat-option *ngFor="let c of country" [value]="c.name">
+                              {{c.name}}</mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <mat-label style="display: block;">Address</mat-label>
+                        <mat-form-field class="orders" appearance="outline">
+                          <input type="text" matInput placeholder="Address" formControlName="address">
+                        </mat-form-field>
+                        <p *ngIf="( ordersForm.controls.address.touched) && ordersForm.controls.address.errors?.required"
+                          class="text-danger">
+                          Address is required.
+                        </p>
+                        <p *ngIf="ordersForm.get('address').touched && (ordersForm.get('address').errors?.pattern )"
+                          class="text-danger">This is invalid Address!</p>
+
+                        <div class="text-danger"
+                          *ngIf="ordersForm.get('address').touched && ordersForm.get('address').errors?.minlength || ordersForm.get('address').errors?.maxlength">
+                          <p style="font-size: 12px;">
+                            Address accept between 2-50 characters
+                          </p>
+                        </div>
+
+                      </div>
+                      <div class="col-md-3">
+                        <mat-label style="display: block;">State/Region</mat-label>
+                        <mat-form-field class="orders" appearance="outline">
+                          <input type="text" matInput placeholder="state" formControlName="state">
+                        </mat-form-field>
+                        <p *ngIf="( ordersForm.controls.state.touched) && ordersForm.controls.state.errors?.required"
+                          class="text-danger">
+                          State is required.
+                        </p>
+                        <p *ngIf="ordersForm.get('state').touched && (ordersForm.get('state').errors?.pattern )"
+                          class="text-danger">This is invalid State!</p>
+
+                        <div class="text-danger"
+                          *ngIf="ordersForm.get('state').touched && ordersForm.get('state').errors?.minlength || ordersForm.get('state').errors?.maxlength">
+                          <p style="font-size: 12px;">
+                            State accept between 2-30 characters
+                          </p>
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <mat-label style="display: block;">Zip/Postal Code</mat-label>
+                        <mat-form-field class="orders" appearance="outline">
+                          <input type="text" matInput placeholder="9410700" formControlName="zip">
+                        </mat-form-field>
+                        <p *ngIf="( ordersForm.controls.zip.touched) && ordersForm.controls.zip.errors?.required"
+                          class="text-danger">
+                          Zip is required.
+                        </p>
+                        <p *ngIf="ordersForm.get('zip').touched && (ordersForm.get('zip').errors?.pattern )"
+                          class="text-danger">This is invalid Zip!</p>
+
+                        <div class="text-danger"
+                          *ngIf="ordersForm.get('zip').touched && ordersForm.get('zip').errors?.minlength || ordersForm.get('zip').errors?.maxlength">
+                          <p style="font-size: 12px;">
+                            Zip accept 6 characters
+                          </p>
+                        </div>
+                      </div>
+
+                    </div>
+                    <div class="row">
+                      <div class="col-md-8">
+                        <mat-label style="display: block;">City</mat-label>
+                        <mat-form-field class="orders" appearance="outline">
+                          <input type="text" matInput placeholder="city" formControlName="city">
+                        </mat-form-field>
+                        <p *ngIf="( ordersForm.controls.city.touched) && ordersForm.controls.city.errors?.required"
+                          class="text-danger">
+                          City is required.
+                        </p>
+                        <p *ngIf="ordersForm.get('city').touched && (ordersForm.get('city').errors?.pattern )"
+                          class="text-danger">This is invalid City!</p>
+
+                        <div class="text-danger"
+                          *ngIf="ordersForm.get('city').touched && ordersForm.get('city').errors?.minlength || ordersForm.get('city').errors?.maxlength">
+                          <p style="font-size: 12px;">
+                            City accept between 2-30 characters
+                          </p>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <mat-label style="display: block;">Phone</mat-label>
+                        <mat-form-field class="orders" appearance="outline">
+                          <input type="text" matInput placeholder="9876543210" formControlName="phone">
+                        </mat-form-field>
+                        <p *ngIf="( ordersForm.controls.phone.touched) && ordersForm.controls.phone.errors?.required"
+                          class="text-danger">
+                          Phone number is required.
+                        </p>
+                        <p *ngIf="ordersForm.get('phone').touched && (ordersForm.get('phone').errors?.pattern || ordersForm.get('phone').errors?.minlength)"
+                          class="text-danger">This is invalid Phone number</p>
+                      </div>
+                    </div>
+                  </form>
+                </mat-card>
+
+              </div>
+              <div class="col-md-4">
+                <mat-card class="cardColor">
+                  <div class="orderDetails">Details</div>
+                  <hr>
+                  <div *ngIf="planShow">
+                    <span>{{noOfLocation}}-location</span>
+                    <br>
+                    <span>{{detailsPlanName}}
+                      <br>
+                      ({{subscriptionType}} subscription)
+                    </span>
+
+                    <span *ngIf="usdCurrency" class="starterPlanvalue">${{amountUsd}} USD</span>
+                    <span *ngIf="eruCurrency" class="starterPlanvalue">€{{amountEUR}} EUR</span>
+                  </div>
+                  <div class="Addons" *ngIf="cateringShow">
+                    <span>{{noOfLocation}}-location</span>
+                    <br>
+                    <span>{{cateingName}}
+                      <br>
+                      ({{subscriptionType}} subscription)
+                    </span>
+
+                    <span *ngIf="usdCurrency" class="starterPlanvalue">${{cateringAmountUsd}} USD</span>
+                    <span *ngIf="eruCurrency" class="starterPlanvalue">€{{cateringAmountEur}} EUR</span>
+                  </div>
+                  <div class="Addons" *ngIf="smsShow">
+                    <span>{{noOfLocation}}-location</span>
+                    <br>
+                    <span>{{smsName}}
+                      <br>
+                      ({{subscriptionType}} subscription)
+                    </span>
+
+                    <span *ngIf="usdCurrency" class="starterPlanvalue">${{smsAmountUsd}} USD</span>
+                    <span *ngIf="eruCurrency" class="starterPlanvalue">€{{smsAmountEur}} EUR</span>
+                  </div>
+                  <div class="Addons" *ngIf="deliveryShow">
+                    <span>{{noOfLocation}}-location</span>
+                    <br>
+                    <span>{{deliveryName}}
+                      <br>
+                      ({{subscriptionType}} subscription)
+                    </span>
+
+                    <span *ngIf="usdCurrency" class="starterPlanvalue">${{deliveryAmountUsd}} USD</span>
+                    <span *ngIf="eruCurrency" class="starterPlanvalue">€{{deliveryAmountEur}} EUR</span>
+                  </div>
+                  <hr>
+                  <!-- <div class="row">
+                    <div class="col-md-8">
+                      <mat-label  style="display: block;">Promo Code</mat-label>
+                      <mat-form-field class="orders" appearance="outline">
+                        <input type="text" matInput placeholder="Enter Your Code">
+                      </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                      <button type="button" class="ordersApplyButton">Apply</button>
+                    </div>
+                  </div> -->
+                  <hr>
+                  <div>
+                    <span>Amount Due</span>
+                    <span *ngIf="usdCurrency" class="amountDue">${{dueAmountUsr}} USD</span>
+                    <span *ngIf="eruCurrency" class="amountDue">€{{dueAmountEur}} EUR</span>
+
+                  </div>
+                </mat-card>
+
+              </div>
+
+            </div>
+            <button type="submit" class="nextButtonInOrder" (click)="onSubmitForm();yourOrders()"
+              [disabled]="ordersForm.invalid"><i class="fas fa-lock"></i>&nbsp; Next</button>
+              </div>
+          </div>
+
+          <div *ngIf="bussinessPlan">
+            <mat-card>
+              <div>
+                <button class="backArrow" mat-button (click)="backToStarterPlanFromLocation()"><i
+                    class="fas fa-angle-left"></i>Back</button>
+              </div>
+              <div> Business enquiry</div>
+              <form [formGroup]="businessForm" (ngSubmit)="addBusinessEnquery()">
+                <mat-form-field class="name" appearance="outline">
+                  <mat-label>Full Name *</mat-label>
+                  <input type="text" matInput placeholder="Enter First Name">
+                </mat-form-field> <br>
+                <mat-form-field class="name" appearance="outline">
+                  <mat-label>Last Name *</mat-label>
+                  <input type="text" matInput placeholder="Enter Last Name">
+                </mat-form-field> <br>
+                <mat-form-field class="name" appearance="outline">
+                  <mat-label>Company Name *</mat-label>
+                  <input type="text" matInput placeholder="Enter Company Name">
+                </mat-form-field> <br>
+                <mat-form-field class="name" appearance="outline">
+                  <mat-label>Business email address* *</mat-label>
+                  <input type="text" matInput placeholder="Enter Business email address">
+                </mat-form-field> <br>
+                <mat-form-field class="name" appearance="outline">
+                  <mat-label class="pho">Phone number *</mat-label>
+                  <input type="tel" matInput value="+{{countryCode}}" ng2TelInput
+                    (countryChange)="onCountryChange($event)">
+                </mat-form-field> <br>
+                <mat-form-field class="name" appearance="outline">
+                  <mat-label>Number of locations*</mat-label>
+                  <input type="text" matInput placeholder="Enter Number of locations*">
+                </mat-form-field> <br>
+                <mat-form-field class="name" appearance="outline">
+                  <mat-label>Billing Currency*</mat-label>
+                  <input type="text" matInput placeholder="Enter Billing Currency">
+                </mat-form-field> <br>
+                <mat-form-field class="name" appearance="outline">
+                  <mat-label>Message</mat-label>
+                  <input type="text" matInput placeholder="Enter Message">
+                </mat-form-field>
+                <div class="d-flex align-items-center justify-content-center mb-2">
+                  <!-- <button  class="close"  mat-button  mat-raised-button  mat-dialog-close>cancel</button> -->
+                  <button type="submit" class="send" [disabled]="businessForm.invalid" mat-button mat-raised-button>Send
+                    Enquiry</button>
+                </div>
+              </form>
+            </mat-card>
+
+          </div>
+
+          <div *ngIf="enterpricePlan">
+            <mat-card>
+              <div>
+                <button class="backArrow" mat-button (click)="backToEnterpricePlanFromLocation()"><i
+                    class="fas fa-angle-left"></i>Back</button>
+              </div>
+              <div>Enterprise enquiry</div>
+              <form [formGroup]="businessForm" (ngSubmit)="addBusinessEnquery()">
+                <mat-form-field class="name" appearance="outline">
+                  <mat-label>Full Name *</mat-label>
+                  <input type="text" matInput placeholder="Enter First Name">
+                </mat-form-field> <br>
+                <mat-form-field class="name" appearance="outline">
+                  <mat-label>Last Name *</mat-label>
+                  <input type="text" matInput placeholder="Enter Last Name">
+                </mat-form-field> <br>
+                <mat-form-field class="name" appearance="outline">
+                  <mat-label>Company Name *</mat-label>
+                  <input type="text" matInput placeholder="Enter Company Name">
+                </mat-form-field> <br>
+                <mat-form-field class="name" appearance="outline">
+                  <mat-label>Business email address* *</mat-label>
+                  <input type="text" matInput placeholder="Enter Business email address">
+                </mat-form-field> <br>
+                <mat-form-field class="name" appearance="outline">
+                  <mat-label class="pho">Phone number *</mat-label>
+                  <input type="tel" matInput value="+{{countryCode}}" ng2TelInput
+                    (countryChange)="onCountryChange($event)">
+                </mat-form-field> <br>
+                <mat-form-field class="name" appearance="outline">
+                  <mat-label>Number of locations*</mat-label>
+                  <input type="text" matInput placeholder="Enter Number of locations*">
+                </mat-form-field> <br>
+                <mat-form-field class="name" appearance="outline">
+                  <mat-label>Billing Currency*</mat-label>
+                  <input type="text" matInput placeholder="Enter Billing Currency">
+                </mat-form-field> <br>
+                <mat-form-field class="name" appearance="outline">
+                  <mat-label>Message</mat-label>
+                  <input type="text" matInput placeholder="Enter Message">
+                </mat-form-field>
+                <div class="d-flex align-items-center justify-content-center mb-2">
+                  <!-- <button  class="close"  mat-button  mat-raised-button  mat-dialog-close>cancel</button> -->
+                  <button type="submit" class="send" [disabled]="businessForm.invalid" mat-button mat-raised-button>Send
+                    Request</button>
+                </div>
+              </form>
+            </mat-card>
+
+          </div>
+        </div>
+        <div class="mt-5 cards" *ngIf="businessPlanShow ">
+          <div class="row">
+
+            <div class="col-md-6">
+              <mat-card class="example-card">
+                <mat-card-title>{{plansName}}</mat-card-title>
+                <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
+                <hr>
+                <mat-card-content>
+                  <div class="d-flex">
+                    <div>
+                      <span>
+                        <mat-icon style="font-size: 18px;color:red">donut_large</mat-icon>
+                      </span>
+                    </div>
+                    <div>
+                      <p>{{priceValue}}</p>
+                    </div>
+                  </div>
+                  <div class="d-flex">
+                    <div>
+                      <span>
+                        <mat-icon style="font-size: 18px;color:#1561CF"> location_on</mat-icon>
+                      </span>
+                    </div>
+                    <div>
+                      <p>{{locationValue}} location</p>
+                    </div>
+                  </div>
+                  <div class="d-flex">
+                    <div>
+                      <span>
+                        <mat-icon style="font-size: 18px;color:#1561CF"> mobile_screen_share</mat-icon>
+                      </span>
+                    </div>
+                    <div>
+                      <p> {{ipadNumber}} iPad / QR code</p>
+                    </div>
+                  </div>
+                  <div class="d-flex">
+                    <div>
+                      <span>
+                        <mat-icon style="font-size: 18px;color:#1561CF">people</mat-icon>
+                      </span>
+                    </div>
+                    <div>
+                      <p>{{employeeNumber}} employees</p>
+                    </div>
+                  </div>
+                </mat-card-content>
+                <mat-card-actions>
+                  <button mat-button class="changePlan" [disabled]="activeStatus" (click)="changePlan()">Change
+                    Plan</button>
+                  <!-- <button mat-button>SHARE</button> -->
+                </mat-card-actions>
+              </mat-card>
+            </div>
+
+            <div class="col-md-6">
+              <mat-card class="example-card">
+
+                <mat-card-title>Subscription</mat-card-title>
+                <hr>
+                <mat-card-content>
+                  <div class="row">
+                    <div class="col-md-1">
+                      <div class="text center">
+                        <mat-icon style="color:#1561CF">timer</mat-icon>
+                      </div>
+                    </div>
+                    <div class="col-md-11">
+                      <p class="mb-0"> Joined </p>
+                      <p>{{joinedDate | date}}</p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-1">
+                      <div class="text center">
+                        <mat-icon style="color:#1561CF">timer</mat-icon>
+                      </div>
+                    </div>
+                    <div class="col-md-11">
+                      <p class="mb-0"> Renewal </p>
+                      <p>{{renewalDate | date}}</p>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-1">
+                      <div class="text center">
+                        <mat-icon style="color:#1561CF"> money</mat-icon>
+                      </div>
+                    </div>
+                    <div class="col-md-11">
+                      <p class="mb-0"> Billing Method </p>
+                      <p>Razorpay</p>
+                    </div>
+                  </div>
+
+                </mat-card-content>
+                <!-- <mat-card-actions>
+              <button mat-button>cancel</button>
+            </mat-card-actions> -->
+              </mat-card>
+            </div>
+
+            <div class="col-md-6 offset-md-3">
+              <mat-card class="example-card">
+                <mat-card-title>AddOns</mat-card-title>
+                <hr>
+                <mat-card-content>
+                  <div class="d-flex align-items-center justify-content-between">
+                    <div class="d-flex align-items-center">
+                      <div class="mr-2">
+                        <span>
+                          <mat-icon style="font: size 18px;color:red"> email</mat-icon>
+                        </span>
+                      </div>
+                      <div>
+                        <span>Deliveries</span>
+                      </div>
+                    </div>
+                    <div>
+                      <button type="button" class="addOnsButton" [disabled]="activeStatus"
+                        (click)="addOnsData()">Add</button>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="d-flex align-items-center justify-content-between">
+                    <div class="d-flex align-items-center">
+                      <div class="mr-2">
+                        <span>
+                          <mat-icon style="font: size 18px;color:red"> fastfood</mat-icon>
+                        </span>
+                      </div>
+                      <div>
+                        <span>Catering</span>
+                      </div>
+                    </div>
+                    <div>
+                      <button type="button" class="addOnsButton" [disabled]="activeStatus"
+                        (click)="addOnsData()">Add</button>
+                    </div>
+                  </div>
+                  <hr>
+                  <!-- <div class="d-flex align-items-center justify-content-between">
+                <div class="d-flex align-items-center">
+                  <div class="mr-2">
+                  <span><mat-icon> message</mat-icon></span>
+                  </div>
+                  <div>
+                    <span>Unlimited SMS</span>
+                  </div>
+               </div>
+                <div>
+                  <button type="button" (click)="addOnsData()" >Add</button>
+                </div>
+              </div> -->
+                </mat-card-content>
+              </mat-card>
+            </div>
+
+
+
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+      <!-- <div *ngIf="bussinessPlan">
+          <mat-card>
+            <div> lkjhg</div>
+          </mat-card>
+        </div> -->
+
+      <!-- addons Tab////////// -->
+      <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+        <div>
+          <div class="card" *ngIf="addOnsBreazie">
+            <mat-card-header>
+              <mat-card-title>
+                <div>
+                  <h2 class="addonheading"> Breazie AddOns</h2>
+                </div>
+              </mat-card-title>
+            </mat-card-header>
+
+            <div class="row">
+              <div class="col-md-6">
+                <mat-card class="integrationCard integrationCardLeft">
+                  <mat-card-header>
+                    <mat-card-title>
+                      <div>
+                        <span style="font-size: 35px;color:#1561CF ;"><i class="fa fa-coffee"></i></span>
+                        <span class="cardText">
+                          Catering
+                        </span>
+                      </div>
+                    </mat-card-title>
+                    <mat-card-subtitle>Delight your visitors by offering them a beverage or food as they sign in.
+                    </mat-card-subtitle>
+                  </mat-card-header>
+                  <mat-card-content>
+                    <div class="mt-4 ml-3">
+                      <button mat-stroked-button style="color: #1561CF; border: 0.5px solid #1561CF;">Learn
+                        more</button>
+                    </div>
+
+                  </mat-card-content>
+                </mat-card>
+              </div>
+
+              <div class="col-md-6">
+                <mat-card class="integrationCard integrationCardcenter">
+                  <mat-card-header>
+                    <mat-card-title>
+                      <div>
+                        <span style="font-size: 35px;color:#1561CF ;"><i class="	fas fa-cube"></i></span>
+                        <span class="cardText">
+                          deliveries
+                        </span>
+                      </div>
+                    </mat-card-title>
+                    <mat-card-subtitle>The simple way to manage parcels, food or just about anything.
+                    </mat-card-subtitle>
+                  </mat-card-header>
+                  <mat-card-content>
+                    <div class="mt-4 ml-3">
+                      <button mat-stroked-button style="color: #1561CF; border: 0.5px solid #1561CF;">Learn
+                        more</button>
+                    </div>
+
+                  </mat-card-content>
+                </mat-card>
+                <!-- <mat-card class="integrationCard integrationCardRight">
+                    <mat-card-header>
+                      <mat-card-title>
+                        <div>
+                          <span style="font-size: 35px;color:#1561CF ;"><i class="fa fa-commenting-o"></i></span>
+                          <span class="cardText">
+                            SmS
+                          </span>
+                        </div>
+                      </mat-card-title>
+                      <mat-card-subtitle>Send instant SMS notifications to employees when a visitor or delivery arrives.
+                      </mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content>
+                      <div class="mt-4 ml-3">
+                        <button mat-stroked-button style="color: #1561CF; border: 0.5px solid #1561CF;">Learn
+                          more</button>
+                      </div>
+
+                    </mat-card-content>
+
+
+                  </mat-card> -->
+              </div>
+              <!-- <div class="col-md-12">
+                  <mat-card class="integrationCard integrationCardcenter">
+                    <mat-card-header>
+                      <mat-card-title>
+                        <div>
+                          <span style="font-size: 35px;color:#1561CF ;"><i class="	fas fa-cube"></i></span>
+                          <span class="cardText">
+                            deliveries
+                          </span>
+                        </div>
+                      </mat-card-title>
+                      <mat-card-subtitle>The simple way to manage parcels, food or just about anything.
+                      </mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content>
+                      <div class="mt-4 ml-3">
+                        <button mat-stroked-button style="color: #1561CF; border: 0.5px solid #1561CF;">Learn
+                          more</button>
+                      </div>
+
+                    </mat-card-content>
+                  </mat-card>
+                </div> -->
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+        <div class="card">
+          <table mat-table [dataSource]="dataSource" class="mat-elevation-z1">
+
+            <!-- Checkbox Column -->
+
+            <!-- Position Column -->
+            <ng-container matColumnDef="Visitor">
+              <th mat-header-cell *matHeaderCellDef> Date </th>
+              <td mat-cell *matCellDef="let element"> {{element.created_at | date:'short'}} </td>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="Host">
+              <th mat-header-cell *matHeaderCellDef> Description </th>
+              <td mat-cell *matCellDef="let element">
+                <span *ngIf="element.plans">
+                  {{element.plans.planName}} <br>
+                </span>
+                <span *ngIf="element.CateringAddOn">
+                  {{element.CateringAddOn.planName}} <br>
+                </span>
+                <span *ngIf="element.deliveryAddOn">
+                  {{element.deliveryAddOn.planName}} <br>
+                </span>
+
+              </td>
+            </ng-container>
+
+            <!-- Weight Column -->
+            <ng-container matColumnDef="Visit">
+              <th mat-header-cell *matHeaderCellDef> Transaction Status </th>
+              <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+            </ng-container>
+
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="Location">
+              <th mat-header-cell *matHeaderCellDef> Total </th>
+              <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="CustomField">
+              <th mat-header-cell *matHeaderCellDef>Receipt Download</th>
+              <td mat-cell *matCellDef="let element"> {{element.CustomField}}<button class="btn"
+                  (click)="downloadPDF(element)">
+                  <mat-icon style="color: #1561CF;">cloud_download</mat-icon>
+                </button></td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)">
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="nav-payment" role="tabpanel" aria-labelledby="nav-payment-tab">
+        <div class="card">
+          <div class="row">
+            <div class="col-md-10">
+              <div class="row">
+                <div class="col-md-10 col-lg-8 col-xl-6">
+                  <h1 style="font-weight: bold;">Update your credit card</h1>
+                  <p style="opacity:1">Note : Updating your card will replace the saved card. </p>
+                  <form [formGroup]="creditForm" (ngSubmit)="creditSubmit()">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div>
+                          <mat-radio-group>
+                            <mat-radio-button [checked]="true"> RazerPay </mat-radio-button>
+                          </mat-radio-group>
+                          <!-- <mat-radio-button [checked]="true"></mat-radio-button> -->
+                        </div>
+                      </div>
+                    </div>
+                    <!-- <div class="form-group">
+                        <mat-label>Cardholder's Name</mat-label>
+                        <mat-form-field appearance="outline">
+                          <input matInput type="text" formControlName="cardHoldersName">
+                        </mat-form-field>
+                      </div> -->
+
+                    <!-- <div class="form-group">
+                        <mat-label>Card Details</mat-label>
+                        <mat-form-field appearance="outline">
+                          <input matInput type="text" formControlName="cardDetails"
+                            placeholder="Card Number                                                                 MM/YY CVC">
+                        </mat-form-field>
+                      </div> -->
+
+                    <!-- <div class="form-group">
+                        <div class="float-right">
+                          <button mat-raised-button class="save" [disabled]="creditForm.invalid">
+                            Update Card</button>
+                        </div>
+                      </div> -->
+                  </form>
+                </div>
+
+              </div>
+            </div>
+            <!-- <div class="col-md-2">
+                <div class="float-right">
+                  <button mat-raised-button class="save"><i class="fas fa-plus"></i> New Card</button>
+                </div>
+              </div> -->
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="nav-setting" role="tabpanel" aria-labelledby="nav-setting-tab">
+        <div class="card">
+          <div class="row">
+            <div class="col-md-12 col-lg-12 col-xl-6">
+              <div class="card settingCard">
+                <div class="card-header">
+                  <h2 class="mb-0">Account Details</h2>
+                </div>
+                <div class="card-body">
+                  <div class="form ">
+                    <form [formGroup]="AccountDetailsForm" (ngSubmit)="submit()">
+                      <div class="form-group">
+                        <mat-label>Account Name</mat-label>
+                        <mat-form-field appearance="outline">
+                          <input matInput type="text" value="{{userDisplayName}}" formControlName="accountName">
+                        </mat-form-field>
+                        <p *ngIf="( AccountDetailsForm.controls.accountName.touched) && AccountDetailsForm.controls.accountName.errors?.required"
+                          class="text-danger">
+                          Account Name is required.
+                        </p>
+                        <p *ngIf="AccountDetailsForm.get('accountName').touched && (AccountDetailsForm.get('accountName').errors?.pattern || AccountDetailsForm.get('accountName').errors?.minlength)"
+                          class="text-danger">This is invalid name</p>
+                      </div>
+                      <div class="form-group">
+                        <mat-label>Billing Contact Name</mat-label>
+                        <mat-form-field appearance="outline">
+                          <input matInput type="text" formControlName="billingContactName">
+                        </mat-form-field>
+                        <p *ngIf="( AccountDetailsForm.controls.billingContactName.touched) && AccountDetailsForm.controls.billingContactName.errors?.required"
+                          class="text-danger">
+                          Contact Name is required.
+                        </p>
+                        <p *ngIf="AccountDetailsForm.get('billingContactName').touched && (AccountDetailsForm.get('billingContactName').errors?.pattern || AccountDetailsForm.get('billingContactName').errors?.minlength)"
+                          class="text-danger">This is invalid Contact Name</p>
+                      </div>
+                      <div class="form-group">
+                        <mat-label>Billing Contact Email</mat-label>
+                        <mat-form-field appearance="outline">
+                          <input matInput type="text" formControlName="billingContactEmail">
+                        </mat-form-field>
+                        <p *ngIf="( AccountDetailsForm.controls.billingContactEmail.touched) && AccountDetailsForm.controls.billingContactEmail.errors?.required"
+                          class="text-danger">
+                          Email is required.
+                        </p>
+                        <p *ngIf="AccountDetailsForm.get('billingContactEmail').touched && (AccountDetailsForm.get('billingContactEmail').errors?.pattern || AccountDetailsForm.get('billingContactEmail').errors?.minlength)"
+                          class="text-danger">This is invalid Email</p>
+                      </div>
+                      <div class="form-group">
+                        <div class="text-center">
+                          <button type="submit" mat-raised-button class="save mb-3"
+                            [disabled]="AccountDetailsForm.invalid">Save Details</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="col-md-12 col-lg-12 col-xl-6">
+              <div class="card settingCard">
+                <div class="card-header">
+                  <h2 class="mb-0">Invoice Address</h2>
+                </div>
+                <div class="card-body">
+                  <div class="form">
+                    <form [formGroup]="InvoiceAddressForm" (ngSubmit)="invoiceSubmit()">
+                      <div class="row">
+                        <div class="col-md-4 mb-1" style="display: none;">
+                          <mat-label style="display:block">FullName</mat-label>
+                          <mat-form-field class="example-full-width" appearance="outline">
+                            <input matInput class="matInput" formControlName="fullName">
+                          </mat-form-field>
+                        </div>
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <mat-label>Country</mat-label>
+                            <mat-form-field appearance="outline">
+                              <mat-label placeholder="India"></mat-label>
+                              <mat-select disableRipple formControlName="hostingRegion">
+                                <mat-option *ngFor="let c of country" [value]="c.name">
+                                  {{c.name}}</mat-option>
+                              </mat-select>
+                            </mat-form-field>
+                            <p *ngIf="( InvoiceAddressForm.controls.hostingRegion.touched) && InvoiceAddressForm.controls.hostingRegion.errors?.required"
+                              class="text-danger">
+                              Country is required.
+                            </p>
+                            <p *ngIf="InvoiceAddressForm.get('hostingRegion').touched && (InvoiceAddressForm.get('hostingRegion').errors?.pattern || InvoiceAddressForm.get('hostingRegion').errors?.minlength)"
+                              class="text-danger">This is invalid Country</p>
+                          </div>
+                        </div>
+                        <div class="col-md-12 col-lg-12 col-xl-5">
+                          <div class="form-group">
+                            <mat-label>Address</mat-label>
+                            <mat-form-field appearance="outline">
+                              <input matInput type="text" formControlName="address">
+                            </mat-form-field>
+                            <p *ngIf="( InvoiceAddressForm.controls.address.touched) && InvoiceAddressForm.controls.address.errors?.required"
+                              class="text-danger">
+                              Address is required.
+                            </p>
+                            <p *ngIf="InvoiceAddressForm.get('address').touched && (InvoiceAddressForm.get('address').errors?.pattern || InvoiceAddressForm.get('address').errors?.minlength)"
+                              class="text-danger">This is invalid address</p>
+                          </div>
+                        </div>
+                        <div class="col-md-12 col-lg-6 col-xl-3">
+                          <div class="form-group">
+                            <mat-label>State</mat-label>
+                            <mat-form-field appearance="outline">
+                              <input matInput type="text" formControlName="state">
+                            </mat-form-field>
+                            <p *ngIf="( InvoiceAddressForm.controls.state.touched) && InvoiceAddressForm.controls.state.errors?.required"
+                              class="text-danger">
+                              State is required.
+                            </p>
+                            <p *ngIf="InvoiceAddressForm.get('state').touched && (InvoiceAddressForm.get('state').errors?.pattern || InvoiceAddressForm.get('state').errors?.minlength)"
+                              class="text-danger">This is invalid state</p>
+                          </div>
+                        </div>
+                        <div class="col-md-12 col-lg-6 col-xl-4">
+                          <div class="form-group">
+                            <mat-label>Zip/Pincode</mat-label>
+                            <mat-form-field appearance="outline">
+                              <input matInput type="text" formControlName="pincode">
+                            </mat-form-field>
+                            <p *ngIf="( InvoiceAddressForm.controls.pincode.touched) && InvoiceAddressForm.controls.pincode.errors?.required"
+                              class="text-danger">
+                              pincode is required.
+                            </p>
+                            <p *ngIf="InvoiceAddressForm.get('pincode').touched && (InvoiceAddressForm.get('pincode').errors?.pattern || InvoiceAddressForm.get('pincode').errors?.minlength)"
+                              class="text-danger">This is invalid pincode</p>
+                          </div>
+                        </div>
+                        <div class="col-md-12 col-lg-6 col-xl-6">
+                          <div class="form-group">
+                            <mat-label>City</mat-label>
+                            <mat-form-field appearance="outline">
+                              <input matInput type="text" formControlName="city">
+                            </mat-form-field>
+                            <p *ngIf="( InvoiceAddressForm.controls.city.touched) && InvoiceAddressForm.controls.city.errors?.required"
+                              class="text-danger">
+                              city is required.
+                            </p>
+                            <p *ngIf="InvoiceAddressForm.get('city').touched && (InvoiceAddressForm.get('city').errors?.pattern || InvoiceAddressForm.get('city').errors?.minlength)"
+                              class="text-danger">This is invalid city</p>
+                          </div>
+                        </div>
+                        <div class="col-md-12 col-lg-6 col-xl-6">
+                          <div class="form-group">
+                            <mat-label>Phone</mat-label>
+                            <mat-form-field appearance="outline">
+                              <input matInput type="text" formControlName="phone">
+                            </mat-form-field>
+                            <p *ngIf="( InvoiceAddressForm.controls.phone.touched) && InvoiceAddressForm.controls.phone.errors?.required"
+                              class="text-danger">
+                              phone number is required.
+                            </p>
+                            <p *ngIf="InvoiceAddressForm.get('phone').touched && (InvoiceAddressForm.get('phone').errors?.pattern || InvoiceAddressForm.get('phone').errors?.minlength)"
+                              class="text-danger">This is invalid phone number</p>
+                          </div>
+                        </div>
+                        <!-- <div class="col-md-12">
+                                          <div class="form-group">
+                                            <mat-label>Country</mat-label>
+                                            <mat-form-field appearance="outline">
+                                              <mat-label ></mat-label>
+                                              <mat-select disableRipple formControlName="hostingRegion">
+                                                <mat-option *ngFor="let c of country" [value]="c.name">
+                                                  {{c.name}}</mat-option>
+                                              </mat-select>
+                                            </mat-form-field>
+                                            <p *ngIf="( InvoiceAddressForm.controls.hostingRegion.touched) && InvoiceAddressForm.controls.hostingRegion.errors?.required"
+                                              class="text-danger">
+                                              Country is required.
+                                            </p>
+                                            <p *ngIf="InvoiceAddressForm.get('hostingRegion').touched && ( InvoiceAddressForm.get('hostingRegion').errors?.minlength)"
+                                              class="text-danger">This is invalid Country</p>
+                                          </div>
+                                        </div>
+                                      -->
+                      </div>
+                      <div class="form-group">
+                        <div class="text-center">
+                          <button type="submit" mat-raised-button class="save mb-3"
+                            [disabled]="InvoiceAddressForm.invalid">Save Address</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

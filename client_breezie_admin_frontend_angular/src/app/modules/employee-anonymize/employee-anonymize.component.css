@@ -1,0 +1,86 @@
+.headerSignOut {
+  text-align: center;
+  font-size: 16px;
+}
+
+.headSignOut {
+  text-align: center;
+  font-size: 21px;
+  margin-bottom: 25px;
+}
+
+.closed {
+  color: grey;
+  font-style: italic;
+}
+
+.heading {
+  font-size: medium;
+  text-align: center;
+}
+
+.icons {
+  font-size: 60px;
+  padding-left: 45%;
+  color: red
+}
+
+.dataAnonymize {
+  text-align: center;
+  padding-top: 16px;
+  font-size: 15px;
+}
+
+.undoneAnonymize {
+  text-align: center;
+  padding-top: 12px;
+  color: red;
+  font-size: 18px;
+}
+
+.datatext {
+  text-align: center;
+  font-size: 15px;
+}
+
+.delete {
+  text-align: center;
+  padding-top: 15px;
+  margin-bottom: 13px;
+}
+
+.mat-button.mat-button-disabled.mat-button-disabled {
+  background-color: lightgrey !important;
+  border-color: lightgrey !important
+}
+
+#close {
+  border: 1px solid black;
+  border-radius: 8px;
+  margin-left: 5%;
+  width: 96px;
+  margin-top: 13px;
+  color: black;
+  background-color: #E4E4E4;
+}
+
+#anonymize {
+  border: 1px solid #1561CF;
+  border-radius: 8px;
+  margin-left: 12%;
+  margin-top: 13px;
+  background-color: #1561CF;
+  color: white;
+}
+
+.icons {
+  font-size: 60px;
+  padding-left: 45%;
+  color: red
+}
+
+.deleteInput {
+  width: 33%;
+  margin-left: 179px;
+  padding-left: 5px;
+}

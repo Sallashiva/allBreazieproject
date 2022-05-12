@@ -1,0 +1,64 @@
+<div class="container">
+  <div  style="float: right;cursor: pointer;">
+    <button  class="deleteIcon" mat-dialog-close > <i class="fas fa-times"></i></button>
+  </div>
+  <div>
+
+    <h2 mat-dialog-title>Edit Delivery</h2>
+    <hr>
+    <form [formGroup]="deliveryForm" (ngSubmit)="onUpdateDelivery()">
+      <div>
+        <mat-form-field class="example-full-width" appearance="outline">
+          <input type="text" placeholder="Enter Recipient*" matInput formControlName="empId" [matAutocomplete]="auto">
+          <mat-autocomplete #auto="matAutocomplete">
+            <ng-container *ngIf="( filteredOptions) as result">
+              <mat-option *ngFor="let employees of result" [value]="employees.fullName + ' ' + employees.lastName">
+                {{employees.fullName}} {{employees.lastName}}
+              </mat-option>
+              <mat-option *ngIf="result.length < 1 && nodata">
+                No data found
+              </mat-option>
+            </ng-container>
+          </mat-autocomplete>
+        </mat-form-field>
+        <p *ngIf="( deliveryForm.controls.empId.touched) && deliveryForm.controls.empId.errors?.required"
+          class="text-danger">
+          Recipient Name is required.
+        </p>
+
+
+        <!-- <mat-form-field class="example-full-width">
+                    <input type="text" placeholder="Recipients" aria-label="Number" matInput formControlName="empId"
+                    [matAutocomplete]="auto">
+                    <mat-autocomplete #auto="matAutocomplete">
+                      <ng-container *ngIf="( filteredOptions) as result">
+                        <mat-option *ngFor="let employees of result" [value]="employees.fullName + ' ' + employees.lastName">
+                          {{employees.fullName}} {{employees.lastName}}
+                        </mat-option>
+                        <mat-option *ngIf="result.length < 1 && nodata">
+                          No data found
+                        </mat-option>
+                      </ng-container>
+                    </mat-autocomplete>
+                  </mat-form-field> -->
+
+
+        <mat-form-field appearance="outline">
+          <input matInput type="text" placeholder="Add note to notification Email*" formControlName="emailNote">
+        </mat-form-field>
+        <p *ngIf="( deliveryForm.controls.emailNote.touched) && deliveryForm.controls.emailNote.errors?.required"
+          class="text-danger">
+          Add note to Email required.
+        </p>
+        <div class="signatureRequired">
+          <mat-checkbox formControlName="signatureRequired">Signature required</mat-checkbox>
+        </div>
+
+      </div>
+      <div class="mt-3">
+        <button mat-button mat-raised-button [disabled]="deliveryForm.invalid" class="updateButton">Update</button>
+        <!-- <button mat-button class="addButton" mat-dialog-close>Cancel</button> -->
+      </div>
+    </form>
+  </div>
+</div>

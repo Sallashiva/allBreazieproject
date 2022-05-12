@@ -1,0 +1,81 @@
+<div class="container-fluid px-0">
+  <mat-card>
+    <ng-container>
+      <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource"matSortActive="name" matSortDirection="asc" matSortDisableClear id="excel-table" matSort #thirtyDaysSort="matSort" class="customer-mat-table">
+
+          <!--Check box-->
+          <ng-container matColumnDef="select">
+            <th mat-header-cell *matHeaderCellDef>
+              <mat-checkbox class="mt-2" disableRipple="true" (change)="$event ? masterToggle() : null"
+                [checked]="selection.hasValue() && isAllSelected()"
+                [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()"
+                (change)="emitData($event)">
+              </mat-checkbox>
+            </th>
+            <td mat-cell *matCellDef="let row">
+              <mat-checkbox #dataChecked class="mt-2" disableRipple="true" (click)="$event.stopPropagation()"
+                (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)"
+                [aria-label]="checkboxLabel(row)" (change)="emitData(null)">
+              </mat-checkbox>
+            </td>
+          </ng-container>
+
+          <!--Customer Name Column -->
+          <ng-container matColumnDef="customer_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Customer Name</th>
+            <td mat-cell *matCellDef="let row">{{ row.customer_name }}</td>
+          </ng-container>
+
+          <!-- Package type Column -->
+          <ng-container matColumnDef="package_type">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Package type
+              <mat-select>
+                <mat-option value="one">Option 1</mat-option>
+                <mat-option value="two">Option 2</mat-option>
+              </mat-select>
+            </th>
+            <td mat-cell *matCellDef="let row">{{ row.package_type }}</td>
+          </ng-container>
+
+          <!-- No. of login Column -->
+          <ng-container matColumnDef="no_of_login">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>No. of login</th>
+            <td mat-cell *matCellDef="let row">{{ row.no_of_login }}</td>
+          </ng-container>
+
+          <!-- Pack expiration date Column -->
+          <ng-container matColumnDef="pack_expiration_date">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Pack expiration date</th>
+            <td mat-cell *matCellDef="let row">{{ row.pack_expiration_date }}</td>
+          </ng-container>
+
+          <!-- Total earnings Column -->
+          <ng-container matColumnDef="total_earnings">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Total earnings</th>
+            <td mat-cell *matCellDef="let row">{{ row.total_earnings }}</td>
+          </ng-container>
+
+          <!-- Action Column -->
+          <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header [hidden]="isAllSelected()">Action</th>
+            <td mat-cell *matCellDef="let row" [hidden]="isAllSelected()">
+              <button class="send-reminder-btn" data-toggle="modal" data-target="#sendReminderModal">Send <i
+                  class="fa fa-bell-o ml-1" aria-hidden="true"></i></button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+        <mat-error *ngIf="
+            dataSource.data.length == 0 ||
+            (dataSource.filteredData.length == 0 &&
+              isLoading == false &&
+              errorMsg)
+          " class="errorMsg text-center">{{ errorMsg }}</mat-error>
+        <mat-paginator [pageSizeOptions]="[10,20,50,100]"></mat-paginator>
+      </div>
+    </ng-container>
+  </mat-card>
+</div>

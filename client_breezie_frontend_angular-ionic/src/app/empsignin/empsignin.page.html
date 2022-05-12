@@ -1,0 +1,28 @@
+<ion-content>
+    <div class="spinner" *ngIf="spinner">
+        <mat-spinner></mat-spinner>
+    </div>
+
+    <ion-grid class="forms">
+        <ion-row>
+            <ion-col size="12" size-md="7" size-lg="5" offset-md="2" offset-lg="3">
+                <div *ngIf="this.empForm" class="login-form" style="margin-top:1rem">
+                    <h1>Suggestions</h1>
+                    <form [formGroup]="empForm" (ngSubmit)="onSubmit()">
+
+                        <div class="formGroup" *ngFor="let data of empData">
+                            <ion-label position="stacked">{{data.label}}</ion-label>
+                            <ion-input formControlName="{{data.label}}"></ion-input>
+                        </div>
+
+                        <div class="text-center">
+                            <ion-button type="submit" (click)="naviagteToCamera()">Next</ion-button>
+                        </div>
+                    </form>
+
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+</ion-content>

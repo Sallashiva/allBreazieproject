@@ -1,0 +1,46 @@
+.nav-tabs .nav-link {
+  border: 1px solid white;
+  border-top-left-radius: 1.25rem !important;
+  border-top-right-radius: 1.25rem !important;
+}
+a {
+  color: #999999 !important;
+  background-color: #edecec;
+}
+.selectButton {
+  background: white;
+  color: black;
+  font-size: 0.8rem;
+  margin-right: 10px;
+}
+.nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active {
+  background-color: white !important;
+  color: #5b3f94 !important;
+  border-color: white;
+  font-weight: 600 !important;
+  box-shadow: 0px 0px 3px lightgray;
+  font-size: 16px;
+}
+.nav-tabs {
+  border-bottom: none !important;
+}
+:host::ng-deep.mat-card {
+  box-shadow: 0px 0px 0px 0px rgb(0 0 0 / 20%), 0px 1px 0px 0px rgb(0 0 0 / 14%),
+    0px 1px 3px 0px rgb(0 0 0 / 12%) !important;
+}
+
+:host::ng-deep mat-spinner{
+    left: 40%;
+    top: 30%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+.fields{
+  width: 10%;
+  margin:3px 10px;
+
+}
+.Searchfields{
+  margin:0px 10px;
+}

@@ -1,0 +1,128 @@
+<div class="spinner" *ngIf="spinner">
+  <mat-spinner diameter="100"></mat-spinner>
+</div>
+<div class="container">
+ 
+  <div class="row">
+    <div class="col-md-6">
+      <div>
+        <div class="brandmainheadding">
+          <h2 class="mb-0">Branding Settings</h2>
+        </div>
+        <p class="brandingsubheadding">Match Breazie to your brand</p>
+      </div>
+    </div>
+    <div class="col-md-6">
+    </div>
+  </div>
+  <form [formGroup]="addImagesForm" (ngSubmit)="onFormSubmit()">
+    <div class="row">
+      <div class="col-md-6">
+        <div>
+          <div class="brandmainheadding">
+            <h2 class="mb-1">Company Logo</h2>
+          </div>
+          <p class="brandingsubheadding">Add a logo or select one from your library. <br>
+            Uploads must be in png/jpg format under 2MB</p>
+        </div>
+        <ngx-dropzone (change)="onSelect($event)" class="brandingchoosefile">
+          <div class="brandinguploadicon">
+            <span class="uploadIcon"><i class="fa fa-cloud-upload"></i></span>
+            <div class="droplogo">Drop logo file here or <br>
+              <p class="upload">Click to Upload</p>
+            </div>
+          </div>
+        </ngx-dropzone>
+        <div class="draganddrop">
+          <div class="row">
+            <div class="col-md-4" *ngFor="let f of files">
+              <div class="imagePreview">
+                <ngx-dropzone-image-preview class="images" ngProjectAs="ngx-dropzone-preview" [removable]="true"
+                  (removed)="onRemove(f._id)">
+                  <ngx-dropzone-label>
+                    <div class="image">
+                      <img [src]="f.companyLogo" alt="">
+                    </div>
+                  </ngx-dropzone-label>
+                </ngx-dropzone-image-preview>
+                <mat-form-field appearance="outline" class="selectbox">
+                  <mat-label>Select</mat-label>
+                  <mat-select [(value)]="f.idBadge" (click)="onChangeEmployeesSelect(f._id)">
+                    <mat-option value="Id Badge">ID Badge</mat-option>
+                    <!-- <mat-option value="DDD" > select </mat-option> -->
+                    <!-- <mat-option value="Id Badge dccdc" >gfhjkl Badge</mat-option> -->
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-md-6">
+        <div>
+          <div class="brandColor">
+            <h2>Brand Color</h2>
+          </div>
+          <p class="chooseacolor"> Choose a color for headers, buttons
+            and highlights</p>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <form class="colorbutton">
+              <input class="colordisplay" type="color" [(ngModel)]="color" name="colorSameName"
+                (change)="colorChange($event)">{{color}}
+              <!-- <span class="colorValue">{{color}}</span> -->
+            </form>
+          </div>
+          <div class="col-md-6">
+            <p class="tabicon" (click)="Project()" style="cursor:pointer ;"><i class="fas fa-tablet-alt"></i> Change
+              device orientation</p><br>
+            <p class="brandingcoloricon" (click)="activeProject()" style="cursor:pointer ;"><i
+                class="fas fa-palette"></i> change framecolor</p>
+          </div>
+        </div>
+        <div>
+          <div [ngClass]="isProject ? 'card' : 'card2' ">
+            <div [ngClass]="isActiveProject ? 'previewImage' : 'previewImage2' ">
+              <mat-card class="outercard">
+                <div class="brandingcard">
+                  <div class="heading" id="backGround">
+                    <h3 style="font-size: 13px;">Hi! please enter your details</h3>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-9">
+                      <div>
+                        <mat-form-field>
+                          <div><input matInput type="text" placeholder="Lorem ipsum" disabled></div>
+                        </mat-form-field>
+                        <mat-form-field>
+                          <div><input matInput type="text" placeholder="Lorem ipsum" disabled></div>
+                        </mat-form-field>
+                        <mat-form-field>
+                          <div><input matInput type="text" placeholder="Lorem ipsum" disabled></div>
+                        </mat-form-field>
+                        <mat-form-field>
+                          <div><input matInput type="text" placeholder="Lorem ipsum" disabled></div>
+                        </mat-form-field>
+                        <mat-form-field>
+                          <div><input matInput type="text" placeholder="Lorem ipsum" disabled></div>
+                        </mat-form-field>
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="nextarrow">
+                        <span class="arrowmark"><b><i class="fas fa-chevron-right"></i></b></span><br>Next
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </mat-card>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

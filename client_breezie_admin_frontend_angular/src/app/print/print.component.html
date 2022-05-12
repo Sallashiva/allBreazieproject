@@ -1,0 +1,103 @@
+<div class="container--fluid">
+  <p>
+    <mat-toolbar style="background-color:rgb(255, 255, 255); border-bottom: 1px solid rgb(233, 228, 228)">
+
+      <span> <img src="../../assets/images/Breazie_logo_vector@2x.png"
+          onerror="this.src='../../assets/images/Breazie_logo_vector@2x.png'" class="addImage rounded-circle">
+        {{userDisplayName}}</span>
+      <span class="PrintButton">
+        <button class="btn btn-primary buttonMargin" (click)="printData()">Print</button>
+      </span>
+    </mat-toolbar>
+  </p>
+
+
+  <mat-card class="example-card ml-3 mr-3 mt-2" style="padding: 0px;">
+    <mat-card-header style="background-color:rgb(245, 245, 245); border-bottom: 1px solid rgb(233, 228, 228)">
+
+      <mat-card-title>
+
+        <h2 class="heading"> Signed-in Employees and Guests</h2>
+
+      </mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+
+      <mat-card>
+        <mat-card-header>
+
+          <mat-card-title>
+            <span style="color: rgb(131, 131, 131);">{{totalEvacuation}} Total: </span>
+            <span style="color: rgb(150, 150, 150);font-family: sans-serif">{{totalEmployee}} Employees,</span>
+            <span style="color: rgb(150, 150, 150);font-family: sans-serif">{{totalVisitor}} Guest </span>
+          </mat-card-title>
+        </mat-card-header>
+
+        <table mat-table matSort id="excel-table" [dataSource]="dataSource" class="mat-elevation-z8 "
+          style="width: 100%;">
+
+          <ng-container matColumnDef="image">
+            <th mat-header-cell *matHeaderCellDef> <i class="fas fa-user-alt"></i> </th>
+            <td mat-cell *matCellDef="let element" style="width: 5%; text-align: center; margin-right: 33px"><img
+                [src]=element.VisitorImage onerror="this.src='../../../assets/images/user.png'"
+                class="addImage rounded-circle">
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef>Full Name </th>
+            <td mat-cell *matCellDef="let element" style="width: 25%;">
+              <span *ngIf="element.fullName">
+                {{element.fullName}} {{element.lastName}}
+              </span>
+              <span *ngIf="element.FullName">
+                {{element.FullName}}
+              </span>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef> Email </th>
+            <td mat-cell *matCellDef="let element" style="width: 25%;">
+              {{element.email }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="phone">
+            <th mat-header-cell *matHeaderCellDef> Phone </th>
+            <td mat-cell *matCellDef="let element" style="width: 25%;">
+              {{element.phone }}
+            </td>
+          </ng-container>
+
+          <!-- <ng-container matColumnDef="login">
+            <th mat-header-cell *matHeaderCellDef> LogIn </th>
+            <td mat-cell *matCellDef="let element" style="width: 25%;">
+              <span *ngIf="elemant.lastActivity">
+                {{elemant.lastActivity.time}}
+              </span>
+              <span *ngIf="elemant.loginTime">
+                {{elemant.loginTime}}
+              </span>
+            </td>
+          </ng-container> -->
+
+
+          <ng-container matColumnDef="SignOut">
+            <th mat-header-cell *matHeaderCellDef style="color: black;"></th>
+            <td mat-cell *matCellDef="let element;">
+              <button mat-stroked-button color="primary" (click)="signout(element)" style="border-color:#1561CF ;"
+                class="signBtn"> Sign Out
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns" style="background-color:rgb(245, 245, 245) ;"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="rowhover"></tr>
+        </table>
+      </mat-card>
+    </mat-card-content>
+
+  </mat-card>
+</div>

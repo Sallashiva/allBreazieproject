@@ -1,0 +1,164 @@
+<div class="spinner" *ngIf="spinner">
+    <mat-spinner></mat-spinner>
+    <!-- <ion-spinner name="lines"></ion-spinner> -->
+</div>
+<ion-header class="mobile">
+    <ion-toolbar>
+        <ion-buttons slot="start" class="back-button">
+            <ion-back-button class="backbutton" [defaultHref]=url></ion-back-button>
+        </ion-buttons>
+        <ion-item slot="start" lines="none">
+            <img class="logo" src="../../../assets/images/Mask Group 1.png">
+        </ion-item>
+        <!-- <ion-item slot="end" lines="none">
+      <ion-icon name="log-out-outline" routerLink="/logout"  matTooltip="logout"></ion-icon>
+    </ion-item> -->
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-grid class="forms">
+        <div class="logo" style="padding:20px;">
+            <img src="../../../assets/images/Mask Group 1.png">
+            <!-- <div class="float-right">
+        <ion-button class="logout" routerLink="/logout" matTooltip="Logout"><ion-icon name="log-out-outline"></ion-icon>Logout</ion-button>
+      </div> -->
+        </div>
+
+        <ion-row>
+            <ion-col size="12" size-md="7" size-lg="5" offset-md="2" offset-lg="3">
+                <div class="login-form" style="margin-top:1rem">
+
+                    <h4 style="text-align: center;color:var(--ion-heading-color);font-weight: bold;">Please enter your details
+                    </h4>
+
+                    <form [formGroup]="myFormGroup" (ngSubmit)="onSubmit(myFormGroup)" novalidate>
+                        <div class="formGroup">
+                            <ion-label position="stacked">Full Name*</ion-label>
+                            <ion-input formControlName="FullName"></ion-input>
+                            <div *ngIf="myFormGroup.get('FullName').touched && myFormGroup.get('FullName').errors?.required">
+                                <span class="text-danger"> Name is required.</span>
+                            </div>
+                            <div *ngIf="myFormGroup.get('FullName').touched && myFormGroup.get('FullName').errors?.minlength || myFormGroup.get('FullName').errors?.maxlength">
+                                <span class="text-danger"> Name should be atleast 3-50 chars.</span>
+                            </div>
+                            <div *ngIf="myFormGroup.get('FullName').touched && myFormGroup.get('FullName').errors?.maxlength">
+                                <span class="text-danger"> Name should be maximum 50 chars.</span>
+                            </div>
+                            <div *ngIf="myFormGroup.get('FullName').touched && myFormGroup.get('FullName').errors?.pattern">
+                                <span class="text-danger"> Pattern din't match.</span>
+                            </div>
+                        </div>
+                        <div class="formGroup">
+                            <ion-label position="stacked">Company Name*</ion-label>
+                            <ion-input formControlName="CompanyName"></ion-input>
+                            <div *ngIf="myFormGroup.get('CompanyName').touched && myFormGroup.get('CompanyName').errors?.required">
+                                <span class="text-danger"> Company Name is required.</span>
+                            </div>
+                            <div *ngIf="myFormGroup.get('CompanyName').touched && myFormGroup.get('CompanyName').errors?.minlength || myFormGroup.get('CompanyName').errors?.maxlength">
+                                <span class="text-danger"> Company Name should be atleast 3-50 chars.</span>
+                            </div>
+                            <div *ngIf="myFormGroup.get('CompanyName').touched && myFormGroup.get('CompanyName').errors?.maxlength">
+                                <span class="text-danger"> Company Name should be maximum 50 chars.</span>
+                            </div>
+                            <div *ngIf="myFormGroup.get('CompanyName').touched && myFormGroup.get('CompanyName').errors?.pattern">
+                                <span class="text-danger"> Pattern din't matched</span>
+                            </div>
+                        </div>
+                        <div *ngFor="let form_elem of formData1;index as i">
+                            <div [ngSwitch]="form_elem.type">
+                                <div *ngSwitchCase="'text'">
+                                    <div *ngIf="!form_elem.hidden">
+                                        <ion-label position="stacked">{{form_elem.label}}</ion-label>
+                                        <ion-input type="text" [(ngModel)]="form_elem.value" formControlName="{{form_elem.label}}"></ion-input>
+                                    </div>
+                                </div>
+                                <div *ngSwitchCase="'number'">
+                                    <div *ngIf="!form_elem.hidden">
+                                        <ion-label position="stacked">{{form_elem.label}}</ion-label>
+                                        <ion-input type="number" [(ngModel)]="form_elem.value" formControlName="{{form_elem.label}}"></ion-input>
+                                    </div>
+                                </div>
+                                <div *ngSwitchCase="'date'">
+                                    <div *ngIf="!form_elem.hidden">
+                                        <ion-label position="stacked">{{form_elem.label}}</ion-label>
+                                        <ion-input type="date" [(ngModel)]="form_elem.value" formControlName="{{form_elem.label}}"></ion-input>
+                                    </div>
+                                </div>
+                                <div *ngSwitchCase="'email'">
+                                    <div *ngIf="!form_elem.hidden">
+                                        <ion-label position="stacked">{{form_elem.label}}</ion-label>
+                                        <ion-input type="text" [(ngModel)]="form_elem.value" formControlName="{{form_elem.label}}"></ion-input>
+                                    </div>
+                                </div>
+                                <div *ngSwitchCase="'radio'">
+                                    <div *ngIf="!form_elem.hidden">
+                                        <ion-label position="stacked">{{form_elem.label}}</ion-label>
+                                        <mat-radio-group aria-label="Select an option" formControlName="{{form_elem.label}}">
+                                            <div *ngFor="let ele of form_elem.value ; index as k">
+                                                <mat-radio-button style="display:block" (change)="matRadio($event.value,form_elem.label)" checked="{{ele.multiCheckBox}}" value="{{ele.multi1}}"> {{ele.multi1}}</mat-radio-button>
+                                            </div>
+                                        </mat-radio-group>
+                                    </div>
+                                </div>
+                                <div *ngSwitchCase="'select'">
+                                    <div *ngIf="!form_elem.hidden">
+                                        <ion-label position="stacked">{{form_elem.label}}</ion-label>
+                                        <ion-select multiple="true" value="{{form_elem.label}}" *ngFor="let option of form_elem.options" cancelText="No" okText="Yes">
+                                            <ion-select-option value="{{option}}">{{option}}</ion-select-option>
+                                        </ion-select>
+                                    </div>
+                                </div>
+                                <div *ngSwitchCase="'checkBox'">
+                                    <div *ngIf="!form_elem.hidden">
+                                        <ion-label position="stacked">{{form_elem.label}}</ion-label>
+                                        <mat-checkbox class="example-margin" style="display:block" *ngFor="let ele of form_elem.value" value="ele.fieldName.value"> {{ele.fieldName}}</mat-checkbox>
+                                    </div>
+                                </div>
+                                <!-- <div *ngSwitchCase="'yes'">
+                                    <ion-label position="stacked">{{form_elem.label}}</ion-label>
+                                    <mat-radio-group aria-label="Select an option">
+                                        <mat-radio-button style="display: block;" [value]="form_elem.yesChecked" [checked]="form_elem.yesChecked">Yes</mat-radio-button>
+                                        <mat-radio-button style="display: block;" [value]="form_elem.yesinput" [checked]="form_elem.yesinput">No</mat-radio-button>
+                                    </mat-radio-group>
+                                </div> -->
+                                <div *ngSwitchCase="'yes'">
+                                    <div *ngIf="!form_elem.hidden">
+                                        <ion-label position="stacked">{{form_elem.label}}</ion-label>
+                                        <mat-radio-group aria-label="Select an option" (change)="yesOrNo($event.value,form_elem.label)" formControlName="{{form_elem.label}}">
+                                            <mat-radio-button style="display: block;" checked="{{form_elem.yes}}" value="yes">Yes</mat-radio-button>
+                                            <mat-radio-button style="display: block;" checked="{{form_elem.no}}" value="no">No</mat-radio-button>
+                                        </mat-radio-group>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="rememberVisitor">
+                            <ion-item lines="none" class="mt-3">
+                                <ion-toggle slot="end" (ionChange)="toggle($event)" name="cantaloupe" formControlName="rememberMe"></ion-toggle>
+                                <ion-label style="font-size: 16px;font-weight: bold;" text-wrap>Remember Me
+                                </ion-label>
+                            </ion-item>
+                        </div>
+                        <div class="visitor" style="text-align: center;">
+                            <ion-button type="submit" class="visitor" expand="large" [disabled]="myFormGroup.invalid">Visitor In
+                            </ion-button>
+                        </div>
+                    </form>
+                </div>
+
+            </ion-col>
+            <ion-col *ngIf="showQr" size-md="2" size-lg="2" offset-md="1" offset-lg="2">
+                <div class="qr-code qr text-center">
+                    <h6 class="scan">Tap Here</h6>
+                    <button class="qr-scan" style="text-align: center;background: transparent;" (click)="qrCodeOpen()">
+            <img style="text-align: center; width: 70%;" src="../../assets/images/Breazie-qr-code.png" alt="">
+            <!-- <ion-icon name="qr-code-outline" style="text-align: center;"></ion-icon> -->
+          </button>
+                    <p style="text-align: center;font-size: 10px;" class="content">Scan to access this application on your device
+                    </p>
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

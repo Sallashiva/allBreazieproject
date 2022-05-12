@@ -1,0 +1,158 @@
+<div class="spinner" *ngIf="spinner"  >
+  <mat-spinner diameter="100" ></mat-spinner>
+</div>
+<div class="title d-flex align--items-center justify-content-between">
+  <div>
+    <h1 mat-dialog-title class="mb-0"><b>Edit Guest</b></h1>
+  </div>
+<div  style="float: right;cursor: pointer;">
+  <button  class="deleteIcon" mat-dialog-close > <i class="fas fa-times"></i></button>
+</div>
+</div>
+<hr>
+<div class="container">
+  <div class="p-3">
+    <div style="text-align: center;">
+      <img [src]="VisitorImage" onerror="this.src='../../assets/images/user.png'" class="addImage rounded-circle">
+    </div>
+    <div>
+      <form [formGroup]="VisitorForm" (ngSubmit)="onUpdateVisitor()">
+        <div>
+          <mat-form-field appearance="outline">
+            <mat-label>Full Name *</mat-label><input matInput type="text" formControlName="FullName" autocomplete="off">
+          </mat-form-field>
+          <p *ngIf="( VisitorForm.controls.FullName.touched) && VisitorForm.controls.FullName.errors?.required"
+            class="text-danger">
+            Full name is required.
+          </p>
+          <p *ngIf="VisitorForm.get('FullName').touched && (VisitorForm.get('FullName').errors?.pattern )"
+            class="text-danger">This is invalid full name!</p>
+          <div class="text-danger"
+            *ngIf="VisitorForm.get('FullName').touched && VisitorForm.get('FullName').errors?.minlength || VisitorForm.get('FullName').errors?.maxlength">
+            <p style="font-size: 12px;">
+              Full Name accept between 3-30 characters
+            </p>
+          </div>
+          <mat-form-field appearance="outline" class="mt-2">
+            <mat-label>Company Name *</mat-label><input matInput type="text" formControlName="CompanyName" autocomplete="off">
+          </mat-form-field>
+          <p *ngIf="( VisitorForm.controls.CompanyName.touched) && VisitorForm.controls.CompanyName.errors?.required"
+          class="text-danger">
+          Company name is required.
+        </p>
+        <div class="text-danger"
+            *ngIf="VisitorForm.get('CompanyName').touched && VisitorForm.get('CompanyName').errors?.minlength || VisitorForm.get('CompanyName').errors?.maxlength">
+            <p style="font-size: 12px;">
+              Company Name accept between 2-50 characters
+            </p>
+          </div>
+        <p *ngIf="VisitorForm.get('CompanyName').touched && (VisitorForm.get('CompanyName').errors?.pattern )"
+          class="text-danger">This is invalid Company Name</p>
+          <mat-form-field appearance="outline" class="mt-2">
+            <mat-label>Time In *</mat-label><input matInput type="text" [disabled]="isDisabled"
+              value="{{loginTime | date:'MMM d, h:mm a' }}">
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="mt-2">
+            <mat-label>Time Out </mat-label><input matInput type="text" [disabled]="isDisabled"
+              value="{{logoutTime | date:'MMM d, h:mm a' }}">
+          </mat-form-field>
+
+        </div>
+        <div>
+          <mat-form-field appearance="outline">
+            <mat-label>Location *</mat-label>
+            <mat-select disableRipple formControlName="location">
+              <mat-option class="location" *ngFor="let location of deviceLocation" value="{{location.locationId}}" selected>
+                {{location.officeName}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <p *ngIf="( VisitorForm.controls.location.touched) && VisitorForm.controls.location.errors?.required"
+          class="text-danger">
+          Location is required.
+        </p>
+
+        </div>
+        <div>
+          <mat-form-field appearance="outline" style="width: 100%;" class="mt-2">
+            <mat-label>Visiting(Host) *</mat-label>
+            <mat-select matNativeControl formControlName="HostName">
+              <mat-option *ngFor="let employee of employees" value="{{employee}}" selected>{{employee}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <p *ngIf="( VisitorForm.controls.location.touched) && VisitorForm.controls.location.errors?.required"
+          class="text-danger">
+          Visiting Host is required.
+        </p>
+        </div>
+        <!-- <div *ngFor="let form_elem of formTemplate">
+          <div [ngSwitch]="form_elem.type">
+            <div *ngSwitchCase="'text'">
+              <mat-form-field class="example-full-width phone">
+                <mat-label class="pho">{{form_elem.label}}</mat-label>
+                <input type="text" [(ngModel)]="form_elem.value" matInput formControlName="{{form_elem.label}}" />
+              </mat-form-field>
+            </div>
+            <div *ngSwitchCase="'email'">
+              <mat-form-field class="example-full-width phone">
+                <mat-label class="pho">{{form_elem.label}}</mat-label>
+                <input type="eamil" [(ngModel)]="form_elem.value" matInput formControlName="{{form_elem.label}}" />
+              </mat-form-field>
+            </div>
+            <div *ngSwitchCase="'number'">
+              <mat-form-field class="example-full-width phone">
+                <mat-label class="pho">{{form_elem.label}}</mat-label>
+                <input type="number" [(ngModel)]="form_elem.value" matInput formControlName="{{form_elem.label}}" />
+              </mat-form-field>
+            </div>
+            <div *ngSwitchCase="'date'">
+              <mat-form-field class="example-full-width phone">
+                <mat-label class="pho">{{form_elem.label}}</mat-label>
+                <input type="date" [(ngModel)]="form_elem.value" matInput formControlName="{{form_elem.label}}" />
+              </mat-form-field>
+            </div>
+            <div *ngSwitchCase="'radio'">
+              <mat-label position="stacked">{{form_elem.label}}</mat-label>
+              <mat-radio-group aria-label="Select an option" formControlName="{{form_elem.label}}">
+                <div *ngFor="let ele of form_elem.value;let j = index">
+                  <mat-radio-button style="display:block" (change)="matRadio($event.value,form_elem.label)"
+                    checked="{{ele.multiCheckBox}}" value="{{ele.multi1}}"> {{ele.multi1}}</mat-radio-button>
+                </div>
+              </mat-radio-group>
+            </div>
+            <div *ngSwitchCase="'yes'">
+              <mat-label position="stacked">{{form_elem.label}}</mat-label>
+              <mat-radio-group aria-label="Select an option" (change)="yesOrNo($event.value,form_elem.label)"
+                formControlName="{{form_elem.label}}">
+                <mat-radio-button style="display: block;" checked="{{form_elem.yes}}" value="yes">Yes</mat-radio-button>
+                <mat-radio-button style="display: block;" checked="{{form_elem.no}}" value="no">No</mat-radio-button>
+              </mat-radio-group>
+            </div>
+            <div *ngSwitchCase="'select'">
+              <mat-form-field class="example-full-width phone">
+                <mat-label class="pho">{{form_elem.label}}</mat-label>
+                <input type="tel" matInput formControlName="{{form_elem.label}}" />
+              </mat-form-field>
+            </div>
+            <div *ngSwitchCase="'checkBox'">
+              <h4>{{form_elem.label}}</h4>
+              <div class="col-md-2 mt-3" *ngFor="let box of form_elem['value'];let k =index">
+                <mat-checkbox (change)="checkboxes($event,box)" checked="{{box.fieldCheck2}}"
+                  formControlName="{{box.fieldName}}">
+                  {{box.fieldName}}
+                </mat-checkbox>
+              </div>
+            </div>
+          </div>
+        </div> -->
+
+        <div class="mat-dialog-actions d-flex align-items-center justify-content-center">
+          <button type="submit" class="addButton" [disabled]="VisitorForm.invalid" mat-button mat-raised-button>Update</button>
+
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+</div>

@@ -1,0 +1,93 @@
+.integrationCardLeft {
+  width: 464px;
+  margin-top: 20px;
+  height: 202px;
+  margin-left: 50px;
+}
+
+.integrationCardRight {
+  width: 464px;
+  margin-top: 20px;
+  height: 202px;
+  margin-left: 24px;
+}
+
+.form-check {
+  margin-left: 25px;
+  margin-bottom: 15px;
+}
+
+#integrationDropDown {
+  float: right;
+  background-color: #1561CF;
+  border: 1px solid #004AB6;
+  margin-top: 15px;
+}
+
+.integrationsAddButton {
+  background-color: #1561CF;
+  color: white;
+  float: right;
+  margin-right: 10px;
+}
+
+.employeeInput {
+  margin-left: 25px;
+  border-radius: 7px;
+
+}
+
+.dropdown-menu {
+  min-width: 20rem;
+  position: absolute;
+  will-change: transform;
+  top: 0px;
+  left: 0px;
+  transform: translate3d(-81px, 57px, 0px) !important
+}
+
+.inputbox {
+  border-radius: 4px;
+  border: 1px solid black;
+  width: 240px;
+}
+
+.integrationHeading {
+  margin-left: 51px;
+  margin-top: 15px;
+}
+
+.integrationSecond {
+  margin-left: 51px;
+  color: #231F20;
+}
+
+input[type=radio] {
+  box-sizing: border-box;
+  padding: 0;
+  width: 20px;
+  height: 20px;
+  margin: 0px -13px 6px -27px;
+  line-height: 14;
+}
+.checkout{
+  background-color: #1561CF;
+  padding:6px 15px;
+  color: white;
+  border: none;
+  border-radius: 4px;
+}
+.spinner {
+  position: fixed;
+  background-color: rgba(0,0,0,0.2);
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+ :host::ng-deep mat-spinner{
+  position: absolute;
+  left: 50%;
+  top: 30%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}

@@ -1,0 +1,182 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start" class="back-button">
+            <ion-back-button name="ios-arrow-back" [defaultHref]="path"></ion-back-button>
+        </ion-buttons>
+        <ion-item slot="start" lines="none">
+            <img class="logo" src="../../../assets/images/Mask Group 1.png">
+        </ion-item>
+        <!-- <ion-item slot="end" lines="none" ion-padding class="qrcode">
+            <div class="qr-code" (click)="qrCodeOpen()">
+                <img style="text-align: center; width: 5%;" src="../../../assets/images/Breazie-qr-code.png" alt="">
+            </div>
+        </ion-item> -->
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+
+    <ion-grid>
+        <ion-row>
+            <ion-col size="12" size-md="8" size-lg="9">
+                <h4 class="terms-h1">Please Read And Agree</h4>
+                <ion-card>
+                    <div class="cardContent">
+                        <ion-card-header>
+                            <ion-card-title>Digitoonz Media & Entertainment Pvt. Ltd.</ion-card-title>
+                        </ion-card-header>
+                        <ion-card-content>
+                            <div *ngIf="agreementData">
+                                <div [innerHTML]="sanitizer.bypassSecurityTrustHtml(agreementData)"></div>
+                            </div>
+                        </ion-card-content>
+                        <!-- <ion-card-content>
+              <p>Visitors are welcome to visit during hours of operations. For your safety & security we have the
+                following guidelines: (a) All visitors must sign in through the main reception area located on 2nd
+                floor. (b) All visitors are required to read and acknowledge the Non-Disclosure and Waiver Agreement on
+                their first visit. (c) Smoking/tobacco use is prohibited in our facility. Please use designated outside
+                areas. (d) Videography/Photography is prohibited in our entire facility. (e) In the event of an
+                emergency. Follow signage to the nearest emergency exit.<br><br>
+
+                Visitors Non-Disclosure and Waiver Agreement I acknowledge that while I am attending the Digitoonz
+                studios and offices at C 29, Sector 6, Noida, UP-201301, India, I may have access or be exposed to
+                information in connection with the business of Digitoonz and its principals, parent, employees,
+                divisions, and subsidiaries (collectively hereinafter referred to as “Digitoonz”), the business of
+                Digitoonz’s clients (“Clients”), and Digitoonz’s and Client’s animated television series, feature films
+                and internet projects (the “Projects”), which Projects are highly confidential. In this regard, I
+                understand that the release of information concerning Digitoonz and/or the Projects could materially
+                injure Digitoonz and pose legal and other risks for Digitoonz and therefore, I agree to the
+                following:<br><br></p>
+              <ol>
+                <li>All information and materials concerning Digitoonz’s and/or or Client’s business and/or the
+                  Projects, including proprietary information, (collectively hereinafter referred to as “Confidential
+                  Information” as further set out below) shall be kept strictly confidential and secret, unless
+                  Digitoonz otherwise specifically advises me to the contrary in writing. Furthermore, I understand that
+                  all Confidential Information, whether provided by Digitoonz and/or created by me in connection with
+                  the Projects, shall be kept inaccessible to all persons, and I shall not permit any other person, firm
+                  or entity access to such confidential information. I agree that this restriction shall apply whether
+                  or not any such information is marked “confidential”.</li>
+                <li>I shall not at any time (whether before, during or after the term of my engagement) use,
+                  disseminate, publish, state or in any other manner disclose, directly or indirectly, to any media,
+                  person, firm or entity any Confidential Information which comes to my attention or is derived by me as
+                  a result of my involvement with Digitoonz and/or the Projects unless specifically authorised in
+                  writing by Digitoonz. I shall not confirm or deny any information of any kind (whether rumoured or
+                  known) in any way relating to Digitoonz, and/or the Projects. I shall not make use of the Confidential
+                  Information for the benefit of any other person, firm or entity in any manner whatsoever.</li>
+                <li>The Confidential Information shall include, without limitation, any and all trade secrets or
+                  information, in any medium, which is known by or given to me or which I create for Digitoonz and/or in
+                  connection with the Project(s) including, without limitation, preliminary work, business and financial
+                  information or plans, models, designs and specifications, operations, projections, results and
+                  prospects, computer programs and software and research efforts, marketing techniques, product
+                  concepts, characters, data, systems business opportunities (including markets which have been
+                  investigated), trade secrets, methods, passwords, access to computer files, product or proposed
+                  product information, prototypes, formulas, computer, customer, and supplier information and records,
+                  computer software programs, agreements and/or contracts between Digitoonz and its customers, suppliers
+                  and employees, Digitoonz’s﻿ client lists, client information, Digitoonz’s client contacts, Digitoonz’s
+                  actual or proposed editorial, marketing and/or creative policies, practices, concepts, strategies, and
+                  methods of operations, financial or business projections, intellectual property pricing, gross sales
+                  numbers, company clients and vendors, and information about or received from clients and other
+                  companies with which Digitoonz does business, and any other information relating to the creative
+                  projects, technology or business of Digitoonz, all of which shall be Digitoonz’s sole and exclusive
+                  property.</li>
+                <li>I agree that any and all materials, which are provided to me by Digitoonz or created by me in
+                  connection with my visit (including but not limited to artwork and digital files and information),
+                  shall be used only for the purposes of my visit with Digitoonz and shall not be removed from
+                  Digitoonz’s premises and shall be returned or destroyed in accordance herewith. I agree to store all
+                  such materials in a secure manner and upon Digitoonz’s request at any time, either return to
+                  Digitoonz, or destroy (at the discretion of Digitoonz) such materials. If return is instructed, I
+                  shall immediately deliver to Digitoonz all materials in my possession containing Confidential
+                  Information and all other property belonging to Digitoonz of every nature and description (and all
+                  copies thereof), including, without limitation, all documents, specifications, codes, models,
+                  apparatus, sketches, designs and lists. If destruction is instructed, I shall destroy such materials
+                  in accordance with Digitoonz’s instructions, and shall provide Digitoonz’s with a certificate of
+                  destruction in the form of a Certificate of Destruction that can be obtained from my immediate
+                  supervisor. Upon leaving the studio, I will confirm to Digitoonz that I have not retained any
+                  documents or any copies or reproductions thereof.</li>
+                <li>All records of Digitoonz’s activities made or received by me during my visit shall remain in
+                  confidence, shall remain the property of Digitoonz and subject to Digitoonz’s control. At any time,
+                  Digitoonz may request the surrender of such records and I agree to provide them forthwith. I will not
+                  make copies of any documents for personal use. I agree that the names, addresses, and all contact
+                  information of all suppliers and clients are and shall remain the property of Digitoonz, and I agree
+                  that I will not copy or transfer a list of any or all such persons or entities.</li>
+                <li>I agree that all memoranda, disks, files, notes, records or other documents, whether in electronic
+                  form or hard copy compiled by Digitoonz or made available to me during my visit (whether or not the
+                  material contains confidential information) are the property of Digitoonz and shall be delivered to
+                  Digitoonz at any other time upon request. I agree that I will not make or retain copies or excerpts of
+                  the material without the prior written consent of Digitoonz.</li>
+                <li>I acknowledge that I am not entitled to transfer to myself, electronically or otherwise, any records
+                  of Digitoonz.</li>
+                <li>Any breach of the provisions of this Non-disclosure Agreement shall constitute a material breach
+                  which will cause Digitoonz irreparable injury, not readily measurable in money damages, for which
+                  Digitoonz shall be entitled to injunctive relief and other remedies provided at law or in equity.</li>
+                <li>If I am required by legal process to disclose any Confidential Information, I shall not be in breach
+                  of this Non-disclosure Agreement, but I shall provide Digitoonz with prompt prior notice thereof so
+                  that Digitoonz may seek a protective order or other appropriate remedy to prevent or limit disclosure
+                  of any Confidential Information. I shall fully cooperate with Digitoonz and/or Digitoonz’s application
+                  for a protective order or other remedy, and in any event I shall disclose only that portion of the
+                  Confidential Information, which I am legally required to disclose.</li>
+                <li>This Non-disclosure Agreement is the complete and exclusive statement of the agreement between the
+                  parties and supersedes all prior written and oral communications and agreements relating to the
+                  subject matter hereof. The terms of this Non-disclosure Agreement shall be binding upon my heirs, my
+                  legal﻿ representatives, and me. No modification, termination, extension, renewal or waiver of any
+                  provision of the Non-disclosure Agreement shall be effective unless in writing and signed by myself
+                  and an authorised representative of Digitoonz. The provisions of this Non-disclosure Agreement are
+                  separable, and the enforceability of one or more provisions shall not affect the enforceability of any
+                  other. This Non-disclosure Agreement shall be construed, interpreted and governed in accordance with
+                  the laws of India and the Province Delhi (NCR).</li>
+              </ol>
+              <p>The provisions of this Non-disclosure Agreement shall survive the expiration or earlier termination of
+                this Non-disclosure Agreement and/or the expiration or termination of my engagement by Digitoonz. In the
+                event of termination or cancellation of this Non-disclosure Agreement by Digitoonz, my sole and
+                exclusive remedy shall be an action at law for damages, and I hereby waive any right to seek and/or
+                obtain rescission and/or equitable and/or injunctive relief as against Digitoonz. </p>
+              <br>
+              <p>Thank you.</p>
+            </ion-card-content> -->
+                    </div>
+                </ion-card>
+            </ion-col>
+            <ion-col size="12" size-md="4" size-lg="3">
+                <div class="formz">
+                    <form [formGroup]="agreementForm" (ngSubmit)="onAgreement()" #triggerForm="ngForm" (keydown.enter)="triggerSubmit()">
+                        <ion-list>
+                            <ion-item class="mt-5" lines="none" class="terms">
+                                <ion-label text-wrap style="font-weight: bold;">Agree for all terms and conditions</ion-label>
+                                <ion-checkbox color="medium" formControlName="acceptTerms" checked slot="start" (ionChange)="checkBox($event)"></ion-checkbox>
+                            </ion-item>
+                            <p *ngIf="agreementForm.get('acceptTerms').errors" class="invalid-feedback">Accept Ts & Cs is required</p>
+                            <ion-item [ngClass]="acceptTerms ? 'diaplaySignature' : 'hideSignature'" lines="none" class="signature mt-3" (keydown.enter)="$event.preventDefault()">
+                                <div class="signature-pad">
+                                    <div id="signature">
+                                        <p style="font-weight: bold;">Your Digital Signature</p>
+                                        <canvas class="signature-pad-canvas" (click)="isCanvasBlank()" (keydown.enter)="$event.preventDefault()" (touchend)="isCanvasBlank()" (ondblclick)="isCanvasBlank()" #canvas width="2000" style="touch-action: none;"></canvas>
+                                        <ion-button class="clear" expand="full" (click)="clear()"> Clear</ion-button>
+                                    </div>
+                                </div>
+                            </ion-item>
+                            <ion-item [ngClass]="!signatureIsEmpty && acceptTerms ? 'diaplaySignature' : 'hideSignature'" lines="none" class="mt-3">
+                                <ion-toggle slot="end" name="cantaloupe" (ionChange)="onToggle($event)"></ion-toggle>
+                                <ion-label style="font-size: 16px;font-weight: bold;" text-wrap>E-mail me a copy of this Agreement
+                                </ion-label>
+                            </ion-item>
+                            <div *ngIf="toggle" [ngClass]="!signatureIsEmpty && acceptTerms ? 'diaplaySignature' : 'hideSignature'">
+                                <ion-item class="email" (keydown.enter)="$event.preventDefault()">
+                                    <ion-label position="floating" style="color:  var(--ion-heading-color);">Enter E-mail</ion-label>
+                                    <ion-input type="email" name="EmailId" formControlName="EmailId" autocomplete='on'></ion-input>
+                                </ion-item>
+                                <div *ngIf="(agreementFormControl.EmailId.touched) && agreementFormControl.EmailId.errors?.required">
+                                    <p class="text-danger">Email Id is required</p>
+                                </div>
+                                <p *ngIf="agreementFormControl.EmailId.touched && (agreementFormControl.EmailId.errors?.pattern || agreementFormControl.EmailId.errors?.email)" class="text-danger">This is invalid email address!</p>
+
+                            </div>
+                            <div [ngClass]="!signatureIsEmpty && acceptTerms ? 'diaplaySignature' : 'hideSignature'">
+                                <ion-button type="submit" [disabled]=" agreementForm.invalid || !acceptTerms" expand="block" class="continue">Continue
+                                </ion-button>
+                            </div>
+                        </ion-list>
+                    </form>
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

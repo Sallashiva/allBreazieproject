@@ -1,0 +1,7 @@
+{
+  "name": "breazie",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

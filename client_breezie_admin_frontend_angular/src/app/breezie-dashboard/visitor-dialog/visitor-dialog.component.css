@@ -1,0 +1,88 @@
+
+.deleteIcon{
+  border: none;
+  outline: none;
+  background: transparent;
+}
+.addButton{
+    border: 1px solid #004AB6;
+    border-radius: 4px;
+    background-color:#1561CF;
+    margin-left: 10px;
+    color: white !important;
+}
+
+/* .addButton:hover{
+    border: 1px solid;
+    background-color: #1561CF;
+    border-color: #004AB6;
+} */
+.addImage{
+    width: 110px;
+    /* margin-left: 120px; */
+    height: 110px;
+}
+.title {
+    margin: -24px -24px 20px -24px;
+    display: block;
+    padding: 15px 20px 15px;
+    border-bottom: 1px solid lightgray;
+}
+.image{
+    text-align: center;
+}
+:host::ng-deep .mat-dialog-container {
+    width: 400px !important;
+}
+:host::ng-deep .mat-dialog-content {
+    display: block;
+    margin: 0 -24px;
+    padding: 0 24px;
+    height: auto;
+    max-height: 100%;
+    overflow: hidden;
+    -webkit-overflow-scrolling: touch;
+}
+.add{
+    background: #1561CF;
+    color: white;
+}
+.close{
+    background: #E4E4E4;
+    border:1px solid #A0A0A0;
+    color: #A0A0A0;
+}
+
+button:disabled{
+    background-color: #E4E4E4;
+    color: rgba(0,0,0,0.2) !important;
+    border-color: lightgray;
+}
+
+:host::ng-deep.mat-radio-button.mat-accent .mat-radio-inner-circle, .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element:not(.mat-radio-persistent-ripple), .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-persistent-ripple, .mat-radio-button.mat-accent:active .mat-radio-persistent-ripple {
+    background-color: blue;
+  }
+  
+  :host::ng-deep.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+    border-color: blue;
+  }
+  .spinner {
+    position: fixed;
+    background-color: rgba(0,0,0,0.7);
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+   :host::ng-deep mat-spinner{
+    position: absolute;
+    left: 50%;
+    top: 30%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+  }
+
+  ::ng-deep .mat-select-panel {
+    min-width: 100% !important;
+    margin-left:15px ;
+    margin-top: 40px;
+}

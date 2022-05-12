@@ -1,0 +1,24 @@
+<h5 class="headerSignOut " id="exampleModalLabel">You are about to </h5>
+<h4 class="headSignOut" id="exampleModalLabel"><b>Anonymize {{editData.length}} Guest </b></h4>
+
+
+<mat-dialog-content class="mat-typography">
+  <form [formGroup]="employeeForm" (ngSubmit)="addEmployee()">
+    <div class="icons"><i class="fa fa-exclamation-circle" aria-hidden="true"></i></div>
+    <div>
+      <div class="dataAnonymize">This action will permanently anonymize the guest </div>
+      <div class="datatext">data.</div>
+    </div>
+    <div class="undoneAnonymize">This cannot be undone.</div>
+    <div class="delete">Type 'DELETE' to continue</div>
+    <div class="text-center">
+      <input matInput type="text" class="deleteInput text-center" style="border: 1px solid blue;" formControlName="delete"
+        autocomplete="off">
+    </div>
+    <div class="d-flex align-items-center justify-content-center">
+      <button type="button" mat-button id="close" mat-raised-button mat-dialog-close>Close</button>
+      <button type="submit" [disabled]="employeeForm.invalid" mat-button id="anonymize"
+        (click)="anonymize()">Anonymize</button>
+    </div>
+  </form>
+</mat-dialog-content>

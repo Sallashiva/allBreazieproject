@@ -1,0 +1,105 @@
+<ion-content [fullscreen]="true">
+    <div class="container-fluid login-body h-100" [style.background-image]="'url(' + imagePath +')'">
+
+        <div class="img  d-flex justify-content-between align-items-center">
+            <div class="deviceLaptop" *ngIf="!isDevice">
+                <!-- <div class="deviceLogout" (click)="navigateToDeviceLogout()">
+                    <ion-icon matTooltip="Logout" class="logouticon" name="log-out-outline"></ion-icon>
+                </div> -->
+            </div>
+
+            <span *ngIf="!isDevice">
+              <div class="laptop" >
+                <select class="mt-5 selectOption" style="position: relative;" (change)="navigateToLogout($event)">
+                    <option value="" hidden>Breazie More</option>
+                      <option value="employee" *ngIf="employeeInOut"  class="glyphicon glyphicon-search">
+                        <ion-icon name="log-out-outline"></ion-icon>Employee
+                    </option>
+                      <option value="visitors" *ngIf="visitorOut">Visitor Out</option>
+                      <option *ngIf="delivery" value="delivery">Delivery</option>
+                      <option  value="logout">Logout</option>
+                  </select>
+              </div>
+
+            </span>
+
+        </div>
+        <div class="img laptopimg1 text-center mt-5" style="padding: 20px;filter: drop-shadow(1px 1px 1px whitesmoke);">
+            <img src="../../assets/images/Mask Group 1.png">
+        </div>
+        <div class="mobileimg" *ngIf="!isDevice">
+            <div class="mobile">
+                <select class="mt-4 selectOption" style="position: relative;" (change)="navigateToLogout($event)">
+                    <option value="" hidden>Breazie More</option>
+                      <option value="employee" *ngIf="employeeInOut"  class="glyphicon glyphicon-search">
+                        <ion-icon name="log-out-outline"></ion-icon>Employee
+                    </option>
+                      <option value="visitors" *ngIf="visitorOut">Visitor Out</option>
+                      <option *ngIf="delivery" value="delivery">Delivery</option>
+                      <option  value="logout">Logout</option>
+                  </select>
+                <!-- <ion-button class="deviceLogout" matTooltip="Logout">
+                    Employee
+                </ion-button> -->
+            </div>
+            <!-- <div class="deviceMobile">
+                <div class="deviceLogout" (click)="navigateToDeviceLogout()">
+                    <ion-icon matTooltip="Logout" class="logouticon" name="log-out-outline"></ion-icon>
+                </div>
+            </div> -->
+        </div>
+        <div class="img mobileimg">
+            <div class="img">
+                <img class="breezieImg" src="../../assets/images/Mask Group 1.png" style="filter: drop-shadow(1px 1px 1px whitesmoke);">
+            </div>
+        </div>
+
+        <div class="toogle">
+
+            <ion-grid align-self-end>
+                <ion-row>
+                    <ion-col size="12" size-md="2">
+                    </ion-col>
+                    <ion-col size="12" size-md="8" class="swipe">
+                        <div class="swipebutton">
+                            <div id="button-background">
+                                <span class="slide-text"> Swipe > ></span>
+                                <div id="slider">
+                                    <p>VISITOR IN</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </ion-col>
+                    <ion-col size="12" size-md="2" *ngIf="showQr">
+                        <div class="qrscanner" (click)="qrCodeOpen()" style="margin-right:20px ;" *ngIf="!isDevice">
+                            <div class="card">
+                                <h6 class="scan">Scan Here</h6>
+                                <p style="text-align: center;">
+                                    <!-- <img style="text-align: center; width: 100%;" src="../../assets/images/Breazie-qr-code.png" alt=""> -->
+                                    <!-- <ion-icon name="qr-code-outline" style="text-align: center;"></ion-icon> -->
+                                    <qrcode [qrdata]="myAngularxQrCode" [width]="80" [errorCorrectionLevel]="'M'"></qrcode>
+                                </p>
+                                <p class="qr-content">Scan to access this application on your device </p>
+                            </div>
+
+                        </div>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+            <div class="d-flex align-item-center justify-content-between mb-5" *ngIf="!isDevice">
+                <!-- <div *ngIf="delivery">
+                    <button class="btn  logouts" (click)="navigateToDelivery()" matTooltip="Logout">
+                    Delivery
+                </button>
+                </div> -->
+                <!-- <div class="visitorLogOut" *ngIf="visitorOut">
+                    <button class="btn logouts" style="margin-right:30px" (click)="navigateToVisitorLogout()" matTooltip="Logout">
+                    Visitor Out
+                </button>
+                </div> -->
+            </div>
+
+        </div>
+    </div>
+</ion-content>

@@ -1,0 +1,27 @@
+<ion-header>
+    <ion-toolbar>
+        <!-- <ion-buttons slot="start" class="back-button">
+            <ion-back-button [defaultHref]="path"></ion-back-button>
+        </ion-buttons> -->
+        <ion-item slot="start" lines="none">
+            <img class="logo" src="../../../assets/images/Mask Group 1.png">
+        </ion-item>
+        <!-- <ion-item slot="end" lines="none" ion-padding class="qrcode">
+      <div class="qr-code" (click)="qrCodeOpen()">
+        <img style="text-align: center; width: 5%;" src="../../../assets/images/Breazie-qr-code.png" alt="">
+      </div>
+    </ion-item> -->
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <div class="technicianLogin" style="max-height:100%">
+        <ion-item-group class="hero-text my-auto" style="text-align: center;">
+            <div class="my-auto text-middle-center cafeteriacontent">
+                <h1 style="font-weight: bold;">Welcome to Digitoonz Cafeteria Please select your Refreshments</h1>
+                <ion-button expand="large" fill="outline" color="light" style="color: #1D447D;" (click)="skip()">Skip
+                </ion-button>
+                <ion-button expand="large" color="light" (click)="refreshment()">Continue</ion-button>
+            </div>
+        </ion-item-group>
+    </div>
+</ion-content>

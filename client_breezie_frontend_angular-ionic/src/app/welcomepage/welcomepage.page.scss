@@ -1,0 +1,47 @@
+.breezieImg {
+    height: 30px;
+    margin-top: 17px;
+    position: relative;
+    top: -12px;
+}
+
+img {
+    max-width: 59%;
+}
+
+.loginBtn {
+    width: 250px;
+    border-radius: 25px;
+}
+
+.main {
+    height: 100px;
+    margin: auto;
+    margin-top: 25%;
+}
+
+@media only screen and (max-width:"990px") {}
+
+@media only screen and (max-width:"770px") {
+    .main {
+        height: 100px;
+        margin: auto;
+        margin-top: 35%;
+    }
+}
+
+@media only screen and (max-width:"767px") {}
+
+@media only screen and (max-width:"600px") {}
+
+@media only screen and (max-width:"580px") {}
+
+@media only screen and (max-width:"412px") {
+    .main {
+        height: 100px;
+        margin: auto;
+        margin-top: 60%;
+    }
+}
+
+@media only screen and (max-width:"375px") {}

@@ -1,0 +1,374 @@
+.login-body {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.login-body:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.qrCodeScanner {
+    width: 100%;
+}
+
+.selectOption {
+    position: relative;
+    padding: 10px 0px;
+    border-radius: 4px;
+    background: white;
+}
+
+.toogle ion-icon {
+    // font-size: 120px;
+    box-shadow: 0px 0px 6px var(--ion-box-shadow-color);
+    border-radius: 10px;
+    padding: 10px;
+    position: relative;
+    cursor: pointer;
+    font-size: 34px;
+    box-shadow: none;
+}
+
+.toogle {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+}
+
+.qr-content {
+    text-align: center;
+    font-size: 12px;
+    padding: 0px 20px;
+    // color: #3C3C3C;
+}
+
+.swipe {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+// .swipebutton {
+//   position: absolute;
+//   top: 50%;
+//   left: 50%;
+//   transform: translate(-25%, -50%);
+// }
+.qrscanner {
+    cursor: pointer;
+}
+
+.scan {
+    letter-spacing: 0px;
+    color: var(--ion-heading-color);
+    text-align: center;
+    font-weight: bold;
+}
+
+.scancontent {
+    text-align: center;
+    letter-spacing: 0px;
+    // color: #3C3C3C;
+    color: var(--ion-text-color);
+}
+
+#button-background {
+    position: relative;
+    background-color: #1D447D;
+    width: 300px;
+    height: 80px;
+    border: white;
+    border-radius: 40px;
+}
+
+#slider {
+    transition: width 0.3s, border-radius 0.3s, height 0.3s;
+    position: absolute;
+    left: 2px;
+    background-color: white;
+    width: 130px;
+    height: 70px;
+    border-radius: 44px;
+    top: 0px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+#slider p {
+    position: absolute;
+    top: 23px;
+    left: 15px;
+    color: #1D447D;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+#slider .unlocked {
+    transition: all 0.3s;
+    width: inherit;
+    left: 0 !important;
+    height: inherit;
+    border-radius: inherit;
+}
+
+.material-icons {
+    color: white;
+    font-size: 50px;
+}
+
+.slide-text {
+    color: #FDFDFD;
+    font-size: 20px;
+    text-transform: uppercase;
+    font-family: "Roboto", sans-serif;
+    position: absolute;
+    left: 150px;
+    top: 28px;
+    opacity: 0.2;
+}
+
+.logout {
+    --background: white !important;
+    text-align: center;
+    --padding-start: 30px !important;
+    --padding-end: 30px !important;
+    --padding-top: 30px !important;
+    --padding-bottom: 30px !important;
+    border-radius: 5px;
+    color: #1D447D;
+    font-size: 18px;
+}
+
+.logouts {
+    background: white !important;
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+    color: #1D447D;
+    font-size: 18px;
+}
+
+.deviceLogout {
+    --background: white !important;
+    text-align: center;
+    --padding-start: 25px !important;
+    --padding-end: 25px !important;
+    --padding-top: 25px !important;
+    --padding-bottom: 25px !important;
+    border-radius: 6px;
+    color: #1D447D;
+    font-size: 25px;
+}
+
+.mobile {
+    display: none;
+}
+
+.bottom {
+    position: fixed;
+    bottom: 0;
+    font-size: 14px;
+    color: white;
+}
+
+::selection {
+    color: none;
+    background: none;
+}
+
+.visitorLogOut {
+    margin-bottom: 15px;
+}
+
+.deviceLaptop {
+    display: block;
+    float: left;
+    margin-top: 30px;
+}
+
+.deviceMobile {
+    display: none;
+    float: left;
+}
+
+.logouticon {
+    background: white !important;
+    text-align: center;
+    border-radius: 5px;
+    color: #1D447D;
+    font-size: 40px;
+    padding: 5px;
+}
+
+// .deviceLaptop {
+//     margin-top: 40px;
+//     padding: 3px !important;
+// }
+.mobileimg {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+}
+
+.breezieImg {
+    display: none
+}
+
+.logouticon {
+    display: block
+}
+
+
+/* For Mozilla Firefox */
+
+::-moz-selection {
+    color: none;
+    background: none;
+}
+
+.bottom a {
+    color: white;
+}
+
+@media only screen and (max-width:"1390px") {
+    .qr-content {
+        padding: 0px 32px;
+    }
+}
+
+@media only screen and (max-width:"1294px") {
+    .qr-content {
+        padding: 0px 24px;
+    }
+}
+
+@media only screen and (max-width:"1198px") {
+    .qr-content {
+        padding: 0px 16px;
+    }
+}
+
+@media only screen and (max-width:"1102px") {
+    .qr-content {
+        padding: 0px 8px;
+    }
+    //   .swipebutton{
+    //     transform: translate(-32%, -50%);
+    // }
+}
+
+@media only screen and (max-width:"1006px") {
+    .qr-content {
+        padding: 0px 0px;
+        font-size: 10px;
+    }
+}
+
+@media only screen and (max-width:"990px") {
+    .toogle ion-icon {
+        font-size: 90px;
+    }
+    .qr-content {
+        padding: 0px 0px;
+        font-size: 10px;
+    }
+}
+
+@media only screen and (max-width:"770px") {
+    .toogle ion-icon {
+        font-size: 45px;
+    }
+    .qr-content {
+        padding: 0px 0px;
+        font-size: 9px;
+    }
+}
+
+@media only screen and (max-width:"767px") {
+    .qrscanner {
+        display: none;
+    }
+    .slide-text {
+        font-size: 16px;
+    }
+    #slider p {
+        font-size: 18px;
+    }
+}
+
+@media only screen and (max-width:"600px") {
+    .breezieImg {
+        padding: 20px;
+        transform: translate(-50%, -50%);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: -90px;
+        display: block;
+    }
+    .logouticon {
+        display: block;
+    }
+    .mobileimg {
+        display: block;
+    }
+    .laptopimg1 {
+        display: none;
+    }
+    .selectOption {
+        margin-top: 0px !important;
+    }
+    .mobile {
+        display: block;
+        float: right;
+    }
+    .deviceLaptop {
+        display: none;
+        float: left;
+    }
+    .deviceMobile {
+        display: block;
+        float: left;
+    }
+    .laptop {
+        display: none;
+    }
+    .logouticon {
+        background: white !important;
+        text-align: center;
+        border-radius: 5px;
+        color: #1D447D;
+        font-size: 40px;
+        padding: 5px;
+        // margin-top: 50px;
+    }
+}
+
+@media only screen and (max-width:"580px") {
+    #slider p {
+        left: 20px;
+    }
+}
+
+@media only screen and (max-width:"375px") {
+    #button-background {
+        width: 275px;
+        margin-left: 15px;
+    }
+    .swipe {
+        display: block;
+    }
+}
+
+@media only screen and (max-width:"340px") {
+    #button-background {
+        margin-left: 0px;
+    }
+}

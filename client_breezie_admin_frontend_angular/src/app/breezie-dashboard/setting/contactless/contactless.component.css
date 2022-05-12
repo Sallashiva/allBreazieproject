@@ -1,0 +1,48 @@
+h4 {
+  font-weight: 500;
+  font-size: 18px;
+  color: #231F20;
+}
+
+p {
+  color: #231F20;
+  opacity: 0.6;
+  line-height: 1.6;
+}
+.spinner {
+  position: fixed;
+  background-color: rgba(0,0,0,0.2);
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+ :host::ng-deep mat-spinner{
+  position: absolute;
+  left: 50%;
+  top: 30%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+.qrContent {
+  margin-top: -10px;
+  font-size: 12px;
+}
+
+.download small {
+  color: #1492E6;
+  margin-left: 0.5rem;
+  font-weight: 500;
+}
+
+.download i {
+  color: #1492E6;
+}
+
+.download {
+  cursor: pointer;
+}
+
+mat-checkbox span {
+  font-weight: 500;
+}

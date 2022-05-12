@@ -1,0 +1,52 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start" class="back-button">
+            <ion-back-button class="backbutton" [defaultHref]=url></ion-back-button>
+        </ion-buttons>
+        <ion-title>general-delivery</ion-title>
+        <ion-item slot="end" lines="none">
+            <ion-icon name="home-outline" routerLink="/home" class="home" matTooltip="Back to home"></ion-icon>
+        </ion-item>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="">
+                <form [formGroup]="deliveryForm">
+                    <ion-card>
+                        <ion-item lines="none">
+                            <ion-label>Number of Packages:</ion-label><span>
+                              <div class="input-group inline-group">
+                                <div class="input-group-prepend" >
+                                  <button class="btn btn-outline-secondary btn-minus" [disabled]="Buttons" (click)="decrement()">
+                                    <i class="fa fa-minus"></i>
+                                  </button>
+                                </div>
+                                <input style="text-align:center" class="form-control" min="0" id="quantity" formControlName="quantity" type="number">
+                                <div class="input-group-append">
+                                  <button class="btn btn-outline-secondary btn-plus" (click)="increment()">
+                                    <i class="fa fa-plus"></i>
+                                  </button>
+                                </div>
+                              </div>
+                            </span>
+                        </ion-item>
+                        <div class="signatureRequired">
+                            <ion-item lines="none">
+                                <ion-label>Signature required</ion-label>
+                                <ion-checkbox color="primary" (ionChange)="ionCheckbox($event)" slot="start"></ion-checkbox>
+                            </ion-item>
+                        </div>
+                        <div class="text-center">
+                            <ion-button type="submit" class="add" (click)="addDelivery()" mat-button mat-raised-button>Notify</ion-button>
+                        </div>
+
+                    </ion-card>
+                </form>
+            </div>
+        </div>
+    </div>
+</ion-content>

@@ -1,0 +1,377 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap');
+.logo {
+    top: 36px;
+    left: 56px;
+    width: 168px;
+    height: 41px;
+}
+
+img {
+    width: 50%;
+}
+
+p {
+    margin: 10px 0px;
+    font-size: 25px;
+}
+
+.qr-code ion-icon {
+    width: 60px;
+    height: 50px;
+    cursor: pointer;
+}
+
+.list .mt-5,
+.my-5 {
+    margin-top: 5rem !important;
+}
+
+.skip ion-button {
+    --background: var(--ion-skip-background-color) !important;
+    color: var(--ion-heading-color);
+    font-weight: bold;
+    text-transform: capitalize;
+    margin-top: 1rem;
+    font-family: 'Roboto', sans-serif;
+}
+
+.tab img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+}
+
+.feedback {
+    float: none;
+    color: white;
+    border-radius: 4px;
+    border-color: #46b8da;
+    --background: #1D447D;
+    margin-right: 0px;
+    width: 50%;
+    height: 45px;
+    --padding-bottom: 15px;
+    --padding-end: 30px;
+    --padding-start: 30px;
+    --padding-top: 15px;
+    font-size: 18px;
+    margin-left: 25%;
+}
+
+.select {
+    background: var(--ion-select-background);
+    box-shadow: 0px 0px 4px lightgrey;
+    position: absolute;
+    top: 80px;
+    padding: 10px;
+    left: 220px;
+    width: 50%;
+    z-index: 1;
+    color: black;
+    cursor: pointer;
+}
+
+select {
+    background: var(--ion-select-background);
+}
+
+.select:after,
+.select:before {
+    right: 100%;
+    top: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+}
+
+.select:after {
+    border-color: rgba(255, 255, 255, 0);
+    border-right-color: #fff;
+    border-width: 6px;
+    margin-top: -6px;
+}
+
+.select:before {
+    border-color: rgba(211, 211, 211, 0);
+    border-right-color: #d3d3d3;
+    border-width: 7px;
+    margin-top: -7px;
+}
+
+#mybutton {
+    position: fixed;
+    padding: 2px 10px 5px 10px;
+    bottom: 10px;
+    width: 100%;
+}
+
+.selected {
+    border-radius: 50%;
+    border: 10px solid var(--ion-heading-color);
+    opacity: 0.4;
+}
+
+.list {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    // margin-top: 420px !important;
+}
+
+.unSelect {
+    display: none;
+}
+
+.back-button {
+    display: none;
+}
+
+.myPage {
+    height: 100vh;
+    background-color: #dbfff3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.myBox {
+    display: flex;
+    align-items: center;
+    height: 200px;
+    width: 200px;
+    background-color: #36a7ff;
+    justify-content: center;
+    background: rgb(68, 179, 198);
+    background: linear-gradient(160deg, rgba(68, 179, 198, 1) 0%, rgba(159, 241, 178, 1) 50%, rgb(129, 221, 185) 100%);
+}
+
+.extraImages {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+}
+
+.selected {
+    background-color: green;
+    color: white;
+}
+
+.select {
+    background-color: rgb(95, 95, 226);
+    color: white;
+}
+
+.back-button {
+    display: block;
+}
+
+.spinner {
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translate(-35%, -80%);
+}
+
+.spinner {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.2);
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+ :host::ng-deep mat-spinner {
+    position: absolute;
+    left: 50%;
+    top: 30%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+
+@media only screen and (max-width:1315px) {
+    .select {
+        top: 70px;
+        padding: 10px 4px;
+        left: 200px;
+        width: 42%;
+    }
+    .back-button {
+        display: block;
+    }
+}
+
+@media only screen and (max-width:"1180px") {
+    .feedback {
+        margin-left: 25%;
+    }
+    .back-button {
+        display: block;
+    }
+}
+
+@media only screen and (max-width:"1030px") {
+    .select {
+        width: 45%;
+        left: 140px;
+        top: 50px;
+    }
+    p {
+        font-size: 25px;
+    }
+}
+
+@media only screen and (max-width:1023px) {
+    .back-button {
+        display: block;
+    }
+}
+
+@media only screen and (max-width:"992px") {
+    .select {
+        top: 40px;
+        left: 525px;
+        width: 20%;
+        padding: 10px 4px;
+    }
+    img {
+        width: auto;
+    }
+    p {
+        font-size: 18px;
+    }
+    #mybutton {
+        background: white;
+        text-align: center !important;
+        box-shadow: 0px 0px 4px lightgrey;
+        bottom: 0px;
+        padding: 0;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .feedback {
+        float: none;
+        color: white;
+        border-radius: 4px;
+        border-color: #46b8da;
+        --background: #1D447D;
+        margin-right: 0px;
+        width: 50%;
+        height: 45px;
+        --padding-bottom: 15px;
+        --padding-end: 30px;
+        --padding-start: 30px;
+        --padding-top: 15px;
+        font-size: 18px;
+    }
+}
+
+@media only screen and (max-width: 940px) {
+    .select {
+        top: 40px;
+        left: 475px;
+        width: 20%;
+        padding: 10px 4px;
+    }
+}
+
+@media only screen and (max-width: 840px) {
+    .select {
+        left: 420px;
+    }
+}
+
+@media only screen and (max-width: 820px) {
+    .feedback {
+        margin-left: 5%;
+    }
+    .back-button {
+        display: block;
+    }
+}
+
+@media only screen and (max-width:"767px") {
+    ion-tab-bar {
+        height: 70vh;
+    }
+    .list {
+        position: relative;
+        top: 0;
+        left: 0;
+        transform: translate(0px, 0px);
+    }
+    .qrcode {
+        display: none;
+    }
+    .list .mt-5,
+    .my-5 {
+        margin-top: 5rem !important;
+    }
+    .item-list {
+        margin-top: 70px;
+    }
+    .skip ion-button {
+        margin-right: 0px;
+    }
+    .select {
+        left: 380px;
+        width: 30%;
+    }
+    .back-button {
+        display: block;
+    }
+}
+
+@media only screen and (max-width:"600px") {
+    .select {
+        left: 300px;
+    }
+}
+
+@media only screen and (max-width:"510px") {
+    .select {
+        left: 250px;
+        width: 35%;
+    }
+}
+
+@media only screen and (max-width: 435px) {
+    .select {
+        left: 210px;
+        width: 45%;
+    }
+}
+
+@media only screen and (max-width: 390px) {
+    .select {
+        left: 160px;
+        width: 45%;
+    }
+}
+
+@media only screen and (max-width: 377px) {
+    .select {
+        left: 190px;
+        width: 46%;
+    }
+}
+
+@media only screen and (max-width: 370px) {
+    .select {
+        left: 175px;
+        width: 46%;
+    }
+}
+
+@media only screen and (max-width: 340px) {
+    .select {
+        left: 150px;
+        width: 50%;
+    }
+}

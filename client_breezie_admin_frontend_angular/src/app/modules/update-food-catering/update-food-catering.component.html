@@ -1,0 +1,33 @@
+<div style="float: right;cursor: pointer;">
+    <button class="deleteIcon" mat-dialog-close> <i class="fas fa-times"></i></button>
+</div>
+<h2 mat-dialog-title class="mb-0">Update Food</h2>
+
+
+<mat-dialog-content class="mat-typography">
+    <form [formGroup]="updateFoodForm" (ngSubmit)="updateFood()">
+        <div class="form-group">
+            <mat-form-field appearance="outline">
+                <input matInput formControlName="foodName">
+            </mat-form-field>
+        </div>
+        <div class="form-group">
+            <mat-form-field appearance="outline">
+                <input type="number" matInput formControlName="price" autocomplete="off">
+            </mat-form-field>
+        </div>
+        <div class="form-group">
+            <mat-form-field appearance="outline">
+                <input matInput formControlName="notes">
+            </mat-form-field>
+        </div>
+        <div class="form-group">
+            <input type="file" (change)="onselect($event)" accept=".jpg, .jpeg ,.png" formControlName="imagePath">
+        </div>
+        <div class="d-flex align-items-center justify-content-center mb-2">
+            <!-- <button class="close" mat-button mat-raised-button mat-dialog-close>cancel</button> -->
+            <button type="submit" class="add ml-2" mat-button mat-raised-button
+                [disabled]="updateFoodForm.invalid">Update</button>
+        </div>
+    </form>
+</mat-dialog-content>

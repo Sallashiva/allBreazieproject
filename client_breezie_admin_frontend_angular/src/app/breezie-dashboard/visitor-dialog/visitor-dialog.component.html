@@ -1,0 +1,159 @@
+<div class="spinner" *ngIf="spinner">
+  <mat-spinner diameter="100"></mat-spinner>
+</div>
+<div class="title d-flex align--items-center justify-content-between">
+  <div>
+    <h1 mat-dialog-title class="mb-0"><b>Guest</b></h1>
+  </div>
+<div  style="float: right;cursor: pointer;">
+  <button  class="deleteIcon" mat-dialog-close > <i class="fas fa-times"></i></button>
+</div>
+</div>
+
+
+<div class="container">
+ 
+  <div>
+    <div class="image">
+      <img src="" onerror="this.src='../../../assets/images/user.png'" class="addImage rounded-circle">
+    </div>
+    <div>
+      <form [formGroup]="addVisitorForm" (ngSubmit)="addVisitor()">
+        <div>
+          <mat-form-field>
+            <mat-label>Full Name *</mat-label><input matInput type="text" formControlName="FullName" autocomplete="off">
+          </mat-form-field>
+          <p *ngIf="( addVisitorForm.controls.FullName.touched) && addVisitorForm.controls.FullName.errors?.required"
+            class="text-danger">
+            Full name is required.
+          </p>
+          <p *ngIf="addVisitorForm.get('FullName').touched && (addVisitorForm.get('FullName').errors?.pattern)"
+            class="text-danger">This is invalid Full Name!</p>
+
+
+          <div class="text-danger"
+            *ngIf="addVisitorForm.get('FullName').touched && addVisitorForm.get('FullName').errors?.minlength || addVisitorForm.get('FullName').errors?.maxlength">
+            <p style="font-size: 12px;">
+              Full Name accept between 3-30 characters
+            </p>
+          </div>
+
+          <mat-form-field>
+            <mat-label>Company Name *</mat-label><input matInput type="text" formControlName="CompanyName" autocomplete="off">
+          </mat-form-field>
+          <p *ngIf="( addVisitorForm.controls.CompanyName.touched) && addVisitorForm.controls.CompanyName.errors?.required"
+            class="text-danger">
+            Company name is required.
+          </p>
+          <p *ngIf="addVisitorForm.get('CompanyName').touched && (addVisitorForm.get('CompanyName').errors?.pattern)"
+            class="text-danger">This is invalid Company Name</p>
+          <div class="text-danger"
+            *ngIf="addVisitorForm.get('CompanyName').touched && addVisitorForm.get('CompanyName').errors?.minlength || addVisitorForm.get('CompanyName').errors?.maxlength">
+            <p style="font-size: 12px;">
+              Company Name accept between 2-50 characters
+            </p>
+          </div>
+        </div>
+        <div>
+          <mat-form-field class="addNewVisitorLocation">
+            <mat-label>Location *</mat-label>
+            <mat-select formControlName="location">
+              <mat-option *ngFor="let locations of deviceLocation" value="{{locations.locationId}}" selected>
+                {{locations.officeName}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <p *ngIf="( addVisitorForm.controls.location.touched) && addVisitorForm.controls.location.errors?.required"
+            class="text-danger">
+            Location is required.
+          </p>
+        </div>
+        <div>
+          <mat-form-field class="addNewVisitorHost">
+            <mat-label>Visiting(Host) *</mat-label>
+            <mat-select formControlName="visiting">
+              <mat-option *ngFor="let employee of employees" value="{{employee._id}}" selected>
+                {{employee.fullName}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <p *ngIf="( addVisitorForm.controls.visiting.touched) && addVisitorForm.controls.visiting.errors?.required"
+            class="text-danger">
+            Visiting Host is required.
+          </p>
+        </div>
+        <div *ngFor="let form_elem of formTemplate; let i = index">
+          <div [ngSwitch]="form_elem.type">
+            <div *ngSwitchCase="'text'">
+              <div *ngIf="!form_elem.hidden">
+                <mat-form-field class="example-full-width phone">
+                  <mat-label class="pho">{{form_elem.label}}</mat-label>
+                  <input type="text" matInput formControlName="{{form_elem.label}}" />
+                </mat-form-field>
+              </div>
+            </div>
+            <div *ngSwitchCase="'email'">
+              <div *ngIf="!form_elem.hidden">                    <mat-form-field class="example-full-width phone">
+                <mat-label class="pho">{{form_elem.label}}</mat-label>
+                <input type="email" matInput formControlName="{{form_elem.label}}" />
+              </mat-form-field>
+            </div>
+          </div>
+            <div *ngSwitchCase="'number'">
+              <div *ngIf="!form_elem.hidden"> 
+              <mat-form-field class="example-full-width phone">
+                <mat-label class="pho">{{form_elem.label}}</mat-label>
+                <input type="number" matInput formControlName="{{form_elem.label}}" />
+              </mat-form-field>
+            </div>
+            </div>
+            <div *ngSwitchCase="'date'">
+              <div *ngIf="!form_elem.hidden"> 
+              <mat-form-field class="example-full-width phone">
+                <mat-label class="pho">{{form_elem.label}}</mat-label>
+                <input type="date" matInput formControlName="{{form_elem.label}}" />
+              </mat-form-field>
+              </div>
+            </div>
+            <div *ngSwitchCase="'radio'">
+              <div *ngIf="!form_elem.hidden"> 
+              <mat-label position="stacked">{{form_elem.label}}</mat-label>
+              <mat-radio-group aria-label="Select an option" formControlName="{{form_elem.label}}">
+                <div *ngFor="let ele of form_elem.value ; index as k">
+                  <mat-radio-button style="display:block" (change)="matRadio($event.value,form_elem.label)"
+                    checked="{{ele.multiCheckBox}}" value="{{ele.multi1}}"> {{ele.multi1}}
+                  </mat-radio-button>
+                </div>
+              </mat-radio-group>
+              </div>
+            </div>
+            <div *ngSwitchCase="'yes'">
+              <div *ngIf="!form_elem.hidden"> 
+              <mat-label position="stacked">{{form_elem.label}}</mat-label>
+              <mat-radio-group aria-label="Select an option" (change)="yesOrNo($event.value,form_elem.label)"
+                formControlName="{{form_elem.label}}">
+                <mat-radio-button style="display: block;" checked="{{form_elem.yes}}" value="yes">Yes
+                </mat-radio-button>
+                <mat-radio-button style="display: block;" checked="{{form_elem.no}}" value="no">No
+                </mat-radio-button>
+              </mat-radio-group>
+              </div>
+            </div>
+            <div *ngSwitchCase="'checkBox'">
+              <div *ngIf="!form_elem.hidden"> 
+              <h4>{{form_elem.label}}</h4>
+              <div class="col-md-2 mt-3" *ngFor="let box of form_elem['value'] ">
+                <mat-checkbox (change)="checkboxes($event,box)" formControlName="{{box.fieldName}}" type="checkbox">
+                  {{box.fieldName}}
+                </mat-checkbox>
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class=" text-center mt-3">
+          <button mat-button mat-dialog-add class="addButton" [disabled]="addVisitorForm.invalid">Add</button>
+        </div>
+      </form>
+      <!-- </div> -->
+    </div>
+  </div>
+</div>

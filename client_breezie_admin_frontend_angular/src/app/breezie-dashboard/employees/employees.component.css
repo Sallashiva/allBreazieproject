@@ -1,0 +1,286 @@
+table {
+  width: 100%;
+  overflow: scroll;
+}
+
+tr.mat-header-row {
+  background: #F1F1F1 !important;
+  color: black !important;
+  height: 42px !important;
+}
+
+.mat-header-cell {
+  color: black !important;
+  font-size: 14px !important;
+}
+
+.mat-elevation-z8 {
+  box-shadow: 0px !important;
+}
+
+.card-header {
+  background-color: transparent;
+  border-bottom: 2px solid rgba(161, 161, 161, 0.5);
+}
+
+.addImage {
+  box-shadow: 0px 0px 2px lightgray;
+  width: 30px;
+  height: 30px;
+}
+
+.fullname {
+  color: #007bff;
+  text-decoration: none;
+  background-color: transparent;
+  padding-left: 10px;
+}
+
+.archive,
+.export {
+  background: #E4E4E4;
+  border: 1px solid #A0A0A0;
+  color: #A0A0A0;
+  font-size: 0.8rem;
+  margin-right: 10px;
+  border-radius: 6px;
+}
+
+.archiveTimeline,
+.exportTimeline {
+  background: #E4E4E4;
+  border: 1px solid #A0A0A0;
+  color: #A0A0A0;
+  font-size: 0.8rem;
+  margin-right: 10px;
+  border-radius: 6px;
+}
+
+.selectButton {
+  background: white;
+  border: 1px solid black;
+  color: black;
+  font-size: 0.8rem;
+  margin-right: 10px;
+}
+
+
+.selectButtonTimeline {
+  background: white;
+  border: 1px solid black;
+  color: black;
+  font-size: 0.8rem;
+  margin-right: 10px;
+}
+
+.selectButtonAnonymize {
+  background: white !important;
+  border: 1px solid black !important;
+  color: black !important;
+  font-size: 0.8rem !important;
+  margin-right: 10px !important;
+}
+
+.selectButtonAnonymize:hover {
+  /* border: 1px solid #1561CF ; */
+  color: #1561CF !important;
+  border-color: #1561CF !important;
+}
+
+.archiveArchive {
+  background: #E4E4E4;
+  border: 1px solid #A0A0A0;
+  color: #A0A0A0;
+  font-size: 0.8rem;
+  margin-right: 10px;
+  border-radius: 6px;
+}
+
+.newEmployee {
+  background: #1561CF;
+  border: 1px solid #004AB6;
+  color: white;
+  font-size: 0.8rem;
+  margin-right: 10px;
+}
+
+.dropdown-menu {
+  min-width: 9rem;
+  font-size: 0.9rem;
+  width: 9.2rem;
+}
+
+.companyName{
+  margin-left: 10px;
+}
+.dropdown-item {
+  padding: 0.25rem 0.8rem;
+}
+
+:host::ng-deep.mat-form-field-appearance-outline .mat-form-field-infix {
+  padding: 1em 0 1em 0 !important;
+}
+
+:host::ng-deep.mat-form-field-appearance-outline .mat-select-arrow-wrapper {
+  transform: translateY(15%);
+}
+
+:host::ng-deep.mat-form-field-appearance-outline .mat-form-field-label {
+  margin-top: 2px !important;
+}
+
+
+.nav-pills .nav-link {
+  border-radius: 3px;
+  background: #F7F7F7;
+  color: gray;
+  border-right: 1px solid white;
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show>.nav-link {
+  color: black;
+  background-color: white;
+  box-shadow: 0px 0px 2px lightgray;
+}
+
+.sigininbutton {
+  border: 1px solid #00AB0A;
+  color: #00AB0A;
+  background-color: #00DC0F14;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  border-right: 0px;
+  /* margin-right: 10px; */
+}
+.select{
+  padding: 8px;
+  background: #00DC0F14;
+  border: 1px solid #00AB0A;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+.circleout {
+  background-color: red;
+  width: 10px;
+  height: 10px;
+  border-radius: 10px;
+}
+
+.circlein {
+  background-color: rgb(0, 255, 0);
+  width: 10px;
+  height: 10px;
+  border-radius: 10px;
+}
+
+.circleRemotely{
+  background-color: blue;
+  width: 10px;
+  height: 10px;
+  border-radius: 10px;
+}
+
+.emailIcon {
+  font-size: 15px;
+  margin-top: 10px;
+  color: #A7238E;
+}
+
+.spinner {
+  position: fixed;
+  background-color: rgba(0,0,0,0.2);
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+ :host::ng-deep mat-spinner{
+  position: absolute;
+  left: 50%;
+  top: 30%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+.mat-elevation-z1 th {
+  padding:10px 10px 10px 15px;
+  
+}
+
+.mat-elevation-z1 td {
+  padding: 10px 10px 10px 15px;
+}
+.out{
+  background: lightgray;
+    margin: 0px 5px;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+.signoutbutton {
+  /* border: 1px solid black;
+  color: black;
+  background-color: white;
+  margin-right: 10px; */
+  width: 98%;
+  border: 1px solid red;
+  border-color: red;
+  color: red;
+}
+
+.signoutbutton:hover{
+  border-color: red;
+  background-color: lightcoral;
+  color: white;
+  margin-right: 10px;
+}
+
+.signInButton {
+  border: 1px solid #00AB0A;
+  color: #00AB0A;
+  background-color: #00DC0F14;
+  margin-right: 10px;
+  width: 98%;
+}
+
+.fullname:hover {
+  text-decoration: underline;
+  color: #004AB6;
+  cursor: pointer;
+}
+
+:host::ng-deep .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+  background-color: #1561CF !important;
+}
+
+.isAnonymised {
+  color: grey;
+  font-size: 14px;
+}
+
+.isAnonymisedss {
+  color: grey;
+  font-size: 14px;
+  text-decoration: none;
+  font-style: italic;
+}
+
+.isAnonymisedss:hover {
+  text-decoration: none;
+  color: grey;
+  cursor: default;
+}
+::-webkit-scrollbar {
+  width: 0px;
+}
+
+::ng-deep .mat-select-panel {
+  min-width: 100% !important;
+  margin-left:4px ;
+  margin-top: 40px;
+}
+:host::ng-deep.mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label{
+  transform: translateY(-1.30375em) scale(0.75) !important;
+  width: 133.3333333333%;
+}
+

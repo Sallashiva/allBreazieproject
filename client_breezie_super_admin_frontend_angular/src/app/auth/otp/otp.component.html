@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="otppage">
+    <mat-card>
+      <h1 style="color: #1D447D;">Please enter OTP</h1>
+      <form [formGroup]="otpForm" (ngSubmit)="getOpt()">
+        <div>
+          <ng-otp-input #ngOtpInput (onInputChange)="onOtpChange($event)" [config]="{length:6,allowNumbersOnly:true}">
+          </ng-otp-input>
+          <div class="text-danger pt-2" *ngIf="otpForm.get('otp').errors.length">
+            Otp must be 6 characters long.
+          </div>
+          <br><button  [disabled]="otpForm.get('otp').value.length!== 6" class="submit">Submit</button>
+          <p id="optRes"></p>
+        </div>
+      </form>
+      <a  routerLinkActive="router-link-active" (click)="resendOtp()" style="cursor: pointer;">Resend otp</a>
+    </mat-card>
+  </div>
+</div>

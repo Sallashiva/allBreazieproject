@@ -1,0 +1,134 @@
+<div class="spinner" *ngIf="spinner">
+  <mat-spinner diameter="100"></mat-spinner>
+</div>
+<div class="container-fluid mt-3">
+<div class="contents ml-4">
+
+
+  <div class="heading">
+    <h4 class="mb-0">Welcome Screen Settings </h4>
+    <p>Click on the iPad to edit your welcome</p>
+    <div class="changeDevice">
+      <div class="row mb-2">
+        <div class="orientation col-md-6 col-lg-4" style="cursor:pointer ;" *ngIf="isProject ">
+          <i class="fa fa-tablet mr-1"></i><span (click)="Project()">Change device orientation </span>
+        </div>
+        <div class="orientation col-md-5 col-lg-3" style="cursor:pointer ;" *ngIf="!isProject ">
+          <i class="fa fa-tablet mr-1"></i><span (click)="Project()">Change device orientation </span>
+        </div>
+        <div class="frameColor col-md-6 col-lg-4" style="cursor:pointer ;">
+          <i class="fas fa-palette mr-1"></i><span (click)="activeProject()">Change frame color</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="content">
+    <form [formGroup]="WelcomeScreenForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="gallery text-center">
+            <div class="img-container">
+              <div [ngClass]="isProject ? 'card1' : 'card2' ">
+                <div [ngClass]="isActiveProject ? 'previewImage' : 'previewImage2' ">
+                  <!-- <div class="colorpopup" *ngIf="chooseColor">
+                                        <form class="colorbutton">
+                                            <input class="colordisplay" type="color" [(ngModel)]="color" name="colorSameName" (change)="colorChange($event)">{{color}}
+                                            <span>{{color}}</span>
+                                        </form>
+                                    </div> -->
+                  <img [src]="imageSelected" id="preview">
+
+                  <div class="visitor">
+
+                    <div>
+
+                      <!-- <button type="button" class="visitorin" [class.corner]="showBorder" [class.border]="showCorner" id="visitorins" [color-picker-trigger]="colorPicker" [left]="true" (click)="colorPickers()">
+                        <input [ngStyle]="{color: selectedColor.value}" class="mb-0" id="visitorins" name="text"
+                          formControlName="visitorIn" [(ngModel)]="text">
+                      </button> -->
+                      <button type="button" class="visitorin" [ngClass]="isProject? 'visitorin': 'visitorin2'">
+                        <input class="mb-0" id="visitorins" name="text" formControlName="visitorIn" [(ngModel)]="text">
+                      </button>
+                      <!-- <app-color-picker class="colorPicker" #colorPicker [colors]="colors" [(value)]="selectedColor">
+                                            </app-color-picker> -->
+                      <!-- <div class="borders" *ngIf="chooseColor">
+                                                <div class="card bordercard">
+                                                    <div class="d-inline-block">
+                                                        <button type="button" (click)="corner()">corner</button>
+                                                        <button type="button" (click)="border()">border</button>
+                                                        <button type="button" (click)="radius()">radius</button>
+                                                    </div>
+
+                                                </div>
+                                            </div> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="img-prev text-center">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-md-2 mb-3 mt-4" *ngFor="let image of imagesPath; index as i">
+                <div class="card card3">
+                  <button type=button *ngIf="!image.hidden" class="img-slide active disabled" [disabled]=false
+                    (click)="selected(image._id,image.selected,image.imagePath)" [class.img-slide1]="show">
+                    <img [src]="image.imagePath" id="imagefile">
+                  </button>
+                  <button type="button" *ngIf="image.hidden" class="img-slide active disabled" [disabled]=true
+                    (click)="selected(image._id,image.selected,image.imagePath)" [class.img-slide1]="show">
+                    <img [src]="image.imagePath" id=" imagefile">
+                  </button>
+                  <div class="imageAction d-flex align-items-center justify-content-between">
+                    <!-- <p>Selected</p> -->
+                    <div>
+                      <button type="button" [disabled]="disabled">
+                        <span>
+                          <i class="fa fa-eye" aria-hidden="true" (click)="onClick(i,image._id,true)"
+                            *ngIf="image.hidden == false" matTooltip="Hide" matTooltipPosition="left">
+                          </i>
+                        </span>
+                        <span>
+                          <i class="fa fa-eye-slash" aria-hidden="true" (click)="onClicks(i,image._id,false)"
+                            *ngIf="image.hidden == true" matTooltip="View" matTooltipPosition="left">
+                          </i>
+                        </span>
+                      </button>
+                    </div>
+                    <div>
+                      <button type="button" class="delete float-right" (click)="onDelete(image._id)"><i
+                          class="material-icons" matTooltip="Delete" matTooltipPosition="left">delete</i></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="file">
+                  <label for="file">
+                    <mat-icon class="addIcon">add</mat-icon>
+                  </label>
+                  <input type="file" id="file" (change)="onselect($event)" accept=".jpg, .jpeg ,.png"
+                    style="display:none">
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="d-flex align-items-center justify-content-center h-100">
+                  <div>
+                    <button type="submit" class="btn submit">
+                      Submit
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  </div>
+</div>

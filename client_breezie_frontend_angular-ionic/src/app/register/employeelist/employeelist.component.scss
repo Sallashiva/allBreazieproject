@@ -1,0 +1,191 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap');
+.logo {
+    top: 36px;
+    left: 56px;
+    width: 168px;
+    height: 41px;
+}
+
+.qr-code ion-icon {
+    width: 60px;
+    height: 50px;
+    cursor: pointer;
+    color: black;
+}
+
+.spinner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+small {
+    color: #3C3C3C;
+}
+
+.spinner ion-spinner {
+    width: 100px;
+    height: 100px;
+    color: black;
+}
+
+.seaarchbar {
+    position: sticky;
+    top: 0;
+    box-shadow: 0px 0px 3px lightgray;
+}
+
+.card {
+    margin: 20px;
+}
+
+.card ion-card {
+    cursor: pointer;
+}
+
+.list ion-item {
+    height: 30px;
+}
+
+ion-card {
+    border-radius: 10px;
+    background-color: white;
+    white-space: nowrap;
+}
+
+.card-content-md p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.search-h1 {
+    font: normal normal normal Roboto;
+    letter-spacing: 0px;
+    color: var(--ion-heading-color);
+    font-weight: 500;
+}
+
+.employeeimg {
+    width: 50px;
+    height: 50px;
+}
+
+.card::-webkit-scrollbar {
+    width: 0px;
+}
+
+
+/* Handle */
+
+.card::-webkit-scrollbar-thumb {
+    background: lightgray;
+    border-radius: 15px;
+}
+
+
+/* Handle on hover */
+
+.card::-webkit-scrollbar-thumb:hover {
+    background: lightgray;
+}
+
+.searchionItem {
+    --padding-start: 0px !important;
+}
+
+.searchbar-input.sc-ion-searchbar-md {
+    box-shadow: none !important;
+    border: none !important;
+}
+
+::ng-deep {
+    .alpha-search .alpha-search-content .alpha-search-input .icon:first-child>svg {
+        fill: #1D447D !important;
+        stroke: #1D447D !important;
+        width: 32px;
+    }
+    .alpha-search .alpha-search-content .alpha-search-area>ul>li>span {
+        border-bottom: 1px #1D447D solid;
+        color: #1D447D;
+    }
+    .alpha-search .alpha-search-content .alpha-indicator>div:nth-child(1)>div {
+        background: #1D447D;
+    }
+    .alpha-search .alpha-search-content .alpha-indicator>div:nth-child(2)>svg {
+        display: none;
+        width: 55px;
+        opacity: 0.5;
+        fill: rgba(21, 50, 112, 0.5);
+    }
+    .alpha-search .alpha-search-content>section .alpha-letters-list.contains {
+        color: #1D447D;
+    }
+}
+
+.mobile-view {
+    display: none;
+}
+
+.back-button {
+    display: none;
+}
+
+.spinner {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.2);
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+:host::ng-deep mat-spinner {
+    position: absolute;
+    left: 50%;
+    top: 30%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+
+@media only screen and (max-width:1440px) {
+    .back-button {
+        display: block;
+    }
+}
+
+@media only screen and (max-width:1023px) {
+    .back-button {
+        display: block;
+    }
+}
+
+@media only screen and (max-width:767px) {
+    .back-button {
+        display: block;
+    }
+    .mobile-view {
+        display: block;
+    }
+    .seaarchbar {
+        display: none;
+    }
+    .desktop-view {
+        display: none;
+    }
+    .qrcode {
+        display: none;
+    }
+    .alpha-search .alpha-search-content .alpha-search-area {
+        height: calc(100% - 25px) !important;
+    }
+    .alpha-search .alpha-search-content .alpha-search-input>form>input {
+        color: --var(ion-alpha-search-input) !important;
+    }
+}
+
+@media only screen and (max-width:480px) {
+    .employeeimg {
+        width: 42px;
+        height: 42px;
+    }
+}

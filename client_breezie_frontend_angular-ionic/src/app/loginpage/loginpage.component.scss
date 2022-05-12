@@ -1,0 +1,259 @@
+.scan {
+    letter-spacing: 0px;
+    color: var(--ion-heading-color);
+    text-align: center;
+    font-weight: bold;
+}
+
+.scancontent {
+    text-align: center;
+    letter-spacing: 0px;
+    color: #3C3C3C;
+}
+.spinner {
+    position: absolute;
+    background-color: rgba(0,0,0,0.2);
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+   :host::ng-deep mat-spinner{
+    position: absolute;
+    left: 50%;
+    top: 30%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+  }
+.mobile {
+    display: none;
+}
+
+.mobile .logo {
+    top: 36px;
+    left: 56px;
+    width: 168px;
+    height: 41px;
+}
+
+.visitor[disabled] {
+    --background: #D6D6D6 !important;
+    color: black !important;
+}
+
+.content {
+    padding: 0px 49px;
+}
+
+ion-item {
+    --background: transperant;
+}
+
+.qr-scan ion-icon {
+    font-size: 140px;
+    box-shadow: 0px 0px 6px var(--ion-box-shadow-color);
+    border-radius: 8px;
+    padding: 10px;
+    color: var(--ion-text-color);
+}
+
+.visitor {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.visitor ion-button {
+    text-transform: capitalize;
+    --padding-start: 60px;
+    --padding-end: 60px;
+    font-size: 25px;
+    --background: #1D447D;
+    --border-radius: 16px;
+    color: #ffff;
+    font-weight: bold;
+    --box-shadow: 0px;
+}
+
+.logout {
+    --background: #1D447D;
+    --padding-start: 20px;
+    --padding-end: 20px;
+    --padding-bottom: 25px;
+    --padding-top: 25px;
+}
+
+.back-button {
+    color: black;
+}
+
+::selection {
+    color: none;
+    background: none;
+}
+:host ::ng-deep.mat-radio-button.mat-accent .mat-radio-inner-circle {
+    background-color: #3880ff!important;
+}
+
+:host ::ng-deep.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+    border-color: #3880ff!important;
+}
+
+.spinner {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.2);
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+ :host::ng-deep mat-spinner {
+    position: absolute;
+    left: 50%;
+    top: 30%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+
+
+/* For Mozilla Firefox */
+
+::-moz-selection {
+    color: none;
+    background: none;
+}
+
+@media only screen and (max-width:1440px) {
+    .content {
+        padding: 0px 51px;
+    }
+    .mobile {
+        display: block;
+    }
+    .forms .logo {
+        display: none;
+    }
+}
+
+@media only screen and (max-width:1366px) {
+    .content {
+        padding: 0px 45px;
+    }
+    .mobile {
+        display: block;
+    }
+    .forms .logo {
+        display: none;
+    }
+}
+
+@media only screen and (max-width:1294px) {
+    .content {
+        padding: 0px 39px;
+    }
+    .mobile {
+        display: block;
+    }
+    .forms .logo {
+        display: none;
+    }
+}
+
+@media only screen and (max-width:1222px) {
+    .content {
+        padding: 0px 33px;
+    }
+    .mobile {
+        display: block;
+    }
+    .forms .logo {
+        display: none;
+    }
+}
+
+@media only screen and (max-width:1150px) {
+    .content {
+        padding: 0px 27px;
+    }
+    .mobile {
+        display: block;
+    }
+    .forms .logo {
+        display: none;
+    }
+}
+
+@media only screen and (max-width:1078px) {
+    .content {
+        padding: 0px 21px;
+    }
+    .mobile {
+        display: block;
+    }
+    .forms .logo {
+        display: none;
+    }
+}
+
+@media only screen and (max-width:1025px) {
+    .content {
+        padding: 0px 16px;
+    }
+    .qr-scan ion-icon {
+        font-size: 100px;
+    }
+    .mobile {
+        display: block;
+    }
+    .forms .logo {
+        display: none;
+    }
+}
+
+@media only screen and (max-width:1023px) {
+    .mobile {
+        display: block;
+    }
+    .forms .logo {
+        display: none;
+    }
+}
+
+@media only screen and (max-width:991px) {
+    .forms .logo img {
+        width: 26%;
+    }
+}
+
+@media only screen and (max-width:950px) {
+    .content {
+        padding: 0px 0px;
+        font-size: 9px;
+    }
+    .qr-scan ion-icon {
+        font-size: 90px;
+    }
+}
+
+@media only screen and (max-width:768px) {
+    .qr-code {
+        margin-top: 0px;
+    }
+    .login-form {
+        margin-top: 8rem !important;
+    }
+}
+
+@media only screen and (max-width:767px) {
+    .qr-code {
+        display: none;
+    }
+    .forms .native-input.sc-ion-input-md {
+        border-radius: 6px !important;
+        height: 55px !important;
+    }
+    .login-form {
+        margin-top: 0rem !important;
+    }
+    .logo {
+        text-align: center;
+    }
+}

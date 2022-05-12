@@ -1,0 +1,38 @@
+.headingSignOut{
+      font-size: 16px !important;
+      padding-top: 13px;
+      text-align: center;
+  }
+  .heading p{
+    font-size: 16px;
+
+  }
+  .subHeading{
+    font-size: 16px;
+
+  }
+  .headSignOut{    
+     text-align: center;
+    font-size: 21px;
+    margin-bottom: 25px;
+  }
+  
+  .signOutContinue{
+    font-size: 18px;
+    text-align: center;
+  }
+
+  #closeSignOut{
+    border: 1px solid black;
+    border-radius: 8px;
+    margin-left: 10px;
+    width: 85px;
+  }
+  
+  #signOutButton{
+    border: 1px solid #1561CF;
+    border-radius: 8px;
+    background-color: #1561CF;
+    color: white;
+    margin-left: 48px;
+  }

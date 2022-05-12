@@ -1,0 +1,30 @@
+.signinname {
+    margin-left: 21px;
+}
+
+.wanttocontinue {
+    margin-top: 10px;
+}
+
+
+/* :host::ng-deep.mat-dialog-container {
+  padding: 55px !important;
+} */
+
+:host::ng-deep .mat-dialog-content {
+    padding: 15px 45px;
+    height: auto;
+    max-height: 100%;
+    overflow: hidden;
+}
+
+.signinheadding {
+    margin-left: 10px;
+}
+
+:host::ng-deep.mat-dialog-actions {
+    display: inline-block !important;
+    width: 100%;
+}
+
+@media only screen and (max-width:768px) {}

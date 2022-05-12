@@ -1,0 +1,468 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-7">
+      <mat-card class="cardsize" style="border:0.2px solid rgb(194, 190, 190);padding:0px">
+        <div class="row" style="margin-right: 0px;margin-left: 0px;">
+          <div class="col-md-4 cardhover" style="padding: 0px;">
+            <div class="visitorin" style="width: 100%; cursor: pointer;" (click)="onVisitorLink()">
+              <mat-card-header>
+                <mat-card-title style="padding:10px;font-size: 15px;">Guest in</mat-card-title>
+              </mat-card-header>
+              <span>
+                <h1 class="number"> {{remainingVisitor}}</h1>
+              </span>
+            </div>
+          </div>
+          <div class="col-md-4 cardhover" style="width: 100%;padding: 0px ;cursor: pointer;"
+            (click)="reDirectToPreRegister()">
+            <mat-card-header class="header">
+              <mat-card-title style="padding:10px;font-size: 15px ;">Pre-Registered</mat-card-title>
+            </mat-card-header>
+            <span>
+              <h1 class="number">{{remainingPreregistere}}</h1>
+            </span>
+          </div>
+          <div class="col-md-4 cardhover" style="width: 100%;padding: 0px;cursor: pointer;"
+            (click)="reDirectToEmployee()">
+            <div class="Evacuation">
+              <mat-card-header class="header">
+                <mat-card-title style="padding:10px;font-size: 15px ;">Employees</mat-card-title>
+              </mat-card-header>
+              <span>
+                <h1 class="number">{{totalEmployee}}</h1>
+              </span>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+      <mat-card class="example-card" class="cardsize" style="padding: 0px;border:0.5px solid rgb(194, 190, 190) ;">
+        <mat-card-header class="d-inline-block w-100 " style="border-bottom: 0.5px solid rgb(194, 190, 190);">
+          <mat-card-title style="margin-bottom: -10px;">
+            <div class="d-flex align-items-center justify-content-between w-100">
+              <div>
+                <h4>Timeline</h4>
+              </div>
+              <div>
+                <div class="d-flex align-items-center justify-content-between w-100">
+                  <div class="mr-auto d-flex align-items-center mb-2">
+                    <span class="circleIn mr-1 "></span>
+                    <span style="font-size:12px;font-weight: 500;" class="mr-2">IN</span>
+                    <span class="circleout"></span>
+                    <span style="font-size:12px;font-weight: 500;" class="ml-1">OUT</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </mat-card-title>
+        </mat-card-header>
+
+        <mat-tab-group animationDuration="0ms" (selectedTabChange)="onChange2($event)">
+          <mat-tab label="All" class="dashboardTabs">
+            <div class="spinner" *ngIf="spinner">
+              <mat-spinner></mat-spinner>
+            </div>
+            <table mat-table matSort id="excel-table" [dataSource]="allDataSource" class="mat-elevation-z8 scrollTable">
+              <ng-container matColumnDef="image">
+                <td mat-cell *matCellDef="let element" style="width: 6%;">
+                  <img src={{element.VisitorImage}} alt="" onerror="this.src='../../../assets/images/user.png'"
+                    style=" width:30px;height:30px;border-radius:30px">
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="name">
+                <td mat-cell *matCellDef="let element" style="width: 25%;font-weight: 500;">
+                  <span *ngIf="element.FullName">
+                    <b>{{element.FullName}}</b>
+                    <span style="font-size: 12px;display: block;">
+                      Guest
+                    </span>
+                  </span>
+                  <span *ngIf="element.employeeName">
+                    <b>{{element.employeeName}}</b>
+                    <span style="font-size: 12px;display: block;">
+                      Employee
+                    </span>
+                  </span>
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="dateIn">
+                <td mat-cell *matCellDef="let element" style="width: 25%;">
+                  <div class="circleIn mr-1" style="display: inline-block;"></div>
+                  {{element.loginTime | date:'MMM d, h:mm a' }}
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="dateOut">
+                <td mat-cell *matCellDef="let element" style="width: 25%;">
+                  <span *ngIf="element.logoutTime">
+                    <span class="circleout" style="display: inline-block;"></span>
+                    {{element.logoutTime | date:'MMM d, h:mm a' }}
+                  </span>
+                  <span *ngIf="!element.logoutTime">
+                    <button mat-button class="siginOutbutton" (click)="openVisitorOutDailog(element)">Sign Out</button>
+                  </span>
+                </td>
+              </ng-container>
+              <!-- <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr> -->
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="rowhover"></tr>
+            </table>
+          </mat-tab>
+
+          <mat-tab label="Guest">
+            <div class="spinner" *ngIf="spinner">
+              <mat-spinner></mat-spinner>
+            </div>
+            <table mat-table matSort id="excel-table" [dataSource]="visitorDataSource"
+              class="mat-elevation-z8 scrollTable">
+              <ng-container matColumnDef="image">
+                <td mat-cell *matCellDef="let element" style="width: 6%;">
+                  <img src={{element.VisitorImage}} alt="" onerror="this.src='../../../assets/images/user.png'"
+                    style=" width:30px;height:30px;border-radius:30px">
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="name">
+                <td mat-cell *matCellDef="let element" style="width: 25%; font-weight: 500;">
+                  <b>{{element.FullName}}</b>
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="dateIn">
+                <td mat-cell *matCellDef="let element" style="width: 25%;">
+                  <div class="circleIn mr-1" style="display: inline-block;"></div>
+                  {{element.loginTime | date:'MMM d, h:mm a' }}
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="dateOut">
+                <td mat-cell *matCellDef="let element" style="width: 25%;">
+                  <span *ngIf="element.logoutTime">
+                    <span class="circleout" style="display: inline-block;"></span>
+                    {{element.logoutTime |date:'MMM d, h:mm a' }}
+                  </span>
+                  <span *ngIf="!element.logoutTime">
+                    <button mat-button class="siginOutbutton" (click)="openSignOutVisitor(element)">Sign
+                      Out</button>
+                  </span>
+                </td>
+              </ng-container>
+              <!-- <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr> -->
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="rowhover"></tr>
+            </table>
+          </mat-tab>
+
+
+          <mat-tab label="Employees">
+            <div class="spinner" *ngIf="spinner">
+              <mat-spinner></mat-spinner>
+            </div>
+            <table mat-table matSort id="excel-table" [dataSource]="employeeDataSource"
+              class="mat-elevation-z8 scrollTable">
+
+              <ng-container matColumnDef="image">
+                <td mat-cell *matCellDef="let element" style="width: 6%;">
+                  <img src={{element.VisitorImage}} onerror="this.src='../../../assets/images/user.png'" alt=""
+                    style=" width:30px;height:30px;border-radius:30px">
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="name">
+                <td mat-cell *matCellDef="let element" style="width: 25%;font-weight: 500;">
+                  <b>{{element.employeeName}} </b>
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="dateIn">
+                <td mat-cell *matCellDef="let element" style="width: 25%;">
+                  <div class="circleIn mr-1" style="display: inline-block;"></div>
+                  {{element.loginTime | date:'MMM d, h:mm a'}}
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="dateOut">
+                <td mat-cell *matCellDef="let element" style="width: 25%;">
+                  <span *ngIf="element.logoutTime">
+                    <span class="circleout" style="display: inline-block;"></span>
+                    {{element.logoutTime | date:'MMM d, h:mm a'}}
+                  </span>
+                  <span *ngIf="!element.logoutTime">
+                    <button mat-button class="signoutbutton" (click)="openSinOutDialog(element)">Sign out</button>
+                  </span>
+                </td>
+              </ng-container>
+              <!-- <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr> -->
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="rowhover"></tr>
+            </table>
+          </mat-tab>
+        </mat-tab-group>
+      </mat-card>
+    </div>
+    <div class="col-md-5">
+      <mat-card *ngIf="freeTrail">
+        <div class="row">
+          <div class="col-md-12">
+            <span>
+              <i class="fa fa-clock-o" style="color:#1561CF;font-size: 18px;"></i>
+            </span>
+            <span style="color:#1561CF;font-size: 22px;font-weight: 500;">
+              {{remaningDays}}
+            </span>
+            <span style="font-size: 13px;">
+              Trial days remaining
+            </span>
+            <div class="mt-2" style="width: 100%;">
+              <mat-progress-bar mode="determinate" [value]="pogressBar"></mat-progress-bar>
+            </div>
+          </div>
+          <!-- <div class="col-md-6">
+            <span>
+              <i class="fas fa-comment-alt" style="color: gray;"></i>
+            </span>
+            <span class="ml-3">
+              <span>
+                24 SMS
+              </span>
+              <span style="font-size: 13px;">
+                credits
+              </span>
+            </span>
+            <div class="mt-1">
+              <mat-icon class="circleSign signArow"> keyboard_arrow_right</mat-icon>
+              <span class="ml-3" style="font-weight: 600;color: rgb(76, 119, 182);">
+                Sign up
+              </span>
+            </div>
+          </div> -->
+        </div>
+      </mat-card>
+      <mat-card class="printer mt-1" style="padding: 9px; cursor: pointer;" (click)="reDiractEvacuation()">
+        <div class="d-flex align-items-center justify-content-between">
+          <div class="d-flex align-items-center">
+            <div>
+              <i class="fas fa-running"></i>
+            </div>
+            <div>
+              <h4 class="mb-0 ml-2 "> Emergency Exit</h4>
+            </div>
+          </div>
+          <div>
+            <mat-icon class="arrow"> keyboard_arrow_right</mat-icon>
+          </div>
+        </div>
+      </mat-card>
+      <a routerLink="/print" target="blank" style="text-decoration: none;">
+        <mat-card class="printer mt-1" style="padding: 9px;">
+          <div class="d-flex align-items-center justify-content-between">
+            <div class="d-flex align-items-center">
+              <div>
+                <mat-icon>printer</mat-icon>
+              </div>
+              <div>
+                <h4 class="mb-0 ml-2">Print list</h4>
+              </div>
+            </div>
+            <div>
+              <mat-icon class="arrow"> keyboard_arrow_right</mat-icon>
+            </div>
+          </div>
+        </mat-card>
+      </a>
+      <mat-accordion>
+        <mat-expansion-panel class="exapiansion" expanded='true'>
+          <mat-expansion-panel-header class="boder" style="padding: 9px;">
+            <mat-panel-title>
+              <div class="d-flex align-items-center justify-content-between">
+                <div class="d-flex align-items-center">
+                  <div>
+                    <mat-icon style="color: #1561CF;">contacts</mat-icon>
+                  </div>
+                  <div>
+                    <h4 class="mb-0">Sign in a Guest</h4>
+                  </div>
+                </div>
+              </div>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="mt-1">
+            <form [formGroup]="signInform" #f="ngForm" (ngSubmit)="onFormSubmit()">
+              <p>
+                <mat-form-field appearance="legacy" style="width: 100%;">
+                  <mat-label>Full Name *</mat-label>
+                  <input matInput placeholder="Full Name" formControlName="FullName" autocomplete="off">
+                </mat-form-field>
+              </p>
+              <p *ngIf="( signInform.controls.FullName.touched) && signInform.controls.FullName.errors?.required"
+                class="text-danger">
+                Full Name is required.
+              </p>
+              <p *ngIf="signInform.get('FullName').touched && (signInform.get('FullName').errors?.pattern )"
+                class="text-danger">This is invalid name!</p>
+
+              <div class="text-danger"
+                *ngIf="signInform.get('FullName').touched && signInform.get('FullName').errors?.minlength || signInform.get('FullName').errors?.maxlength">
+                <p style="font-size: 12px;">
+                  Full Name accept between 3-30 characters
+                </p>
+              </div>
+              <mat-form-field appearance="legacy" style="width: 100%;">
+                <mat-label>Company Name *</mat-label>
+                <input matInput placeholder="Company Name" formControlName="CompanyName" autocomplete="off">
+              </mat-form-field>
+
+              <p *ngIf="( signInform.controls.CompanyName.touched) && signInform.controls.CompanyName.errors?.required"
+                class="text-danger">
+                Company Name is required.
+              </p>
+              <p *ngIf="signInform.get('CompanyName').touched && (signInform.get('CompanyName').errors?.pattern )"
+                class="text-danger">This is invalid Company Name!</p>
+
+              <div class="text-danger"
+                *ngIf="signInform.get('CompanyName').touched && signInform.get('CompanyName').errors?.minlength || signInform.get('CompanyName').errors?.maxlength">
+                <p style="font-size: 12px;">
+                  Company Name accept between 2-50 characters
+                </p>
+              </div>
+              <p>
+                <mat-form-field appearance="legacy" style="width: 100%;">
+                  <mat-label>Location *</mat-label>
+                  <mat-select matNativeControl formControlName="location">
+                    <mat-option *ngFor="let location of deviceLocation" value="{{location.locationId}}" selected>
+                      {{location.officeName}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </p>
+              <p *ngIf="( signInform.controls.location.touched) && signInform.controls.location.errors?.required"
+                class="text-danger">
+                Location is required.
+              </p>
+
+              <p>
+                <mat-form-field appearance="legacy" style="width: 100%;">
+                  <mat-label>Visiting(Host) *</mat-label>
+                  <mat-select matNativeControl formControlName="visiting">
+                    <mat-option *ngFor="let employee of employees" value="{{employee._id}}" selected>
+                      {{employee.fullName}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </p>
+
+              <p *ngIf="( signInform.controls.visiting.touched) && signInform.controls.visiting.errors?.required"
+                class="text-danger">
+                Visiting Host is required.
+              </p>
+              <div *ngFor="let form_elem of formTemplate; let i = index">
+                <div [ngSwitch]="form_elem.type">
+                  <div *ngSwitchCase="'text'">
+                    <div *ngIf="!form_elem.hidden">
+                      <mat-form-field class="example-full-width phone">
+                        <mat-label class="pho">{{form_elem.label}}</mat-label>
+                        <input type="text" matInput formControlName="{{form_elem.label}}" />
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div *ngSwitchCase="'email'">
+                    <div *ngIf="!form_elem.hidden">
+                      <mat-form-field class="example-full-width phone">
+                        <mat-label class="pho">{{form_elem.label}}</mat-label>
+                        <input type="email" matInput formControlName="{{form_elem.label}}" />
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div *ngSwitchCase="'number'">
+                    <div *ngIf="!form_elem.hidden">
+                      <mat-form-field class="example-full-width phone">
+                        <mat-label class="pho">{{form_elem.label}}</mat-label>
+                        <input type="number" matInput formControlName="{{form_elem.label}}" />
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div *ngSwitchCase="'date'">
+                    <div *ngIf="!form_elem.hidden">
+                      <mat-form-field class="example-full-width phone">
+                        <mat-label class="pho">{{form_elem.label}}</mat-label>
+                        <input type="date" matInput formControlName="{{form_elem.label}}" />
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div *ngSwitchCase="'radio'">
+                    <div *ngIf="!form_elem.hidden">
+                      <mat-label position="stacked">{{form_elem.label}}</mat-label>
+                      <mat-radio-group aria-label="Select an option" formControlName="{{form_elem.label}}">
+                        <div *ngFor="let ele of form_elem.value ; index as k">
+                          <mat-radio-button style="display:block" (change)="matRadio($event.value,form_elem.label)"
+                            checked="{{ele.multiCheckBox}}" value="{{ele.multi1}}"> {{ele.multi1}}
+                          </mat-radio-button>
+                        </div>
+                      </mat-radio-group>
+                    </div>
+                  </div>
+                  <div *ngSwitchCase="'yes'">
+                    <div *ngIf="!form_elem.hidden">
+                      <mat-label position="stacked">{{form_elem.label}}</mat-label>
+                      <mat-radio-group aria-label="Select an option" (change)="yesOrNo($event.value,form_elem.label)"
+                        formControlName="{{form_elem.label}}">
+                        <mat-radio-button style="display: block;" checked="{{form_elem.yes}}" value="yes">Yes
+                        </mat-radio-button>
+                        <mat-radio-button style="display: block;" checked="{{form_elem.no}}" value="no">No
+                        </mat-radio-button>
+                      </mat-radio-group>
+                    </div>
+                  </div>
+                  <div *ngSwitchCase="'checkBox'">
+                    <div *ngIf="!form_elem.hidden">
+                      <h4>{{form_elem.label}}</h4>
+                      <div class="col-md-2 mt-3" *ngFor="let box of form_elem['value'] ">
+                        <mat-checkbox (change)="checkboxes($event,box)" formControlName="{{box.fieldName}}"
+                          type="checkbox">
+                          {{box.fieldName}}
+                        </mat-checkbox>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="button">
+                <button type="submit" class="signinButton" [disabled]="signInform.invalid"
+                  mat-flat-button>Signin</button>
+              </div>
+            </form>
+          </div>
+        </mat-expansion-panel>
+        <div>
+          <div class="mt-2">
+            <mat-expansion-panel class="printer2 focusexpan" [disabled]="remainingPreregistere==0">
+              <mat-expansion-panel-header class="focusexpan1" style="padding: 9px;">
+                <mat-panel-title>
+                  <div class="d-flex align-items-center justify-content-between w-100">
+                    <div class="mr-auto d-flex align-items-center">
+                      <mat-icon>contacts</mat-icon>
+                      <span>Expected Guest</span>
+                    </div>
+                    <div class="circle rounded-circle">
+                      <span>{{remainingPreregistere}}</span>
+                    </div>
+                  </div>
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+
+
+              <table style="text-align: center;">
+                <tr *ngFor='let api of preApiResponse'>
+                  <td><img src="" onerror="this.src='../../assets/images/user.png'" class="addImage rounded-circle">
+                  </td>
+                  <td><b>{{api.fullName}}</b>
+                    <p>{{api.companyName}}</p>
+                  </td>
+                  <td>
+                    {{api.dateOfVisit | date:'MMM d'}}
+                  </td>
+                </tr>
+              </table>
+            </mat-expansion-panel>
+          </div>
+        </div>
+      </mat-accordion>
+    </div>
+  </div>

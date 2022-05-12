@@ -1,0 +1,200 @@
+<!-- <div *ngIf="showFreeTrialDialog"> -->
+<div class="spinner" *ngIf="spinner">
+    <mat-spinner diameter="100"></mat-spinner>
+</div>
+<div class="container-fluid">
+
+    <div *ngIf="FreeTrial">
+        <div *ngIf="!activeStatus" class="m-3 p-1" style="background-color: #f1cccc; text-align: center;">
+            <h2><span style="color: #e65252;">Your subscription is now finished.</span> Please subscribe to continue to
+                use Breazie Delivery.</h2>
+        </div>
+    </div>
+    <div *ngIf="!FreeTrial">
+        <div *ngIf="!activeStatus" class="m-3 p-1" style="background-color: #f1cccc; text-align: center;">
+            <h2><span style="color: #e65252;">
+                    <u (click)="openDeliveryModel()">Click Here </u> &nbsp;To use the free trial.</span></h2>
+        </div>
+        <h1> </h1>
+    </div>
+    <div class="card mt-4">
+        <div class="card-header">
+            <div class="d-flex align-items-center">
+                <div class="mr-auto d-inline-block">
+                    <h1 class="mb-0" style="font-weight: 500;">Delivery log</h1>
+                </div>
+                <div class="d-flex float-right ">
+                    <div class="dropdown d-flex align-items-center ml-2" *ngIf="activeStatus">
+                        <button class="btn newDelivery d-flex align-items-center" type="button" (click)="openDialog()">
+                            <mat-icon>add</mat-icon> New Delivery
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tabs" *ngIf="tables">
+            <div class="status mt-3">
+                <div class="row">
+                    <div class="col-md-7">
+                        <div class="row">
+                            <div class="col-md-6 col-lg-4">
+                                <div class="ml-2">
+                                    <mat-form-field appearance="outline">
+                                        <mat-label style="font-weight: 500;">Status </mat-label>
+                                        <mat-select (selectionChange)="onChangeStatus($event)">
+                                            <mat-option value="all">All</mat-option>
+                                            <mat-option value="collected">Collected</mat-option>
+                                            <mat-option value="uncollected">Uncollected</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4">
+                                <div>
+                                    <mat-form-field appearance="outline">
+                                        <mat-label style="font-weight: 500;">Duration </mat-label>
+                                        <mat-select (selectionChange)="onChangeDuration($event)" disableRipple>
+                                            <mat-option value="all">All</mat-option>
+                                            <mat-option value="visitors1">Today</mat-option>
+                                            <mat-option value="visitors2">Last 7 Days</mat-option>
+                                            <mat-option value="visitors3">Last 30 Days</mat-option>
+                                            <mat-option value="visitors4">Over 30 Days</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="search mr-3">
+                            <mat-form-field class="search-form-field" apperance="legacy">
+                                <mat-label>Search</mat-label>
+                                <mat-icon class="sticky-top"
+                                    style="position: 'absolute';right: 0;top: 0px; width: 20; height: 20">
+                                    search </mat-icon>
+                                <input matInput name="fullName" placeholder="Search Employee"
+                                    (keyup)="applyFilter($event)">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tabs" *ngIf="tables">
+                <table class="example-table mat-elevation-z1" mat-table [dataSource]="dataSource" matSort>
+                    <ng-container matColumnDef="image" class="image">
+                        <th mat-header-cell *matHeaderCellDef> </th>
+                        <td mat-cell *matCellDef="let element" style="width: 5%;">
+                            <span *ngIf="element.isGeneral">
+                                <img class="image" src="../../../assets/images/user.png" alt="">
+                            </span>
+                            <span class="p-2" *ngIf="!element.isGeneral">
+                                <span class="packageImage">
+                                    {{element.noOfPackages}}
+                                </span>
+                            </span>
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="recepient">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number">
+                            Recipients
+                        </th>
+                        <td mat-cell *matCellDef="let element">
+                            <!-- <div class="row">
+                                <div class="col-md-4 col-lg-3">
+                                    <span *ngIf="element.isGeneral">
+                                        <img class="image" src="../../../assets/images/user.png" alt="">
+                                    </span>
+                                    <span class="p-2" *ngIf="!element.isGeneral">
+                                        <span class="packageImage">
+                                            {{element.noOfPackages}}
+                                        </span>
+                                    </span>
+                                </div> -->
+                            <!-- <div class="col-md-8"> -->
+                            <div class="d-flex align-items-center h-100">
+                                {{element.recepient}}
+                            </div>
+
+                            <!-- </div>
+                            </div> -->
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="deliveryTime">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Delivery time </th>
+                        <td mat-cell *matCellDef="let element"> {{element.deliveryTime | date:'MMM d, h:mm a' }} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="collectedTime">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Collected time </th>
+                        <td mat-cell *matCellDef="let element">
+                            <span>{{element?.collectedTime | date:'MMM d, h:mm a'}}</span>
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="signature">
+                        <th mat-header-cell *matHeaderCellDef>Signature required </th>
+                        <td mat-cell *matCellDef="let element">
+                            <span *ngIf="element.signatureRequired" class="d-flex">
+                                <mat-icon style="margin-left:34px">check_circle</mat-icon>
+                            </span>
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="scan">
+                        <th mat-header-cell *matHeaderCellDef> Scan </th>
+                        <td mat-cell *matCellDef="let element" style="width: 10%;"> {{element.scan}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Collected">
+                        <th mat-header-cell *matHeaderCellDef> Collected </th>
+                        <td mat-cell *matCellDef="let element">
+                            <div *ngIf="element.isGeneral">
+                                <span *ngIf="!element.collectedTime">
+                                    <button type="submit" (click)="markAsCollected(element)" class="collected">Mark
+                                        as collected</button>
+                                </span>
+                            </div>
+                            <span *ngIf="element.collectedTime" class="collectedText d-flex">
+                                <mat-icon class="checkedIcon">check_circle</mat-icon>Collected
+                            </span>
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="action">
+                        <th mat-header-cell *matHeaderCellDef> Action </th>
+                        <td mat-cell *matCellDef="let element">
+                            <div *ngIf="element.isGeneral">
+                                <span *ngIf="!element.collectedTime">
+
+                                    <button mat-icon-button (click)="openEdit(element)">
+                                        <mat-icon matTooltip="Edit" matTooltipPosition="left" style="color:#1D447D ;">
+                                            launch</mat-icon>
+                                    </button>
+                                    <button mat-icon-button (click)="notification(element)">
+                                        <mat-icon matTooltip="Notification" matTooltipPosition="right">notifications
+                                        </mat-icon>
+                                    </button>
+                                </span>
+                            </div>
+                        </td>
+                    </ng-container>
+
+                    <tr class="mat-row" *matNoDataRow>
+                        <td class="mat-cell" colspan="9999">
+                            No data found
+                        </td>
+                    </tr>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+                <mat-paginator #paginator [pageSize]="5" [pageSizeOptions]="[2, 5,10, 25, 100]">
+                </mat-paginator>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- </div> -->

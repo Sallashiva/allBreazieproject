@@ -1,0 +1,213 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import '~@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+.forms .native-input.sc-ion-input-md{
+    border: 1px solid var(--ion-input-color) !important;
+  border-radius: 16px !important;
+  height: 65px !important;
+  padding: 10px !important;
+}
+.forms .native-input.sc-ion-input-ios{
+  border: 1px solid var(--ion-input-color) !important;
+  border-radius: 16px !important;
+  height: 65px !important;
+  padding: 10px !important;
+}
+.forms .label-stacked.sc-ion-label-md-h{
+  height: 60px;
+font-size: 24px;
+margin-left: 1rem;
+color: var(--ion-input-color);
+}
+.label-stacked.sc-ion-label-ios-h {
+margin-left: 1rem;
+}
+.searchbar-search-icon.sc-ion-searchbar-md, .searchbar-cancel-button.sc-ion-searchbar-md {
+    position: absolute;
+    right: 16px !important;
+    left: auto !important;
+}
+.searchbar-input.sc-ion-searchbar-md {
+    border-radius: 40px;
+    box-shadow: inset 0px 0px 6px #00000029;
+    border: 1px solid #70707029;
+    background: #FFFFFF;
+    height: 60px;
+    padding-inline-start: 30px;
+    -webkit-padding-end: 30px;
+    padding-inline-end: 30px;
+    color:black;
+}
+.searchbar-clear-icon {
+  display: none !important;
+  }
+.searchbar-search-icon.sc-ion-searchbar-md {
+    top: 20px;
+}
+
+ion-item {
+  --background-focused:transperant !important;
+}
+.forms .native-input.sc-ion-input-md:focus {
+    border: 2px solid #1D447D !important;
+}
+.forms .native-input.sc-ion-input-ios:focus {
+  border: 2px solid #1D447D !important;
+}
+.forms .item-has-focus .label-stacked.sc-ion-label-md-h:not(.ion-color){
+  color: #1D447D !important;
+  }
+  .forms .item-has-focus .label-stacked.sc-ion-label-ios-h:not(.ion-color){
+    color: #1D447D !important;
+    }
+  .list ion-item{
+    --padding-inline-end: 0px !important;
+}
+ion-item{
+  --background:transperant !important;
+}
+ion-toolbar{
+  --background:white;
+}
+.sc-ion-buttons-md-s .button {
+  --background-hover: currentColor;
+  --color: black;
+}
+.text-danger{
+  margin-left: 1rem;
+  margin-bottom: 0px;
+}
+.alpha-search .alpha-search-content .alpha-search-input > form > input {
+  // color: var(--ion-alpha-search-input) !important;
+  color: black;
+}
+.alpha-search .alpha-search-content .alpha-indicator {
+  margin-top: 10px !important;
+}
+.alpha-search .alpha-search-content > section {
+  position: fixed !important;
+  top:175px !important;
+  overflow-y: scroll !important;
+  background: none !important;
+}
+.alpha-search .alpha-search-content > section .alpha-letters-list.actived { 
+  color: blue !important;
+  visibility: visible !important;
+  font-size: 24px;
+}
+
+.alpha-search .alpha-search-content > section .alpha-letters-list {
+  color: black !important;
+}
+.alpha-search .alpha-search-content .alpha-indicator > div:nth-child(1) > div {
+  background: #1D447D;
+  display: none !important;
+}
+.alpha-search .alpha-search-content .alpha-search-area > ul{
+  border-radius: 0px !important;
+}
+.alpha-search .alpha-search-content .alpha-search-area{
+  border-radius: 0px !important;
+}
+.my-custom-class .alert-wrapper {
+  background: #e5e5e5;
+}
+.alert-wrapper.sc-ion-alert-md{
+  background: white !important;
+}
+
+.alpha-search .alpha-search-content .alpha-search-input {
+border-radius:0px !important;
+position: sticky;
+    top: 0;
+    z-index: 1;
+}
+pwa-camera-modal{
+  background: white !important;
+  margin-top: 60px;
+}
+pwa-camera-modal-instance{
+padding-top:57px;
+}
+:host::ng-deep.button-native{
+  --background: #1D447D !important;
+}
+pwa-camera-modal .wrapper{
+  background: white !important;
+  opacity: 1;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: 1px solid transparent;
+  -webkit-text-fill-color: black;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+
+  @media only screen and (max-width:"767px") {
+  .searchbar-input.sc-ion-searchbar-md {
+    height: 50px !important;
+    padding-inline-start: 60px;
+    font-size: 15px;
+  }
+  .searchbar-input.sc-ion-searchbar-md {
+   box-shadow: none !important;
+   border:none !important
+}
+.searchbar-search-icon.sc-ion-searchbar-md {
+  top: 5px;
+  width: 40px;
+  height: 40px;
+}
+.searchbar-search-icon.sc-ion-searchbar-md, .searchbar-cancel-button.sc-ion-searchbar-md {
+  position: absolute;
+  right: 0px !important; 
+   left: 0 !important; 
+}
+
+  .alpha-search .alpha-search-content > section::-webkit-scrollbar {
+    width: 0px !important;
+  }
+  .alpha-search .alpha-search-content .alpha-search-area > ul{
+    overflow-y: scroll;
+  }
+  .alpha-search .alpha-search-content .alpha-search-area > ul::-webkit-scrollbar {
+    width: 0px !important;
+  }
+  .back-button{
+    display: block;
+  }
+}
+

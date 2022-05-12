@@ -1,0 +1,460 @@
+<div class="spinner" *ngIf="isLoading">
+  <mat-spinner [diameter]="50"></mat-spinner>
+</div>
+<form [formGroup]="reminderForm">
+  <div class="sub-header d-flex  justify-content-end mr-5" *ngIf="showSendRemBtn">
+    <div class="Searchfields ">
+      <form class="example">
+        <div class="d-flex align-items-center" style="margin-top: 6px;">
+          <div>
+            <input type="text" placeholder="Search" (keyup)="applyFilter($event)" name="search" class="input-search">
+          </div>
+          <div>
+            <button type="submit" class="serach-btn"><i class="fa fa-search"></i></button>
+          </div>
+          </div>
+      </form>
+    </div>
+    <div>
+      <button class="send-reminder-btn1 p-1" data-toggle="modal" data-target="#sendReminderModal"
+      (click)="selectedRemainder(currentTab ===1?dataSource.data:currentTab===15?dataSource1.data:currentTab===30?dataSource2.data:[])">Send
+      Reminder<i class="fa fa-bell-o ml-1" aria-hidden="true"></i></button>
+    </div>
+    </div>
+    <div  class="sub-header d-flex  justify-content-end mr-5" *ngIf="!showSendRemBtn">
+      <div class="Searchfields ">
+        <form class="example">
+          <div class="d-flex align-items-center" style="margin-top: 6px;">
+            <div>
+              <input type="text" placeholder="Search" (keyup)="applyFilter($event)" name="search" class="input-search">
+            </div>
+            <div>
+              <button type="submit" class="serach-btn"><i class="fa fa-search"></i></button>
+            </div>
+          </div>
+        </form>
+      </div>
+    <div class="fields">
+      <mat-form-field appearance="outline">
+        <mat-label>Select country</mat-label>
+        <mat-select formControlName="select_country">
+          <mat-option *ngFor="let list of countryList" [value]="list.id">{{list.displayName}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="fields">
+      <mat-form-field appearance="outline">
+        <mat-label>Package type</mat-label>
+        <mat-select formControlName="package_type" (ngModelChange)="getTableData()">
+          <mat-option *ngFor="let list of packageList" [value]="list._id">{{list.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="fields">
+      <mat-form-field appearance="outline" *ngIf="dayReminder">
+        <mat-label>Download as</mat-label>
+        <mat-select
+          [disabled]="currentTab===1?dataSource.data.length===0:currentTab===15?dataSource1.data.length===0:currentTab===30?dataSource2.data.length===0:false">
+          <mat-option value="excel" (click)="downloadEXCELDayReminder()">Excel</mat-option>
+       <!-- <mat-option value="pdf" (click)="savePDF()">PDF</mat-option>  -->
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="outline" *ngIf="fifteenDaysReminder">
+        <mat-label>Download as</mat-label>
+        <mat-select
+          [disabled]="currentTab===1?dataSource.data.length===0:currentTab===15?dataSource1.data.length===0:currentTab===30?dataSource2.data.length===0:false">
+          <mat-option value="excel" (click)="downloadEXCELFifteenDays()">Excel</mat-option>
+          <!-- <mat-option value="pdf" (click)="savePDF()">PDF</mat-option> -->
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="outline" *ngIf="thirtyDaysReminder">
+        <mat-label>Download as</mat-label>
+        <mat-select
+          [disabled]="currentTab===1?dataSource.data.length===0:currentTab===15?dataSource1.data.length===0:currentTab===30?dataSource2.data.length===0:false">
+          <mat-option value="excel" (click)="downloadEXCELThirtyDays()">Excel</mat-option>
+          <!-- <mat-option value="pdf" (click)="savePDF()">PDF</mat-option> -->
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <!-- <div class="container-fluid mt-3" *ngIf="showSendRemBtn">
+    <div class="row">
+      <div class="col-md-7"></div>
+      <div class="col-md-3 mt-1 text-right">
+        <form class="example">
+          <input type="text" placeholder="Search" (keyup)="applyFilter($event)" name="search" class="input-search">
+          <button type="submit" class="serach-btn"><i class="fa fa-search"></i></button>
+        </form>
+      </div>
+      <div class="col-md-2 mt-1 text-right">
+        <button class="send-reminder-btn1 p-1" data-toggle="modal" data-target="#sendReminderModal"
+          (click)="selectedRemainder(currentTab ===1?dataSource.data:currentTab===15?dataSource1.data:currentTab===30?dataSource2.data:[])">Send
+          Reminder<i class="fa fa-bell-o ml-1" aria-hidden="true"></i></button>
+      </div>
+    </div>
+  </div> -->
+  <!-- <div class="container-fluid mt-3" *ngIf="!showSendRemBtn">
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-4 mt-1 text-right">
+        <form class="example">
+          <input type="text" placeholder="Search" (keyup)="applyFilter($event)" name="search" class="input-search">
+          <button type="submit" class="serach-btn"><i class="fa fa-search"></i></button>
+        </form>
+      </div>
+      //<div class="col-md-2 text-right" *ngIf="showSendRemBtn">
+      <button class="send-reminder-btn p-1" data-toggle="modal" data-target="#sendReminderModal">Send Reminder<i
+          class="fa fa-bell-o ml-1" aria-hidden="true"></i></button>
+    </div>
+      <div class="col-md-2 px-2">
+        <mat-form-field appearance="outline">
+          <mat-label>Select country</mat-label>
+          <mat-select formControlName="select_country">
+            <mat-option *ngFor="let list of countryList" [value]="list.id">{{list.displayName}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-md-2 px-2">
+        <mat-form-field appearance="outline">
+          <mat-label>Package type</mat-label>
+          <mat-select formControlName="package_type" (ngModelChange)="getTableData()">
+            <mat-option *ngFor="let list of packageList" [value]="list._id">{{list.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-md-2 pl-0">
+        <mat-form-field appearance="outline" *ngIf="dayReminder">
+          <mat-label>Download as</mat-label>
+          <mat-select
+            [disabled]="currentTab===1?dataSource.data.length===0:currentTab===15?dataSource1.data.length===0:currentTab===30?dataSource2.data.length===0:false">
+            <mat-option value="excel" (click)="downloadEXCELDayReminder()">Excel</mat-option>
+        // <mat-option value="pdf" (click)="savePDF()">PDF</mat-option> 
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline" *ngIf="fifteenDaysReminder">
+          <mat-label>Download as</mat-label>
+          <mat-select
+            [disabled]="currentTab===1?dataSource.data.length===0:currentTab===15?dataSource1.data.length===0:currentTab===30?dataSource2.data.length===0:false">
+            <mat-option value="excel" (click)="downloadEXCELFifteenDays()">Excel</mat-option>
+            //<mat-option value="pdf" (click)="savePDF()">PDF</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline" *ngIf="thirtyDaysReminder">
+          <mat-label>Download as</mat-label>
+          <mat-select
+            [disabled]="currentTab===1?dataSource.data.length===0:currentTab===15?dataSource1.data.length===0:currentTab===30?dataSource2.data.length===0:false">
+            <mat-option value="excel" (click)="downloadEXCELThirtyDays()">Excel</mat-option>
+            //<mat-option value="pdf" (click)="savePDF()">PDF</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+  </div> -->
+</form>
+<div class="container-fluid">
+  <div class="row my-0">
+    <div class="col-md-12">
+      <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+          <a class="nav-link active" id="nav-1day-tab" data-toggle="tab" href="#nav-day-reminder" role="tab"
+            aria-controls="nav-day-reminder" (click)="[resetSelectedAll(),selectedTab(1)]" aria-selected="true">1 day
+            Reminder</a>
+          <a class="nav-link" id="nav-15days-tab" data-toggle="tab" href="#nav-15days-reminder" role="tab"
+            aria-controls="nav-15days-reminder" (click)="[resetSelectedAll(),selectedTab(15)]" aria-selected="false">15
+            days Reminder</a>
+          <a class="nav-link" id="nav-30days-tab" data-toggle="tab" href="#nav-30days-reminder" role="tab"
+            aria-controls="nav-30days-reminder" (click)="[resetSelectedAll(),selectedTab(30)]" aria-selected="false">30
+            days Reminder</a>
+        </div>
+      </nav>
+      <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-day-reminder" role="tabpanel" aria-labelledby="nav-1day-tab">
+          <!-- <app-day-reminder (emitIsAllSelected)="emitIsAllSelected($event)"></app-day-reminder> -->
+          <div class="container-fluid px-0">
+            <mat-card>
+              <ng-container>
+                <div class="mat-elevation-z8">
+                  <table mat-table [dataSource]="dataSource" id="excel-table" matSort class="customer-mat-table">
+
+                    <!--Check box-->
+                    <ng-container matColumnDef="select">
+                      <th mat-header-cell *matHeaderCellDef>
+                        <mat-checkbox class="mt-2" disableRipple="true" (change)="$event ? masterToggle() : null"
+                          [checked]="selection.hasValue() && isAllSelected(dataSource)"
+                          [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()"
+                          #headerChecked (change)="checkboxSelectedDaysRemaining($event,dataSource.filteredData)">
+                        </mat-checkbox>
+                      </th>
+                      <td mat-cell *matCellDef="let row">
+                        <mat-checkbox #dataChecked class="mt-2" disableRipple="true" (click)="$event.stopPropagation()"
+                          (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)"
+                          [aria-label]="checkboxLabel(row)" (change)="checkboxValuesRowDayRemining($event,row)">
+                        </mat-checkbox>
+                      </td>
+                    </ng-container>
+
+                    <!--Customer Name Column -->
+                    <ng-container matColumnDef="customerName">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Customer Name</th>
+                      <td mat-cell *matCellDef="let row">{{ row.customerName }}</td>
+                    </ng-container>
+
+                    <!-- Package type Column -->
+                    <ng-container matColumnDef="packageType">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Package type</th>
+                      <td mat-cell *matCellDef="let row">{{ row.packageType }}</td>
+                    </ng-container>
+
+                    <!-- Duration Column -->
+                    <ng-container matColumnDef="duration">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Duration</th>
+                      <td mat-cell *matCellDef="let row">{{ row.duration }}</td>
+                    </ng-container>
+
+                    <!-- Pack expiration date Column -->
+                    <ng-container matColumnDef="packExpiryDate">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Pack expiration date</th>
+                      <td mat-cell *matCellDef="let row">{{ row.packExpiryDate|date:'dd MMM yyyy'}}</td>
+                    </ng-container>
+
+                    <!-- Total earnings Column -->
+                    <ng-container matColumnDef="totalEarnings">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Total earnings</th>
+                      <td mat-cell *matCellDef="let row">{{ row.totalEarnings }}</td>
+                    </ng-container>
+
+                    <!-- Action Column -->
+                    <ng-container matColumnDef="action">
+                      <th mat-header-cell *matHeaderCellDef  [hidden]="isAllSelected()">Action</th>
+                      <td mat-cell [hidden]="isAllSelected()" *matCellDef="let row">
+                        <button class="send-reminder-btn" (click)="selectedRemainder([row])" data-toggle="modal"
+                          data-target="#sendReminderModal">Send <i class="fa fa-bell-o ml-1"
+                            aria-hidden="true"></i></button>
+                      </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+                  </table>
+                  <mat-error *ngIf="
+                      dataSource.data.length == 0 ||
+                      (dataSource.filteredData.length == 0 &&
+                        isLoading == false &&
+                        errorMsg)
+                    " class="errorMsg text-center mt-3">{{ errorMsg }}</mat-error>
+               
+                  <mat-paginator #dayPaginator [pageSizeOptions]="[5,10,20,50,100]"></mat-paginator>
+                </div>
+              </ng-container>
+            </mat-card>
+          </div>
+        </div>
+
+        <div class="tab-pane fade" id="nav-15days-reminder" role="tabpanel" aria-labelledby="nav-15days-tab">
+          <!-- <app-fifteen-days-reminder (emitIsAllSelected)="emitIsAllSelected($event)"></app-fifteen-days-reminder> -->
+          <div class="container-fluid px-0">
+            <mat-card>
+              <ng-container>
+                <div class="mat-elevation-z8">
+                  <table mat-table [dataSource]="dataSource1" id="excel-table" matSort class="customer-mat-table">
+
+                    <!--Check box-->
+                    <ng-container matColumnDef="select">
+                      <th mat-header-cell *matHeaderCellDef>
+                        <mat-checkbox class="mt-2" disableRipple="true" (change)="$event ? masterToggle1() : null"
+                          [checked]="selection1.hasValue() && isAllSelected1(dataSource1)"
+                          [indeterminate]="selection1.hasValue() && !isAllSelected1()" [aria-label]="checkboxLabel1()"
+                          #headerChecked1 (change)="checkboxSelectedFifteenDays($event,dataSource1.filteredData)">
+                        </mat-checkbox>
+                      </th>
+                      <td mat-cell *matCellDef="let row">
+                        <mat-checkbox #dataChecked1 class="mt-2" disableRipple="true" (click)="$event.stopPropagation()"
+                          (change)="$event ? selection1.toggle(row) : null" [checked]="selection1.isSelected(row)"
+                          [aria-label]="checkboxLabel1(row)" (change)="checkboxValuesRowFifteenDays($event,row)">
+                        </mat-checkbox>
+                      </td>
+                    </ng-container>
+
+                    <!--Customer Name Column -->
+                    <ng-container matColumnDef="customerName">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Customer Name</th>
+                      <td mat-cell *matCellDef="let row">{{ row.customerName }}</td>
+                    </ng-container>
+
+                    <!-- Package type Column -->
+                    <ng-container matColumnDef="packageType">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Package type</th>
+                      <td mat-cell *matCellDef="let row">{{ row.packageType }}</td>
+                    </ng-container>
+
+                    <!-- Duration Column -->
+                    <ng-container matColumnDef="duration">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Duration</th>
+                      <td mat-cell *matCellDef="let row">{{ row.duration }}</td>
+                    </ng-container>
+
+                    <!-- Pack expiration date Column -->
+                    <ng-container matColumnDef="packExpiryDate">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Pack expiration date</th>
+                      <td mat-cell *matCellDef="let row">{{ row.packExpiryDate|date:'dd MMM yyyy'}}</td>
+                    </ng-container>
+
+                    <!-- Total earnings Column -->
+                    <ng-container matColumnDef="totalEarnings">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Total earnings</th>
+                      <td mat-cell *matCellDef="let row">{{ row.totalEarnings }}</td>
+                    </ng-container>
+
+                    <!-- Action Column -->
+                    <ng-container matColumnDef="action">
+                      <th mat-header-cell *matHeaderCellDef  [hidden]="isAllSelected1()">Action</th>
+                      <td mat-cell [hidden]="isAllSelected1()" *matCellDef="let row">
+                        <button class="send-reminder-btn" (click)="selectedRemainder([row])" data-toggle="modal"
+                          data-target="#sendReminderModal">Send <i class="fa fa-bell-o ml-1"
+                            aria-hidden="true"></i></button>
+                      </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+                  </table>
+                  <mat-error *ngIf="
+                      dataSource1.data.length == 0 ||
+                      (dataSource1.filteredData.length == 0 &&
+                        isLoading == false &&
+                        errorMsg)
+                    " class="errorMsg text-center mt-3">{{ errorMsg }}</mat-error>
+                 
+                  <mat-paginator #fifDaysPaginator [pageSizeOptions]="[5,10,20,50,100]"></mat-paginator>
+                </div>
+              </ng-container>
+            </mat-card>
+          </div>
+        </div>
+
+        <div class="tab-pane fade" id="nav-30days-reminder" role="tabpanel" aria-labelledby="nav-30days-tab">
+          <!-- <app-thirty-days-reminder (emitIsAllSelected)="emitIsAllSelected($event)"></app-thirty-days-reminder> -->
+          <div class="container-fluid px-0">
+            <mat-card>
+              <ng-container>
+                <div class="mat-elevation-z8">
+                  <table mat-table [dataSource]="dataSource2" id="excel-table" matSort class="customer-mat-table">
+
+                    <!--Check box-->
+                    <ng-container matColumnDef="select">
+                      <th mat-header-cell *matHeaderCellDef>
+                        <mat-checkbox class="mt-2" disableRipple="true" (change)="$event ? masterToggle2() : null"
+                          [checked]="selection2.hasValue() && isAllSelected2(dataSource2)"
+                          [indeterminate]="selection2.hasValue() && !isAllSelected2()" [aria-label]="checkboxLabel2()"
+                          #headerChecked2 (change)="checkboxSelectedThirtyDaysRemaining($event,dataSource2.filteredData)">
+                        </mat-checkbox>
+                      </th>
+                      <td mat-cell *matCellDef="let row">
+                        <mat-checkbox #dataChecked2 class="mt-2" disableRipple="true" (click)="$event.stopPropagation()"
+                          (change)="$event ? selection2.toggle(row) : null" [checked]="selection2.isSelected(row)"
+                          [aria-label]="checkboxLabel2(row)" (change)="checkboxValuesRowThirtyDays($event,row)">
+                        </mat-checkbox>
+                      </td>
+                    </ng-container>
+
+                    <!--Customer Name Column -->
+                    <ng-container matColumnDef="customerName">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Customer Name</th>
+                      <td mat-cell *matCellDef="let row">{{ row.customerName }}</td>
+                    </ng-container>
+
+                    <!-- Package type Column -->
+                    <ng-container matColumnDef="packageType">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Package type</th>
+                      <td mat-cell *matCellDef="let row">{{ row.packageType }}</td>
+                    </ng-container>
+
+                    <!-- Duration Column -->
+                    <ng-container matColumnDef="duration">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Duration</th>
+                      <td mat-cell *matCellDef="let row">{{ row.duration }}</td>
+                    </ng-container>
+
+                    <!-- Pack expiration date Column -->
+                    <ng-container matColumnDef="packExpiryDate">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Pack expiration date</th>
+                      <td mat-cell *matCellDef="let row">{{ row.packExpiryDate|date:'dd MMM yyyy'}}</td>
+                    </ng-container>
+
+                    <!-- Total earnings Column -->
+                    <ng-container matColumnDef="totalEarnings">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Total earnings</th>
+                      <td mat-cell *matCellDef="let row">{{ row.totalEarnings }}</td>
+                    </ng-container>
+
+                    <!-- Action Column -->
+                    <ng-container matColumnDef="action">
+                      <th mat-header-cell *matHeaderCellDef  [hidden]="isAllSelected2()">Action</th>
+                      <td mat-cell [hidden]="isAllSelected2()" *matCellDef="let row">
+                        <button class="send-reminder-btn" (click)="selectedRemainder([row])" data-toggle="modal"
+                          data-target="#sendReminderModal">Send <i class="fa fa-bell-o ml-1"
+                            aria-hidden="true"></i></button>
+                      </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+                  </table>
+                  <mat-error *ngIf="
+                      dataSource2.data.length == 0 ||
+                      (dataSource2.filteredData.length == 0 &&
+                        isLoading == false &&
+                        errorMsg)
+                    " class="errorMsg text-center mt-3">{{ errorMsg }}</mat-error>
+                
+                  <mat-paginator #thirtyDaysPaginator [pageSizeOptions]="[5,10,20,50,100]"></mat-paginator>
+                </div>
+              </ng-container>
+            </mat-card>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="sendReminderModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title reminder-title font-weight-bold" id="exampleModalLabel">Reminder mail</h5>
+        <button type="button" class="close" #closeModal data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-9">
+              <ckeditor ngDefaultControl [editor]="Editor" [(ngModel)]="data" (ready)="onReady($event)">
+              </ckeditor>
+            </div>
+            <div class="col-md-3 template-div">
+              <mat-card class="main-card my-3" *ngFor="let item of setOfTemplates" (click)="patchToCKEditor(item)">
+                <mat-card-content class="mb-0">
+                  <div [innerHTML]="sanitizer.bypassSecurityTrustHtml(item?.template_content)"></div>
+                </mat-card-content>
+                <mat-divider inset></mat-divider>
+                <mat-card-footer class="card-footer py-2">
+                  <div class="">
+                    {{item?.template_name}}
+                  </div>
+                </mat-card-footer>
+              </mat-card>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn close-btn" data-dismiss="modal">Close</button>
+        <button type="button" class="send-reminder-btn1" (click)="sendReminder()">Send Reminder</button>
+      </div>
+    </div>
+  </div>
+</div>

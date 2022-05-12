@@ -1,0 +1,194 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Sofia Pro;
+}
+.modal-open .modal {
+  overflow-x: hidden;
+  overflow-y: auto;
+  background: rgba(226, 225, 230, 0.7);
+}
+.modal-backdrop {
+  z-index: 0 !important;
+}
+.mat-form-field {
+  width: 100% !important;
+  font-size: 12px !important;
+  line-height: 2.2 !important;
+}
+mat-footer-cell {
+  justify-content: center;
+  font-style: italic;
+}
+p {
+  margin-top: 4px;
+}
+.mat-form-field-wrapper {
+  margin-bottom: -8px !important;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: 1px solid transparent;
+  -webkit-text-fill-color: black;
+  transition: background-color 5000s ease-in-out 0s;
+}
+.mat-drawer-container {
+  background: white !important;
+}
+.mat-checkbox-checked.mat-accent .mat-checkbox-background {
+  background-color: #1561cf !important;
+}
+img {
+  width: 100%;
+}
+.mat-nav-list .mat-list-item .mat-list-item-ripple {
+  visibility: hidden !important;
+}
+.customer-mat-table {
+  overflow-x: auto;
+  overflow-y: auto !important;
+  width: 100%;
+}
+.customer-mat-table::-webkit-scrollbar {
+  width: 100% !important;
+  height: 12px !important;
+}
+.customer-mat-table::-webkit-scrollbar-track {
+  background: white !important;
+}
+.customer-mat-table::-webkit-scrollbar-thumb {
+  background-color: #7f8488;
+  border-radius: 20px;
+  border: 2px solid #f8f9fa;
+}
+.customer-mat-table table {
+  width: 100%;
+}
+.customer-mat-table .mat-header-cell {
+  font-weight: 600;
+  color: black;
+  font-size: 15px !important;
+  white-space: nowrap !important;
+  font-weight: bold !important;
+}
+.customer-mat-table .mat-cell {
+  font-size: 13px !important;
+  white-space: nowrap !important;
+  padding-right: 0.75em !important;
+}
+.customer-mat-table th.mat-header-cell {
+  z-index: 99 !important;
+  border-bottom: none !important;
+  background-color: #f6f6f6;
+}
+.customer-mat-table th.mat-header-cell:first-of-type {
+  z-index: 99 !important;
+  border-bottom: none !important;
+  padding-left: 8px !important;
+}
+.customer-mat-table th.mat-header-cell:last-of-type {
+  z-index: 99 !important;
+  border-bottom: none !important;
+  padding-right: 0.25em !important;
+}
+.customer-mat-table td.mat-cell {
+  border-bottom: none !important;
+}
+.customer-mat-table td.mat-cell:first-of-type {
+  border-bottom: none !important;
+  padding-left: 8px !important;
+}
+.customer-mat-table td.mat-cell:last-of-type {
+  border-bottom: none !important;
+  padding-right: 0.25em !important;
+}
+.customer-mat-table .mat-header-row {
+  background: none !important;
+}
+.customer-mat-table tr:nth-child(odd) {
+  background-color: white;
+}
+.mat-elevation-z8 {
+  box-shadow: none !important;
+}
+.mat-paginator-page-size-select {
+  width: 56px !important;
+}
+.mat-header-row {
+  height: 40px !important;
+}
+.mat-form-field-appearance-outline .mat-form-field-infix {
+  padding: 0.8em 0 0.8em 0 !important;
+  border-top: 0px !important;
+}
+.mat-form-field-appearance-outline .mat-select-arrow-wrapper {
+  transform: translateY(0%) !important;
+}
+.mat-form-field-appearance-outline .mat-form-field-label {
+  top: 1.9775em !important;
+}
+.mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float
+  .mat-form-field-label,
+.mat-form-field-appearance-outline.mat-form-field-can-float
+  .mat-input-server:focus
+  + .mat-form-field-label-wrapper
+  .mat-form-field-label {
+    transform: translateY(-1.49375em) scale(0.85) !important;
+}
+.send-reminder-btn {
+  outline: none;
+  border: none;
+  color: #5b3f94 !important;
+  border-radius: 4px;
+}
+.mat-drawer.mat-drawer-side {
+  z-index: 0 !important;
+}
+.serach-btn {
+  background-color: #5b3f94;
+  color: white;
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;
+  border: none;
+  padding: 11px 18px;
+}
+.input-search {
+  border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+    background-color: #2748a10a;
+    color: #5b3f94;
+    border: none;
+    padding: 10px 20px;
+    outline: none;
+    width: 300px;
+    box-shadow: 0px 0px 3px lightgrey;
+}
+.spinner {
+  position: fixed;
+  background-color: rgba(0,0,0,0.2);
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+mat-spinner{
+  position: absolute;
+  left: 50%;
+  top: 30%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+.mat-checkbox-layout{
+  margin-top: 0.55em !important;
+}

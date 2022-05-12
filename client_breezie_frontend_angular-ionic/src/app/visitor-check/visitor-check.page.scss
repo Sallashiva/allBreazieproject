@@ -1,0 +1,48 @@
+.image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.avatars {
+    width: 420px !important;
+    height: 420px !important;
+    position: relative;
+}
+
+.captures i {
+    top: 20px;
+    right: 20px;
+}
+
+.captures i {
+    position: absolute;
+    top: 35px;
+    right: 50px;
+    font-size: 30px;
+    border-radius: 50%;
+    box-shadow: 0px 0px 4px lightgrey;
+    padding: 10px;
+    color: white;
+    background: #1D447D;
+    display: block !important;
+    cursor: pointer;
+}
+
+.captures:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    top: 20%;
+    right: 20%;
+    color: white;
+    padding: 8px;
+    border-radius: 6px;
+    background: #1D447D;
+}
+
+@media only screen and (max-width:767px) {
+    .avatars {
+        width: 300px !important;
+        height: 300px !important;
+    }
+}

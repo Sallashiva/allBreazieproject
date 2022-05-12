@@ -1,0 +1,55 @@
+<h2 mat-dialog-title>Add Employee</h2>
+<form [formGroup]="employeeForm" (ngSubmit)="onUpdateTimeline()">
+<mat-dialog-content class="mat-typography">
+    <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Full Name</mat-label>
+        <input type="text" matInput placeholder="Enter recipient" formControlName="fullName">
+      </mat-form-field>
+    
+      <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Last Name</mat-label>
+        <input type="text" matInput placeholder="Add note to notification email" formControlName="lastName">
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>E-mail</mat-label>
+        <input type="email" matInput placeholder="email" formControlName="email">
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width phone" appearance="outline">
+        <mat-label class="pho">Phone number</mat-label>
+        <input type="tel" matInput
+        ng2TelInput
+        (countryChange)="onCountryChange($event)" formControlName="phone">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" >
+        <mat-label>Location</mat-label>
+        <mat-select disableRipple formControlName="location">
+          <mat-option *ngFor="let location of deviceLocation" value="{{location.locationId}}" selected>
+            {{location.officeName}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+
+      <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Assistant Email(Cc)</mat-label>
+        <input type="email" matInput placeholder="email" formControlName="assistantEmail" >
+      </mat-form-field>
+
+
+      <mat-form-field class="example-full-width phone" appearance="outline">
+        <mat-label class="pho">Assist SMS(Ph no.)</mat-label>
+        <input type="tel" matInput
+        ng2TelInput
+        (countryChange)="onCountryChange($event)" formControlName="assistSms"/>
+      </mat-form-field>
+
+
+ 
+</mat-dialog-content>
+<mat-dialog-actions class="d-flex align-items-center justify-content-center">
+  <button  class="close"  mat-button  mat-raised-button  mat-dialog-close>cancel</button>
+  <button type="submit" class="add"  mat-button  mat-raised-button >Update</button>
+</mat-dialog-actions>
+</form>

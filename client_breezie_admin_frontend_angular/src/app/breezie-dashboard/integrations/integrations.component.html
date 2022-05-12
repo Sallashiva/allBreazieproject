@@ -1,0 +1,61 @@
+<div class="spinner" *ngIf="spinner">
+  <mat-spinner diameter="100"></mat-spinner>
+</div>
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-md-9">
+        <span >
+          <h2 class="integrationHeading">Integrations</h2>
+        </span>
+        <span class="integrationSecond">Manage integrations between external system and Breazie</span>
+      </div>
+      <div class="col-md-3">
+        <form [formGroup]="integrationForm" (ngSubmit)="onSubmit()">
+        <div>
+          <a class="btn btn-secondary dropdown-toggle" role="button" id="integrationDropDown"
+            data-toggle="dropdown" aria-expanded="false">
+            Add Employee
+          </a>
+          <div class="dropdown-menu" aria-labelledby="integrationDropDown">
+            <a class="dropdown-item" ><label>Employee</label></a>
+            <div class="employeeInput"><input class="inputbox" formControlName="employee"></div>
+
+            <a class="dropdown-item"><label>Admin role</label></a>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="adminRole" id="exampleRadios1" value="companyAdmin"
+                checked formControlName="adminRole">
+              <label class="form-check-label" for="exampleRadios1">
+                Company Admin
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="adminRole" id="exampleRadios1" value="locationManager"
+                checked formControlName="adminRole">
+              <label class="form-check-label" for="exampleRadios1">
+                Location Manager
+              </label>
+            </div>
+            <hr>
+            <button mat-button mat-dialog-add class="integrationsAddButton">Add</button>
+          </div>
+        </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <mat-card class="integrationCardLeft"></mat-card>
+      </div>
+
+      <div class="col-md-6">
+        <mat-card class="integrationCardRight"></mat-card>
+      </div>
+      <div class="m-3">
+        <button  class="checkout" (click)="Procedure()">
+          checkout
+        </button>
+      </div>
+     
+    </div>
+</div>

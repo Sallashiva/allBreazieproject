@@ -1,0 +1,8 @@
+.check {
+    background-image: url(../../../assets/images/payment_success.gif);
+    background-position: center;
+    background-size: cover;
+    height: 70px;
+    width: 70px;
+    margin: auto;
+}

@@ -1,0 +1,61 @@
+:host ::ng-deep.mat-form-field-infix {
+  padding: 1.5em 0;
+  border-top: 0 solid transparent !important;
+}
+
+.login {
+  margin: 100px 0px;
+}
+.login h1{
+  font-size: 2.7rem;
+  font-weight: 500;
+  margin-bottom: 30px;
+}
+label{
+  font-size: 1.02rem;
+    font-weight: 500;
+}
+.resetPassword {
+  color: #4848e7;
+  font-weight: 400;
+}
+.mat-form-field {
+  width: 100% !important;
+  font-size: 12px !important;
+  line-height: 3 !important;
+}
+
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.loginButton {
+  border-radius: 6px;
+  padding: 9px 50px;
+  box-shadow: none;
+  font-weight: 400;
+  background-color: #1D447D;
+  color: white;
+  font-size: 18px;
+}
+.loginButton:disabled{
+  opacity: 0.8;
+}
+.eyeicon {
+  float: right;
+  display: inline;
+  position: absolute;
+  top: 30%;
+  border: none;
+  background: transparent;
+  font-size: 20px;
+  right: 0;
+}
+:host::ng-deep.mat-form-field-appearance-outline .mat-form-field-suffix {
+  top: 0.6em !important;
+}
+.example-full-width {
+  width: 100%;
+}

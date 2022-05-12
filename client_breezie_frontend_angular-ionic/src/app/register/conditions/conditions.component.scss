@@ -1,0 +1,226 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+.logo {
+    top: 36px;
+    left: 56px;
+    width: 168px;
+    height: 41px;
+}
+
+ion-checkbox {
+    margin-right: 10px;
+    --ion-color-base: #1D447D !important;
+}
+
+ion-toggle {
+    --handle-background-checked: #ffff;
+    --background-checked: #1D447D;
+}
+
+.email {
+    --highlight-background: #1D447D;
+    --border-color: var(--ion-text-color);
+}
+
+.clear {
+    --background: #1D447D;
+}
+
+.qr-code ion-icon {
+    width: 60px;
+    height: 50px;
+    cursor: pointer;
+}
+
+.terms-h1 {
+    margin-left: 60px;
+    font-family: 'Roboto', sans-serif;
+    color: var(--ion-heading-color);
+    font-weight: bold;
+}
+
+li {
+    color: black;
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    margin-bottom: 20px;
+    padding-left: 10px;
+}
+
+ion-card-title {
+    font-size: 24px;
+    font-weight: bold;
+    font-family: 'Roboto', sans-serif;
+    color: black;
+}
+
+ion-card-content p {
+    color: black;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.native-input.sc-ion-input-md {
+    border: none !important;
+    border-radius: 0px !important;
+    height: 20px !important;
+}
+
+signature-pad {
+    border: 1px solid black;
+    width: 100%;
+    height: 80px;
+}
+
+canvas {
+    border: 3px dashed gray;
+    width: 100%;
+    background: var(--ion-canvas-background-color);
+}
+
+.formz {
+    position: fixed;
+    margin-right: 15px;
+}
+
+.continue {
+    width: 100%;
+    margin-top: 90px;
+    height: 50px;
+    --background: #1D447D;
+    font-weight: bold;
+}
+
+.signature {
+    padding: 10px;
+    --inner-padding-end: 0px;
+}
+
+.qrcode {
+    --inner-padding-end: 0px;
+    margin: 1px 5px;
+    color: black;
+}
+
+.qrcode::part(native) {
+    box-shadow: 0px 0px 6px lightgray;
+    padding: 2px;
+    border-radius: 5px;
+}
+
+.signature::part(native) {
+    box-shadow: 0px 0px 6px lightgray;
+    padding: 10px;
+    border-radius: 16px;
+}
+
+ion-card {
+    margin: 10px 0px;
+    border-radius: 10px;
+    height: 100vh;
+    overflow-y: scroll;
+}
+
+// .formz{
+//   height: 100vh;
+//   overflow-y: scroll;
+// }
+.cardContent {
+    height: 100vh;
+}
+
+.cardContent::-webkit-scrollbar {
+    width: 5px;
+}
+
+
+/* Handle */
+
+.cardContent::-webkit-scrollbar-thumb {
+    background: lightgray;
+    border-radius: 20px;
+}
+
+
+/* Handle on hover */
+
+.cardContent::-webkit-scrollbar-thumb:hover {
+    background: lightgray;
+}
+
+.diaplaySignature {
+    display: block;
+}
+
+.hideSignature {
+    display: none;
+}
+
+.back-button {
+    display: none;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+}
+
+
+/* Handle */
+
+::-webkit-scrollbar-thumb {
+    background: lightgray;
+    border-radius: 15px;
+}
+
+
+/* Handle on hover */
+
+::-webkit-scrollbar-thumb:hover {
+    background: lightgray;
+}
+
+@media only screen and (max-width:1440px) {
+    .formz {
+        position: static;
+    }
+    .back-button {
+        display: block;
+    }
+}
+
+@media only screen and (max-width:1023px) {
+    .formz {
+        position: static;
+    }
+    .back-button {
+        display: block;
+    }
+}
+
+@media only screen and (max-width:767px) {
+    .formz {
+        position: static;
+    }
+    .qrcode {
+        display: none;
+    }
+    ion-card {
+        max-height: 400px;
+        min-height: 400px;
+    }
+    .cardContent {
+        overflow-y: scroll;
+        height: 400px;
+    }
+    .terms {
+        margin-top: 0px !important;
+    }
+    .terms-h1 {
+        margin-left: 0px;
+        text-align: center;
+    }
+    .back-button {
+        display: block;
+    }
+}

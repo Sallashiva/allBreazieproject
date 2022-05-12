@@ -1,0 +1,136 @@
+
+<div  style="float: right;cursor: pointer;">
+  <button  class="deleteIcon" mat-dialog-close > <i class="fas fa-times"></i></button>
+</div>
+<h2 mat-dialog-title>Update Employee</h2>
+
+<form [formGroup]="employeeForm" (ngSubmit)="onUpdateEmployee()">
+  <mat-dialog-content class="mat-typography">
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>First Name</mat-label>
+      <input type="text" matInput placeholder="Enter First Name" formControlName="fullName">
+    </mat-form-field>
+    <p *ngIf="( employeeForm.controls.fullName.touched) && employeeForm.controls.fullName.errors?.required"
+      class="text-danger">
+      First Name is required.
+    </p>
+    <p *ngIf="employeeForm.get('fullName').touched && (employeeForm.get('fullName').errors?.pattern)"
+      class="text-danger">This is invalid First Name!</p>
+
+
+    <div class="text-danger"
+      *ngIf="employeeForm.get('fullName').touched && employeeForm.get('fullName').errors?.minlength || employeeForm.get('fullName').errors?.maxlength">
+      <p style="font-size: 12px;">
+        Full Name accept between 3-30 characters
+      </p>
+    </div>
+
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Last Name</mat-label>
+      <input type="text" matInput placeholder="Add note to notification email" formControlName="lastName">
+    </mat-form-field>
+    <p *ngIf="( employeeForm.controls.lastName.touched) && employeeForm.controls.lastName.errors?.required"
+      class="text-danger">
+      Last Name is required.
+    </p>
+    <p *ngIf="employeeForm.get('lastName').touched && (employeeForm.get('lastName').errors?.pattern)"
+      class="text-danger">This is invalid Last Name!</p>
+
+
+    <div class="text-danger"
+      *ngIf="employeeForm.get('lastName').touched && employeeForm.get('lastName').errors?.minlength || employeeForm.get('lastName').errors?.maxlength">
+      <p style="font-size: 12px;">
+        Last Name accept between 1-30 characters
+      </p>
+    </div>
+
+    
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Email</mat-label>
+      <input type="email" matInput placeholder="email" formControlName="email">
+    </mat-form-field>
+    <p *ngIf="( employeeForm.controls.email.touched) && employeeForm.controls.email.errors?.required"
+      class="text-danger">
+      email is required.
+    </p>
+    <p *ngIf="employeeForm.get('email').touched && (employeeForm.get('email').errors?.pattern || employeeForm.get('email').errors?.minlength)"
+      class="text-danger">This is invalid email</p>
+
+    <mat-form-field class="example-full-width phone" appearance="outline">
+      <mat-label class="pho">Phone number</mat-label>
+      <input type="tel" matInput value="+{{countryCode}}" ng2TelInput (countryChange)="onCountryChange($event)"
+        formControlName="phone">
+    </mat-form-field>
+    <p *ngIf="( employeeForm.controls.phone.touched) && employeeForm.controls.phone.errors?.required"
+      class="text-danger">
+      Phone number is required.
+    </p>
+    <p *ngIf="employeeForm.get('phone').touched && (employeeForm.get('phone').errors?.pattern || employeeForm.get('phone').errors?.minlength)"
+      class="text-danger">This is invalid Phone number</p>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Location</mat-label>
+      <mat-select disableRipple formControlName="location">
+        <mat-option *ngFor="let location of deviceLocation" value="{{location.locationId}}" selected>
+          {{location.officeName}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <p *ngIf="( employeeForm.controls.locationName.touched) && employeeForm.controls.locationName.errors?.required"
+      class="text-danger">
+      location is required.
+    </p>
+    <p *ngIf="employeeForm.get('locationName').touched && (employeeForm.get('locationName').errors?.pattern || employeeForm.get('locationName').errors?.minlength)"
+      class="text-danger">This is invalid location</p>
+
+
+    <mat-form-field class="example-full-width" appearance="outline" >
+      <mat-label>Assistant Email(Cc)</mat-label>
+      <input type="email" matInput placeholder="email" formControlName="assistantEmail">
+    </mat-form-field>
+    <p *ngIf="( employeeForm.controls.assistantEmail.touched) && employeeForm.controls.assistantEmail.errors?.required"
+      class="text-danger">
+      assistantEmail is required.
+    </p>
+    <p *ngIf="employeeForm.get('assistantEmail').touched && (employeeForm.get('assistantEmail').errors?.pattern || employeeForm.get('assistantEmail').errors?.minlength)"
+      class="text-danger">This is invalid assistantEmail</p>
+
+
+    <mat-form-field class="example-full-width phone" appearance="outline" floatLabel="always">
+      <mat-label class="pho">Assist SMS(Ph no.)</mat-label>
+      <input type="tel" matInput value="+{{countryCode1}}" ng2TelInput (countryChange)="onCountryChange1($event)"
+        formControlName="assistSms" />
+    </mat-form-field>
+    <p *ngIf="( employeeForm.controls.assistSms.touched) && employeeForm.controls.assistSms.errors?.required"
+      class="text-danger">
+      assistSms is required.
+    </p>
+    <p *ngIf="employeeForm.get('assistSms').touched && (employeeForm.get('assistSms').errors?.pattern || employeeForm.get('assistSms').errors?.minlength)"
+      class="text-danger">This is invalid assistSms</p>
+
+    <mat-form-field class="example-full-width phone" appearance="outline">
+      <mat-label>Working Remotely</mat-label>
+      <mat-select disableRipple value="{{selectedEmp}}" ngModel="{{selectedEmp}}" formControlName="isRemoteUser">
+        <mat-option value="true"> Enable</mat-option>
+        <mat-option value="false"> Disable</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div *ngFor="let form_elem of formTemplate">
+      <div [ngSwitch]="form_elem.fieldType">
+        <div *ngSwitchCase="'text'">
+          <div>
+            <mat-form-field class="example-full-width phone" appearance="outline">
+              <mat-label class="pho">{{form_elem.label}}</mat-label>
+              <input type="tel" [(ngModel)]="form_elem.value" matInput formControlName="{{form_elem.label}}" />
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </mat-dialog-content>
+  <mat-dialog-actions class="d-flex align-items-center justify-content-center">
+    <!-- <button class="close" mat-button mat-dialog-close>Cancel</button> -->
+    <button type="submit" class="add" [disabled]="employeeForm.invalid" mat-button mat-raised-button>Update</button>
+  </mat-dialog-actions>
+</form>

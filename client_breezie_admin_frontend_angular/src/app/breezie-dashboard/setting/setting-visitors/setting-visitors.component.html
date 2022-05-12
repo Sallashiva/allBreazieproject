@@ -1,0 +1,295 @@
+<div class="spinner" *ngIf="spinner">
+  <mat-spinner diameter="100"></mat-spinner>
+</div>
+<form [formGroup]="SettingVisitorForm" (ngSubmit)="onFormSubmit()">
+ 
+  <div class="container">
+    <div class="visitormainHeadding">
+      <h2>Guest Settings</h2>
+    </div>
+    <p class="visitorsubheadding">Configure your guest welcome and notifications</p>
+    <div>
+      <div>
+        <mat-card [ngClass]="card ? 'cards':'cards1'">
+          <mat-checkbox class="remembervisitor" [(ngModel)]="checked" #rememberVisitor formControlName="rememberVisitor"
+            type="checkbox" (change)="remembervisitor($event)">
+            <h4 class="mb-0" style="font-weight: 500;">Remember Guest</h4>
+          </mat-checkbox>
+          <div class="subtitle" *ngIf="rememberVisitorUnchecked">
+            <div class="remembercardprivacy">
+              Privacy enhanced. Guest are required to enter their details on each new visit.
+            </div>
+            <div class="rememberdisabling">
+              Disabling this setting will remove existing remembered guests to Head Office. Remembered guests who
+              are
+              currently signed in will be signed out. Existing guest data will not be removed.
+            </div>
+            <div class="rememberinfo">
+              For more information regarding Remembered guests please see the help article.
+            </div>
+            <div>
+              <button mat-button class="cancel" type="button" appearance="outline" (click)="onClick()">Cancel</button>
+              <button mat-button class="remove" type="button" appearance="outline" (click)="remove()">Remove</button>
+            </div>
+          </div>
+        </mat-card>
+      </div>
+      <div>
+        <p class="subtitle data1" *ngIf="rememberVisitorChecked">Guests see a 'Remember
+          me' toogle on sign in, which if
+          selected will be
+          remember guests
+          details for a faster sign in next time. Disable for enhanced privacy.</p>
+      </div>
+      <div class="remembercardprivacyuncheck" *ngIf="rememberVisitorRemove">
+        Privacy enhanced. guests are required to enter their details on each new visit.
+      </div>
+      <mat-checkbox class="remembervisitor" [checked]="true" formControlName="visitorNameMatch" ng-model="true">
+        <h4 class="mb-0" style="font-weight: 500;">Show guest name matches</h4>
+      </mat-checkbox>
+      <p class="subtitle" *ngIf="!this.SettingVisitorForm.get('visitorNameMatch').value">Privacy enhanced. Name matches
+        are hidden and guests are
+        required to enter
+        their full name and
+        company name.</p>
+      <p class="subtitle data1" *ngIf="this.SettingVisitorForm.get('visitorNameMatch').value">Breezie displays matching
+        guest names to choose
+        from
+        once the first 3
+        letters are entered, allowing quicker sign in and out. Disable for enhanced privacy.</p>
+      <mat-checkbox class="remembervisitor" #selectHost formControlName="selectHost" (change)="selecthost($event)">
+        <h4 class="mb-0" style="font-weight: 500;">Select a host</h4>
+      </mat-checkbox>
+      <p class="subtitle" *ngIf="this.SettingVisitorForm.get('selectHost').value">Guest are required to select an
+        employee as a host for their
+        guest. This
+        can be disabled
+        per
+        guest category. </p>
+      <p class="subtitle" *ngIf="!this.SettingVisitorForm.get('selectHost').value">Guests do not see a host selection
+        screen when signing in.</p>
+      <div class="subtitledata1" *ngIf="this.SettingVisitorForm.get('selectHost').value">
+        <mat-checkbox class="visitor" formControlName="displayEmployeeList" (change)="displayemployee($event)">
+          <h4 class="mb-0" style="font-weight: 500;">Display employee list</h4>
+        </mat-checkbox>
+        <p class="title" *ngIf="displayEmployeeUnchecked">Privacy enhanced. Guests are required to search for their
+          host by entering
+          the employee's name. Disable for enhanced privacy.</p>
+        <p class="subtitledata" *ngIf="!displayEmployeeUnchecked">Guests are presented with a list of employees to
+          select
+          their host
+          from.</p>
+        <div class="row">
+          <div class="col-md-4">
+            <mat-checkbox class="visitor" formControlName="sendVisitorNotification" (change)="sendvisitor($event)">
+              <h4 class="mb-0" style="font-weight: 500;">Send guest notification to host by Email</h4>
+            </mat-checkbox>
+          </div>
+          <!-- <div class="col-md-8">
+            <mat-form-field appearance="outline" class="timebox">
+              <mat-label>Select</mat-label>
+              <mat-select formControlName="select" multiple [disabled]="isdisabled">
+                <mat-option value="sms">SMS</mat-option>
+
+                <mat-option value="email">E-mail</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div> -->
+        </div>
+        <p class="title" *ngIf="sendVisitorNotifactionUnchecked">Guests are not notified if a selected host is not
+          signed in.</p>
+        <p class="subtitledata" *ngIf="!sendVisitorNotifactionUnchecked">The selected host will be sent a notification
+          when
+          their guest signs
+          in.</p>
+      </div>
+
+
+
+      <mat-checkbox class="remembervisitor" #takePhotos formControlName="takePhotoOfVisitor" type="checkbox"
+        (change)="takeaphoto($event)">
+        <h4 class="mb-0" style="font-weight: 500;">Take photos of guest</h4>
+      </mat-checkbox>
+      <p class="subtitle" *ngIf="!this.SettingVisitorForm.get('takePhotoOfVisitor').value">Guests do not see a photo
+        screen when signing in.</p>
+      <p class="subtitle data1" *ngIf="this.SettingVisitorForm.get('takePhotoOfVisitor').value">Guests are required to
+        take a photo as part of
+        signing in.</p>
+
+
+
+      <div class="row">
+        <div class="col-md-4">
+          <mat-checkbox class="remembervisitor" #automaticalySignOut formControlName="automaticalySignOut"
+            type="checkbox" (change)="automaticallysignout($event)">
+            <h4 class="mb-0" style="font-weight: 500;">Automatically sign out guests at</h4>
+          </mat-checkbox>
+        </div>
+        <div class="col-md-8">
+          <mat-form-field appearance="outline" class="timebox">
+            <mat-label></mat-label>
+            <mat-select formControlName="time" [disabled]="disabledtime">
+              <mat-option value="1:00am">1:00am</mat-option>
+              <mat-option value="2:00am">2:00am</mat-option>
+              <mat-option value="3:00am">3:00am</mat-option>
+              <mat-option value="4:00am">4:00am</mat-option>
+              <mat-option value="5:00am">5:00am</mat-option>
+              <mat-option value="6:00am">6:00am</mat-option>
+              <mat-option value="7:00am">7:00am</mat-option>
+              <mat-option value="8:00am">8:00am</mat-option>
+              <mat-option value="9:00am">9:00am</mat-option>
+              <mat-option value="10:00am">10:00am</mat-option>
+              <mat-option value="11:00am">11:00am</mat-option>
+              <mat-option value="12:00pm">12:00pm</mat-option>
+              <mat-option value="1:00pm">1:00pm</mat-option>
+              <mat-option value="2:00pm">2:00pm</mat-option>
+              <mat-option value="3:00pm">3:00pm</mat-option>
+              <mat-option value="4:00pm">4:00pm</mat-option>
+              <mat-option value="5:00pm">5:00pm</mat-option>
+              <mat-option value="6:00pm">6:00pm</mat-option>
+              <mat-option value="7:00pm">7:00pm</mat-option>
+              <mat-option value="8:00pm">8:00pm</mat-option>
+              <mat-option value="9:00pm">9:00pm</mat-option>
+              <mat-option value="10:00pm">10:00pm</mat-option>
+              <mat-option value="11:00pm">11:00pm</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <p class="subtitle" *ngIf="!this.SettingVisitorForm.get('automaticalySignOut').value">Guests remain signed in
+        until they sign themselves out.
+      </p>
+      <p class="subtitle data1" *ngIf="this.SettingVisitorForm.get('automaticalySignOut').value">Guests are
+        automatically signed out at the
+        selected
+        time in their
+        timezone. Applies to Guests who sign in after this setting is changed.
+      </p>
+    </div>
+
+
+
+    <div class="visitormainHeadding">
+      <h2>Central Email Notifications</h2>
+    </div>
+    <mat-checkbox class="remembervisitor" #visitorCentralRecipients formControlName="visitorCentralRecipients"
+      type="checkbox" (change)="visitorcentralrecipient($event)">
+      <h4 class="mb-0" style="font-weight: 500;">Send guest notification to central recipient(s)</h4>
+    </mat-checkbox>
+    <p class="subtitle" *ngIf="this.SettingVisitorForm.get('visitorCentralRecipients').value">The central recipients
+      listed below will be emailed a
+      copy of the notification
+      sent to the host. Maximum of three recipients.</p>
+    <p class="subtitle data1" *ngIf="!this.SettingVisitorForm.get('visitorCentralRecipients').value">Notifications are
+      sent to the selected host
+      only.
+    </p>
+    <div class="row" *ngIf="this.SettingVisitorForm.get('visitorCentralRecipients').value" id="divdisplay">
+      <div class="col-md-6">
+        <mat-card class="cardcheck">Add an email address
+          <div class="row">
+            <div class="col-md-10">
+              <mat-form-field appearance="outline">
+                <input matInput type="text" #ename formControlName="notificationEmail" id="notificationEmail">
+              </mat-form-field>
+            </div>
+            <div class="col-md-2" class="mt-2" *ngIf="ename.value">
+              <button type="button" class="addbutton"  (click)="addItems(ename, ename.value)" [disabled]="notificationEmail.invalid" >Add</button>
+            </div>
+          </div>
+        </mat-card>
+
+        <div *ngFor="let addEmail of addEmails">
+          <mat-card class="emailCard">
+            <button class="icon" id="icon" (click)="deleteAddEmail(addEmail)">
+              <mat-icon>cancel</mat-icon>
+            </button>
+            <div class="row">
+              <div class="col-md-2">
+                <mat-icon class="email"> mail_outline</mat-icon>
+              </div>
+              <div class="col-md-10">
+                <span>{{addEmail.email}}</span><br>
+                <div class="headoffice d-flex align-items-center">
+                  <div>
+                    <mat-icon class="locationIcon"> location_on</mat-icon>
+                  </div>
+                  <div>
+                    <span>{{addEmail.location}}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </mat-card>
+        </div>
+
+      </div>
+      <div class="col-md-6">
+      </div>
+    </div>
+    <div>
+      <mat-checkbox class="remembervisitor" #approvalCentralRecipients type="checkbox"
+        formControlName="approvalCentralRecipients" (change)="approvalcentralrecipient($event)">
+        <h4 class="mb-0" style="font-weight: 500;">Send approval notification to central recipient(s)</h4>
+      </mat-checkbox>
+      <p class="subtitle" *ngIf="!this.SettingVisitorForm.get('approvalCentralRecipients').value">Only Company Admins
+        and Location Managers will be
+        notified when a guest
+        requires approval.</p>
+      <p class="subtitle" *ngIf="this.SettingVisitorForm.get('approvalCentralRecipients').value">The central recipients
+        below are alerted when a
+        guest requires approval by a
+        Company Admin or Location Manager. Maximum of three recipients.</p>
+      <div class="row" *ngIf="this.SettingVisitorForm.get('approvalCentralRecipients').value" id="divshow">
+        <div class="col-md-6">
+          <mat-card class="cardcheck">Mobile number
+            <mat-form-field appearance="outline">
+              <mat-label class="pho"></mat-label>
+              <input type="tel" matInput ng2TelInput (countryChange)="onCountryChange($event)"
+                formControlName="mobilePhone">
+            </mat-form-field>
+          </mat-card>
+        </div>
+        <div class="col-md-6">
+          <mat-card class="cardcheck">Add an email address
+            <div class="row">
+              <div class="col-md-10">
+                <mat-form-field appearance="outline">
+                  <input matInput type="text" #fname formControlName="approvalemail">
+                </mat-form-field>
+              </div>
+              <div class="col-md-2" class="mt-2" *ngIf="fname.value">
+                <button type="button" class="approvaladdbutton" (click)="clickMe(fname, fname.value)" [disabled]="approvalemail.invalid" >Add</button>
+              </div>
+            </div>
+          </mat-card>
+          <mat-card *ngFor="let approvelEmail of approvelEmails" class="emailCard">
+            <button class="icon" id="icon" (click)="deleteApprovelEmail(approvelEmail)">
+              <mat-icon>cancel</mat-icon>
+            </button>
+            <div class="row">
+              <div class="col-md-2">
+                <mat-icon class="email"> mail_outline</mat-icon>
+              </div>
+              <div class="col-md-10">
+                <span>{{approvelEmail.email}}</span><br>
+                <div class="headoffice d-flex align-items-center">
+                  <div>
+                    <mat-icon class="locationIcon"> location_on</mat-icon>
+                  </div>
+                  <div>
+                    <span>{{approvelEmail.location}}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+    <div >
+      <button class="submitbtn" type="submit" appearance="outline">Save</button>
+    </div>
+  </div>
+ 
+</form>

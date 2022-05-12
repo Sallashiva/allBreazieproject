@@ -1,0 +1,22 @@
+<mat-nav-list>
+  <div class="logo py4">
+    <img src="../../assets/images/logo.png">
+  </div>
+  <mat-divider></mat-divider>
+  <a mat-list-item [routerLink]="['/dashboard']" [routerLinkActive]="['active']"
+    (keydown.escape)="$event.stopPropagation()">
+    <span class="icon"><i class="fas fa-tachometer-alt"></i></span><span class="listName">Dashboard</span>
+  </a>
+  <a mat-list-item [routerLink]="['customers']" [routerLinkActive]="['active']"
+    (keydown.escape)="$event.stopPropagation()">
+    <span class="icon"><i class="far fa-address-book"></i></span><span class="listName">Customers</span>
+  </a>
+  <a mat-list-item [routerLink]="['/revenue']" [routerLinkActive]="['active']"
+    (keydown.escape)="$event.stopPropagation()">
+    <span class="icon"><i class="fas fa-parachute-box"></i></span><span class="listName">Revenue</span>
+  </a>
+  <a mat-list-item [routerLink]="['/reminder']" [routerLinkActive]="['active']"
+    (keydown.escape)="$event.stopPropagation()">
+    <span class="icon"><i class="fas fa-user-tie"></i></span><span class="listName">Reminder</span>
+  </a>
+</mat-nav-list>

@@ -1,0 +1,1207 @@
+<div class="container mb-3" style="padding: 20px 120px;">
+  <div class="spinner" *ngIf="spinner">
+    <mat-spinner diameter="100"></mat-spinner>
+  </div>
+  <div class="heading">
+    <h4 class="mb-1">Guest Categories & Fields Settings</h4>
+    <p>Customise the flow you want your guests to complete when they sign in</p>
+  </div>
+
+  <div class="content mt-4">
+
+    <div class="row">
+      <!-- <div class="col-md-5">
+      <div>
+        <h4 class="mb-1">Categories</h4>
+        <p>Create different categories for visitors to select from, then select which show at each of your locations
+          (if applicable).</p>
+        <div class="categories">
+          <p>Add categories for your visitors to select from, so you can filter visit data</p>
+        </div>
+        <div class="button text-right mt-3" (click)="show = !show" ng-model="show">
+          <button type="button" class="btn">Add categoriey</button>
+        </div>
+      </div>
+        <div class="card mt-3 mb-3" *ngIf="show" id="divshow">
+          <h4>New Categories</h4>
+          <div class="row">
+            <div class="col-md-12">
+              <mat-form-field appearance="outline">
+                <input matInput #addCategory >
+              </mat-form-field>
+            </div>
+
+          </div>
+          <div class="checkbox ml-2">
+            <mat-checkbox class="example-margin " #host>
+              <p class="mb-0">Disable Host Selection</p>
+            </mat-checkbox>
+          </div>
+          <div class="checkbox ml-2">
+            <mat-checkbox class="example-margin " #catering >
+              <p class="mb-0">Disable Catering Selection</p>
+            </mat-checkbox>
+          </div>
+          <div class="buttons">
+            <button type="button" class="btn" (click)="addItemsCategory(addCategory, addCategory.value,host,catering)">Add</button>
+          </div>
+        </div>
+        <div *ngFor="let category of addCategory" class="emailCard" >
+          <mat-accordion class="example-headers-align">
+            <mat-expansion-panel   togglePosition="before" style="border-top: 1px solid;">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <span >{{category.textValue}}</span>
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+                <div class="mb-2">
+                  <input  class="input"   type="text"  [value]="category.textValue" [(ngModel)]="category.textValue" >
+                </div>
+              <div class="form-group mb-0">
+                <mat-checkbox class="example-margin" [checked]="category.hostchecked">Disable Host Selection</mat-checkbox>
+              </div>
+              <div class="form-group mb-0">
+                <mat-checkbox class="example-margin" [checked]="category.cateringchecked"> Disable Catering Selection</mat-checkbox>
+              </div>
+              <div class="form-group buttons mb-0">
+                <button type="button" class="btn" (click)="deleteAddCategory(category)">Remove</button>
+              </div>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </div>
+    </div> -->
+      <div class="col-md-12">
+        <form [formGroup]="visitorFieldForm" (ngSubmit)="submit()">
+          <div>
+            <h4 class="mb-1">Agreement</h4>
+            <p>Select an agreement for guests to accept on sign-in. A PDF copy will be stored for every visit.
+            </p>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="float-right">
+                  <mat-form-field appearance="outline">
+                    <mat-select panelClass="agreementSelect" matNativeControl [(ngModel)]="selectedAgreement" placeholder="Select agreement"
+                      formControlName="selectedAgreement">
+                      <mat-select-trigger>
+                        Replace agreement
+                      </mat-select-trigger>
+                      <mat-option value="headOffice" (click)="headOffice()">Head Office
+                      </mat-option>
+                      <mat-option value="newAgreement" (click)="newAgreement()">New Agreement
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+
+
+          <div class="switchCase">
+            <div class="row" [ngSwitch]="selectedAgreement">
+              <div class="col-md-12">
+                <div *ngIf="headOfficeHide">
+
+                  <div class="agreementCard">
+                    <mat-accordion>
+                      <mat-expansion-panel [togglePosition]="'before'" (opened)="panelOpenState = true"
+                        (closed)="panelOpenState = false">
+                        <mat-expansion-panel-header>
+                          <mat-panel-title>
+                            Head Office
+                          </mat-panel-title>
+                          <mat-panel-description>
+
+                          </mat-panel-description>
+                        </mat-expansion-panel-header>
+                        <div class="signatureCheckBox">
+                          <mat-checkbox>Require Signature</mat-checkbox>
+                        </div>
+                        <div>
+                          <button class="removebtn" type="button" (click)="agreementRemove()">
+                            <span class="deleteicon"><i class="fas fa-trash-alt"></i></span><span class="removeText">
+                              Remove</span>
+                          </button>
+                        </div>
+                      </mat-expansion-panel>
+                    </mat-accordion>
+                  </div>
+
+
+
+                </div>
+                <div *ngIf="newAgreementHide">
+
+                  <div class="agreementCard">
+                    <mat-accordion>
+                      <mat-expansion-panel [togglePosition]="'before'" (opened)="panelOpenState = true"
+                        (closed)="panelOpenState = false">
+                        <mat-expansion-panel-header>
+                          <mat-panel-title>
+                            NewAgreement
+                          </mat-panel-title>
+                          <mat-panel-description>
+
+                          </mat-panel-description>
+                        </mat-expansion-panel-header>
+                        <div class="signatureCheckBox">
+                          <mat-checkbox>Require Signature</mat-checkbox>
+                        </div>
+                        <div>
+                          <button class="removebtn" type="button" (click)="agreementRemove1()">
+                            <span class="deleteicon"><i class="fas fa-trash-alt"></i></span><span class="removeText">
+                              Remove</span>
+                          </button>
+                        </div>
+                      </mat-expansion-panel>
+                    </mat-accordion>
+                  </div>
+
+                </div>
+                <div *ngIf="noAgreementHide">
+
+                  <mat-card>
+                    <p>No agreement is selected</p>
+                  </mat-card>
+
+                </div>
+              </div>
+
+
+
+            </div>
+          </div>
+
+          <div>
+            <h4 class="visitorFields">Guest Fileds</h4>
+            <p>Create new Guest sign-in fields or show/hide existing ones. Set which ones are required & need approval.
+            </p>
+
+            <div class="row">
+              <div class="col-md-7">
+                <div>
+                  <mat-checkbox formControlName="hideInactiveFields">Hide inactive fields
+                  </mat-checkbox>
+                  <span class="button text-right mt-3" (click)="showVisitorFiled = !showVisitorFiled"
+                    ng-model="showVisitorFiled">
+                  </span>
+                </div>
+              </div>
+              <div class="col-md-5">
+                <div class="float-right">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Add Field</mat-label>
+                    <mat-select panelClass="addfields" matNativeControl [(ngModel)]="selectedFeilds" formControlName="selectedFeilds">
+                      <mat-option value="title"><img src="../../../../assets/images/textIcon.png"
+                          style="width: 20px;"><span>Text</span></mat-option>
+                      <mat-option value="phone" class="field"><i class="fas fa-mobile-alt"></i><span>Phone</span>
+                      </mat-option>
+                      <mat-option value="email" class="field"><i class="fas fa-at"></i><span>Email</span></mat-option>
+                      <mat-option value="dateofBirths" class="field"><i class="fas fa-birthday-cake"></i><span>Date of
+                          Birth</span>
+                      </mat-option>
+                      <hr>
+                      <mat-option value="multiChoice" class="field"><i class="fas fa-list"></i><span>Multi-choice</span>
+                      </mat-option>
+                      <!-- <mat-option value="checkboxes"><img src="../../../../assets/images/checkIcon.png" style="width: 30px;">
+                                              <span style="margin-left: 20px;">Checkboxes</span></mat-option> -->
+                      <mat-option value="yes" class="field"><i class="far fa-check-square"></i>
+                        <span>Yes/No</span>
+                      </mat-option>
+                      <!-- <mat-option value="document" class="field"><i class="far fa-file-image"></i>
+                    <span>Document</span></mat-option> -->
+                      <hr>
+                      <mat-option value="vaccine" class="field"><i class="fas fa-medkit"></i><span>Vaccine
+                          validation</span>
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="selctedFieldsName" [ngSwitch]="selectedFeilds">
+                  <div *ngSwitchCase="'title'">
+                    <div class="card">
+                      <div class="text">
+                        <div class="form-group mb-0">
+                          <mat-label class="d-flex align-item-center mb-2">
+                            <div class="d-flex align-item-center">
+                              <mat-icon> title</mat-icon>
+                            </div> &nbsp;
+                            <div class="ml-3">
+                              <strong style="font-size: 18;">Text</strong>
+                            </div>
+                          </mat-label>
+                          <mat-form-field class="example-full-width" appearance="outline">
+
+                            <input type="text" matInput #text placeholder="Enter Field Name" formControlName="text">
+                          </mat-form-field>
+                        </div>
+                        <div class="form-group mb-0">
+                          <mat-checkbox class="example-margin" #check formControlName="check">
+                            Required</mat-checkbox>
+                        </div>
+                        <div class="form-group buttons mb-0">
+                          <button type="button" class="btn" [disabled]="isTextDisabled"
+                            (click)="addItems(text, text.value,check,textresponse)">Add</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div *ngSwitchCase="'phone'">
+                    <div class="card">
+                      <div class="text">
+                        <div class="form-group mb-0">
+                          <mat-label class="d-flex align-item-center mb-2">
+                            <div class="d-flex align-item-center">
+                              <mat-icon>phone_iphone</mat-icon>
+                            </div>
+                            <div class="ml-3">
+                              <strong style="font-size: 18;">Phone</strong>
+                            </div>
+                          </mat-label>
+                          <mat-form-field class="example-full-width" appearance="outline">
+                            <input type="text" matInput #phone value="Phone Number" formControlName="phone"
+                              placeholder="Phone Number">
+                          </mat-form-field>
+                        </div>
+                        <div class="form-group mb-0">
+                          <mat-checkbox class="example-margin" #phonerequired formControlName="phonerequired">Required
+                          </mat-checkbox>
+                        </div>
+                        <div class="form-group buttons mb-0">
+                          <button type="button" [disabled]="isPhoneBtnDisabled"
+                            (click)="addPhones(phone, phone.value,phonerequired,phoneresponse)">Add</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div *ngSwitchCase="'email'">
+                    <div class="card">
+                      <div class="text">
+                        <div class="form-group mb-0">
+                          <mat-label class="d-flex align-item-center mb-2">
+                            <div class="d-flex align-item-center">
+                              <mat-icon>alternate_email</mat-icon>
+                            </div>
+                            <div class="ml-3">
+                              <strong style="font-size: 18;">Email</strong>
+                            </div>
+                          </mat-label>
+                          <mat-form-field class="example-full-width" appearance="outline">
+                            <input type="text" matInput #email value="Email" placeholder="Email"
+                              formControlName="email">
+                          </mat-form-field>
+                        </div>
+                        <div class="form-group mb-0">
+                          <mat-checkbox class="example-margin" #emailCheck formControlName="emailCheck">Required
+                          </mat-checkbox>
+                        </div>
+                        <!-- <div class="form-group mb-0">
+                      <mat-checkbox class="example-margin" #emailResponse formControlName="emailResponse">Clear response after each visit(Saved visitors)</mat-checkbox>
+                    </div> -->
+                        <div class="form-group buttons mb-0">
+                          <button type="button" class="btn" [disabled]="isEmailDisabled"
+                            (click)="Email(email, email.value,emailCheck,emailResponse)">Add</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div *ngSwitchCase="'dateofBirths'">
+                    <div class="card">
+                      <div class="text">
+                        <div class="form-group mb-0">
+                          <mat-label class="d-flex align-item-center mb-2">
+                            <div class="d-flex align-item-center">
+                              <mat-icon>cake</mat-icon>
+                            </div>
+                            <div class="ml-3">
+                              <strong style="font-size: 18;">Date of Birth</strong>
+                            </div>
+                          </mat-label>
+                          <mat-form-field class="example-full-width" appearance="outline">
+                            <input type="text" matInput #birth value="Date of Birth" placeholder="Date of Birth"
+                              formControlName="birth">
+                          </mat-form-field>
+                        </div>
+                        <div class="form-group mb-0">
+                          <mat-checkbox class="example-margin" #dateCheck formControlName="dateCheck">Required
+                          </mat-checkbox>
+                        </div>
+                        <!-- <div class="form-group mb-0">
+                      <mat-checkbox class="example-margin" #dateResponse formControlName="dateResponse">Clear response after each visit(Saved visitors)</mat-checkbox>
+                    </div> -->
+                        <div class="form-group buttons mb-0">
+                          <button type="button" class="btn" [disabled]="isBirthDisabled"
+                            (click)="addDateofBirth(birth, birth.value,dateCheck,dateResponse)">Add</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div *ngSwitchCase="'multiChoice'">
+                    <div class="card">
+                      <div class="text">
+                        <div class="form-group mb-0">
+                          <mat-label class="d-flex align-item-center mb-2">
+                            <div class="d-flex align-item-center">
+                              <mat-icon>list</mat-icon>
+                            </div>
+                            <div class="ml-3">
+                              <strong style="font-size: 18;">Multi-Choice</strong>
+                            </div>
+                          </mat-label>
+                          <mat-form-field class="example-full-width" appearance="outline">
+                            <input type="text" matInput #multi  placeholder="Enter Field Name"
+                              formControlName="multi">
+                          </mat-form-field>
+                        </div>
+                        <div class="option">
+                          <div class="d-flex justify-content-between">
+                            <div>
+                              <p>OPTIONS</p>
+                            </div>
+                            <div>
+                              <p>APPROVAL REQUIRED</p>
+                            </div>
+                          </div>
+                          <hr>
+                          <div formArrayName="arr"
+                            *ngFor="let a of visitorFieldForm.get('arr').controls; let i = index">
+                            <div [formGroupName]="i" style="margin-bottom: 10px;">
+                              <div class="row">
+                                <div class="col-md-9">
+                                  <mat-form-field class="example-full-width" appearance="outline">
+                                  <input type="text" matInput #optionvalue  placeholder="Enter Field Name"
+                                    formControlName="multi1">
+                                   </mat-form-field> 
+                                </div>
+                                <div class="col-md-2 mt-3">
+                                  <mat-checkbox class="example-margin" #multi1Check formControlName="multi1Check">
+                                  </mat-checkbox>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <hr>
+                          <button type="button" class="addOption mb-2" (click)="addItem()">
+                            <div class="d-flex align-items-center">
+                              <div class="d-flex">
+                                <mat-icon>add_circle_outline</mat-icon>
+                              </div>
+                              <div>
+                                Add Option
+                              </div>
+                            </div>
+                          </button>
+                        </div>
+
+                        <div class="form-group mb-0">
+                          <mat-checkbox class="example-margin" #multiRequire formControlName="multiRequire">Required
+                          </mat-checkbox>
+                        </div>
+                        <div class="form-group buttons mb-0">
+                          <button type="button" class="btn" [disabled]="isNextDisabled"
+                            (click)="addMultichoices(multi, multi.value,multiRequire,multiResponce)">Add</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div *ngSwitchCase="'checkboxes'">
+                    <div class="card">
+                      <div class="text">
+                        <div class="form-group mb-0">
+                          <mat-label class="d-flex align-item-center mb-2">
+                            <div class="d-flex align-item-center">
+                              <mat-icon>playlist_add_check</mat-icon>
+                            </div>
+                            <div class="ml-3">
+                              <strong style="font-size: 18;">Checkboxes</strong>
+                            </div>
+                          </mat-label>
+                           <mat-form-field class="example-full-width" appearance="outline"> 
+                          <input type="text" matInput #checkbox  formControlName="checkbox"
+                            placeholder="Enter Field Name">
+                           </mat-form-field> 
+                        </div>
+                        <div class="option">
+                          <div class="d-flex justify-content-between">
+                            <div>
+                              <p>OPTIONS</p>
+                            </div>
+                            <div>
+                              <p>APPROVAL REQUIRED</p>
+                            </div>
+                          </div>
+                          <hr>
+                          <div class="row">
+                            <div class="col-md-9">
+                              <mat-form-field class="example-full-width" appearance="outline"> 
+                              <input type="text"  formControlName="checkboxinput" #checkboxinput
+                                value="Date of Birth" placeholder="Enter Field Name">
+                               </mat-form-field> 
+                            </div>
+                            <div class="col-md-2 mt-3">
+                              <mat-checkbox class="example-margin" #fieldCheck formControlName="fieldCheck">
+                              </mat-checkbox>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-12">
+                              <div formArrayName="checkboxarr"
+                                *ngFor="let checkboxes of visitorFieldForm.get('checkboxarr').controls; let j = index">
+                                <div [formGroupName]="j" style="margin-bottom: 10px;">
+                                  <div class="row">
+                                    <div class="col-md-9">
+                                      <mat-form-field class="example-full-width" appearance="outline"> 
+                                      <input type="text" matInput  value="" #fieldName
+                                        formControlName="fieldName" placeholder="Enter Field Name">
+                                       </mat-form-field> 
+                                    </div>
+                                    <div class="col-md-2 mt-3">
+                                      <mat-checkbox class="example-margin" #fieldCheck2 formControlName="fieldCheck2">
+                                      </mat-checkbox>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <hr>
+                          <button type="button" class="addOption mb-2" (click)="addCheckboxOption()">
+                            <div class="d-flex align-items-center">
+                              <div class="d-flex">
+                                <mat-icon>add_circle_outline</mat-icon>
+                              </div>
+                              <div>
+                                Add Option
+                              </div>
+                            </div>
+                          </button>
+                        </div>
+
+                        <div class="form-group mb-0">
+                          <mat-checkbox class="example-margin" #requiredCheck formControlName="requiredCheck">Required
+                          </mat-checkbox>
+                        </div>
+                        <div class="form-group buttons mb-0">
+                          <button type="button" class="btn" [disabled]="isCheckboxDisabled"
+                            (click)="addCheckbox(checkbox, checkbox.value,checkboxinput.value,requiredCheck,fieldCheck)">Add</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div *ngSwitchCase="'yes'">
+                    <div class="card">
+                      <div class="text">
+                        <div class="form-group mb-0">
+                          <mat-label class="d-flex align-item-center mb-2">
+                            <div class="d-flex align-item-center">
+                              <mat-icon>check_box</mat-icon>
+                            </div>
+                            <div class="ml-3">
+                              <strong style="font-size: 18;">Yes/No</strong>
+                            </div>
+                          </mat-label>
+                          <!-- <mat-form-field class="example-full-width" appearance="outline"> -->
+                          <input type="text" #addyes class="form-control" formControlName="yes"
+                            placeholder="Enter question">
+                          <!-- </mat-form-field> -->
+                        </div>
+                        <div class="form-group mb-0">
+                          <mat-checkbox class="example-margin" #yesRequire formControlName="yesRequire">Required
+                          </mat-checkbox>
+                        </div>
+                        <div>
+                          <p class="mb-2 mt-1">Require approval if:</p>
+                          <div class="form-group mb-0">
+                            <mat-checkbox class="example-margin" #yesCheck formControlName="yesCheck">Yes</mat-checkbox>
+                          </div>
+                          <div class="form-group mb-1">
+                            <mat-checkbox class="example-margin" #yes1 formControlName="yesCheck">No</mat-checkbox>
+                          </div>
+                        </div>
+                        <div class="form-group buttons mb-0">
+                          <button type="button" class="btn" [disabled]="isYesDisabled"
+                            (click)="addYes(addyes, addyes.value,yesRequire,yesCheck,yes1)">Add</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div *ngSwitchCase="'vaccine'">
+                    <div class="card">
+                      <div class="text">
+                        <div class="d-flex align-items-center mb-2">
+                          <div class="d-flex">
+                            <mat-icon>local_hospital</mat-icon>
+                          </div>
+                          <div><strong>Vaccine validation</strong></div>
+                        </div>
+                        <div class="form-group mb-0">
+                          <mat-label>
+                            <div>
+                              <p class="mb-1" style="font-size: 18;">FieldName</p>
+
+                            </div>
+                          </mat-label>
+                          <!-- <mat-form-field class="example-full-width" appearance="outline"> -->
+                          <input type="text" class="form-control" #vaccvalidation formControlName="vaccvalidation"
+                            placeholder="Please provide proof of your vaccine certificate">
+                          <!-- </mat-form-field> -->
+                        </div>
+                        <div class="form-group mb-0">
+                          <mat-label>
+                            <div>
+                              <p class="mb-1" style="font-size: 18;">Add any specific instructions(optional)
+                              </p>
+
+                            </div>
+                          </mat-label>
+                          <!-- <mat-form-field class="example-full-width" appearance="outline"> -->
+                          <input type="text" class="form-control" #vaccine1 formControlName="vaccine1">
+                          <!-- </mat-form-field> -->
+                        </div>
+
+                        <div class="mb-3">
+                          <label>Select supported jurisdications</label>
+                          <div class="d-flex align-items-center p-2" style="background-color: #f4f4f5;">
+                            <div>
+                              <mat-icon>info</mat-icon>
+                            </div>
+                            <div>
+                              <p style="color:#909399" class="mb-0 ml-2">Only New Zealand issued passes are currently
+                                supported.
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group mb-1">
+                          <mat-checkbox class="example-margin" #vaccineRequire formControlName="vaccineRequire">Required
+                          </mat-checkbox>
+                        </div>
+                        <div>
+                          <label style="font-weight: 500;">Approval required when</label>
+                        </div>
+                        <div class="form-group mb-0">
+                          <mat-checkbox class="example-margin" #vaccineValidated formControlName="vaccineValidated">Pass
+                            is validated
+                          </mat-checkbox>
+                        </div>
+                        <div class="form-group mb-0">
+                          <mat-checkbox class="example-margin" #vaccineNotValidated formControlName="vaccineValidated">
+                            Pass is not validated or not supplied
+                          </mat-checkbox>
+                        </div>
+                        <div class="form-group buttons mb-0">
+                          <button type="button" class="btn" [disabled]="isVaccineDisabled"
+                            (click)="addVaccine(vaccvalidation, vaccvalidation.value, vaccine1.value,vaccineRequire,vaccineValidated,vaccineNotValidated)">Add</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="card fieldList">
+                  <p class="mb-0">Full Name</p>
+                </div>
+                <div class="card fieldList">
+                  <p class="mb-0">{{companyLabel}}</p>
+                </div>
+                <!-- <div class="company">
+                                    <mat-accordion class="example-headers-align">
+                                        <mat-expansion-panel togglePosition="before" style="border-top: 1px solid;">
+                                            <mat-expansion-panel-header>
+                                                <mat-panel-title>
+                                                    <span>{{companyLabel}}</span>
+                                                </mat-panel-title>
+                                            </mat-expansion-panel-header>
+                                            <div class="mb-2">
+                                                <input class="input" type="text" formControlName="companyLabel" [(ngModel)]="companyLabel" >
+                                            </div>
+                                            <div class="form-group mb-0">
+                                                <mat-checkbox class="example-margin" [checked]="true" formControlName="companyCheck">Required
+                                                </mat-checkbox>
+                                            </div>
+                                           //  <div class="form-group buttons mb-0">
+                                                <button type="button" class="btn">Remove</button>
+                                            </div>
+                                        </mat-expansion-panel>
+                                    </mat-accordion>
+                                </div> -->
+                <!-- Text -->
+                <div *ngFor="let addEmail of addEmails; index as i" class="emailCard">
+                  <mat-accordion class="example-headers-align" multi>
+                    <mat-expansion-panel #matExpansionPanel1 togglePosition="before" [disabled]="addEmail.isdisabled">
+                      <mat-expansion-panel-header>
+                        <mat-panel-title>
+                          {{addEmail.label}}
+                        </mat-panel-title>
+                        <mat-panel-description>
+                          <button class="eye" type="button" (click)="disable(i,addEmail)"
+                            (click)="expandPanel(matExpansionPanel1, $event)"><i class="fa fa-eye" aria-hidden="true"
+                              *ngIf="!addEmail.shows"></i>
+                            <i class="fa fa-eye-slash" aria-hidden="true" *ngIf="addEmail.shows"></i></button>
+                          <button type="button" class="textAccordion">Text</button>
+                        </mat-panel-description>
+                      </mat-expansion-panel-header>
+                      <div class="mb-2">
+                        <mat-form-field class="example-full-width" appearance="outline">
+                          <input type="text" matInput [(ngModel)]="addEmail.label"
+                            [ngModelOptions]="{standalone: true}">
+                        </mat-form-field>
+                      </div>
+                      <div class="form-group mb-0">
+                        <mat-checkbox class="example-margin" [checked]="addEmail.required"
+                          [(ngModel)]="addEmail.required" [ngModelOptions]="{standalone: true}">Required</mat-checkbox>
+                      </div>
+                      <!-- <div class="form-group mb-0">
+                    <mat-checkbox class="example-margin" [checked]="addEmail.response" [(ngModel)]="addEmail.response" [ngModelOptions]="{standalone: true}"> Clear response after each visit(Saved visitors)</mat-checkbox>
+                  </div> -->
+                      <div class="form-group buttons mb-0">
+                        <button type="button" class="btn" (click)="deleteAddEmail(addEmail)">Remove</button>
+                      </div>
+                    </mat-expansion-panel>
+                  </mat-accordion>
+                </div>
+
+                <!--phone-->
+                <div class="row">
+                  <div class="col-md-12">
+                    <div *ngFor="let phone of addPhone;index as i" class="emailCard">
+                      <mat-accordion class="example-headers-align">
+                        <mat-expansion-panel #matExpansionPanel2 togglePosition="before"
+                          [disabled]="phone.isPhonedisabled">
+                          <mat-expansion-panel-header>
+                            <mat-panel-title>
+                              {{phone.label}}
+                            </mat-panel-title>
+                            <mat-panel-description>
+                              <button class="eye" type="button" (click)="disablePhone(i,phone)"
+                                (click)="expandPanel(matExpansionPanel2, $event)"><i class="fa fa-eye"
+                                  aria-hidden="true" *ngIf="!phone.showPhone"></i>
+                                <i class="fa fa-eye-slash" aria-hidden="true" *ngIf="phone.showPhone"></i></button>
+                              <button type="button" class="textAccordion">Phone</button>
+                            </mat-panel-description>
+                          </mat-expansion-panel-header>
+                          <div>
+                            <mat-form-field class="example-full-width" appearance="outline">
+                              <input type="text" matInput [(ngModel)]="phone.label"
+                                [ngModelOptions]="{standalone: true}">
+                            </mat-form-field>
+                          </div>
+                          <div class="form-group mb-0">
+                            <mat-checkbox class="example-margin" [checked]="phone.required" [(ngModel)]="phone.required"
+                              [ngModelOptions]="{standalone: true}">Required
+                            </mat-checkbox>
+                          </div>
+                          <!-- <div class="form-group mb-0">
+                        <mat-checkbox class="example-margin" [checked]="phone.phoneresponse" [(ngModel)]="phone.phoneresponse" [ngModelOptions]="{standalone: true}">Clear response after each visit(Saved visitors)</mat-checkbox>
+                      </div> -->
+                          <div class="form-group buttons mb-0">
+                            <button type="button" class="btn" (click)="deleteAddPhone(phone)">Remove</button>
+                          </div>
+                        </mat-expansion-panel>
+                      </mat-accordion>
+                    </div>
+
+                  </div>
+                </div>
+                <!--email-->
+                <div class="row">
+                  <div class="col-md-12">
+                    <div *ngFor="let emails of email; index as i" class="emailCard">
+                      <mat-accordion class="example-headers-align">
+                        <mat-expansion-panel #matExpansionPanel3 togglePosition="before"
+                          [disabled]="emails.isEmaildisabled">
+                          <mat-expansion-panel-header>
+                            <mat-panel-title>
+                              {{emails.label}}
+                            </mat-panel-title>
+                            <mat-panel-description>
+                              <button class="eye" type="button" (click)="disableEmail(i,emails)"
+                                (click)="expandPanel(matExpansionPanel3, $event)"><i class="fa fa-eye"
+                                  aria-hidden="true" *ngIf="!emails.showEmail"></i>
+                                <i class="fa fa-eye-slash" aria-hidden="true" *ngIf="emails.showEmail"></i></button>
+                              <button type="button" class="textAccordion">Email</button>
+                            </mat-panel-description>
+                          </mat-expansion-panel-header>
+                          <div>
+                            <mat-form-field class="example-full-width" appearance="outline">
+                              <input type="text" matInput [(ngModel)]="emails.label"
+                                [ngModelOptions]="{standalone: true}">
+                            </mat-form-field>
+                          </div>
+                          <div class="form-group mb-0">
+                            <mat-checkbox class="example-margin" [checked]="emails.required"
+                              [(ngModel)]="emails.required" [ngModelOptions]="{standalone: true}">Required
+                            </mat-checkbox>
+                          </div>
+                          <!-- <div class="form-group mb-0">
+                        <mat-checkbox class="example-margin" [checked]="emails.emailresponse" [(ngModel)]="emails.emailresponse" [ngModelOptions]="{standalone: true}">Clear response after each visit(Saved visitors)</mat-checkbox>
+                      </div> -->
+                          <div class="form-group buttons mb-0">
+                            <button type="button" class="btn" (click)="deleteEmail(emails)">Remove</button>
+                          </div>
+                        </mat-expansion-panel>
+                      </mat-accordion>
+                    </div>
+
+                  </div>
+                </div>
+                <!--dateofbirth-->
+                <div class="row">
+                  <div class="col-md-12">
+                    <div *ngFor="let date of DateofBirth;index as i" class="emailCard">
+                      <mat-accordion class="example-headers-align">
+                        <mat-expansion-panel #matExpansionPanel4 togglePosition="before"
+                          [disabled]="date.isDatedisabled">
+                          <mat-expansion-panel-header>
+                            <mat-panel-title>
+                              {{date.label}}
+                            </mat-panel-title>
+                            <mat-panel-description>
+                              <button class="eye" type="button" style="right: 200px;" (click)="disableDate(i,date)"
+                                (click)="expandPanel(matExpansionPanel4, $event)"><i class="fa fa-eye"
+                                  aria-hidden="true" *ngIf="!date.showDate"></i>
+                                <i class="fa fa-eye-slash" aria-hidden="true" *ngIf="date.showDate"></i></button>
+                              <button type="button" class="textAccordion">DATE OF BIRTH</button>
+                            </mat-panel-description>
+                          </mat-expansion-panel-header>
+                          <div>
+                            <mat-form-field class="example-full-width" appearance="outline">
+                              <input type="text" matInput [(ngModel)]="date.label"
+                                [ngModelOptions]="{standalone: true}">
+                            </mat-form-field>
+                          </div>
+                          <div class="form-group mb-0">
+                            <mat-checkbox class="example-margin" [checked]="date.required" [(ngModel)]="date.required"
+                              [ngModelOptions]="{standalone: true}">Required
+                            </mat-checkbox>
+                          </div>
+                          <!-- <div class="form-group mb-0">
+                        <mat-checkbox class="example-margin" [checked]="date.dateresponse" [(ngModel)]="date.dateresponse" [ngModelOptions]="{standalone: true}">Clear response after each visit(Saved visitors)</mat-checkbox>
+                      </div> -->
+                          <div class="form-group buttons mb-0">
+                            <button type="button" class="btn" (click)="deleteDateofBirth(date)">Remove</button>
+                          </div>
+                        </mat-expansion-panel>
+                      </mat-accordion>
+                    </div>
+
+                  </div>
+                </div>
+                <!--multichoice-->
+                <div class="row">
+                  <div class="col-md-12">
+                    <div *ngFor="let multichoices of multiChoice;index as i" class="emailCard">
+                      <mat-accordion class="example-headers-align">
+                        <mat-expansion-panel #matExpansionPanel5 togglePosition="before"
+                          [disabled]="multichoices.isMulticheckdisabled">
+                          <mat-expansion-panel-header>
+                            <mat-panel-title>
+                              {{multichoices.label}}
+                            </mat-panel-title>
+                            <mat-panel-description>
+                              <button class="eye" type="button" style="right: 200px;"
+                                (click)="disableMultiCheck(i,multichoices)"
+                                (click)="expandPanel(matExpansionPanel5, $event)"><i class="fa fa-eye"
+                                  aria-hidden="true" *ngIf="!multichoices.showMultiCheck"></i>
+                                <i class="fa fa-eye-slash" aria-hidden="true"
+                                  *ngIf="multichoices.showMultiCheck"></i></button>
+                              <button type="button" class="textAccordion">MULTI-CHOICE</button>
+                            </mat-panel-description>
+                          </mat-expansion-panel-header>
+                          <div>
+                            <mat-form-field class="example-full-width" appearance="outline">
+                              <input type="text" matInput [(ngModel)]="multichoices.label"
+                                [ngModelOptions]="{standalone: true}">
+                            </mat-form-field>
+                          </div>
+
+                          <div class="option">
+                            <div class="d-flex justify-content-between">
+                              <div>
+                                <p>OPTIONS</p>
+                              </div>
+                              <div>
+                                <p>APPROVAL REQUIRED</p>
+                              </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                              <div class="col-md-12">
+                                <!-- <div formArrayName="arr" *ngFor="let a of visitorFieldForm.get('arr').controls;let i = index"> -->
+                                <!-- <div [formGroupName]="i" style="margin-bottom: 10px;"> -->
+                                <div *ngFor="let multiValue of multichoices.value;index as i">
+                                  <div class="row">
+                                    <div class="col-md-9">
+                                      <mat-form-field class="example-full-width" appearance="outline">
+                                        <input type="text" matInput [value]=multichoices.value[i].multi1
+                                          [(ngModel)]="multichoices.value[i].multi1"
+                                          [ngModelOptions]="{standalone: true}" placeholder="Enter Field Name">
+                                      </mat-form-field>
+                                    </div>
+                                    <div class="col-md-2 mt-3">
+                                      <mat-checkbox class="example-margin "
+                                        [checked]="multichoices.value[i].multi1Check"
+                                        [(ngModel)]="multichoices.value[i].multi1Check"
+                                        [ngModelOptions]="{standalone: true}">
+                                      </mat-checkbox>
+                                    </div>
+                                  </div>
+                                </div>
+                                <!-- </div> -->
+                                <!-- </div> -->
+                              </div>
+
+                              <!-- <div class="col-md-9">
+                            <mat-form-field class="example-full-width" appearance="outline">
+                              <input type="text" matInput [value]=multichoices.multiinput [(ngModel)]="multichoices.multiinput" [ngModelOptions]="{standalone: true}" placeholder="Enter Field Name">
+                            </mat-form-field>
+                          </div>
+                          <div class="col-md-2 mt-3">
+                        <mat-checkbox class="example-margin " [checked]="multichoices.multiChecked" [(ngModel)]="multichoices.multiChecked" [ngModelOptions]="{standalone: true}"></mat-checkbox>
+                          </div> -->
+
+                            </div>
+                            <hr>
+                            <button type="button" class="addOption mb-2">
+                              <div class="d-flex align-items-center">
+                                <div class="d-flex">
+                                  <mat-icon>add_circle_outline</mat-icon>
+                                </div>
+                                <div>
+                                  Add Option
+                                </div>
+                              </div>
+                            </button>
+                          </div>
+
+                          <div class="form-group mb-0">
+                            <mat-checkbox class="example-margin" [checked]="multichoices.required"
+                              [(ngModel)]="multichoices.required" [ngModelOptions]="{standalone: true}">Required
+                            </mat-checkbox>
+                          </div>
+
+                          <div class="form-group buttons mb-0">
+                            <button type="button" class="btn" (click)="deleteMultichoice(multichoices)">Remove</button>
+                          </div>
+                        </mat-expansion-panel>
+                      </mat-accordion>
+                    </div>
+                  </div>
+                </div>
+                <!--checkboxes-->
+                <div class="row">
+                  <div class="col-md-12">
+                    <div *ngFor="let check of checkbox;index as i" class="emailCard">
+                      <mat-accordion class="example-headers-align">
+                        <mat-expansion-panel #matExpansionPanel6 togglePosition="before"
+                          [disabled]="check.isCheckdisabled">
+                          <mat-expansion-panel-header>
+                            <mat-panel-title>
+                              {{check.label}}
+                            </mat-panel-title>
+                            <mat-panel-description>
+                              <button class="eye" type="button" (click)="disableCheckBox(i,check)"
+                                (click)="expandPanel(matExpansionPanel6, $event)"><i class="fa fa-eye"
+                                  aria-hidden="true" *ngIf="!check.showCheckBoxCheck"></i>
+                                <i class="fa fa-eye-slash" aria-hidden="true"
+                                  *ngIf="check.showCheckBoxCheck"></i></button>
+                              <button type="button" class="textAccordion">CHECKBOXES</button>
+                            </mat-panel-description>
+                          </mat-expansion-panel-header>
+                          <div>
+                            <mat-form-field class="example-full-width" appearance="outline">
+                              <input type="text" matInput [(ngModel)]="check.label"
+                                [ngModelOptions]="{standalone: true}">
+                            </mat-form-field>
+                          </div>
+
+                          <div class="option">
+                            <div class="d-flex justify-content-between">
+                              <div>
+                                <p>OPTIONS</p>
+                              </div>
+                              <div>
+                                <p>APPROVAL REQUIRED</p>
+                              </div>
+                            </div>
+                            <hr>
+                            <!-- <div class="row">
+                                                          <div class="col-md-9">
+                                                              <mat-form-field class="example-full-width" appearance="outline">
+                                                                  <input type="text" matInput [value]="check.values" [(ngModel)]="check.values" [ngModelOptions]="{standalone: true}" placeholder="Enter Field Name">
+                                                              </mat-form-field>
+                                                          </div>
+                                                          <div class="col-md-2 mt-3">
+                                                              <mat-checkbox class="example-margin " [checked]="check.fieldcheck" [(ngModel)]="check.fieldcheck" [ngModelOptions]="{standalone: true}"></mat-checkbox>
+                                                          </div> -->
+                            <div class="row">
+                              <div class="col-md-12">
+                                <!-- <div formArrayName="checkboxarr" *ngFor="let checkboxes of visitorFieldForm.get('checkboxarr').controls; let j = index"> -->
+                                <!-- <div [formGroupName]="j" style="margin-bottom: 10px;"> -->
+                                <div *ngFor="let checkData of check.value;index as j">
+                                  <div class="row">
+                                    <div class="col-md-9">
+                                      <mat-form-field class="example-full-width" appearance="outline">
+                                        <input type="text" matInput [value]=check.value[j].fieldName
+                                          [(ngModel)]="check.value[j].fieldName" [ngModelOptions]="{standalone: true}"
+                                          placeholder="Enter Field Name">
+                                      </mat-form-field>
+                                    </div>
+                                    <div class="col-md-2 mt-3">
+                                      <mat-checkbox class="example-margin" [checked]="check.value[j].fieldCheck2"
+                                        [(ngModel)]="check.value[j].fieldCheck2" [ngModelOptions]="{standalone: true}">
+                                      </mat-checkbox>
+                                    </div>
+                                  </div>
+                                </div>
+                                <!-- </div> -->
+                                <!-- </div> -->
+                                <!-- </div> -->
+                              </div>
+                            </div>
+                            <hr>
+                            <button type="button" class="addOption mb-2">
+                              <div class="d-flex align-items-center">
+                                <div class="d-flex">
+                                  <mat-icon>add_circle_outline</mat-icon>
+                                </div>
+                                <div>
+                                  Add Option
+                                </div>
+                              </div>
+                            </button>
+
+                          </div>
+
+                          <div class="form-group mb-0">
+                            <mat-checkbox class="example-margin" [checked]="check.required" [(ngModel)]="check.required"
+                              [ngModelOptions]="{standalone: true}">Required
+                            </mat-checkbox>
+                          </div>
+                          <!-- <div class="form-group mb-0">
+                        <mat-checkbox class="example-margin" [checked]="check.responsecheck" [(ngModel)]="check.responsecheck" [ngModelOptions]="{standalone: true}"> Clear response after each visit(Saved visitors)</mat-checkbox>
+                      </div> -->
+                          <div class="form-group buttons mb-0">
+                            <button type="button" class="btn" (click)="deleteCheckboxes(check)">Remove</button>
+                          </div>
+                        </mat-expansion-panel>
+                      </mat-accordion>
+                    </div>
+
+                  </div>
+                </div>
+                <!--yes-->
+                <div class="row">
+                  <div class="col-md-12">
+                    <div *ngFor="let booleans of yes;index as i" class="emailCard">
+                      <mat-accordion class="example-headers-align">
+                        <mat-expansion-panel #matExpansionPanel7 togglePosition="before"
+                          [disabled]="booleans.isYesdisabled">
+                          <mat-expansion-panel-header>
+                            <mat-panel-title>
+                              {{booleans.label}}
+                            </mat-panel-title>
+                            <mat-panel-description>
+                              <button class="eye" type="button" (click)="disableYes(i,booleans)"
+                                (click)="expandPanel(matExpansionPanel7, $event)"><i class="fa fa-eye"
+                                  aria-hidden="true" *ngIf="!booleans.showYesCheck"></i>
+                                <i class="fa fa-eye-slash" aria-hidden="true"
+                                  *ngIf="booleans.showYesCheck"></i></button>
+                              <span class="textAccordion">YES/NO</span>
+                            </mat-panel-description>
+                          </mat-expansion-panel-header>
+                          <div>
+                            <mat-form-field class="example-full-width" appearance="outline">
+                              <input type="text" matInput [(ngModel)]="booleans.label"
+                                [ngModelOptions]="{standalone: true}">
+                            </mat-form-field>
+                          </div>
+
+                          <div class="form-group mb-0">
+                            <mat-checkbox class="example-margin" [checked]="booleans.required"
+                              [(ngModel)]="booleans.required" [ngModelOptions]="{standalone: true}">Required
+                            </mat-checkbox>
+                          </div>
+                          <!-- <div class="form-group mb-1">
+                        <mat-checkbox class="example-margin" [checked]="booleans.yesresponse" [(ngModel)]="booleans.yesresponse" [ngModelOptions]="{standalone: true}">Clear response after each visit(Saved visitors)</mat-checkbox>
+                      </div> -->
+                          <div>
+                            <p class="mb-2 mt-1">Require approval if:</p>
+                            <div class="form-group mb-0">
+                              <mat-checkbox class="example-margin" [checked]="booleans.yesChecked"
+                                [(ngModel)]="booleans.yesChecked" [ngModelOptions]="{standalone: true}">Yes
+                              </mat-checkbox>
+                            </div>
+                            <div class="form-group mb-1">
+                              <mat-checkbox class="example-margin" [checked]="booleans.yesinput"
+                                [(ngModel)]="booleans.yesinput" [ngModelOptions]="{standalone: true}">No</mat-checkbox>
+                            </div>
+                          </div>
+                          <div class="form-group buttons mb-0">
+                            <button type="button" class="btn" (click)="deleteYes(booleans)">Remove</button>
+                          </div>
+                        </mat-expansion-panel>
+                      </mat-accordion>
+                    </div>
+
+                  </div>
+                </div>
+
+                <!--document-->
+                <!-- <div class="row">
+              <div class="col-md-12">
+                <div *ngFor="let documents of document" class="emailCard">
+                  <mat-accordion class="example-headers-align">
+                    <mat-expansion-panel #matExpansionPanel8 togglePosition="before">
+                      <mat-expansion-panel-header>
+                        <mat-panel-title>
+                          {{documents.documentValue}}
+                        </mat-panel-title>
+                        <mat-panel-description>
+                          <button class="eye" (click)="disable()" (click)="expandPanel(matExpansionPanel8, $event)"><i class="fa fa-eye" aria-hidden="true" *ngIf="shows"></i>
+                            <i class="fa fa-eye-slash" aria-hidden="true" *ngIf="!shows"></i></button>
+                         <span class="textAccordion">DOCUMENTS</span>
+                        </mat-panel-description>
+                      </mat-expansion-panel-header>
+                      <div>
+                        <mat-form-field class="example-full-width" appearance="outline">
+                          <input type="text"  matInput [(ngModel)]="documents.documentValue" [ngModelOptions]="{standalone: true}">
+                        </mat-form-field>
+                      </div>
+                      <div class="form-group mb-0">
+                        <mat-label>
+                          <div>
+                            <p class="mb-1" style="font-size: 18;">Add any specific instructions(optional)</p>
+
+                          </div>
+                          </mat-label>
+                        <mat-form-field class="example-full-width" appearance="outline">
+                          <input type="text"  matInput [value]="documents.documentinput" [(ngModel)]="documents.documentinput" [ngModelOptions]="{standalone: true}">
+                        </mat-form-field>
+                      </div>
+                      <div class="form-group mb-0">
+                        <mat-checkbox class="example-margin" [checked]="documents.documentrequire" [(ngModel)]="documents.documentrequire" [ngModelOptions]="{standalone: true}">Required</mat-checkbox>
+                      </div>
+                      <div class="form-group mb-0">
+                        <mat-checkbox class="example-margin" [checked]="documents.documetapprove" [(ngModel)]="documents.documetapprove" [ngModelOptions]="{standalone: true}">Approval required</mat-checkbox>
+                      </div>
+                      <div class="form-group buttons mb-0">
+                        <button type="button" class="btn" (click)="deleteDocument(documents)">Remove</button>
+                      </div>
+                    </mat-expansion-panel>
+                  </mat-accordion>
+                </div>
+
+              </div>
+            </div> -->
+
+                <!--vaccine-->
+                <div class="row">
+                  <div class="col-md-12">
+                    <div *ngFor="let vaccines of vaccine;index as i" class="emailCard">
+                      <mat-accordion class="example-headers-align">
+                        <mat-expansion-panel #matExpansionPanel9 togglePosition="before"
+                          [disabled]="vaccines.isVaccinedisabled">
+                          <mat-expansion-panel-header>
+                            <mat-panel-title>
+                              {{vaccines.label}}
+                            </mat-panel-title>
+                            <mat-panel-description>
+                              <button class="eye" type="button" (click)="disableVaccine(i,vaccines)"
+                                (click)="expandPanel(matExpansionPanel9, $event)"><i class="fa fa-eye"
+                                  aria-hidden="true" *ngIf="!vaccines.showVaccineCheck"></i>
+                                <i class="fa fa-eye-slash" aria-hidden="true"
+                                  *ngIf="vaccines.showVaccineCheck"></i></button>
+                              <span class="textAccordion">VACCINE</span>
+                            </mat-panel-description>
+                          </mat-expansion-panel-header>
+                          <div class="form-group mb-0">
+                            <mat-label>
+                              <div>
+                                <p class="mb-1" style="font-size: 18;">FieldName</p>
+                              </div>
+                            </mat-label>
+                            <mat-form-field class="example-full-width" appearance="outline">
+                              <input type="text" matInput [(ngModel)]="vaccines.label"
+                                [ngModelOptions]="{standalone: true}"
+                                placeholder="Please provide proof of your vaccine certificate">
+                            </mat-form-field>
+                          </div>
+                          <div class="form-group mb-0">
+                            <mat-label>
+                              <div>
+                                <p class="mb-1" style="font-size: 18;">Add any specific instructions(optional)
+                                </p>
+
+                              </div>
+                            </mat-label>
+                            <mat-form-field class="example-full-width" appearance="outline">
+                              <input type="text" matInput [value]="vaccines.optionalLabel"
+                                [(ngModel)]="vaccines.optionalLabel" [ngModelOptions]="{standalone: true}">
+                            </mat-form-field>
+                          </div>
+
+                          <div class="mb-3">
+                            <label>Select supported jurisdications</label>
+                            <div class="d-flex align-items-center p-2" style="background-color: #f4f4f5;">
+                              <div>
+                                <mat-icon>info</mat-icon>
+                              </div>
+                              <div>
+                                <p style="color:#909399" class="mb-0 ml-2">Only New Zealand issued passes are currently
+                                  supported.
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-group mb-1">
+                            <mat-checkbox class="example-margin" [checked]="vaccines.required"
+                              [(ngModel)]="vaccines.required" [ngModelOptions]="{standalone: true}">Required
+                            </mat-checkbox>
+                          </div>
+                          <div>
+                            <label style="font-weight: 500;">Approval required when</label>
+                          </div>
+                          <div class="form-group mb-0">
+                            <mat-checkbox class="example-margin" [checked]="vaccines.vaccinevalidated"
+                              [(ngModel)]="vaccines.vaccinevalidated" [ngModelOptions]="{standalone: true}">Pass is
+                              validated
+                            </mat-checkbox>
+                          </div>
+                          <div class="form-group mb-0">
+                            <mat-checkbox class="example-margin" [checked]="vaccines.vaccinenotvalidated"
+                              [(ngModel)]="vaccines.vaccinenotvalidated" [ngModelOptions]="{standalone: true}">Pass is
+                              not validated or not supplied</mat-checkbox>
+                          </div>
+                          <div class="form-group buttons mb-0">
+                            <button type="button" class="btn" (click)="deleteVaccine(vaccines)">Remove</button>
+                          </div>
+                        </mat-expansion-panel>
+                      </mat-accordion>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="float-right mt-3">
+              <button type="submit" class="submit">Submit</button>
+            </div>
+
+
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

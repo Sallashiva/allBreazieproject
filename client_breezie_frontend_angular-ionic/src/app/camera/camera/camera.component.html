@@ -1,0 +1,46 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start" class="back-button">
+            <ion-back-button class="backbutton" [defaultHref]="path"></ion-back-button>
+        </ion-buttons>
+        <ion-item slot="start" lines="none">
+            <img class="logo" src="../../../assets/images/Mask Group 1.png">
+        </ion-item>
+        <!-- <ion-item slot="end" lines="none" ion-padding class="qrcode">
+            <div class="qr-code" (click)="qrCodeOpen()">
+                <img style="text-align: center; width: 5%;" src="../../../assets/images/Breazie-qr-code.png" alt="">
+            </div>
+        </ion-item> -->
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <form [formGroup]="visitorPhoto" (ngSubmit)="sendPhoto()">
+        <ion-grid>
+            <ion-row>
+                <ion-col size="12" style="text-align: center;">
+                    <div class="image" *ngIf="imageUrl">
+                        <ion-avatar class="avatars mt-5">
+                            <img [src]="imageUrl">
+                            <div class="captures" data-tooltip="Capture Image" (click)="addPhotoToGallery()">
+                                <i class="material-icons">camera_alt</i>
+                            </div>
+                        </ion-avatar>
+                    </div>
+                    <div *ngIf="!imageUrl" (click)="addPhotoToGallery()" style="cursor: pointer;">
+                        <div class="retake">
+                            <span>Take Picture</span>
+                        </div>
+                        <div class="image mt-5">
+                            <ion-avatar>
+                                <img src="../../../assets/images/camera3.png">
+                            </ion-avatar>
+                        </div>
+                    </div>
+                    <div *ngIf="imageUrl != null" class="mt-3 ml-2">
+                        <ion-button type="submit" [disabled]="visitorPhoto.invalid">Continue</ion-button>
+                    </div>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </form>
+</ion-content>

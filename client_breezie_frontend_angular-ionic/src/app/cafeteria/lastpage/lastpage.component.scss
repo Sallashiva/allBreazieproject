@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ephesis&display=swap');
+
+.logo {
+  top: 36px;
+  left: 56px;
+  width: 168px;
+  height: 41px;
+}
+
+.thankyou {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  overflow-y: scroll;
+  
+}
+
+.thankyou h1 {
+  font-family: 'Ephesis', cursive;
+  font-size: 80px;
+  color: var(--ion-thankyou-text-color);
+
+}
+
+.thankyou p {
+  color: var( --ion-thankyou-color);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 50px;
+
+}
+.back-button{
+  display: none;
+}
+@media only screen and (max-width:1023px) {
+  .back-button{
+    display: block;
+  }
+}
+@media only screen and (max-width:767px){
+  .back-button{
+    display: block;
+  }
+}
+@media only screen and (max-width:"425px") {
+
+  .thankyou h1 {
+    font-size: 50px;
+  }
+  .thankyou p {
+    font-size: 35px;
+  }
+}

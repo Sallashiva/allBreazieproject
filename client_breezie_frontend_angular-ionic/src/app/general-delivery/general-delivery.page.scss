@@ -1,0 +1,22 @@
+.cancelIcon {
+    text-align: right;
+}
+
+.signatureRequired {
+    padding-top: 10px;
+}
+
+.inline-group {
+    max-width: 9rem;
+    padding: .5rem;
+}
+
+.inline-group .form-control {
+    text-align: right;
+}
+
+.form-control[type="number"]::-webkit-inner-spin-button,
+.form-control[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}

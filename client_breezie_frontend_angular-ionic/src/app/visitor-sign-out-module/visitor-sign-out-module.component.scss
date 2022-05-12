@@ -1,0 +1,31 @@
+.headingSignOut{
+    padding-left: 28%;
+      font-size: medium;
+      padding-top: 13px;
+  }
+  .headSignOut{
+    padding-left: 22%;
+    font-size: 21px;
+    margin-bottom: 25px;
+  }
+  .signOutContinue{
+    padding-left: 12%;
+    /* padding-top: 12px; */
+    font-size: 18px;
+  }
+
+  #closeSignOut{
+    border: 1px solid black;
+    border-radius: 8px;
+    margin-left: 43px;
+    width: 85px;
+  }
+  
+  #signOutButton{
+    border: 1px solid red;
+    border-radius: 8px;
+    /* margin-left: 12%; */
+    background-color: lightcoral;
+    color: white;
+    margin-left: 48px;
+  }

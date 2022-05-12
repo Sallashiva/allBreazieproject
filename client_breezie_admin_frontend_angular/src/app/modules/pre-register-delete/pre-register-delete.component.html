@@ -1,0 +1,14 @@
+<div></div>
+<div>
+    <h1>Delete Pre-Registration</h1>
+</div>
+<hr>
+
+<div class="textAboutDelete">
+    You are about to delete Pre-Registration for <b>{{editData.fullName}}</b>. Do you wish to continue?
+</div>
+<hr>
+<div class="delete d-flex justify-content-between mt-3">
+    <button class="cancel" mat-button mat-raised-button mat-dialog-close>Cancel</button>
+    <button mat-button mat-raised-button class="deleteButton" (click)="delete()">Delete</button>
+</div>

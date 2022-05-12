@@ -1,0 +1,92 @@
+.agreementHeadding {
+  margin-left: 50px;
+  margin-top: 35px;
+}
+
+.agreementCard {
+  width: 589px;
+  margin-left: 233px;
+  margin-top: 25px;
+  height: 381px;
+  border-radius: 13px;
+}
+
+.spinner {
+  position:fixed;
+  background-color: rgba(0,0,0,0.2);
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+ :host::ng-deep mat-spinner{
+  position: absolute;
+  left: 50%;
+  top: 30%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+#existingAgreement {
+  margin-left: 47px;
+  border: 1px solid #004AB6;
+  color: #004AB6;
+  background-color: white;
+}
+
+#addNewAgreement {
+  margin-left: 38px;
+  border: 1px solid #004AB6;
+  color: #004AB6;
+  background-color: white;
+}
+
+.agreementDropDownHeadding {
+  margin-top: 30px;
+}
+
+.ckeditor {
+  margin-top: 20px;
+  /* width: 100px; */
+}
+
+.ck-editor__editable:not(.ck-editor__nested-editable) {
+  min-height: 400px;
+}
+
+#viewOrEditAgreementDropDown {
+  position: absolute;
+  will-change: transform;
+  /* margin-top:  7px; */
+  left: 0px;
+  right: 45px;
+  /* height: 100px; */
+  transform: translate3d(47px, 38px, 0px);
+}
+
+.dropdown-item {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#addNewAgreementDropDown {
+  position: absolute;
+  transform: translate3d(38px, 38px, 0px);
+  margin-top: 7px;
+  left: 0px;
+  right: 37px;
+  will-change: transform;
+}
+
+.submit {
+  border-radius: 4px;
+  background-color: #1561CF;
+  border: 1px solid #1561CF;
+  color: white !important;
+  width: 10%;
+}
+
+/* :host ::ng-deep.ck.ck-toolbar {
+    background: #004AB6 !important;
+    padding: 0 var(--ck-spacing-small);
+    border: 1px solid var(--ck-color-toolbar-border);
+} */

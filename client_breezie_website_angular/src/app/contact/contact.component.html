@@ -1,0 +1,132 @@
+<div class="content">
+  <div class="container-fluid">
+    <div class="content-text">
+      <h1 class="contact">Contact</h1>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card mb-3">
+            <h1 class="cardHeader">Reach out to us with your details and we will connect with you!</h1>
+            <form [formGroup]="contactForm" (ngSubmit)="contactSubmit()">
+              <div class="form-group">
+                <input type="text" placeholder="Name" formControlName="name" required>
+                <p *ngIf="(contactForm.controls.name.touched) && contactForm.controls.name.errors?.required"
+                class="text-danger">
+                Name is required.
+              </p>
+              <p *ngIf="(contactForm.controls.name.touched) && contactForm.controls.name.errors?.pattern"
+                class="text-danger">This is invalid name!</p>
+              </div>
+              <div class="form-group">
+                <input type="text" placeholder="Email" formControlName="email" required>
+                <p *ngIf="(contactForm.controls.email.touched) && contactForm.controls.email.errors?.required"
+                class="text-danger">
+                Email is required.
+              </p>
+              <p *ngIf="(contactForm.controls.email.touched) && contactForm.controls.email.errors?.pattern"
+                class="text-danger">This is invalid email!</p>
+              </div>
+              <div class="form-group">
+                <input type="text" placeholder="Phone" formControlName="phone" required>
+                <p *ngIf="(contactForm.controls.phone.touched) && contactForm.controls.phone.errors?.required"
+                class="text-danger">
+                Phone is required.
+              </p>
+              <p *ngIf="(contactForm.controls.phone.touched) && contactForm.controls.phone.errors?.pattern"
+                class="text-danger">This is invalid phone!</p>
+              </div>
+              <div class="form-group">
+                <textarea class="boxSizing-borderBox" name="message" formControlName="message" >
+                          </textarea>
+              </div>
+              <div class="float-right">
+                <button type=submit class="btn btn-dark" [disabled]="contactForm.invalid" data-toggle="modal" data-target="#exampleModal">Submit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card mb-3">
+            <div class="row">
+              <div class="col-1 col-sm-1 col-md-2 col-lg-1">
+                <div class="d-flex align-items-center h-100">
+                  <span><i class="fa fa-envelope" aria-hidden="true" style="font-size: 32px;"></i></span>
+                </div>
+              </div>
+              <div class="col-10 col-sm-11 col-md-10 col-lg-11">
+                  <div class="d-flex align-items-center">
+                    <h2 class="mail mb-0">info@digitoonz.com</h2>
+                  </div>
+               
+              </div>
+            </div>
+            <div class="row mt-4">
+              <div class="col-1 col-sm-1 col-md-2 col-lg-1">
+                <div class="d-flex align-items-center h-100">
+                    <span><i class="fa fa-envelope" aria-hidden="true" style="font-size: 32px;"></i></span>
+                  </div>
+              </div>
+              <div class="col-10 col-sm-11 col-md-10 col-lg-11">
+                <div class="d-flex align-items-center">
+                    <h2 class="mail mb-0">info@digitoonz.com</h2>
+                  </div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="row">
+              <div class="col-1 col-sm-1 col-md-2 col-lg-1">
+                <span><i class="fa fa-map-marker" aria-hidden="true" style="font-size: 32px;"></i></span>
+              </div>
+              <div class="col-10 col-sm-11 col-md-10 col-lg-11">
+                <h3 class="mb-1">C29, Sector 6, Noida 201301, India.</h3>
+                <p style="color: #BD8E74;">+91 120-4546011 | +91 120-4107048</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-1 col-sm-1 col-md-2 col-lg-1">
+                <span><i class="fa fa-map-marker" aria-hidden="true" style="font-size: 32px;"></i></span>
+              </div>
+              <div class="col-10 col-sm-11 col-md-10 col-lg-11">
+                <h3 class="mb-1">3422 Old Capitol Trail #136, Wilmington, DE 19808, USA.</h3>
+                <p style="color: #BD8E74;">+1 323 540 3045</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-1 col-sm-1 col-md-2 col-lg-1">
+                <span><i class="fa fa-map-marker" aria-hidden="true" style="font-size: 32px;"></i></span>
+              </div>
+              <div class="col-10 col-sm-11 col-md-10 col-lg-11">
+                <h3 class="mb-1">Block EP, Y23, Sec-5, Salt Lake City, Kolkata-700091, India.</h3>
+                <p style="color: #BD8E74;">+91 33 46035883</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+<div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="text-center">
+                  <h1 style="line-height: 1.35;">Thank you for the enquiry. We will contact you soon!!</h1>
+              </div>
+            </div>
+            <div class="modal-footer">
+                <a routerLink="/about-us"><button type="button" class="btn btn-primary" style="background-color: #00AAB7;
+                    font-weight: 500;">Go back to home</button></a>
+              </div>
+          </div>
+        </div>
+      </div>
+</div>

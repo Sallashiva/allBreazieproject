@@ -1,0 +1,37 @@
+div {
+  text-align: center;
+}
+
+.otppage {
+  margin: 100px 0px;
+}
+
+input {
+  border: 0;
+  outline: 0;
+  background: transparent;
+  border-bottom: 2px solid black;
+  width: 100px;
+  text-align: center;
+  padding: 5px;
+  margin-left: 10px;
+  display: inline-block;
+}
+
+.submit {
+  margin-top: 50px !important;
+  border-radius: 6px;
+  padding: 15px 90px;
+  box-shadow: none;
+  font-weight: 400;
+  background-color: #1D447D;
+  color: white;
+  border: none;
+  font-size: 18px;
+}
+
+button:disabled {
+  background: lightgray;
+  opacity: 0.6;
+  color: black;
+}

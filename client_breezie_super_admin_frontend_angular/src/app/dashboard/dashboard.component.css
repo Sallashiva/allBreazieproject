@@ -1,0 +1,147 @@
+.matcard-background {
+  background-color: #5b3f94;
+  padding-bottom: 50px !important;
+}
+.revenue-content{
+  position: absolute;
+    top: 200px;
+    left: 15px;
+    right: 15px;
+}
+
+mat-card {
+  border-radius: 8px;
+  padding: 5px;
+}
+.revenue-content mat-card{
+  padding: 30px 20px 5px 20px ;
+}
+.card-img {
+  width: 50px !important ;
+  height: 50px !important;
+}
+.card-text {
+  color: #8898aa;
+  font-size: 14px;
+}
+.card-amount {
+  font-weight: 500;
+  font-size: 20px;
+}
+/* ul li:nth-child(4n + 0):before {
+  content: "\2022";
+  font-size: medium;
+  color: red;
+  font-weight: bold;
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+}
+ul li:nth-child(4n + 1):before {
+  content: "\2022";
+  color: green;
+  font-weight: bold;
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+}
+ul li:nth-child(4n + 2):before {
+  content: "\2022";
+  color: blue;
+  font-weight: bold;
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+}
+ul li:nth-child(4n + 3):before {
+  content: "\2022";
+  color: red;
+  font-weight: bold;
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+} */
+.chart-middle {
+  position: absolute;
+  left: 50%;
+  top: 58%;
+  font-size: 13px;
+  transform: translate(-50%, -50%);
+}
+
+.chart-middle-1 {
+    position: absolute;
+    left: 50%;
+    top: 52%;
+    font-size: 16px;
+    transform: translate(-50%, -50%);
+}
+.chart-card {
+  font-size: 14px;
+}
+.chart-sub-text {
+  color: #5b3f94;
+  font-size: 19px;
+}
+.chart-text {
+  color: #172b4d;
+  font-size: 15px;
+}
+::ng-deep.mat-drawer-content {
+  overflow-x: hidden !important;
+}
+.card-sub-text {
+  font-size: 13px;
+}
+.li-sub-text{
+  font-weight: 400;
+  font-size: 13px;
+}
+.spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+.li-main-text{
+  font-size: 16px;
+}
+li{
+  list-style:disc;
+  margin-bottom: 20px;
+}
+li:first-child::marker{
+  color:green;
+}
+li:nth-child(2)::marker{
+  color: #F53C56;
+}
+li:nth-child(3)::marker{
+  color: #11CDEF;
+}
+.chart-card{
+  color: #8898AA;
+    font-size: 10px;
+    font-weight: 500;
+}
+#basedOnPlanChartDetailsid{
+   
+  height: auto !important;
+  width: 100% !important;
+  }
+  /* #basedOnPlanChartDetailsid{
+  background: radial-gradient(circle at center, rgba(0,0,0,0) 0, rgba(0,0,0,0) 55%, rgba(0,0,0,0.2) 56%, rgba(0,0,0,0.2) 60%, rgba(0,0,0,0.2) 64%, rgba(0,0,0,0) 65%,rgba(0,0,0,0) 100%);
+} */
+
+  @media only screen and (max-width: 1200px) {
+  
+    .list{
+      padding-left: 50px !important;
+    }
+    #basedOnPlanChartDetailsid{
+   
+    height: auto !important;
+    width: 100% !important;
+    }
+    }

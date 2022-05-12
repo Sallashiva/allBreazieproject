@@ -1,0 +1,159 @@
+<div class="spinner" *ngIf="isLoading">
+  <mat-spinner [diameter]="100"></mat-spinner>
+</div>
+<div class="container-fluid">
+
+  <div class="row matcard-background py-3">
+    <div class="col-md-3 pr-0">
+      <mat-card class="px-3">
+        <div class="row">
+          <div class="col-md-9">
+            <p class="card-text my-1">TOTAL SUBSCRIPTION</p>
+            <div role="status" *ngIf=" !isCardDataLoading">
+              <app-loader></app-loader>
+            </div>
+            <p class="card-amount">
+              {{dashboardCardData?.totalSubsciption.toLocaleString('en-IN')?dashboardCardData?.totalSubsciption.toLocaleString('en-IN'):'0'}}
+            </p>
+            <label class="card-sub-text">Since last month</label>
+            <strong class="card-sub-text"
+              [ngClass]="dashboardCardData?.lastMonthSubsciptionPercentage>0? 'text-success':'text-danger'">
+              &nbsp;{{dashboardCardData?.lastMonthSubsciptionPercentage?dashboardCardData?.lastMonthSubsciptionPercentage?.toFixed(2):'0.00'}}%</strong>
+          </div>
+          <div class="col-md-3 pl-0">
+            <img class="card-img mt-3" src="assets/images/card1.png" alt="">
+          </div>
+        </div>
+      </mat-card>
+    </div>
+    <div class="col-md-3 pr-0">
+      <mat-card class="px-3">
+        <div class="row">
+          <div class="col-md-9">
+            <p class="card-text my-1">NEW USERS</p>
+            <div role="status" [ngClass]="isCardDataLoading ? 'd-block' : 'd-none'">
+              <app-loader></app-loader>
+            </div>
+            <p class="card-amount">
+              {{dashboardCardData?.newUsers.toLocaleString('en-IN')?dashboardCardData?.newUsers.toLocaleString('en-IN'):'0'}}
+            </p>
+            <label class="card-sub-text">Since last month</label>
+            <strong class="card-sub-text"
+              [ngClass]="dashboardCardData?.lastMonthUsersPercentage>0? 'text-success':'text-danger'">
+              &nbsp;{{dashboardCardData?.lastMonthUsersPercentage?dashboardCardData?.lastMonthUsersPercentage?.toFixed(2):'0.00'}}%</strong>
+          </div>
+          <div class="col-md-3 pl-0">
+            <img class="card-img mt-3" src="assets/images/card2.png" alt="">
+          </div>
+        </div>
+      </mat-card>
+    </div>
+    <div class="col-md-3 pr-0">
+      <mat-card class="px-3">
+        <div class="row">
+          <div class="col-md-9">
+            <p class="card-text my-1">TOTAL REVENUE</p>
+            <div role="status" [ngClass]="isCardDataLoading ? 'd-block' : 'd-none'">
+              <app-loader></app-loader>
+            </div>
+            <p class="card-amount">
+              {{dashboardCardData?.totalRevenuePerMonth.toLocaleString('en-IN')?dashboardCardData?.totalRevenuePerMonth.toLocaleString('en-IN'):'0'}}
+            </p>
+            <label class="card-sub-text">Since last month</label>
+            <strong class=" card-sub-text"
+              [ngClass]="dashboardCardData?.lastMonthRevenuePercentage>0 ? 'text-success':'text-danger'">
+              &nbsp;{{dashboardCardData?.lastMonthRevenuePercentage?dashboardCardData?.lastMonthRevenuePercentage?.toFixed(2):'0.00'}}%</strong>
+          </div>
+          <div class="col-md-3 pl-0">
+            <img class="card-img mt-3" src="assets/images/card3.png" alt="">
+          </div>
+        </div>
+      </mat-card>
+    </div>
+    <div class="col-md-3">
+      <mat-card class="px-3">
+        <div class="row">
+          <div class="col-md-9">
+            <p class="card-text my-1">TOTAL REVENUE</p>
+            <div role="status" [ngClass]="isCardDataLoading ? 'd-block' : 'd-none'">
+              <app-loader></app-loader>
+            </div>
+            <p class="card-amount">
+              {{dashboardCardData?.totalRevenuePerYear.toLocaleString('en-IN')?dashboardCardData?.totalRevenuePerYear.toLocaleString('en-IN'):'0'}}
+            </p>
+            <label class="card-sub-text">Since last year</label>
+            <strong class="card-sub-text"
+              [ngClass]="dashboardCardData?.lastYearRevenuePercentage>0?'text-success':'text-danger'">
+              &nbsp;{{dashboardCardData?.lastYearRevenuePercentage?dashboardCardData?.lastYearRevenuePercentage?.toFixed(2):'0.00'}}%</strong>
+          </div>
+          <div class="col-md-3 pl-0">
+            <img class="card-img mt-3" src="assets/images/card4.png" alt="">
+          </div>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+  <div class="revenue-content">
+  <div class="row mt-2">
+    <div class="col-md-6 pr-0">
+      <mat-card>
+        <div class="chart-card">Revenue</div>
+        <span class="mr-3 chart-text">TOTAL REVENUE</span>
+        <span
+          class="font-weight-bold chart-sub-text"><i class="fa fa-usd" aria-hidden="true"></i>{{(dashboardCardData?.totalRevenuePerYear?dashboardCardData?.totalRevenuePerYear.toLocaleString('en-In'):'0')}}</span>
+        <canvas class="mt-4" id="totalRevenueChartDetailsid"></canvas>
+      </mat-card>
+    </div>
+    <div class="col-md-6 pr-3">
+      <mat-card>
+        <div class="row">
+          <div class="col-md-12 col-lg-12 col-xl-7 px-3 position-relative">
+            <div class="chart-card">Subscriptions</div>
+            <div class="chart-text">BASED ON PLANS</div>
+            <canvas class="mt-4" id="basedOnPlanChartDetailsid" style="margin-bottom: 1.75em;"></canvas>
+            <div class="chart-middle-1 font-weight-bold">
+              {{(dashboardCardData?.totalPlanPrice?dashboardCardData?.totalPlanPrice:'0')| currency}}</div>
+            <div class="chart-middle">
+              Count : {{dashboardCardData?.planCount?dashboardCardData?.planCount:'0'}}
+            </div>
+          </div>
+          <div class="col-md-12 col-lg-12 col-xl-5 px-0 my-auto">
+            <ul class="list px-0">
+              <li>
+                <div class="row">
+                  <div class="col-md-6 font-weight-bold li-main-text"> Starter Plan</div>
+                  <div class="col-md-6 li-main-text font-weight-bold" style="color: #2DCE98;">
+                    {{(dashboardCardData?.starterPlan?dashboardCardData?.starterPlan:'0') | currency}}</div>
+                  <div class="col-md-6 li-sub-text"> Client Count</div>
+                  <div class="col-md-6 li-sub-text">
+                    {{dashboardCardData?.starterPlanCount?dashboardCardData?.starterPlanCount:'0'}}</div>
+                </div>
+              </li>
+              <li>
+                <div class="row">
+                  <div class="col-md-6 font-weight-bold li-main-text"> Buisness</div>
+                  <div class="col-md-6 li-main-text font-weight-bold" style="color: #F53C56;">
+                    {{(dashboardCardData?.businessPlan?dashboardCardData?.businessPlan:'0') | currency}}</div>
+                  <div class="col-md-6 li-sub-text"> Client Count </div>
+                  <div class="col-md-6 li-sub-text">
+                    {{dashboardCardData?.businessPlanCount?dashboardCardData?.businessPlanCount:'0'}}</div>
+                </div>
+              </li>
+              <li>
+                <div class="row">
+                  <div class="col-md-6 font-weight-bold li-main-text"> Enterprise</div>
+                  <div class="col-md-6 li-main-text font-weight-bold" style="color: #11CDEF;">
+                    {{(dashboardCardData?.enterprisePlan ?
+                    dashboardCardData?.enterprisePlan:'0') | currency}}</div>
+                  <div class="col-md-6 li-sub-text"> Client Count</div>
+                  <div class="col-md-6 li-sub-text">{{dashboardCardData?.enterprisePlanCount
+                    ?dashboardCardData?.enterprisePlanCount:'0' }}</div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+  </div>

@@ -1,0 +1,6 @@
+{
+	"appId": "com.breazie.app",
+	"appName": "breazie",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}

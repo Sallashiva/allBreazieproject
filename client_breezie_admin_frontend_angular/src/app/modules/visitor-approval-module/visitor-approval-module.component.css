@@ -1,0 +1,58 @@
+.approve {
+  border: 1px solid #1561CF;
+  background-color: #1561CF;
+  color: white;
+  margin-left: 10px;
+  width: 43%;
+}
+
+.cancel {
+  border: 2px solid grey;
+  background-color: white;
+  color: black;
+  width: 39%;
+  box-shadow: none;
+}
+
+.bottom {
+  margin-top: 10%;
+}
+
+.approvalHeading {
+  font-size: 18px;
+  margin-top: 43px;
+  text-align: center;
+}
+
+.mainheading {
+  font-size: 18px;
+  padding-top: 35px;
+  text-align: center;
+}
+
+.subheading {
+  font-size: 18px;
+  text-align: center;
+  padding-top: 7px;
+
+}
+
+/* .headings{
+  background-color: lightgray;
+  height: 108px;
+} */
+
+:host::ng-deep.mat-dialog-container {
+  padding: 0px !important;
+  overflow: hidden !important;
+  padding-bottom: 30px !important;
+}
+
+
+:host ::ng-deep.mat-dialog-content {
+  display: block;
+  margin: 0 -24px;
+  max-height: 65vh;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}

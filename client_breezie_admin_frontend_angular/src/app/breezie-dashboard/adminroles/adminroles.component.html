@@ -1,0 +1,90 @@
+<div class="spinner" *ngIf="spinner">
+  <mat-spinner diameter="100"></mat-spinner>
+</div>
+<div class="container-fluid">
+  <div class="adminRoleHeadings">
+    <div class="row">
+      <div class="col-md-9">
+        <span>
+          <h2>Admin Roles</h2>
+        </span>
+        <span>Grant access to trusted employees</span>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-9">
+      <div class="adminRolesSearch">
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="search" id="adminRoleSearchInput" placeholder="Search"
+            aria-label="Search" (keyup)=" applyFilter($event)" autocomplete="off">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="adminRoleSearchButton">Search</button>
+        </form>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div style="display: inline-block;">
+        <button class="btn" (click)="openDialog()" id="addEmployee">Add Employee</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="spinner" *ngIf="spinner">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+
+    <ng-container matColumnDef="image" class="image">
+      <th mat-header-cell *matHeaderCellDef> </th>
+      <td [class.isAnonymised]="element.isAnonymized" mat-cell *matCellDef="let element">
+        <img [src]=element.VisitorImage onerror="this.src='../../assets/images/user.png'"
+          class="addImage rounded-circle">
+
+
+      </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="fullName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Employee </th>
+      <td mat-cell *matCellDef="let element" style="width: 30%;"> {{element.fullName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> E-mail </th>
+      <td mat-cell *matCellDef="let element" style="width: 30%;"> {{element.email}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="role">
+      <th mat-header-cell *matHeaderCellDef> Role </th>
+      <td mat-cell *matCellDef="let element" style="width: 25%;"> {{element.role}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="delete">
+      <th mat-header-cell *matHeaderCellDef> </th>
+      <td mat-cell *matCellDef="let element">
+        <div class="d-flex">
+          <span *ngIf="!element.defaultAdmin">
+            <span *ngIf="!element.password">
+              <span class="emailIcon" matTooltipPosition="left" (click)="sendEmailData($event,element)"
+                matTooltip="Send Mail"><i class="fas fa-envelope-square"></i></span>
+            </span>
+            <!-- <mat-icon (click)="sendEmailData($event,element)">  mail_outline</mat-icon></span> -->
+            <span matTooltipPosition="right" (click)="removeEmployee(element._id)" matTooltip="Delete"> <i
+                class="fas fa-trash-alt ml-3"></i></span>
+          </span>
+        </div>
+      </td>
+    </ng-container>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="9999">
+        No data found
+      </td>
+    </tr>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>

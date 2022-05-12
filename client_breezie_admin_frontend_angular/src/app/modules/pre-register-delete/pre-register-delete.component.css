@@ -1,0 +1,29 @@
+.cancel {
+    /* border: 1px solid Black; */
+    border-radius: 4px;
+    background-color: #E4E4E4;
+    border: 1px solid black;
+    color: black;
+    opacity: 1 !important;
+    /* width: 20%;
+    height: 32px; */
+}
+
+.deleteButton {
+    background-color: #1561CF;
+    border: 1px solid #1561CF;
+    color: white;
+    margin-left: 10px;
+    border-radius: 4px;
+    /* width: 20%;
+    height: 32px; */
+}
+
+.textAboutDelete {
+    font-size: 15px;
+}
+
+.delete {
+    margin-left: 25%;
+    margin-right: 25%;
+}

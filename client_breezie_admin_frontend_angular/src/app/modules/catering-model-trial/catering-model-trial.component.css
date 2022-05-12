@@ -1,0 +1,41 @@
+.signinname {
+    margin-left: 21px;
+}
+
+.wanttocontinue {
+    margin-top: 10px;
+}
+
+
+/* :host::ng-deep.mat-dialog-container {
+  padding: 55px !important;
+} */
+
+:host::ng-deep .mat-dialog-content {
+    padding: 15px 45px;
+    height: auto;
+    max-height: 100%;
+    overflow: hidden;
+}
+
+.signinheadding {
+    margin-left: 10px;
+}
+
+.cancel {
+    margin-top: 10px;
+    border: 1px solid #A0A0A0;
+    color: #E4E4E4;
+}
+
+.signin {
+    margin-top: 10px;
+    color: white;
+    border: 1px solid #b60000;
+    background-color: #cf1515;
+}
+
+:host::ng-deep.mat-dialog-actions {
+    display: inline-block !important;
+    width: 100%;
+}

@@ -1,0 +1,98 @@
+.nav-tabs .nav-link {
+  border: 1px solid white;
+  border-top-left-radius: 1.25rem !important;
+  border-top-right-radius: 1.25rem !important;
+}
+a {
+  color: #999999 !important;
+  background-color: #edecec;
+}
+.nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active {
+  background-color: white !important;
+  color: #5b3f94 !important;
+  border-color: white;
+  font-weight: 600 !important;
+  box-shadow: 0px 0px 3px lightgray;
+  font-size: 16px;
+}
+.nav-tabs {
+  border-bottom: none !important;
+}
+:host::ng-deep.mat-card {
+  box-shadow: 0px 0px 0px 0px rgb(0 0 0 / 20%), 0px 1px 0px 0px rgb(0 0 0 / 14%),
+    0px 1px 3px 0px rgb(0 0 0 / 12%) !important;
+}
+.modal-content {
+  border-radius: 17px;
+}
+.card-footer {
+  background-color: #5b3f94;
+  color: white;
+}
+.reminder-title {
+  color: #5b3f94;
+  font-size: 14px;
+}
+.send-reminder-btn1 {
+  border: 1px solid #5b3f94;
+  background-color: #5b3f94;
+  outline: none;
+  border-radius: 4px;
+  color: white;
+  padding: 4px 9px;
+}
+.send-reminder-btn:hover{
+  background-color: #5b3f94 !important;
+  color: white !important;
+}
+.modal ::-webkit-scrollbar {
+  display: none !important;
+}
+:host::ng-deep.ck.ck-editor__main > .ck-editor__editable:not(.ck-focused) {
+  height: 350px !important;
+}
+.main-card {
+  cursor: pointer !important;
+  border-radius: 4px;
+  border: 1px solid lightgray;
+}
+mat-card-content {
+  height: 150px;
+  overflow-y: auto;
+}
+.close-btn {
+  padding: 2px 7px !important;
+  color: white;
+  background-color: gray;
+  border-radius: 4px;
+  border: 1px solid gray;
+  outline: none;
+}
+.template-div{
+  overflow-y: auto;
+  height: 393px;
+  border: 1px solid lightgray;
+}
+
+:host::ng-deep.mat-drawer-content {
+  position: relative;
+  z-index: 1;
+  display: block;
+  height: 0% !important;
+  overflow: auto;
+}
+:host::ng-deep mat-spinner{
+  left: 40%;
+  top: 30%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+.fields{
+  width: 10%;
+  margin:3px 10px;
+
+}
+.Searchfields{
+  margin:0px 10px;
+}

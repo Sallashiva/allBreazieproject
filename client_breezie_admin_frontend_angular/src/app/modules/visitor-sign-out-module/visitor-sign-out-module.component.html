@@ -1,0 +1,18 @@
+
+
+<mat-dialog-content class="dialog">
+  <div class="content">
+   <div class="heading text-center">
+     <p class="mb-0">You are about to </p>
+      <p>sign out guest &nbsp; <strong>{{editData.FullName}}</strong>   </p>   
+   </div>
+   <div class="subHeading text-center mt-3">
+     <p>Do you want to continue?</p>
+   </div>
+  </div>
+  <div class="d-flex align-items-center justify-content-center mt-5">
+    <button type="button" mat-button id="closeSignOut" mat-raised-button mat-dialog-close>Close</button>
+    <button type="submit"  mat-button id="signOutButton" mat-raised-button (click)="onSubmit()"  >Signout</button>
+  </div>
+<!-- </form> -->
+</mat-dialog-content>

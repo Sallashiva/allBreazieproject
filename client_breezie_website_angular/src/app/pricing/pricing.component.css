@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500&family=Mulish:wght@500&family=Open+Sans&display=swap');
+
+.content {
+  margin-top: 25px;
+  background-color: #E9FDF6;
+  padding-bottom: 20px;
+}
+
+.plans h1 {
+  padding-top: 50px;
+  font-size: 3.8rem;
+  letter-spacing: 2px;
+  font-weight: 500;
+  margin-bottom: 20px;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+.plans h1 span {
+  color: #BD8E74;
+}
+
+.compareplans {
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+ul li {
+  list-style: none;
+  line-height: 2;
+}
+
+ul {
+  padding-left: 0px;
+}
+
+.freeTrial {
+  background-color: #FF9100;
+  border: 1px solid #DC7D00;
+  color: white;
+  font-size: 20px;
+  box-shadow: none;
+}
+
+.card {
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.orangeline {
+  background-color: #FF9100;
+  height: 6px;
+  width: 100%;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.hr {
+  padding: 0px 100px;
+}
+
+.table-responsive-md {
+  border: 2px solid #7BCFD5;
+  border-radius: 6px;
+  padding: 10px;
+  background-color: #DAFAEF;
+}
+
+.card-body {
+  padding: 0.9rem !important;
+}
+
+.table {
+  padding: 0px 40px;
+}
+
+.table th {
+  padding: 0.75rem;
+  vertical-align: top;
+  border-top: none;
+  border-bottom: 1.8px solid #7BCFD5;
+}
+a{
+  text-decoration: none;
+}
+.table td {
+  border: none;
+}
+
+hr {
+  border-top: 2px solid #7BCFD5;
+  margin-bottom: 0px;
+}
+a{
+  text-decoration: none;
+}
+
+@media only screen and (max-width: 991px) {
+  .starterButton {
+    margin-top: 100px;
+  }
+
+  .businessButton {
+    margin-top: 22px;
+  }
+
+  .hr {
+    padding: 0px 20px;
+  }
+
+  .table {
+    padding: 0px 10px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .businessButton {
+    margin-top: 43px;
+  }
+
+  .hr {
+    padding: 0px 10px;
+  }
+
+  .table {
+    padding: 0px;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  .plans h1 {
+    font-size: 2.8rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+}
+
+@media only screen and (max-width: 369px) {
+  .plans h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  .Unbeatable {
+    font-size: 16px !important;
+  }
+
+  .starterButton {
+    margin-top: 0px;
+  }
+
+  .businessButton {
+    margin-top: 0px;
+  }
+}
